@@ -8,11 +8,11 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    // useEffect(() => {
-    //     if (localStorage.getItem('token')) {
-    //         window.location.href = '/home'
-    //     }
-    // }, [])
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            window.location.href = '/Home'
+        }
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -26,7 +26,7 @@ const Login = () => {
         const data = await res.json()
         if (data.success) {
             localStorage.setItem('token', data.token)
-            window.location.href = '/home'
+            window.location.href = '/Home'
         } else {
             alert(data.error)
         }
@@ -78,7 +78,7 @@ const Login = () => {
                                 <div className="flex items-center justify-between">
                                     <Link href={'/user/forgot'} className="text-sm font-medium text-sky-400 hover:underline">Forgot password?</Link>
                                 </div>
-                                <button style={{backgroundColor: '#00B2FF'}} type="submit"
+                                <button style={{ backgroundColor: '#00B2FF' }} type="submit"
                                     className="w-full bg-sky-400 hover:bg-sky-500 text-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
                                     Login
                                 </button>
@@ -94,7 +94,6 @@ const Login = () => {
                     </div>
                 </div>
             </section>
-
         </>
     )
 }

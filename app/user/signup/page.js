@@ -3,6 +3,8 @@ import React from 'react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import Navbar from '@/components/Navbar/page'
+import Footer from '@/components/Footer/page'
 
 const Signup = () => {
     const [name, setName] = useState('')
@@ -10,11 +12,11 @@ const Signup = () => {
     const [password, setPassword] = useState('')
     const [cpassword, setCpassword] = useState('')
 
-    // useEffect(() => {
-    //     if (localStorage.getItem('token')) {
-    //         window.location.href = '/home'
-    //     }
-    // }, [])
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            window.location.href = '/Home'
+        }
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -34,7 +36,7 @@ const Signup = () => {
         alert('User created successfully')
 
         if (json.success) {
-            window.location.href = '/home'
+            window.location.href = '/'
         } else {
             alert(json.error)
         }
@@ -55,6 +57,7 @@ const Signup = () => {
 
     return (
         <>
+            <Navbar />
             <section className="bg-black  py-24">
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20" >
                     <Link href={'/user/signup'} className="flex items-center pb-5">
@@ -112,6 +115,7 @@ const Signup = () => {
                     </form>
                 </div>
             </section>
+            <Footer />
         </>
     )
 }

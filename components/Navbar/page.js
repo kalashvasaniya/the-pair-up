@@ -1,8 +1,14 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 const Navbar = () => {
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            window.location.href = '/Home'
+        }
+    }, [])
     return (
         <>
             <nav className="bg-black fixed w-full z-20 top-0 left-0 border-b">
@@ -32,11 +38,11 @@ const Navbar = () => {
                             <div id="userDropdown" className="z-10 hidden divide-y rounded-lg shadow w-44 bg-gray-700 divide-gray-600">
                                 <div className="px-4 py-3 text-sm text-white">
                                     <div>Hello, 👋</div>
-                                    <div className="font-medium truncate"></div>
+                                    <div className="font-medium truncate">New User</div>
                                 </div>
                                 <div className="py-1">
-                                    <Link href={'/user/login'} className="flex px-[4.3rem] py-2 text-sm hover:bg-gray-600 text-gray-200">
-                                        Login
+                                    <Link href={'/user/signup'} className="flex px-[4.3rem] py-2 text-sm hover:bg-gray-600 text-gray-200">
+                                        SignUp
                                     </Link>
                                 </div>
                             </div>

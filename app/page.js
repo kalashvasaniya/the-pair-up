@@ -1,12 +1,24 @@
+"use client"
 import React from "react"
 import Login from "./user/login/page"
 import Image from "next/image"
 import Link from "next/link"
 import Contact from "./Contact/page"
+import { useEffect } from "react"
+import Navbar from "@/components/Navbar/page"
+import Footer from "@/components/Footer/page"
 
 export default function Main() {
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      window.location.href = '/Home'
+    }
+  }, [])
+
   return (
     <>
+      <Navbar />
       <div className="bg-black text-white pt-12">
         <div className="md:grid md:grid-cols-2 flex flex-col">
           <div className="bg-sky-500 md:h-screen md:rounded-r-full flex justify-center items-center">
@@ -45,6 +57,7 @@ export default function Main() {
         </div>
         <Image className="" width={1800} height={400} src={'/main3.jpg'}></Image>
       </div>
+      <Footer />
     </>
   )
 }
