@@ -110,7 +110,7 @@ const Signup = () => {
                         <button style={{ backgroundColor: '#00B2FF' }}
                             type="submit"
                             className="text-white bg-sky-400 hover:bg-sky-500 focus:ring-4 focus:outline-none focus:ring-sky-400  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-sky-400 dark:hover:bg-sky-400 dark:focus:ring-sky-400 hover:scale-105 transition ease-in-out delay-150 duration-300">
-                            Submit
+                            Sign Up
                         </button>
                     </form>
                 </div>

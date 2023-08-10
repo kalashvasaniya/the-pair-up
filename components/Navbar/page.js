@@ -1,14 +1,8 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { useEffect } from 'react'
 
 const Navbar = () => {
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            window.location.href = '/Home'
-        }
-    }, [])
     return (
         <>
             <nav className="bg-black fixed w-full z-20 top-0 left-0 border-b">
