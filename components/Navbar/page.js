@@ -1,23 +1,8 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { useRef } from 'react'
 
 const Navbar = () => {
-    const toggleCart = () => {
-        if (ref.current.classList.contains('-translate-x-full')) {
-            ref.current.classList.remove('-translate-x-full')
-            ref.current.classList.add('translate-x-0')
-        }
-        else {
-            ref.current.classList.remove('translate-x-0')
-            ref.current.classList.add('-translate-x-full')
-        }
-    }
-
-    const ref = useRef();
-
     return (
         <>
             <nav className="bg-black fixed w-full z-20 top-0 left-0 border-b">
@@ -49,9 +34,9 @@ const Navbar = () => {
                                     <div className="font-medium truncate"></div>
                                 </div>
                                 <div className="py-1">
-                                    <button className="flex px-[4.3rem] py-2 text-sm hover:bg-gray-600 text-gray-200">
+                                    <Link href={'/user/login'} className="flex px-[4.3rem] py-2 text-sm hover:bg-gray-600 text-gray-200">
                                         Login
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

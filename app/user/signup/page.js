@@ -34,7 +34,7 @@ const Signup = () => {
         alert('User created successfully')
 
         if (json.success) {
-            window.location.href = '/user/login'
+            window.location.href = '/home'
         } else {
             alert(json.error)
         }

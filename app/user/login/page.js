@@ -44,7 +44,7 @@ const Login = () => {
 
     return (
         <>
-            <section className="bg-black md:py-32">
+            <section className="bg-black py-32">
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
                     <div className="w-full sm:max-w-md">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
