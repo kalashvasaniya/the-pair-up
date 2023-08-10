@@ -27,8 +27,7 @@ export default function Main() {
               </span>
               <br />
               <div className="pt-6 space-x-4">
-                <Link href={'/Contact'} className="border p-2 px-3 rounded-3xl decoration-white">Join Waitlist</Link>
-                <Link href={'/About'} className="border p-2 px-3 rounded-3xl decoration-white">Read</Link>
+                <Link href={'/About'} className="border p-2 px-4 rounded-3xl decoration-white">Read</Link>
               </div>
             </div>
 
@@ -41,7 +40,7 @@ export default function Main() {
       </div>
 
       <div className="relative">
-        <div className="md:absolute top-[65%] right-[42%]">
+        <div className="md:absolute top-[65%] right-[42%] flex justify-center">
           <Contact />
         </div>
         <Image className="" width={1800} height={400} src={'/main3.jpg'}></Image>

@@ -9,17 +9,14 @@ function ContactForm() {
         return (
             <>
                 <p className='mb-4 text-center font-mono font-bold text-white'>Thanks for your submission!</p>
-                <div className="-mt-40">
-                    <ContactForm />
-                </div>
             </>
         );
 
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="font-mono text-3xl underline-offset-4 underline">
+        <form className='mt-40 md:mt-0 md:px-0 px-12 md:mb-0 mb-40' onSubmit={handleSubmit}>
+            <div className="font-mono text-3xl underline-offset-4 underline text-center">
                 Join Waitlist
             </div>
             <div className="relative mt-12">
