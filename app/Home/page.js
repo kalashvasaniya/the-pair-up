@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar/page'
+import BottomNavbar from '@/components/BottomNavbar/page'
 
 const Home = () => {
   return (
@@ -51,6 +51,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <BottomNavbar/>
     </>
   )
 }

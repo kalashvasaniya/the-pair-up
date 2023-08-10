@@ -18,16 +18,17 @@ export function useTPU() {
 
   }, [])
 
-  const profile = () => {
-
+  const logout = () => {
+    localStorage.removeItem('token');
+    window.location.reload();
   }
 
-  return { profile };
+  return { logout };
 }
 
 export default function RootLayout({ children }) {
 
-  const { profile } = useTPU();
+  const { logout } = useTPU();
   return (
     <html lang="en">
       <head>
