@@ -10,14 +10,14 @@ export default function Main() {
       <div className="bg-black text-white pt-12">
         <div className="md:grid md:grid-cols-2 flex flex-col">
           <div className="bg-sky-500 md:h-screen md:rounded-r-full flex justify-center items-center">
-            <Image className="hover:scale-105" src={'/main1.png.webp'} width={600} height={600}>
+            <Image className="hover:scale-105 transition ease-in-out delay-150 duration-300" src={'/main1.png.webp'} width={600} height={600}>
             </Image>
           </div>
           <Login />
         </div>
       </div>
 
-      <div className="pt-12">
+      <div className="pt-24">
         <div className="md:grid md:grid-cols-2 flex flex-col">
           <div className="md:order-1 order-2 flex justify-center items-center py-20 md:px-28 px-12">
             <div className="">
@@ -33,7 +33,7 @@ export default function Main() {
 
           </div>
           <div className="flex justify-center items-center md:order-2 order-1">
-            <Image className="hover:scale-105" src={'/main2.png.webp'} width={600} height={600}>
+            <Image className="hover:scale-105 transition ease-in-out delay-150 duration-300" src={'/main2.png.webp'} width={600} height={600}>
             </Image>
           </div>
         </div>

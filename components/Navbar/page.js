@@ -13,6 +13,7 @@ const Navbar = () => {
                         {/* <Image src={'/Logo1.png'} alt="kalash" width={60} height={60} /> */}
                         <span className="self-center text-3xl whitespace-nowrap text-white font-extrabold  ">
                             <span className='line-through decoration-white text-[#00B2FF]'>The</span> PairUp</span>
+                            <span className='text-4xl font-extrabold text-sky-400'>.</span>
                     </Link>
 
                     <div className="md:order-4 inline-flex">
