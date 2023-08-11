@@ -7,6 +7,7 @@ import Contact from "./Contact/page"
 import { useEffect } from "react"
 import Navbar from "@/components/Navbar/page"
 import Footer from "@/components/Footer/page"
+import Float from "@/components/Float/page"
 
 export default function Main() {
 
@@ -19,6 +20,7 @@ export default function Main() {
   return (
     <>
       <Navbar />
+      <Float />
       <div className="bg-black text-white pt-12">
         <div className="md:grid md:grid-cols-2 flex flex-col">
           <div className="bg-sky-500 md:h-screen md:rounded-r-full flex justify-center items-center">
@@ -34,7 +36,7 @@ export default function Main() {
           <div className="md:order-1 order-2 flex justify-center items-center py-20 md:px-28 px-12">
             <div className="">
               <span className="self-center md:text-5xl text-3xl text-white font-extrabold">
-                Many of you <span className="underline decoration-sky-400">might</span> be <span className="underline decoration-sky-400">wondering</span> what is this Freaking <br /><span className='md:text-5xl text-3xl font-extrabold line-through decoration-white text-sky-400'>The</span> PairUp
+                Many of you <span className="underline decoration-sky-400">might</span> be <span className="underline decoration-sky-400">wondering</span> what is this F***king <br /><span className='md:text-5xl text-3xl font-extrabold line-through decoration-white text-sky-400'>The</span> PairUp
                 <span className='md:text-5xl text-3xl font-extrabold text-sky-400'>?</span>
               </span>
               <br />

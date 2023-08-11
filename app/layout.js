@@ -1,10 +1,8 @@
 "use client"
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Navbar from '@/components/Navbar/page'
-import Float from '@/components/Float/page'
-import Footer from '@/components/Footer/page'
 import { useEffect } from 'react'
+import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,21 +12,33 @@ const metadata = {
 }
 
 export function useTPU() {
+  const [user, setUser] = useState({ value: null });
+
   useEffect(() => {
 
-  }, [])
+    const token = localStorage.getItem('token')
+    try {
+      if (token) {
+        setUser({ value: token });
+      }
+    }
+    catch (error) {
+      localStorage.clear();
+    }
+  }, []);
 
   const logout = () => {
     localStorage.removeItem('token');
+    setUser({ value: null })
     window.location.reload();
   }
 
-  return { logout };
+  return { logout, user };
 }
 
 export default function RootLayout({ children }) {
 
-  const { logout } = useTPU();
+  // const { logout } = useTPU();
   return (
     <html lang="en">
       <head>

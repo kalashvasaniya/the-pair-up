@@ -1,8 +1,17 @@
+"use client"
 import React from 'react'
 import Link from 'next/link'
 import BottomNavbar from '@/components/BottomNavbar/page'
+import { useEffect } from 'react'
 
 const Home = () => {
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      window.location.href = '/'
+    }
+  }, [])
+
   return (
     <>
       <div className="bg-black text-white">
@@ -51,7 +60,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <BottomNavbar/>
+      <BottomNavbar />
     </>
   )
 }
