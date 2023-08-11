@@ -1,17 +1,31 @@
 import React from 'react'
 import { useTPU } from '@/app/layout'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const Float = () => {
   const { user } = useTPU()
+  const [showBanner, setShowBanner] = useState(true);
+
+  useEffect(() => {
+    // Hide the banner after 10 seconds
+    const timeoutId = setTimeout(() => {
+      setShowBanner(false);
+    }, 15000);
+
+    return () => clearTimeout(timeoutId); // Cleanup the timeout if the component unmounts
+
+  }, []);
+  
   return (
     <>
-      {!user.value ? <div id="marketing-banner" tabIndex="-1" className="md:mt-20 mt-[28rem] fixed z-50 flex flex-col md:flex-row justify-between w-[calc(100%-2rem)] p-3 -translate-x-1/2 rounded-lg border border-sky-400 lg:max-w-7xl left-1/2 top-6 bg-black">
+      {showBanner && !user.value ? <div id="marketing-banner" tabIndex="-1" className="md:mt-20 mt-[28rem] fixed z-50 flex flex-col md:flex-row justify-between w-[calc(100%-2rem)] p-3 -translate-x-1/2 rounded-lg lg:max-w-7xl left-1/2 top-6 bg-black">
 
         <div className="flex items-start mb-3 md:items-center flex-row md:mb-0 space-x-2 mr-4 md:space-x-8">
 
           <div>
             <div className="flex justify-center">
-              <span className="self-center md:text-lg text-sm text-white font-extrabold px-2 font-mono">
+              <span className="self-center md:text-lg text-sm text-white font-semibold px-2 font-mono">
                 <span className='underline text-sky-400'>Introverts</span> who struggle to <span className='underline text-sky-400'>make college friends</span> can utilise <span className='line-through decoration-white text-[#00B2FF]'>The</span>PairUp without <span className='underline text-sky-400'>revealing</span> their <span className='underline text-sky-400'>real names</span>.
               </span>
             </div>

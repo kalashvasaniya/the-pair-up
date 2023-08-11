@@ -8,40 +8,44 @@ import Footer from '@/components/Footer/page'
 import Float from '@/components/Float/page'
 
 const Signup = () => {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [cpassword, setCpassword] = useState('')
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [cpassword, setCpassword] = useState('');
+    const [signupMessage, setSignupMessage] = useState('');
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            window.location.href = '/Home'
+            window.location.href = '/Home';
         }
-    }, [])
+    }, []);
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         if (password !== cpassword) {
-            alert('Passwords do not match')
-            return
+            alert('Passwords do not match');
+            return;
         }
         const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name, email, password })
-        })
-        const json = await res.json()
-        if (!res.ok) throw Error(json.message)
-        alert('User created successfully')
+            body: JSON.stringify({ name, email, password }),
+        });
+        const json = await res.json();
+        if (!res.ok) throw Error(json.message);
 
         if (json.success) {
-            window.location.href = '/'
+            setSignupMessage('Check you inbox to Verify your email!');
+            setName('');
+            setEmail('');
+            setPassword('');
+            setCpassword('');
         } else {
-            alert(json.error)
+            alert(json.error);
         }
-    }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -59,19 +63,24 @@ const Signup = () => {
     return (
         <>
             <Navbar />
-            <Float/>
+            <div className="md:block hidden">
+                <Float />
+            </div>
             <section className="bg-black py-24">
-                <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20" >
+                <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
                     <Link href={'/user/signup'} className="flex items-center pb-5">
-                        <span className="self-center text-4xl font-bold text-sky-400 ">Sign up</span>
+                        <span className="self-center text-4xl font-bold text-sky-400">Sign up</span>
                     </Link>
+                    {signupMessage && (
+                        <p className="text-green-400 md:text-xl text-lg underline">{signupMessage}</p>
+                    )}
                     <form onSubmit={handleSubmit} className="w-full sm:max-w-md p-8">
 
                         <div className="relative z-0 w-full mb-6 group">
                             <div className="relative z-0 w-full mb-6 group">
-                                <input onChange={handleChange} type="text" name="name" id="name"
-                                    className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
-                                    placeholder=" "
+                                <input value={name} onChange={handleChange} type="text" name="name" id="name"
+                                    className="lowercase block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400 peer"
+                                    placeholder=" " minLength={3} maxLength={12}
                                     required />
                                 <label htmlFor="name"
                                     className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Anonymous Name</label>
@@ -79,7 +88,7 @@ const Signup = () => {
                         </div>
 
                         <div className="relative z-0 w-full mb-6 group">
-                            <input onChange={handleChange} type="email" name="email" id="email"
+                            <input value={email} onChange={handleChange} pattern="[a-zA-Z0-9._%+-]+@(?:[^.]+\.edu|[^.]+\.ac\.in)" type="email" name="email" id="email"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
                                 placeholder=" "
                                 required />
@@ -90,7 +99,7 @@ const Signup = () => {
                         </div>
 
                         <div className="relative z-0 w-full mb-6 group">
-                            <input onChange={handleChange} type="password" name="password" id="password"
+                            <input value={password} onChange={handleChange} type="password" name="password" id="password"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
                                 placeholder=" " minLength={5}
                                 required />
@@ -100,7 +109,7 @@ const Signup = () => {
                         </div>
 
                         <div className="relative z-0 w-full mb-6 group">
-                            <input onChange={handleChange} type="password" name="cpassword" id="cpassword"
+                            <input value={cpassword} onChange={handleChange} type="password" name="cpassword" id="cpassword"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
                                 placeholder=" " minLength={5}
                                 required />
