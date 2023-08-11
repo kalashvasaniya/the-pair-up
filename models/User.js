@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema({
         required: [true, 'Please add a password'],
         maxlength: [50, 'Password cannot be more than 50 characters']
     },
+    verify: {
+        type: Boolean,
+        default: false
+    },
     role: {
         type: String,
         enum: ['user', 'admin'],
