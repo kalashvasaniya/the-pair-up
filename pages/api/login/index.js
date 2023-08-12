@@ -1,8 +1,9 @@
 import User from '@/models/User';
-import db from '@/middleware';
-
-var CryptoJS = require("crypto-js");
+import Token from '@/models/Token';
+import sendEmail from '@/utils/sendEmail';
+import CryptoJS from 'crypto-js';
 var jwt = require('jsonwebtoken');
+import db from '@/middleware';
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
@@ -23,7 +24,29 @@ export default async function handler(req, res) {
             }
 
             if (!user.verify) {
-                return res.status(401).json({ success: false, error: 'Email not verified. Please verify your email to log in.' });
+                const tokenValue = Date.now() + password;
+                const token2 = await Token.create({
+                    userId: user._id,
+                    token2: tokenValue.toString()
+                });
+
+                const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/verify?id=${user._id}&token=${token2.token2}`;
+                const message = `Please click on the link to verify your email: ${verifyUrl}`;
+
+                // console.log(verifyUrl)
+
+                try {
+                    await sendEmail({
+                        email: user.email,
+                        subject: 'Verify your email address',
+                        text: message
+                    });
+                } catch (err) {
+                    await user.remove();
+                    await token2.remove();
+                    return res.status(500).json({ success: false, error: err.message });
+                }
+                return res.status(401).json({ success: false, error: 'Email not verified. We send again a Verification link to your Mail ID' })
             }
 
             var token = jwt.sign({ name: user.name, email }, 'jwtsecret', { expiresIn: '2d' });

@@ -17,19 +17,15 @@ export default async function handler(req, res) {
                 password: encryptedPassword
             });
 
-            // console.log("User created:", user);
-
             const tokenValue = Date.now() + password;
-
             const token2 = await Token.create({
                 userId: user._id,
                 token2: tokenValue.toString()
             });
 
-            // console.log("Token created:", token2);
-
             const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/verify?id=${user._id}&token=${token2.token2}`;
             const message = `Please click on the link to verify your email: ${verifyUrl}`;
+            
             // console.log(verifyUrl)
 
             try {
