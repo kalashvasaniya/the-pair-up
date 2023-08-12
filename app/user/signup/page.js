@@ -34,10 +34,12 @@ const Signup = () => {
             body: JSON.stringify({ name, email, password }),
         });
         const json = await res.json();
+        console.log('Response status:', res.status);
+        console.log('JSON message:', json.message);
         if (!res.ok) throw Error(json.message);
 
         if (json.success) {
-            setSignupMessage('Check you inbox to Verify your email!');
+            setSignupMessage('Check you inbox to Verify your email');
             setName('');
             setEmail('');
             setPassword('');
@@ -72,7 +74,7 @@ const Signup = () => {
                         <span className="self-center text-4xl font-bold text-sky-400">Sign up</span>
                     </Link>
                     {signupMessage && (
-                        <p className="text-green-400 md:text-xl text-lg underline">{signupMessage}</p>
+                        <p className="text-green-400 md:text-xl text-lg font-bold underline underline-offset-1">{signupMessage}</p>
                     )}
                     <form onSubmit={handleSubmit} className="w-full sm:max-w-md p-8">
 

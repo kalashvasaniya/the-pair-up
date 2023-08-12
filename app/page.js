@@ -36,7 +36,7 @@ export default function Main() {
           <div className="md:order-1 order-2 flex justify-center items-center py-20 md:px-28 px-12">
             <div className="">
               <span className="self-center md:text-5xl text-3xl text-white font-extrabold">
-                Many of you <span className="underline decoration-sky-400">might</span> be <span className="underline decoration-sky-400">wondering</span> what is this F***king <br /><span className='md:text-5xl text-3xl font-extrabold line-through decoration-white text-sky-400'>The</span> PairUp
+                Many of you <span className="underline decoration-sky-400">might</span> be <span className="underline decoration-sky-400">wondering</span> what is this Freaking <br /><span className='md:text-5xl text-3xl font-extrabold line-through decoration-white text-sky-400'>The</span> PairUp
                 <span className='md:text-5xl text-3xl font-extrabold text-sky-400'>?</span>
               </span>
               <br />
