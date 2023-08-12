@@ -5,24 +5,30 @@ import db from '@/middleware';
 export default async function handler(req, res) {
     if (req.method === 'GET') {
         try {
-            const user = await User.findOne({ _id: req.body.id });
+            const user = await User.findOne({ _id: req.query.id });
+
             if (!user) {
                 return res.status(400).json({ success: false, error: 'Invalid Link' });
             }
 
-            const token = await Token.findOne({
-                user: user._id.toString(),
-                token: req.body.token,
-            });
+            // console.log(user._id)
 
-            if (!token || token.expiresAt < Date.now()) {
+            const token3 = await Token.findOne({
+                userId: user._id,
+                token2: req.query.token
+            });
+            // console.log(token3)
+
+            if (!token3) {
                 return res.status(400).json({ success: false, error: 'Invalid Link or Expired' });
             }
 
-            user.isVerified = true;
-            await user.save();
+            // console.log("Clear")
 
-            await token.remove();
+            user.verify = true;
+            await user.save();
+            await token3.deleteOne();
+
             res.status(200).json({ success: true, data: 'Email Verified' });
         } catch (err) {
             res.status(400).json({ success: false, error: err.message });

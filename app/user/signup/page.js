@@ -35,7 +35,7 @@ const Signup = () => {
         });
         const json = await res.json();
         console.log('Response status:', res.status);
-        console.log('JSON message:', json.message);
+        console.log('JSON message:', json);
         if (!res.ok) throw Error(json.message);
 
         if (json.success) {

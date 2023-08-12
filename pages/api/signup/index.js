@@ -1,30 +1,36 @@
 import User from '@/models/User';
 import Token from '@/models/Token';
 import sendEmail from '@/utils/sendEmail';
-var CryptoJS = require("crypto-js");
+import CryptoJS from 'crypto-js';
 import db from '@/middleware';
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         try {
+
             const { name, email, password } = req.body;
+            const encryptedPassword = CryptoJS.AES.encrypt(password, "keykalash").toString(); // Encrypt the password
+
             const user = await User.create({
                 name,
                 email,
-                password: CryptoJS.AES.encrypt(password, "keykalash").toString()
+                password: encryptedPassword
             });
 
-            console.log("1")
+            // console.log("User created:", user);
 
-            const key = await Token.create({
-                user: user._id,
-                token: Date.now() + password
+            const tokenValue = Date.now() + password;
+
+            const token2 = await Token.create({
+                userId: user._id,
+                token2: tokenValue.toString()
             });
-            
-            console.log("2")
-            
-            const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/verify?id=${key.user}&token=${key.token}`;
-            const message = `Please click on the link to verify your email: <a href="${verifyUrl}">${verifyUrl}</a>`;
+
+            // console.log("Token created:", token2);
+
+            const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/verify?id=${user._id}&token=${token2.token2}`;
+            const message = `Please click on the link to verify your email: ${verifyUrl}`;
+            // console.log(verifyUrl)
 
             try {
                 await sendEmail({
@@ -34,13 +40,13 @@ export default async function handler(req, res) {
                 });
             } catch (err) {
                 await user.remove();
-                await key.remove();
+                await token2.remove();
                 return res.status(500).json({ success: false, error: err.message });
             }
-            
+
             res.status(200).json({ success: true, data: user });
         } catch (err) {
-            res.status(400).json({ success: false, error: "yeh wala" });
+            res.status(400).json({ success: false, error: "An error occurred" }); // Use a descriptive error message
         }
     } else {
         res.status(405).json({ success: false, error: 'Method not allowed' });
