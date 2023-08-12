@@ -28,7 +28,8 @@ export default async function handler(req, res) {
             user.verify = true;
             await user.save();
             await token3.deleteOne();
-
+            res.setHeader('Location', '/user/VerifyDone');
+            res.status(302).end();
             res.status(200).json({ success: true, data: 'Email Verified' });
         } catch (err) {
             res.status(400).json({ success: false, error: err.message });
