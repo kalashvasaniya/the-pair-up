@@ -4,13 +4,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 import BottomNavbar from '@/components/BottomNavbar/page'
 import { useEffect } from 'react'
+import { useState } from 'react'
 
 const Home = () => {
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      window.location.href = '/'
-    }
+    // if (!localStorage.getItem('token')) {
+    //   window.location.href = '/'
+    // }
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 10000); // 10 seconds in milliseconds
+
+    return () => clearTimeout(timer);
   }, [])
 
   return (
@@ -19,8 +26,8 @@ const Home = () => {
         <div className="">
           <div className="md:grid md:grid-cols-12 flex flex-col">
 
-            <div className="md:block hidden bg-black h-screen col-start-1 col-end-3 border-r border-gray-500 rounded-r-[5rem]">
-              <div className="mt-16 px-4">
+            <div className="md:block hidden bg-black h-screen col-start-1 col-end-4 border-r border-gray-500 rounded-r-[5rem]">
+              <div className="mt-16 px-8">
 
                 <Link href={'/Home'} className="flex items-center">
                   <span className="self-center text-3xl whitespace-nowrap text-white font-extrabold  ">
@@ -102,7 +109,7 @@ const Home = () => {
               <div className=""></div>
             </div>
 
-            <div className="col-start-3 col-end-11 bg-black h-screen mx-12">
+            <div className="col-start-4 col-end-11 bg-black h-screen mx-12">
 
               {/* Navbar in mobile  */}
               <div className="md:hidden">
@@ -137,9 +144,13 @@ const Home = () => {
                   </div>
 
                 </nav>
+                {isVisible && (
+                  <nav className='bg-black fixed w-full z-20 top-20 left-0 border-b pb-1 flex flex-row justify-around animate-bounce'>
+                    <Link href={'/CollegeUpdate'} className="text-sky-400 hover:underline font-mono">College Update</Link>
+                  </nav>)}
               </div>
 
-              <div className="mt-20">
+              <div className="mt-32">
                 dsgsdfgsdf
               </div>
             </div>
@@ -162,26 +173,31 @@ const Home = () => {
               </div>
 
               {/* suggestion  */}
-              <div className="my-24 px-6">
+              <div className="mb-40 mt-40 px-6">
                 <div className="text-base underline underline-offset-1 text-sky-400 mb-6">Updates From College</div>
                 <div className="flex flex-col space-y-3 uppercase">
-                  <div className="hover:underline text-xs"> - FAT Marks are out For 2021 Batch.</div>
-                  <div className="hover:underline text-xs"> - TOP 10 RANK HOLDERS : 38TH ANNUAL CONVOCATION.</div>
-                  <div className="hover:underline text-xs"> - HOSTEL VACATING CONSENT FORM.</div>
-                  <div className="hover:underline text-xs"> - Student got 10th Rank.</div>
+                  <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - FAT Marks are out For 2021 Batch. <span className='text-sky-400'>(26 July 2023)</span></Link>
+                  <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - TOP 10 RANK HOLDERS : 38TH ANNUAL CONVOCATION. <span className='text-sky-400'>(26 July 2023)</span></Link>
+                  <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - HOSTEL VACATING CONSENT FORM. <span className='text-sky-400'>(26 July 2023)</span></Link>
+                  <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - Student got 10th Rank. <span className='text-sky-400'>(26 July 2023)</span></Link>
+                </div>
+                <div className="mt-4">
+                  <Link href={'/CollegeUpdate'} className="hover:underline">
+                    More...
+                  </Link>
                 </div>
               </div>
 
-              <div className="mt-16 px-6 text-xs">
+              <div className="mt-16 px-6 text-xs flex flex-col">
                 <div className="flex flex-row space-x-2 text-gray-400">
-                  <Link href={''} className="hover:underline">About</Link>
-                  <Link href={''} className="hover:underline">Contact</Link>
-                  <Link href={''} className="hover:underline">Help</Link>
-                  <Link href={''} className="hover:underline">Feedback</Link>
+                  <Link href={'/About'} target='_blank' className="hover:underline">About</Link>
+                  <Link href={'/Contact'} target='_blank' className="hover:underline">Contact</Link>
+                  <Link href={'https://github.com/kalashvasaniya/the-pair-up/blob/main/SECURITY.md'} target='_blank' className="hover:underline">Privacy</Link>
+                  <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} target='_blank' className="hover:underline">Feedback</Link>
                 </div>
-                <div className="mt-2">
+                <Link href={''} className="mt-2">
                   © 2023 ThePairUp
-                </div>
+                </Link>
               </div>
 
             </div>
