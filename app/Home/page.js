@@ -109,17 +109,43 @@ const Home = () => {
             </div>
 
             <div className="md:block hidden col-start-11 col-end-13 bg-black h-screen border-l border-gray-500">
+
               <div className="mt-16 px-6">
-                <Link href={''} className="flex-row flex mt-8 px-4 text-lg font-medium items-center">
+                <Link href={''} className="flex-row flex mt-8 text-lg font-medium items-center">
                   <div className="pr-4">
                     <Image src={'/logo.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
                     <span className="sr-only">Search</span>
                   </div>
                   <div className="">
-                    <div className="">kalash</div>
-                    <div className="text-sm text-gray-500">RockStar</div>
+                    <div className="truncate text-base ">kalashvasaniya</div>
+
+                    {/* bio max 12 */}
+                    <div className="text-sm text-gray-500 truncate">RockStar</div>
                   </div>
                 </Link>
+              </div>
+
+              {/* suggestion  */}
+              <div className="my-24 px-6">
+                <div className="text-base underline underline-offset-1 text-sky-400 mb-6">Updates From College</div>
+                <div className="flex flex-col space-y-3 uppercase">
+                  <div className="hover:underline text-sm"> - FAT Marks are out For 2021 Batch.</div>
+                  <div className="hover:underline text-sm"> - TOP 10 RANK HOLDERS : 38TH ANNUAL CONVOCATION.</div>
+                  <div className="hover:underline text-sm"> - HOSTEL VACATING CONSENT FORM.</div>
+                  <div className="hover:underline text-sm"> - Student got 10th Rank.</div>
+                </div>
+              </div>
+
+              <div className="mt-16 px-6 text-xs">
+                <div className="flex flex-row space-x-2 text-gray-400">
+                  <Link href={''} className="hover:underline">About</Link>
+                  <Link href={''} className="hover:underline">Contact</Link>
+                  <Link href={''} className="hover:underline">Help</Link>
+                  <Link href={''} className="hover:underline">Feedback</Link>
+                </div>
+                <div className="mt-2">
+                  © 2023 ThePairUp
+                </div>
               </div>
             </div>
 
