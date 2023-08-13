@@ -17,7 +17,7 @@ export default async function handler(req, res) {
                 password: encryptedPassword
             });
 
-            const tokenValue = Date.now() + password;
+            const tokenValue = Date.now() + password + Date.now();
             const token2 = await Token.create({
                 userId: user._id,
                 token2: tokenValue.toString()
