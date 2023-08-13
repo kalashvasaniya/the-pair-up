@@ -5,6 +5,7 @@ import Image from 'next/image'
 import BottomNavbar from '@/components/BottomNavbar/page'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Feed from '../Feed/page'
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -109,7 +110,7 @@ const Home = () => {
               <div className=""></div>
             </div>
 
-            <div className="col-start-4 col-end-11 bg-black h-screen mx-12">
+            <div className="col-start-4 col-end-11 bg-black h-screen md:mx-12 px-4">
 
               {/* Navbar in mobile  */}
               <div className="md:hidden">
@@ -150,8 +151,9 @@ const Home = () => {
                   </nav>)}
               </div>
 
-              <div className="mt-32">
-                dsgsdfgsdf
+              <div className="mt-28">
+                <div className="text-4xl font-extrabold text-sky-400 flex justify-center mb-3">Feed</div>
+                <Feed />
               </div>
             </div>
 
