@@ -46,7 +46,7 @@ export default async function handler(req, res) {
                     await token2.remove();
                     return res.status(500).json({ success: false, error: err.message });
                 }
-                return res.status(401).json({ success: false, error: 'Email not verified. We send again a Verification link to your Mail ID' })
+                return res.status(401).json({ success: false, error: 'Email not verified. Another Verification link will be sent to your email address.' })
             }
 
             var token = jwt.sign({ name: user.name, email }, 'jwtsecret', { expiresIn: '2d' });
