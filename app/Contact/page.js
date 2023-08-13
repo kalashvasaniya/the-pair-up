@@ -16,8 +16,8 @@ function ContactForm() {
 
     return (
         <>
-            <form className='mt-40 md:mt-0 md:px-0 px-12 md:mb-0 mb-40' onSubmit={handleSubmit}>
-                <div className="font-mono text-3xl underline-offset-4 underline text-center">
+            <form className='mt-40 md:mt-0 md:px-0 px-12 md:mb-0 mb-40 bg-black' onSubmit={handleSubmit}>
+                <div className="font-mono text-3xl underline-offset-4 underline text-center text-white">
                     Join Waitlist
                 </div>
                 <div className="relative mt-12">

@@ -17,7 +17,7 @@ const BottomNavbar = () => {
     return (
         <>
             {/* bottom navbar */}
-            < nav className='md:hidden' >
+            < nav className='md:hidden bg-black' >
                 <div className="fixed z-50 w-full h-16 max-w-xs -translate-x-1/2 border rounded-full bottom-4 left-1/2">
                     <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
 

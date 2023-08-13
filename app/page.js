@@ -31,7 +31,7 @@ export default function Main() {
         </div>
       </div>
 
-      <div className="pt-24">
+      <div className="bg-black pt-24">
         <div className="md:grid md:grid-cols-2 flex flex-col">
           <div className="md:order-1 order-2 flex justify-center items-center py-20 md:px-28 px-12">
             <div className="">
@@ -41,7 +41,7 @@ export default function Main() {
               </span>
               <br />
               <div className="pt-6 space-x-4">
-                <Link href={'/About'} className="border p-2 px-4 rounded-3xl decoration-white">Read</Link>
+                <Link href={'/About'} className="border p-2 px-4 rounded-3xl decoration-white text-white">Read</Link>
               </div>
             </div>
 
@@ -53,7 +53,7 @@ export default function Main() {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="relative bg-black">
         <div className="md:absolute top-[65%] right-[42%] flex justify-center">
           <Contact />
         </div>

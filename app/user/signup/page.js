@@ -68,7 +68,7 @@ const Signup = () => {
             <div className="md:block hidden">
                 <Float />
             </div>
-            <section className="bg-black py-24">
+            <section className="bg-black pt-24 h-screen">
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
                     <Link href={'/user/signup'} className="flex items-center pb-5">
                         <span className="self-center text-4xl font-bold text-sky-400">Sign up</span>
