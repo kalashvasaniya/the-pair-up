@@ -2,7 +2,7 @@ import RightSideNavbar from '@/components/RightSideNavbar/page'
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import Navbar from '@/components/Navbar/page'
+import BottomNavbar from '@/components/BottomNavbar/page'
 
 const Profile = () => {
   return (
@@ -137,6 +137,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <BottomNavbar/>
     </>
   )
 }
