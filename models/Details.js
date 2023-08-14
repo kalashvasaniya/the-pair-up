@@ -1,0 +1,40 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const DetailsSchema = new Schema({
+    relation: {
+        type: String,
+        required: true
+    },
+    year: {
+        type: String,
+        required: true
+    },
+    LoveTo: {
+        type: String,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    // image: {
+    //     type: String,
+    //     required: true
+    // },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
+    token: {
+        type: Schema.Types.ObjectId,
+        ref: "Token"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+})
+
+mongoose.models = {}
+module.exports = mongoose.model("Details", DetailsSchema);

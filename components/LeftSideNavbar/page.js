@@ -8,7 +8,7 @@ const LeftSideNavbar = () => {
             <div className="md:block hidden col-start-11 col-end-13 bg-black h-screen border-l border-gray-500">
 
                 {/* Profile  */}
-                <div className="mt-16 px-6">
+                <div className="mt-20 px-6">
                     <Link href={'/user/profile'} className="flex-row flex mt-8 text-lg font-medium items-center">
                         <div className="pr-4">
                             <Image src={'/logo.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
@@ -24,7 +24,7 @@ const LeftSideNavbar = () => {
                 </div>
 
                 {/* Suggestion user  */}
-                <div className="mt-10 px-6">
+                {/* <div className="mt-10 px-6">
                     <div className="text-base font-semibold underline-offset-2 underline text-sky-400 mb-6">Suggestion for you</div>
                     <div className="flex flex-col space-y-3">
                         <Link href={'/user/profile'} className="flex-row flex text-lg font-medium items-center">
@@ -64,10 +64,10 @@ const LeftSideNavbar = () => {
                             </div>
                         </Link>
                     </div>
-                </div>
+                </div> */}
 
                 {/* suggestion  */}
-                <div className="mb-6 mt-10 px-6">
+                <div className="mb-20 mt-20 px-6">
                     <div className="text-base font-semibold underline-offset-2 underline text-sky-400 mb-6">Updates From College</div>
                     <div className="flex flex-col space-y-3 uppercase">
                         <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - FAT Marks are out For 2021 Batch. <span className='text-sky-400'>(26 July 2023)</span></Link>
