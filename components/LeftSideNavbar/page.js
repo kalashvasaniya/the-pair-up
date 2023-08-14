@@ -25,42 +25,42 @@ const LeftSideNavbar = () => {
 
                 {/* Suggestion user  */}
                 <div className="mt-10 px-6">
-                    <div className="text-base font-semibold underline-offset-2 underline text-sky-400 mb-6">Suggestion</div>
+                    <div className="text-base font-semibold underline-offset-2 underline text-sky-400 mb-6">Suggestion for you</div>
                     <div className="flex flex-col space-y-3">
                         <Link href={'/user/profile'} className="flex-row flex text-lg font-medium items-center">
                             <div className="pr-4">
-                                <Image src={'/logo.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                                <Image src={'/logo1.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
                                 <span className="sr-only">Search</span>
                             </div>
                             <div className="">
-                                <div className="text-sm">kalashvasaniya</div>
+                                <div className="text-sm">yuvrajsahni</div>
                             </div>
                         </Link>
                         <Link href={'/user/profile'} className="flex-row flex text-lg font-medium items-center">
                             <div className="pr-4">
-                                <Image src={'/logo.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                                <Image src={'/logo2.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
                                 <span className="sr-only">Search</span>
                             </div>
                             <div className="">
-                                <div className="text-sm">kalashvasaniya</div>
+                                <div className="text-sm">dharanshneema</div>
                             </div>
                         </Link>
                         <Link href={'/user/profile'} className="flex-row flex text-lg font-medium items-center">
                             <div className="pr-4">
-                                <Image src={'/logo.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                                <Image src={'/logo3.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
                                 <span className="sr-only">Search</span>
                             </div>
                             <div className="">
-                                <div className="text-sm">kalashvasaniya</div>
+                                <div className="text-sm">adamyajha</div>
                             </div>
                         </Link>
                         <Link href={'/user/profile'} className="flex-row flex text-lg font-medium items-center">
                             <div className="pr-4">
-                                <Image src={'/logo.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                                <Image src={'/logo4.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
                                 <span className="sr-only">Search</span>
                             </div>
                             <div className="">
-                                <div className="text-sm">kalashvasaniya</div>
+                                <div className="text-sm">aliabhat</div>
                             </div>
                         </Link>
                     </div>
