@@ -17,8 +17,8 @@ const BottomNavbar = () => {
     return (
         <>
             {/* bottom navbar */}
-            < nav className='md:hidden bg-black' >
-                <div className="fixed z-50 w-full h-16 max-w-xs -translate-x-1/2 border rounded-full bottom-4 left-1/2">
+            < nav className='md:hidden bg-sky-400 z-50 ' >
+                <div className="fixed z-50 w-full h-16 max-w-xs -translate-x-1/2 border border-gray-500 bg-black rounded-full bottom-4 left-1/2">
                     <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
 
                         <Link href={'/Home'} className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-800 rounded-l-full group">
