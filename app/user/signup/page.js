@@ -22,6 +22,10 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (name.substring(0, 5).toLowerCase() === email.substring(0, 5).toLowerCase()) {
+            alert("name and email should not same.");
+            return;
+        }
         if (password !== cpassword) {
             alert('Passwords do not match');
             return;

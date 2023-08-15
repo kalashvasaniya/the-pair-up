@@ -10,7 +10,8 @@ const Login = () => {
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            window.location.href = '/Home'
+            // Details condition all here not in details
+            window.location.href = '/Home';
         }
     }, [])
 

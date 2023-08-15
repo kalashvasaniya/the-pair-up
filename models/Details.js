@@ -26,10 +26,6 @@ const DetailsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    token: {
-        type: Schema.Types.ObjectId,
-        ref: "Token"
-    },
     createdAt: {
         type: Date,
         default: Date.now
