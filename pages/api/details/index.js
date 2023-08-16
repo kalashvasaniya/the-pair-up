@@ -3,14 +3,11 @@ import User from '@/models/User';
 
 export default async function handler(req, res) {
     try {
-        const token = await User.findOne({
-            token: User._id
-        });
-        console.log(token)
-
+        console.log("hellooooo")
         const user = await User.findOne({
             verify: true
         });
+        console.log(user)
 
         // If verified user is not found, return unauthorized
         if (!user) {
@@ -21,7 +18,7 @@ export default async function handler(req, res) {
             try {
                 // Create a new details record with the same user ID as token.userId and user._id
                 const details = await Details.create({
-                    user: token._id, // Ensure details.user matches token.userId
+                    _id: user._id,
                     relation: req.body.relation,
                     year: req.body.year,
                     LoveTo: req.body.LoveTo,

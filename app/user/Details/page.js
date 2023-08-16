@@ -46,17 +46,20 @@ const Details = () => {
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target
+        const { name, value } = e.target;
+
         if (name === 'relation') {
-            setRelation(value)
+            setRelation(value);
         } else if (name === 'year') {
-            setYear(value)
+            setYear(value);
         } else if (name === 'LoveTo') {
-            setLoveTo(value)
+            setLoveTo(value);
         } else if (name === 'gender') {
-            setGender(value)
+            setGender(value);
         }
-    }
+    };
+
+
 
     return (
         <>
@@ -69,44 +72,100 @@ const Details = () => {
                     <form onSubmit={handleSubmit} className="w-full sm:max-w-md p-8">
 
                         <div className="relative z-0 w-full mb-6 group">
-                            <div className="relative z-0 w-full mb-6 group">
-                                <input value={relation} onChange={handleChange} type="relation" name="relation" id="relation"
-                                    className="lowercase block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400 peer"
-                                    placeholder=" "
-                                    required />
-                                <label htmlFor="relation"
-                                    className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Relation</label>
-                            </div>
+                            <select value={relation} onChange={handleChange} name="relation" id="relation"
+                                className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
+                                required>
+                                <option className="text-xs" value="" disabled>Select an option</option>
+                                <option className="text-xs" value="single">Single</option>
+                                <option className="text-xs" value="in_relation">In Relation</option>
+                                <option className="text-xs" value="interested">Interested</option>
+                            </select>
+                            <label
+                                htmlFor="relation"
+                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Relation
+                            </label>
                         </div>
 
                         <div className="relative z-0 w-full mb-6 group">
-                            <input value={year} onChange={handleChange} type="year" name="year" id="year"
+                            <select value={year} onChange={handleChange} name="year" id="year"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
-                                placeholder=" "
-                                required />
+                                required>
+                                <option className="text-xs" value="" disabled>Select an option</option>
+                                <option className="text-xs" value="fresher">Fresher</option>
+                                <option className="text-xs" value="sophomore">Sophomore</option>
+                                <option className="text-xs" value="junior">Junior</option>
+                                <option className="text-xs" value="senior">Senior</option>
+                            </select>
                             <label
                                 htmlFor="year"
-                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">College year</label>
+                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                College year
+                            </label>
                         </div>
 
                         <div className="relative z-0 w-full mb-6 group">
-                            <input value={LoveTo} onChange={handleChange} type="LoveTo" name="LoveTo" id="LoveTo"
+                            <select value={LoveTo} onChange={handleChange} name="LoveTo" id="LoveTo"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
-                                placeholder=" "
-                                required />
+                                required>
+                                <option className="text-xs" value="" disabled>Select an option</option>
+                                <option className="text-xs" value="code">Code</option>
+                                <option className="text-xs" value="dance">Dance</option>
+                                <option className="text-xs" value="guitar">Guitar</option>
+                                <option className="text-xs" value="football">Football</option>
+                                <option className="text-xs" value="basketball">Basketball</option>
+                                <option className="text-xs" value="study">Study</option>
+                                <option className="text-xs" value="travel">Travel</option>
+                                <option className="text-xs" value="volunteering">Volunteering</option>
+                                <option className="text-xs" value="writing">Writing</option>
+                                <option className="text-xs" value="reading">Reading</option>
+                                <option className="text-xs" value="painting">Painting</option>
+                                <option className="text-xs" value="cooking">Cooking</option>
+                                <option className="text-xs" value="photography">Photography</option>
+                                <option className="text-xs" value="yoga">Yoga</option>
+                                <option className="text-xs" value="sports">Sports</option>
+                                <option className="text-xs" value="music">Music</option>
+                                <option className="text-xs" value="movies">Movies</option>
+                                <option className="text-xs" value="gardening">Gardening</option>
+                                <option className="text-xs" value="fitness">Fitness</option>
+                                <option className="text-xs" value="coding">Coding</option>
+                                <option className="text-xs" value="hiking">Hiking</option>
+                                <option className="text-xs" value="podcasting">Podcasting</option>
+                                <option className="text-xs" value="camping">Camping</option>
+                                <option className="text-xs" value="drawing">Drawing</option>
+                                <option className="text-xs" value="exploring">Exploring</option>
+                                <option className="text-xs" value="swimming">Swimming</option>
+                                <option className="text-xs" value="karaoke">Karaoke</option>
+                                <option className="text-xs" value="biking">Biking</option>
+                                <option className="text-xs" value="shopping">Shopping</option>
+                                <option className="text-xs" value="video games">Video Games</option>
+                                <option className="text-xs" value="partying">Partying</option>
+                                <option className="text-xs" value="cooking">Cooking</option>
+                                <option className="text-xs" value="meditation">Meditation</option>
+                            </select>
                             <label
                                 htmlFor="LoveTo"
-                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">LoveTo</label>
+                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Love To
+                            </label>
                         </div>
 
                         <div className="relative z-0 w-full mb-6 group">
-                            <input value={gender} onChange={handleChange} type="gender" name="gender" id="gender"
+                            <select value={gender} onChange={handleChange} name="gender" id="gender"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
-                                placeholder=" "
-                                required />
+                                required>
+                                <option className="text-xs" value="" disabled>Select gender</option>
+                                <option className="text-xs" value="male">Male</option>
+                                <option className="text-xs" value="female">Female</option>
+                                <option className="text-xs" value="gay">Gay</option>
+                                <option className="text-xs" value="lesbian">Lesbian</option>
+                                <option className="text-xs" value="transgender">Transgender</option>
+                            </select>
                             <label
                                 htmlFor="gender"
-                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Gender</label>
+                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Gender
+                            </label>
                         </div>
 
                         <button style={{ backgroundColor: '#00B2FF' }}
