@@ -22,14 +22,23 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (name.substring(0, 5).toLowerCase() === email.substring(0, 5).toLowerCase()) {
             alert("name and email should not same.");
             return;
         }
+
+        const emailDomain = email.split('@')[1];
+        if (!['edu', 'ac.in'].some(domain => emailDomain.endsWith(domain))) {
+            alert('Please use a valid college email address ending with .edu or .ac.in');
+            return;
+        }
+
         if (password !== cpassword) {
             alert('Passwords do not match');
             return;
         }
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
             method: 'POST',
             headers: {
@@ -37,6 +46,7 @@ const Signup = () => {
             },
             body: JSON.stringify({ name, email, password }),
         });
+
         const json = await res.json();
 
         if (json.success) {

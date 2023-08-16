@@ -50,7 +50,8 @@ export default async function handler(req, res) {
             }
 
             var token = jwt.sign({ name: user.name, email }, 'jwtsecret', { expiresIn: '2d' });
-            res.status(200).json({ success: true, token });
+            // This is important in this situation
+            res.status(200).json({ success: true, token, name: user.name, email: user.email });
         } catch (error) {
             res.status(500).json({ success: false, error: 'Internal server error' });
         }
