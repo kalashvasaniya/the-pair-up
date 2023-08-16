@@ -1,7 +1,6 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import BottomNavbar from '@/components/BottomNavbar/page'
 import { useEffect } from 'react'
 import { useState } from 'react'

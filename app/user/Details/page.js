@@ -10,8 +10,8 @@ const Details = () => {
     useEffect(() => {
         if (!localStorage.getItem('token')) {
             window.location.href = '/';
-        } else{
-            // or here details about after form
+        } else {
+
         }
     }, [])
 

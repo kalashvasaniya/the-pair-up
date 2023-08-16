@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
         // If verified user is not found, return unauthorized
         if (!user) {
-            return res.status(401).json({ message: "Unauthorized2" });
+            return res.status(401).json({ message: "Unauthorized" });
         }
         // Check if the request method is POST
         if (req.method === "POST") {
