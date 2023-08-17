@@ -13,7 +13,7 @@ const RightSideNavbar = () => {
 
                     <Link href={'/Home'} className="flex items-center">
                         <span className="self-center text-3xl whitespace-nowrap text-white font-extrabold  ">
-                            <span className='line-through decoration-white text-[#00B2FF]'>The</span> PairUp</span>
+                            <span className='line-through decoration-white text-sky-400'>The</span> PairUp</span>
                         <span className='text-4xl font-extrabold text-sky-400'>.</span>
                     </Link>
 
@@ -91,10 +91,10 @@ const RightSideNavbar = () => {
                     </button>
                     <div id="dropdownTop" class="z-10 hidden text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52">
                         <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
-                            <Link href={'/menu/Setting'} class="flex justify-center px-4 py-2 hover:bg-gray-600 text-white">Settings</Link>
-                            <Link href={'/menu/Saved'} class="flex justify-center px-4 py-2 hover:bg-gray-600 text-white">Saved</Link>
-                            <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} class="flex justify-center px-4 py-2 hover:bg-gray-600 text-white">Report</Link>
-                            <button class="flex justify-center px-4 py-2 hover:bg-gray-600 text-white">Logout</button>
+                            <Link href={'/menu/Setting'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Settings</Link>
+                            <Link href={'/menu/Saved'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Saved</Link>
+                            <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Report</Link>
+                            <button onClick={logout} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Logout</button>
                         </div>
                     </div>
 
