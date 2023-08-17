@@ -1,8 +1,11 @@
+"use client"
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useTPU } from '@/app/layout'
 
 const RightSideNavbar = () => {
+    const { logout } = useTPU()
     return (
         <>
             <div className="md:block hidden bg-black h-screen col-start-1 col-end-4 border-r border-gray-500 rounded-r-[5rem]">
@@ -80,11 +83,19 @@ const RightSideNavbar = () => {
                     </Link>
 
                     {/* Menu  */}
-                    <div className="flex-row flex mt-32 px-4 text-xl font-medium items-center hover:bg-gray-700 rounded-2xl py-2">
+                    <button id="dropdownTopButton" data-dropdown-toggle="dropdownTop" data-dropdown-placement="top" aria-hidden="true" className="flex-row flex mt-32 pl-4 pr-44 text-xl font-medium items-center hover:bg-gray-700 rounded-2xl py-2">
                         <div className="pr-4">
                             <svg aria-label="Settings" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="4" y2="4"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="12" y2="12"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="20" y2="20"></line></svg>
                         </div>
                         <div className="">Menu</div>
+                    </button>
+                    <div id="dropdownTop" class="z-10 hidden text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52">
+                        <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
+                            <Link href={'/menu/Setting'} class="flex justify-center px-4 py-2 hover:bg-gray-600 text-white">Settings</Link>
+                            <Link href={'/menu/Saved'} class="flex justify-center px-4 py-2 hover:bg-gray-600 text-white">Saved</Link>
+                            <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} class="flex justify-center px-4 py-2 hover:bg-gray-600 text-white">Report</Link>
+                            <button class="flex justify-center px-4 py-2 hover:bg-gray-600 text-white">Logout</button>
+                        </div>
                     </div>
 
                 </div>

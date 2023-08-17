@@ -86,7 +86,7 @@ const Profile = () => {
               </div>
 
               {/* details  */}
-              <div className="md:grid flex flex-col space-x-20">
+              <div className="md:grid flex flex-col space-x-10">
 
                 {/* first  */}
                 <div className="col-start-4 col-end-5 ml-4">
