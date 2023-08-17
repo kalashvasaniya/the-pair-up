@@ -79,7 +79,7 @@ const Details = () => {
                         <div className="relative z-0 w-full mb-6 group">
                             <input value={bio} onChange={handleChange} type='text' name="bio" id="bio" placeholder='.'
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
-                                required maxLength={12}>
+                                required minLength={3} maxLength={12}>
                             </input>
                             <label
                                 htmlFor="bio"

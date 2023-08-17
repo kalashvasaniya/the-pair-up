@@ -6,11 +6,10 @@ export default async function handler(req, res) {
     try {
         const token = req.headers.authorization; // Extract token from the authorization header
         var decoded = jwt_decode(token);
-        console.log("Decoded Token:", decoded);
+
         const users = await User.findOne({
             email: decoded.email
         });
-        console.log("Fetched User:", users);
 
         if (!users) {
             return res.status(401).json({ message: "Unauthorized" });
@@ -20,7 +19,6 @@ export default async function handler(req, res) {
                 const user2 = await Details.findOne({
                     user: users._id
                 });
-                console.log(user2)
 
                 if (user2) {
                     const userDetails2 = {
@@ -44,7 +42,6 @@ export default async function handler(req, res) {
                 let details = await Details.findOne({
                     user: users._id
                 });
-                console.log(users)
 
                 if (details) {
                     // If details exist, update the fields instead of creating new

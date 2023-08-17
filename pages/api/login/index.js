@@ -63,8 +63,6 @@ export default async function handler(req, res) {
                 <p>If you did not sign up for The PairUp, please ignore this email.</p>
                 <p>Best regards,<br />The PairUp Team</p>`;
 
-                // console.log(verifyUrl)
-
                 try {
                     await sendEmail({
                         email: user.email,
