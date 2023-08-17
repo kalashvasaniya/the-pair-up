@@ -118,7 +118,13 @@ const Home = () => {
                 </nav>
                 {isVisible && (
                   <nav className='bg-black fixed w-full z-20 top-20 left-0 border-b pb-1 flex flex-row justify-around animate-bounce'>
-                    <Link href={'/CollegeUpdate'} className="text-sky-400 hover:underline font-mono">College Update</Link>
+                    {userDetails1.name ? (
+                      <Link href={'/CollegeUpdate'} className="text-sky-400 hover:underline font-mono">
+                        College Update
+                      </Link>
+                    ) : (
+                      <Link href={'/user/Details'} className="text-sky-400 hover:underline font-mono">Click to update profile</Link>
+                    )}
                   </nav>)}
               </div>
 

@@ -37,25 +37,25 @@ const LeftSideNavbar = () => {
 
     const fetchUserDetails2 = async () => {
         try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            },
-          });
-    
-          if (response.ok) {
-            const data = await response.json();
-            setUserDetails2(data.userDetails2);
-            console.log("User Details", data);
-          } else {
-            // Handle error
-          }
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUserDetails2(data.userDetails2);
+                console.log("User Details", data);
+            } else {
+                // Handle error
+            }
         } catch (error) {
-          console.log("hooo")
+            console.log("hooo")
         }
-      };
+    };
 
 
     return (
@@ -73,7 +73,11 @@ const LeftSideNavbar = () => {
                             <div className="truncate text-base ">{userDetails1.name}</div>
 
                             {/* bio max 12 */}
-                            <div className="text-sm text-gray-500 truncate">{userDetails2.bio}</div>
+                            <div className="text-sm text-gray-400 truncate">{userDetails2.bio ? (
+                                <div className="text-sm text-gray-500 truncate">{userDetails2.bio}</div>
+                            ) : (
+                                <div className="text-sm text-green-500 truncate">Click To Edit profile</div>
+                            )}</div>
                         </div>
                     </Link>
                 </div>
