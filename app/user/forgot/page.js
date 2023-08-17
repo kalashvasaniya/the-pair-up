@@ -5,12 +5,12 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import Navbar from '@/components/Navbar/page'
 import Footer from '@/components/Footer/page'
-import Float from '@/components/Float/page'
 
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [cpassword, setCpassword] = useState('');
+    const [signupMessage, setSignupMessage] = useState('');
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -34,9 +34,15 @@ const Signup = () => {
         const json = await res.json();
 
         if (json.success) {
+            setSignupMessage('Password Change Successfully');
             setEmail('');
             setPassword('');
             setCpassword('');
+
+            // Redirect after 2 seconds
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
         } else {
             alert(json.error);
         }
@@ -56,14 +62,14 @@ const Signup = () => {
     return (
         <>
             <Navbar />
-            <div className="md:block hidden">
-                <Float />
-            </div>
             <section className="bg-black pt-24 h-screen">
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
-                    <Link href={'/user/signup'} className="flex items-center pb-5">
+                    <Link href={'/'} className="flex items-center pb-5">
                         <span className="self-center md:text-4xl text-3xl font-bold text-sky-400">Change Password</span>
                     </Link>
+                    {signupMessage && (
+                        <p className="text-green-400 md:text-xl text-lg font-bold underline underline-offset-1">{signupMessage}</p>
+                    )}
                     <form onSubmit={handleSubmit} className="w-full sm:max-w-md p-8">
 
                         <div className="relative z-0 w-full mb-6 group">

@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import Navbar from '@/components/Navbar/page'
 import Footer from '@/components/Footer/page'
-import Float from '@/components/Float/page'
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -55,6 +54,9 @@ const Signup = () => {
             setEmail('');
             setPassword('');
             setCpassword('');
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
         } else {
             alert(json.error);
         }
@@ -76,9 +78,6 @@ const Signup = () => {
     return (
         <>
             <Navbar />
-            <div className="md:block hidden">
-                <Float />
-            </div>
             <section className="bg-black pt-24 h-screen">
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
                     <Link href={'/user/signup'} className="flex items-center pb-5">
