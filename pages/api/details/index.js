@@ -1,39 +1,36 @@
 import User from '@/models/User';
 import Details from '@/models/Details';
-var jwt = require('jsonwebtoken');
 import jwt_decode from "jwt-decode";
 
 export default async function handler(req, res) {
     try {
         const token = req.headers.authorization; // Extract token from the authorization header
         var decoded = jwt_decode(token);
-        const user = await User.findOne({
+        console.log("Decoded Token:", decoded);
+        const users = await User.findOne({
             email: decoded.email
         });
+        console.log("Fetched User:", users);
 
-        if (!user) {
+        if (!users) {
             return res.status(401).json({ message: "Unauthorized" });
         }
         if (req.method === 'GET') {
             try {
-                const token = req.headers.authorization; // Extract token from the authorization header
-                var decoded = jwt_decode(token);
+                const user2 = await Details.findOne({
+                    user: users._id
+                });
+                console.log(user2)
 
-                if (decoded) {
-                    const user2 = await Details.findOne({
-                        user2: decoded._id
-                    });
-
-                    if (user2) {
-                        const userDetails2 = {
-                            bio: user2.bio,
-                            gender: user2.gender,
-                            relation: user2.relation,
-                            year: user2.year,
-                            LoveTo: user2.LoveTo,
-                        };
-                        return res.status(200).json({ success: true, userDetails2 });
-                    }
+                if (user2) {
+                    const userDetails2 = {
+                        bio: user2.bio,
+                        gender: user2.gender,
+                        relation: user2.relation,
+                        year: user2.year,
+                        LoveTo: user2.LoveTo,
+                    };
+                    return res.status(200).json({ success: true, userDetails2 });
                 }
 
                 return res.status(400).json({ success: false, message: 'User not found' });
@@ -45,9 +42,9 @@ export default async function handler(req, res) {
         else {
             try {
                 let details = await Details.findOne({
-                    user: user._id
+                    user: users._id
                 });
-                console.log(user)
+                console.log(users)
 
                 if (details) {
                     // If details exist, update the fields instead of creating new
@@ -60,7 +57,7 @@ export default async function handler(req, res) {
                 } else {
                     // If details don't exist, create new
                     details = await Details.create({
-                        user: user._id,
+                        user: users._id,
                         bio: req.body.bio,
                         relation: req.body.relation,
                         year: req.body.year,
@@ -69,8 +66,8 @@ export default async function handler(req, res) {
                     });
                 }
 
-                user.details = true;
-                await user.save();
+                users.details = true;
+                await users.save();
 
                 return res.status(201).json({ success: true, details });
             } catch (err) {

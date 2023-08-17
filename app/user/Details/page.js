@@ -71,7 +71,7 @@ const Details = () => {
             <Navbar />
             <section className="bg-black pt-24 h-screen">
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
-                    <Link href={'/user/signup'} className="flex items-center pb-5">
+                    <Link href={''} className="flex items-center pb-5">
                         <span className="self-center text-4xl font-bold text-sky-400">Details</span>
                     </Link>
                     <form onSubmit={handleSubmit} className="w-full sm:max-w-md p-8">
