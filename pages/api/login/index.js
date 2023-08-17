@@ -3,10 +3,34 @@ import Token from '@/models/Token';
 import sendEmail from '@/utils/sendEmail';
 import CryptoJS from 'crypto-js';
 var jwt = require('jsonwebtoken');
+import jwt_decode from "jwt-decode";
 import db from '@/middleware';
 
 export default async function handler(req, res) {
-    if (req.method === 'POST') {
+    if (req.method === 'GET') {
+        try {
+            const token = req.headers.authorization; // Extract token from the authorization header
+            var decoded = jwt_decode(token);
+
+            if (decoded) {
+                const user = await User.findOne({ email: decoded.email });
+
+                if (user) {
+                    const userDetails1 = {
+                        name: user.name,
+                        email: user.email
+                    };
+                    return res.status(200).json({ success: true, userDetails1 });
+                }
+            }
+
+            return res.status(400).json({ success: false, message: 'User not found' });
+        } catch (error) {
+            return res.status(401).json({ success: false, message: 'Unauthorized' });
+        }
+    }
+
+    else {
         const { email, password } = req.body;
         try {
             const user = await User.findOne({
@@ -61,7 +85,5 @@ export default async function handler(req, res) {
         } catch (error) {
             res.status(500).json({ success: false, error: 'Internal server error' });
         }
-    } else {
-        res.status(405).end(); // Method Not Allowed
     }
 }

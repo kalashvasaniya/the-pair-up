@@ -1,8 +1,63 @@
 import React from 'react'
 import Image from 'next/image'
+import { useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 
 const LeftSideNavbar = () => {
+    const [userDetails1, setUserDetails1] = useState('');
+    const [userDetails2, setUserDetails2] = useState('');
+
+    useEffect(() => {
+        fetchUserDetails1()
+        fetchUserDetails2();
+    }, [])
+
+    const fetchUserDetails1 = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUserDetails1(data.userDetails1);
+                console.log("User Details", data);
+            } else {
+                // Handle error
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const fetchUserDetails2 = async () => {
+        try {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            setUserDetails2(data.userDetails2);
+            console.log("User Details", data);
+          } else {
+            // Handle error
+          }
+        } catch (error) {
+          console.log("hooo")
+        }
+      };
+
+
     return (
         <>
             <div className="md:block hidden col-start-11 col-end-13 bg-black h-screen border-l border-gray-500">
@@ -15,10 +70,10 @@ const LeftSideNavbar = () => {
                             <span className="sr-only">Search</span>
                         </div>
                         <div className="">
-                            <div className="truncate text-base ">kalashvasaniya</div>
+                            <div className="truncate text-base ">{userDetails1.name}</div>
 
                             {/* bio max 12 */}
-                            <div className="text-sm text-gray-500 truncate">RockStar</div>
+                            <div className="text-sm text-gray-500 truncate">{userDetails2.bio}</div>
                         </div>
                     </Link>
                 </div>

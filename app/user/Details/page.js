@@ -15,6 +15,7 @@ const Details = () => {
         }
     }, [])
 
+    const [bio, setBio] = useState('')
     const [relation, setRelation] = useState('');
     const [year, setYear] = useState('');
     const [LoveTo, setLoveTo] = useState('');
@@ -28,18 +29,19 @@ const Details = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ relation, year, LoveTo, gender }),
+            body: JSON.stringify({ bio, relation, year, LoveTo, gender }),
         });
         const json = await res.json();
         console.log(res);
         console.log("hello")
 
         if (json.success) {
+            setBio('')
             setRelation('');
             setYear('');
             setLoveTo('');
             setGender('');
-            window.location.href = "/Home"
+            window.location.href = "/user/profile"
         } else {
             alert(json.error);
         }
@@ -48,7 +50,9 @@ const Details = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === 'relation') {
+        if (name === 'bio') {
+            setBio(value);
+        } else if (name === 'relation') {
             setRelation(value);
         } else if (name === 'year') {
             setYear(value);
@@ -72,13 +76,25 @@ const Details = () => {
                     <form onSubmit={handleSubmit} className="w-full sm:max-w-md p-8">
 
                         <div className="relative z-0 w-full mb-6 group">
+                            <input value={bio} onChange={handleChange} type='text' name="bio" id="bio" placeholder='.'
+                                className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
+                                required maxLength={12}>
+                            </input>
+                            <label
+                                htmlFor="bio"
+                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Bio
+                            </label>
+                        </div>
+
+                        <div className="relative z-0 w-full mb-6 group">
                             <select value={relation} onChange={handleChange} name="relation" id="relation"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
                                 required>
                                 <option className="text-xs" value="" disabled>Select an option</option>
-                                <option className="text-xs" value="single">Single</option>
-                                <option className="text-xs" value="in_relation">In Relation</option>
-                                <option className="text-xs" value="interested">Interested</option>
+                                <option className="text-xs" value="Single">Single</option>
+                                <option className="text-xs" value="In relation">In Relation</option>
+                                <option className="text-xs" value="Interested">Interested</option>
                             </select>
                             <label
                                 htmlFor="relation"
@@ -92,10 +108,10 @@ const Details = () => {
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
                                 required>
                                 <option className="text-xs" value="" disabled>Select an option</option>
-                                <option className="text-xs" value="fresher">Fresher</option>
-                                <option className="text-xs" value="sophomore">Sophomore</option>
-                                <option className="text-xs" value="junior">Junior</option>
-                                <option className="text-xs" value="senior">Senior</option>
+                                <option className="text-xs" value="Fresher">Fresher</option>
+                                <option className="text-xs" value="Sophomore">Sophomore</option>
+                                <option className="text-xs" value="Junior">Junior</option>
+                                <option className="text-xs" value="Senior">Senior</option>
                             </select>
                             <label
                                 htmlFor="year"
@@ -109,39 +125,39 @@ const Details = () => {
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
                                 required>
                                 <option className="text-xs" value="" disabled>Select an option</option>
-                                <option className="text-xs" value="code">Code</option>
-                                <option className="text-xs" value="dance">Dance</option>
-                                <option className="text-xs" value="guitar">Guitar</option>
-                                <option className="text-xs" value="football">Football</option>
-                                <option className="text-xs" value="basketball">Basketball</option>
-                                <option className="text-xs" value="study">Study</option>
-                                <option className="text-xs" value="travel">Travel</option>
-                                <option className="text-xs" value="volunteering">Volunteering</option>
-                                <option className="text-xs" value="writing">Writing</option>
-                                <option className="text-xs" value="reading">Reading</option>
-                                <option className="text-xs" value="painting">Painting</option>
-                                <option className="text-xs" value="cooking">Cooking</option>
-                                <option className="text-xs" value="photography">Photography</option>
-                                <option className="text-xs" value="yoga">Yoga</option>
-                                <option className="text-xs" value="sports">Sports</option>
-                                <option className="text-xs" value="music">Music</option>
-                                <option className="text-xs" value="movies">Movies</option>
-                                <option className="text-xs" value="gardening">Gardening</option>
-                                <option className="text-xs" value="fitness">Fitness</option>
-                                <option className="text-xs" value="coding">Coding</option>
-                                <option className="text-xs" value="hiking">Hiking</option>
-                                <option className="text-xs" value="podcasting">Podcasting</option>
-                                <option className="text-xs" value="camping">Camping</option>
-                                <option className="text-xs" value="drawing">Drawing</option>
-                                <option className="text-xs" value="exploring">Exploring</option>
-                                <option className="text-xs" value="swimming">Swimming</option>
-                                <option className="text-xs" value="karaoke">Karaoke</option>
-                                <option className="text-xs" value="biking">Biking</option>
-                                <option className="text-xs" value="shopping">Shopping</option>
-                                <option className="text-xs" value="video games">Video Games</option>
-                                <option className="text-xs" value="partying">Partying</option>
-                                <option className="text-xs" value="cooking">Cooking</option>
-                                <option className="text-xs" value="meditation">Meditation</option>
+                                <option className="text-xs" value="Code">Code</option>
+                                <option className="text-xs" value="Dance">Dance</option>
+                                <option className="text-xs" value="Guitar">Guitar</option>
+                                <option className="text-xs" value="Football">Football</option>
+                                <option className="text-xs" value="Basketball">Basketball</option>
+                                <option className="text-xs" value="Study">Study</option>
+                                <option className="text-xs" value="Travel">Travel</option>
+                                <option className="text-xs" value="Volunteering">Volunteering</option>
+                                <option className="text-xs" value="Writing">Writing</option>
+                                <option className="text-xs" value="Reading">Reading</option>
+                                <option className="text-xs" value="Painting">Painting</option>
+                                <option className="text-xs" value="Cooking">Cooking</option>
+                                <option className="text-xs" value="Photography">Photography</option>
+                                <option className="text-xs" value="Yoga">Yoga</option>
+                                <option className="text-xs" value="Sports">Sports</option>
+                                <option className="text-xs" value="Music">Music</option>
+                                <option className="text-xs" value="Movies">Movies</option>
+                                <option className="text-xs" value="Gardening">Gardening</option>
+                                <option className="text-xs" value="Fitness">Fitness</option>
+                                <option className="text-xs" value="Coding">Coding</option>
+                                <option className="text-xs" value="Hiking">Hiking</option>
+                                <option className="text-xs" value="Podcasting">Podcasting</option>
+                                <option className="text-xs" value="Camping">Camping</option>
+                                <option className="text-xs" value="Drawing">Drawing</option>
+                                <option className="text-xs" value="Exploring">Exploring</option>
+                                <option className="text-xs" value="Swimming">Swimming</option>
+                                <option className="text-xs" value="Karaoke">Karaoke</option>
+                                <option className="text-xs" value="Biking">Biking</option>
+                                <option className="text-xs" value="Shopping">Shopping</option>
+                                <option className="text-xs" value="Video games">Video Games</option>
+                                <option className="text-xs" value="Partying">Partying</option>
+                                <option className="text-xs" value="Cooking">Cooking</option>
+                                <option className="text-xs" value="Meditation">Meditation</option>
                             </select>
                             <label
                                 htmlFor="LoveTo"
@@ -155,11 +171,11 @@ const Details = () => {
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
                                 required>
                                 <option className="text-xs" value="" disabled>Select gender</option>
-                                <option className="text-xs" value="male">Male</option>
-                                <option className="text-xs" value="female">Female</option>
-                                <option className="text-xs" value="gay">Gay</option>
-                                <option className="text-xs" value="lesbian">Lesbian</option>
-                                <option className="text-xs" value="transgender">Transgender</option>
+                                <option className="text-xs" value="Male">Male</option>
+                                <option className="text-xs" value="Female">Female</option>
+                                <option className="text-xs" value="Gay">Gay</option>
+                                <option className="text-xs" value="Lesbian">Lesbian</option>
+                                <option className="text-xs" value="Transgender">Transgender</option>
                             </select>
                             <label
                                 htmlFor="gender"

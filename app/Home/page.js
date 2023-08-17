@@ -10,17 +10,65 @@ import LeftSideNavbar from '@/components/LeftSideNavbar/page'
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [userDetails1, setUserDetails1] = useState('');
+  const [userDetails2, setUserDetails2] = useState('');
 
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       window.location.href = '/'
     }
+    fetchUserDetails1()
+    fetchUserDetails2();
     const timer = setTimeout(() => {
       setIsVisible(false);
     }, 10000); // 10 seconds in milliseconds
 
     return () => clearTimeout(timer);
   }, [])
+
+  const fetchUserDetails1 = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUserDetails1(data.userDetails1);
+        console.log("User Details", data);
+      } else {
+        // Handle error
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const fetchUserDetails2 = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUserDetails2(data.userDetails2);
+        console.log("User Details", data);
+      } else {
+        // Handle error
+      }
+    } catch (error) {
+      console.log("hooo")
+    }
+  };
 
   return (
     <>
