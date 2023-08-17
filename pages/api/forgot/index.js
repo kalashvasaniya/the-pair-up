@@ -1,5 +1,6 @@
 import User from '@/models/User';
 import CryptoJS from 'crypto-js';
+import sendEmail from '@/utils/sendEmail';
 import db from '@/middleware';
 
 export default async function handler(req, res) {
@@ -17,6 +18,19 @@ export default async function handler(req, res) {
             }, {
                 password: encryptedPassword
             });
+
+            const message = `Your password has been changed successfully, of E-mail ID - ${user.email}, If you did not change your password, please contact us immediately.`;
+
+            try {
+                await sendEmail({
+                    email: user.email,
+                    subject: 'Password Change',
+                    text: message
+                });
+            } catch (err) {
+                await user.remove();
+                return res.status(500).json({ success: false, error: err.message });
+            }
 
             res.status(200).json({ success: true, data: user });
         } catch (err) {
