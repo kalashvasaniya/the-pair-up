@@ -5,8 +5,10 @@ import jwt_decode from "jwt-decode";
 
 export default async function handler(req, res) {
     try {
+        const token = req.headers.authorization; // Extract token from the authorization header
+        var decoded = jwt_decode(token);
         const user = await User.findOne({
-            verify: true
+            email: decoded.email
         });
 
         if (!user) {
@@ -18,7 +20,7 @@ export default async function handler(req, res) {
                 var decoded = jwt_decode(token);
 
                 if (decoded) {
-                    const user2 = await Details.findOne({ 
+                    const user2 = await Details.findOne({
                         user2: decoded._id
                     });
 
@@ -42,7 +44,10 @@ export default async function handler(req, res) {
 
         else {
             try {
-                let details = await Details.findOne({ user: user._id });
+                let details = await Details.findOne({
+                    user: user._id
+                });
+                console.log(user)
 
                 if (details) {
                     // If details exist, update the fields instead of creating new

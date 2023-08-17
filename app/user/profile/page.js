@@ -91,7 +91,7 @@ const Profile = () => {
                 {/* first  */}
                 <div className="col-start-4 col-end-5 ml-4">
                   <div className="flex flex-col mt-4 justify-start text-lg font-medium items-start">
-                    <div className="text-base pr-20">{userDetails1.name}</div>
+                    <div className="text-base pr-24">{userDetails1.name}</div>
                     <div className="text-sm text-gray-500">{userDetails2.bio}<span className='text-sky-400 text-xs'> - {userDetails2.gender}</span></div>
                     <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{userDetails2.relation}</span></div>
                     <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>

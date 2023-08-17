@@ -20,7 +20,8 @@ const Login = () => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
             body: JSON.stringify({ email, password })
         })
