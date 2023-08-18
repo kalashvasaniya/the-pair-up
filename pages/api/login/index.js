@@ -18,7 +18,8 @@ export default async function handler(req, res) {
                 if (user) {
                     const userDetails1 = {
                         name: user.name,
-                        email: user.email
+                        email: user.email,
+                        role: user.role,
                     };
                     return res.status(200).json({ success: true, userDetails1 });
                 }
@@ -79,7 +80,7 @@ export default async function handler(req, res) {
 
             var token = jwt.sign({ name: user.name, email }, 'jwtsecret', { expiresIn: '2d' });
             // This is important in this situation
-            res.status(200).json({ success: true, token, name: user.name, email: user.email });
+            res.status(200).json({ success: true, token, name: user.name, email: user.email, role: user.role });
         } catch (error) {
             res.status(500).json({ success: false, error: 'Internal server error' });
         }

@@ -74,6 +74,9 @@ const Signup = () => {
         } else if (name === 'cpassword') {
             setCpassword(value)
         }
+        const inputText = e.target.value;
+        const lowercaseText = inputText.replace(/[^a-z]/g, '');
+        setName(lowercaseText);
     }
 
     return (
@@ -86,7 +89,7 @@ const Signup = () => {
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
                     <button className="flex flex-col items-center pb-5">
                         <span className="self-center text-4xl font-bold text-sky-400">Sign up </span>
-                        <span className='self-center text-4xl font-bold text-sky-400 hover:text-red-500 hover:animate-ping'>anonymously</span>
+                        <span className='self-center text-4xl font-bold text-sky-400 hover:text-red-500'>anonymously</span>
                     </button>
                     {signupMessage && (
                         <p className="text-green-400 md:text-xl text-lg font-bold underline underline-offset-1">{signupMessage}</p>
