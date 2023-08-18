@@ -22,6 +22,10 @@ const DetailsSchema = new Schema({
         type: String,
         required: true
     },
+    bath: {
+        type: String,
+        required: true
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: "User"

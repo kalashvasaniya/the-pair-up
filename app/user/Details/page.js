@@ -20,6 +20,7 @@ const Details = () => {
     const [year, setYear] = useState('');
     const [LoveTo, setLoveTo] = useState('');
     const [gender, setGender] = useState('');
+    const [bath, setBath] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,7 +31,7 @@ const Details = () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
-            body: JSON.stringify({ bio, relation, year, LoveTo, gender }),
+            body: JSON.stringify({ bio, relation, year, LoveTo, gender, bath }),
         });
         const json = await res.json();
         console.log(res);
@@ -42,6 +43,7 @@ const Details = () => {
             setYear('');
             setLoveTo('');
             setGender('');
+            setBath('');
             window.location.href = "/user/profile"
         } else {
             alert(json.error);
@@ -61,6 +63,8 @@ const Details = () => {
             setLoveTo(value);
         } else if (name === 'gender') {
             setGender(value);
+        } else if (name === 'bath') {
+            setBath(value);
         }
     };
 
@@ -182,6 +186,26 @@ const Details = () => {
                                 htmlFor="gender"
                                 className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                                 Gender
+                            </label>
+                        </div>
+
+                        <div className="relative z-0 w-full mb-6 group">
+                            <select value={bath} onChange={handleChange} name="bath" id="bath"
+                                className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
+                                required>
+                                <option className="text-xs" value="" disabled>Select an option</option>
+                                <option className="text-xs" value="1/Week">1/Week</option>
+                                <option className="text-xs" value="2/Week">2/Week</option>
+                                <option className="text-xs" value="3/Week">3/Week</option>
+                                <option className="text-xs" value="4/Week">4/Week</option>
+                                <option className="text-xs" value="5/Week">5/Week</option>
+                                <option className="text-xs" value="6/Week">6/Week</option>
+                                <option className="text-xs" value="Daily">Daily</option>
+                            </select>
+                            <label
+                                htmlFor="bath"
+                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Bath Ratio
                             </label>
                         </div>
 
