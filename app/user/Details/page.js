@@ -77,7 +77,7 @@ const Details = () => {
     return (
         <>
             <Navbar />
-            <section className="bg-black pt-24 h-screen">
+            <section className="bg-black py-24">
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
                     <Link href={''} className="flex items-center pb-5">
                         <span className="self-center text-4xl font-bold text-sky-400">Details</span>
@@ -219,7 +219,26 @@ const Details = () => {
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
                                 required>
                                 <option className="text-xs" value="" disabled>Select an option</option>
-                                <option className="text-xs" value={`logo.jpeg`}>personal</option>
+                                <option className="text-xs" value={`acid-smile-face-psychedelic-symbol-of-rave-vector-44786796.webp`}>Acid Smile Face 1</option>
+                                <option className="text-xs" value={`acid-smile-face-with-brain-melted-rave-vector-45926123.webp`}>Acid Smile Face 2</option>
+                                <option className="text-xs" value={`awesome-funny-red-sun-with-a-charming-smiling-face-vector-47870982.webp`}>Funny Red Sun</option>
+                                <option className="text-xs" value={`cute-beard-man-head-face-logo-symbol-vector-48141076.webp`}>Cute Beard Man</option>
+                                <option className="text-xs" value={`awesome-funny-red-sun-with-a-charming-smiling-face-vector-47870982.webp`}>Funny Red Sun</option>
+                                <option className="text-xs" value={`cute-funny-intestine-organ-character-hand-vector-38732208.webp`}>Cute Funny Intestine</option>
+                                <option className="text-xs" value={`dog-face-hand-draw-vector-47389019.webp`}>Dog Face</option>
+                                <option className="text-xs" value={`face-of-the-cool-chimp-with-sunglasses-chimpanzee-vector-47366747.webp`}>Cool Chimp</option>
+                                <option className="text-xs" value={`funny-cartoon-monster-character-wearing-eyeglsses-vector-46869868.webp`}>Cartoon Monster</option>
+                                <option className="text-xs" value={`funny-smiley-face-emoticon-smoking-cannabis-vector-44924547.webp`}>Smoking Cannabis</option>
+                                <option className="text-xs" value={`gorilla-with-headphones-vector-26203300.webp`}>Gorilla With Headphones</option>
+                                <option className="text-xs" value={`happy-face-icon-smile-element-yellow-color-vector-45813921.webp`}>Happy Face</option>
+                                <option className="text-xs" value={`hedgehog-cute-cartoon-animal-funny-maths-shape-vector-47404491.webp`}>Hedgehog Cute Cartoon</option>
+                                <option className="text-xs" value={`logo-smile-television-happy-face-abstract-vector-47076603.webp`}>TV Logo</option>
+                                <option className="text-xs" value={`raccoon-logo-design-in-flat-color-design-template-vector-45713167.webp`}>Raccoon</option>
+                                <option className="text-xs" value={`rooster-chicken-smile-funny-cute-face-artwork-vector-32104696.webp`}>Rooster Chicken</option>
+                                <option className="text-xs" value={`scary-grunge-smile-face-halloween-sticker-vector-33974663.webp`}>Scary Grunge Smile</option>
+                                <option className="text-xs" value={`smiling-face-with-sunglasses-stinky-poop-shit-vector-47901056.webp`}>Smiling Face</option>
+                                <option className="text-xs" value={`wacky-weed-funny-bud-monster-vector-48056508.webp`}>Wacky Weed</option>
+                                <option className="text-xs" value={`yum-cartoon-face-with-tongue-lick-mouth-yummy-vector-47019919.webp`}>Yum Cartoon</option>
                             </select>
                             <label
                                 htmlFor="avatar"
