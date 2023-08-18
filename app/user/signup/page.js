@@ -64,9 +64,13 @@ const Signup = () => {
     };
 
     const handleChange = (e) => {
+        const inputText = e.target.value;
+        const lowercaseText = inputText.replace(/[^a-z]/g, '');
+
+        
         const { name, value } = e.target
         if (name === 'name') {
-            setName(value)
+            setName(lowercaseText);
         } else if (name === 'email') {
             setEmail(value)
         } else if (name === 'password') {
@@ -74,9 +78,7 @@ const Signup = () => {
         } else if (name === 'cpassword') {
             setCpassword(value)
         }
-        const inputText = e.target.value;
-        const lowercaseText = inputText.replace(/[^a-z]/g, '');
-        setName(lowercaseText);
+
     }
 
     return (
