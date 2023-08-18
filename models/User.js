@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema({
     },
     tick: {
         type: String,
-        enum: ['no', 'yes'],
+        enum: ['no', 'yes', 'active'],
         default: 'no'
     },
     role: {
