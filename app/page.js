@@ -10,7 +10,7 @@ import Footer from "@/components/Footer/page"
 import Float from "@/components/Float/page"
 import { useState } from "react"
 
-import Loading from "./Loading/page"
+import Loading from "./UI/Loading/page"
 
 export default function Main() {
 
