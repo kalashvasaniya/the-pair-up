@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import ScrollButton from '@/app/UI/ScrollButton/page'
+import ScrollButton1 from '@/app/UI/ScrollButton1/page'
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -52,7 +52,7 @@ const Login = () => {
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
                     <div className="w-full sm:max-w-md">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                            <ScrollButton />
+                            <ScrollButton1 />
                             <Link href={'/'} className="flex items-center justify-center">
                                 {/* <Image src={'/Logo1.png'} alt="kalash" width={60} height={60} /> */}
                                 <span className="self-center text-3xl whitespace-nowrap text-white font-extrabold  ">

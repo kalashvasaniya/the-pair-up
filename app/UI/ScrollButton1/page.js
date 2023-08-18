@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const ScrollButton = () => {
+const ScrollButton1 = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     const scrollToTop = () => {
@@ -27,7 +27,7 @@ const ScrollButton = () => {
 
     return (
         <button
-            className={`fixed bottom-4 z-50 right-4 p-2 text-sky-400 rounded-md ${isVisible ? 'block' : 'hidden'
+            className={`fixed bottom-4 z-50 right-4 p-2 text-sky-500 rounded-md ${isVisible ? 'block' : 'hidden'
                 }`}
             onClick={scrollToTop}
         >
@@ -43,4 +43,4 @@ const ScrollButton = () => {
     );
 };
 
-export default ScrollButton;
+export default ScrollButton1;
