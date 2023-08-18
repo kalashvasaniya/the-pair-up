@@ -94,7 +94,7 @@ const Profile = () => {
 
                     <div className="flex flex-row pr-24">
                       <div className="text-base flex justify-center items-center pr-2">{userDetails1.name}</div>
-                      {userDetails1.role === 'admin' ? (
+                      {userDetails1.tick === 'yes' || userDetails1.role === 'admin' ? (
                         <div className="hover:scale-105">
                           <svg className='flex justify-center items-center text-sky-400'
                             viewBox="0 0 16 16"
@@ -172,7 +172,7 @@ const Profile = () => {
 
                     <div className="flex flex-row">
                       <div className="text-sm flex justify-center items-center pr-2">{userDetails1.name}</div>
-                      {userDetails1.role === 'admin' ? (
+                      {userDetails1.tick === 'yes' || userDetails1.role === 'admin' ? (
                         <div className="hover:scale-105">
                           <svg className='flex justify-center items-center text-sky-400'
                             viewBox="0 0 16 16"

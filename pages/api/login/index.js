@@ -20,6 +20,7 @@ export default async function handler(req, res) {
                         name: user.name,
                         email: user.email,
                         role: user.role,
+                        tick: user.tick,
                     };
                     return res.status(200).json({ success: true, userDetails1 });
                 }
@@ -80,7 +81,7 @@ export default async function handler(req, res) {
 
             var token = jwt.sign({ name: user.name, email }, 'jwtsecret', { expiresIn: '2d' });
             // This is important in this situation
-            res.status(200).json({ success: true, token, name: user.name, email: user.email, role: user.role });
+            res.status(200).json({ success: true, token, name: user.name, email: user.email, role: user.role, tick: user.tick });
         } catch (error) {
             res.status(500).json({ success: false, error: 'Internal server error' });
         }

@@ -26,6 +26,11 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    tick: {
+        type: String,
+        enum: ['no', 'yes'],
+        default: 'no'
+    },
     role: {
         type: String,
         enum: ['user', 'admin'],
