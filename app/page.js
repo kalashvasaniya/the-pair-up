@@ -22,7 +22,7 @@ export default function Main() {
     }
     setTimeout(() => {
       setContentLoaded(true);
-    }, 3000);
+    }, 1000);
   }, [])
 
   return (
