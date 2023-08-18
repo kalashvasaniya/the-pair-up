@@ -5,11 +5,11 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 
 const GuidetoVerification = () => {
-    // useEffect(() => {
-    //     if (!localStorage.getItem('token')) {
-    //         window.location.href = '/'
-    //     }
-    // }, [])
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            window.location.href = '/'
+        }
+    }, [])
     return (
         <>
             <Navbar />
