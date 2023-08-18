@@ -9,7 +9,7 @@ const Navbar = () => {
 
                 {/* top navbar */}
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <Link href={'/'} className="flex items-center">
+                    <Link href={'/Home'} className="flex items-center">
                         {/* <Image src={'/Logo1.png'} alt="kalash" width={60} height={60} /> */}
                         <span className="self-center text-3xl whitespace-nowrap text-white font-extrabold  ">
                             <span className='line-through decoration-white text-[#00B2FF]'>The</span> PairUp</span>
