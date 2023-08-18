@@ -179,7 +179,7 @@ const LeftSideNavbar = () => {
                         <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - Student got 10th Rank. <span className='text-sky-400'>(26 July 2023)</span></Link>
                     </div>
                     <div className="mt-4">
-                        <Link href={'/CollegeUpdate'} className="hover:underline">
+                        <Link href={'/EXT/CollegeUpdate'} className="hover:underline">
                             More...
                         </Link>
                     </div>

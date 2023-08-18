@@ -2,18 +2,8 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect } from 'react'
-import { useTPU } from '@/app/layout'
 
 const BottomNavbar = () => {
-    const { logout } = useTPU();
-
-    // useEffect(() => {
-    //     if (!localStorage.getItem('token')) {
-    //         window.location.href = '/'
-    //     }
-    // }, [])
-
     return (
         <>
             {/* bottom navbar */}
@@ -28,10 +18,10 @@ const BottomNavbar = () => {
                             <span className="sr-only">Home</span>
                         </Link>
 
-                        <button type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-800 group">
+                        <Link href={'/Search'} type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-800 group">
                             <svg className="w-6 h-6 text-sky-400 group-hover:text-sky-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
                             <span className="sr-only">Search</span>
-                        </button>
+                        </Link>
 
                         <div className="hover:bg-gray-800 flex justify-center items-center group">
                             <Link href={'/Home'} type="button" className="flex items-center justify-center w-10 h-10 font-medium group">
@@ -39,7 +29,7 @@ const BottomNavbar = () => {
                             </Link>
                         </div>
 
-                        <Link href={'/Home'} type="button" className="inline-flex flex-col items-center justify-center px-1 hover:bg-gray-800 group">
+                        <Link href={'/Feed/Live'} type="button" className="inline-flex flex-col items-center justify-center px-1 hover:bg-gray-800 group">
                             <Image width={32} height={28} src={'/live-7.png'}></Image>
                             <span className="sr-only">Search</span>
                         </Link>

@@ -15,9 +15,9 @@ const Home = () => {
   const [userDetails2, setUserDetails2] = useState('');
 
   useEffect(() => {
-    // if (!localStorage.getItem('token')) {
-    //   window.location.href = '/'
-    // }
+    if (!localStorage.getItem('token')) {
+      window.location.href = '/'
+    }
     fetchUserDetails1()
     fetchUserDetails2();
     const timer = setTimeout(() => {
@@ -142,7 +142,7 @@ const Home = () => {
                 {isVisible && (
                   <nav className='bg-black fixed w-full z-20 top-20 left-0 border-b pb-1 flex flex-row justify-around animate-bounce'>
                     {userDetails1.name ? (
-                      <Link href={'/CollegeUpdate'} className="text-sky-400 hover:underline font-mono">
+                      <Link href={'/EXT/CollegeUpdate'} className="text-sky-400 hover:underline font-mono">
                         College Update
                       </Link>
                     ) : (

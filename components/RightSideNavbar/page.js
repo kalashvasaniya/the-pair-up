@@ -4,19 +4,36 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useTPU } from '@/app/layout'
 import { useRef } from 'react'
+import Search from '@/app/Search/page'
 
 const RightSideNavbar = () => {
-    const toggleCart = () => {
-        if (ref.current.classList.contains('-translate-x-full')) {
-            ref.current.classList.remove('-translate-x-full')
-            ref.current.classList.add('translate-x-0')
+    // search 
+    const toggleCart1 = () => {
+        if (ref1.current.classList.contains('-translate-x-full')) {
+            ref1.current.classList.remove('-translate-x-full')
+            ref1.current.classList.add('translate-x-0')
         }
         else {
-            ref.current.classList.remove('translate-x-0')
-            ref.current.classList.add('-translate-x-full')
+            ref1.current.classList.remove('translate-x-0')
+            ref1.current.classList.add('-translate-x-full')
         }
     }
-    const ref = useRef();
+    // Notification
+    const toggleCart2 = () => {
+        if (ref2.current.classList.contains('-translate-x-full')) {
+            ref2.current.classList.remove('-translate-x-full')
+            ref2.current.classList.add('translate-x-0')
+        }
+        else {
+            ref2.current.classList.remove('translate-x-0')
+            ref2.current.classList.add('-translate-x-full')
+        }
+    }
+
+    // search 
+    const ref1 = useRef();
+    // Notification
+    const ref2 = useRef();
     const { logout } = useTPU()
     return (
         <>
@@ -41,13 +58,24 @@ const RightSideNavbar = () => {
                     </Link>
 
                     {/* Search  */}
-                    <Link href={''} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
+                    <din onClick={toggleCart1} className="flex-row cursor-pointer flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
                         <div className="pr-4">
                             <svg className="w-7 h-7 text-sky-400 group-hover:text-sky-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
                             <span className="sr-only">Search</span>
                         </div>
                         <div className="">Search</div>
-                    </Link>
+                    </din>
+
+                    <div ref={ref1} onClick={toggleCart1} className="absolute border-r border-gray-500 top-0 left-0 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black" tabIndex="-1">
+                        <div className="text-base font-semibold font-mono text-sky-400">Search</div>
+                        <button type="button" className="text-gray-400 bg-transparent hover:bg-sky-500 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center" >
+                            <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                            <span className="sr-only">Close menu</span>
+                        </button>
+                        <hr className="my-3" />
+                        {/* Here notofication */}
+                        <Search />
+                    </div>
 
                     {/* Message  */}
                     <Link href={''} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
@@ -58,7 +86,7 @@ const RightSideNavbar = () => {
                     </Link>
 
                     {/* Notification  */}
-                    <div onClick={toggleCart} className="flex-row cursor-pointer flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
+                    <div onClick={toggleCart2} className="flex-row cursor-pointer flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
                         <div className="pr-4 relative">
                             <svg className="w-7 h-7 text-sky-400 group-hover:text-sky-400" aria-label="Notifications" fill="rgb(0, 178, 255)" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path></svg>
                             <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full -top-2 right-1">
@@ -68,7 +96,7 @@ const RightSideNavbar = () => {
                         <div className="">Notifications</div>
                     </div>
 
-                    <div ref={ref} onClick={toggleCart} className="absolute border-r border-gray-500 top-0 left-0 z-60 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black" tabIndex="-1">
+                    <div ref={ref2} onClick={toggleCart2} className="absolute border-r border-gray-500 top-0 left-0 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black" tabIndex="-1">
                         <div className="text-base font-semibold font-mono text-sky-400">Notification</div>
                         <button type="button" className="text-gray-400 bg-transparent hover:bg-sky-500 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center" >
                             <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
@@ -87,7 +115,7 @@ const RightSideNavbar = () => {
                     </Link>
 
                     {/* Live  */}
-                    <Link href={''} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
+                    <Link href={'/Feed/Live'} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
                         <div className="pr-4">
                             <Image className='w-7 h-7' width={28} height={28} src={'/live-7.png'}></Image>
                             <span className="sr-only">Search</span>
