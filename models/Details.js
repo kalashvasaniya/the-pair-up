@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const DetailsSchema = new Schema({
-    bio:{
+    bio: {
+        type: String,
+        required: true
+    },
+    avatar: {
         type: String,
         required: true
     },

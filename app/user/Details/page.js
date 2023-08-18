@@ -21,6 +21,7 @@ const Details = () => {
     const [LoveTo, setLoveTo] = useState('');
     const [gender, setGender] = useState('');
     const [bath, setBath] = useState('');
+    const [avatar, setAvatar] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,7 +32,7 @@ const Details = () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
-            body: JSON.stringify({ bio, relation, year, LoveTo, gender, bath }),
+            body: JSON.stringify({ bio, relation, year, LoveTo, gender, bath, avatar }),
         });
         const json = await res.json();
         console.log(res);
@@ -44,6 +45,7 @@ const Details = () => {
             setLoveTo('');
             setGender('');
             setBath('');
+            setAvatar('');
             window.location.href = "/user/profile"
         } else {
             alert(json.error);
@@ -65,6 +67,8 @@ const Details = () => {
             setGender(value);
         } else if (name === 'bath') {
             setBath(value);
+        } else if (name === 'avatar') {
+            setAvatar(value);
         }
     };
 
@@ -117,6 +121,7 @@ const Details = () => {
                                 <option className="text-xs" value="Sophomore">Sophomore</option>
                                 <option className="text-xs" value="Junior">Junior</option>
                                 <option className="text-xs" value="Senior">Senior</option>
+                                <option className="text-xs" value="Super Senior">Super Senior</option>
                             </select>
                             <label
                                 htmlFor="year"
@@ -206,6 +211,20 @@ const Details = () => {
                                 htmlFor="bath"
                                 className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                                 Bath Ratio
+                            </label>
+                        </div>
+
+                        <div className="relative z-0 w-full mb-6 group">
+                            <select value={avatar} onChange={handleChange} name="avatar" id="avatar"
+                                className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
+                                required>
+                                <option className="text-xs" value="" disabled>Select an option</option>
+                                <option className="text-xs" value={`logo.jpeg`}>personal</option>
+                            </select>
+                            <label
+                                htmlFor="avatar"
+                                className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Avatar
                             </label>
                         </div>
 

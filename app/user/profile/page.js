@@ -79,7 +79,7 @@ const Profile = () => {
               <div className="col-start-1 col-end-4">
                 <Link href={'/user/profile'} className="flex justify-end text-lg font-medium items-center">
                 <div className={`border p-2 rounded-full ${userDetails1.role === 'admin' ? 'border-amber-400' : ''} ${userDetails1.tick === 'yes' ? 'border-sky-400' : ''} ${userDetails1.tick === 'active' ? 'border-teal-500' : ''}`}>
-                    <Image src={'/logo.jpeg'} width={1000} height={1000} className="w-40 h-40 rounded-full cursor-pointer hover:scale-105" alt="Image" />
+                    <Image src={`/avatars/${userDetails2.avatar}`} width={1000} height={1000} className="w-40 h-40 rounded-full cursor-pointer hover:scale-105" alt="Image" />
                     <span className="sr-only">Search</span>
                   </div>
                 </Link>
@@ -208,7 +208,7 @@ const Profile = () => {
               <div className="grid grid-cols-2 px-6 space-x-4">
                 <Link href={'/user/profile'} className="flex justify-center text-lg font-medium items-center">
                   <div className={`border p-2 rounded-full ${userDetails1.role === 'admin' ? 'border-amber-400' : ''} ${userDetails1.tick === 'yes' ? 'border-sky-400' : ''} ${userDetails1.tick === 'active' ? 'border-teal-500' : ''}`}>
-                    <Image src={'/logo.jpeg'} width={1000} height={1000} className="w-28 h-28 rounded-full cursor-pointer hover:scale-105" alt="Image" />
+                    <Image src={`/avatars/${userDetails2.avatar}`} width={1000} height={1000} className="w-28 h-28 rounded-full cursor-pointer hover:scale-105" alt="Image" />
                     <span className="sr-only">Search</span>
                   </div>
                 </Link>
