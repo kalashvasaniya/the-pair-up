@@ -181,7 +181,7 @@ const Profile = ({ params }) => {
                       <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{userDetails2.relation}</span></div>
                       <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
                       <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{userDetails2.LoveTo}</span></div>
-                      <div className="text-sm mt-2">Bath Ratio: <span className='text-sky-400 hover:underline'>{userDetails2.bath}</span></div>
+                      <div className="text-sm mt-2">Bath: <span className='text-sky-400 hover:underline'>{userDetails2.bath}</span></div>
                     </div>
                   </div>
 
@@ -305,7 +305,7 @@ const Profile = ({ params }) => {
                       <div className="text-xs mt-2">Relation: <span className='text-sky-400 hover:underline'>{userDetails2.relation}</span></div>
                       <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
                       <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{userDetails2.LoveTo}</span></div>
-                      <div className="text-xs mt-2">Bath Ration: <span className='text-sky-400 hover:underline truncate'>{userDetails2.bath}</span></div>
+                      <div className="text-xs mt-2">Bath: <span className='text-sky-400 hover:underline truncate'>{userDetails2.bath}</span></div>
                     </div>
                   </div>
                 </div>
@@ -443,7 +443,7 @@ const Profile = ({ params }) => {
                       <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
                       <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
                       <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</span></div>
-                      <div className="text-sm mt-2">Bath Ratio: <span className='text-sky-400 hover:underline'>{slugDetails.bath}</span></div>
+                      <div className="text-sm mt-2">Bath: <span className='text-sky-400 hover:underline'>{slugDetails.bath}</span></div>
                     </div>
                   </div>
 
@@ -568,7 +568,7 @@ const Profile = ({ params }) => {
                       <div className="text-xs mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
                       <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
                       <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{slugDetails.LoveTo}</span></div>
-                      <div className="text-xs mt-2">Bath Ration: <span className='text-sky-400 hover:underline truncate'>{slugDetails.bath}</span></div>
+                      <div className="text-xs mt-2">Bath: <span className='text-sky-400 hover:underline truncate'>{slugDetails.bath}</span></div>
                     </div>
                   </div>
                 </div>
