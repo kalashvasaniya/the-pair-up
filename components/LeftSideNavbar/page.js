@@ -64,7 +64,9 @@ const LeftSideNavbar = () => {
                 <div className="mt-20 px-6">
                     <Link href={`/user/profile/${userDetails1.name}`} className="flex-row flex mt-8 text-lg font-medium items-center">
                         <div className="pr-4">
-                            <Image src={`/avatars/${userDetails2.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                            {userDetails2.avatar ? (
+                                <Image src={`/avatars/${userDetails2.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                            ) : (<Image src={`/avatars/dummy.jpeg`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />)}
                             <span className="sr-only">Search</span>
                         </div>
                         <div className="">
