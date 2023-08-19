@@ -10,6 +10,7 @@ import { useState } from 'react'
 
 const Profile = ({ params }) => {
   const [userDetails, setUserDetails] = useState(null);
+  const [slugDetails, setSlugDetails] = useState(null);
   const [userDetails1, setUserDetails1] = useState('');
   const [userDetails2, setUserDetails2] = useState('');
 
@@ -33,7 +34,8 @@ const Profile = ({ params }) => {
       if (response.ok) {
         const data = await response.json();
         setUserDetails(data.user[0]);
-        console.log("User Details", userDetails);
+        setSlugDetails(data.details[0])
+        console.log("User Details", data);
       } else throw new Error("Something went wrong!");
     } catch (error) {
       console.log(error)
@@ -358,7 +360,7 @@ const Profile = ({ params }) => {
                 <div className="col-start-1 col-end-4">
                   <Link href={`/user/profile/${userDetails.name}`} className="flex justify-end text-lg font-medium items-center">
                     <div className={`border p-2 rounded-full ${userDetails.role === 'admin' ? 'border-amber-400' : ''} ${userDetails.tick === 'yes' ? 'border-sky-400' : ''} ${userDetails.tick === 'active' ? 'border-teal-500' : ''}`}>
-                      <Image src={`/avatars/${userDetails2.avatar}`} width={1000} height={1000} className="w-40 h-40 rounded-full cursor-pointer hover:scale-105" alt="Image" />
+                      <Image src={`/avatars/${slugDetails.avatar}`} width={1000} height={1000} className="w-40 h-40 rounded-full cursor-pointer hover:scale-105" alt="Image" />
                       <span className="sr-only">Search</span>
                     </div>
                   </Link>
@@ -433,11 +435,11 @@ const Profile = ({ params }) => {
                           </div>)}
                       </div>
 
-                      <div className="text-sm text-gray-500">{userDetails.bio}<span className='text-sky-400 text-xs'> - {userDetails.gender}</span></div>
-                      <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{userDetails.relation}</span></div>
-                      <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails.year}</span></div>
-                      <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{userDetails.LoveTo}</span></div>
-                      <div className="text-sm mt-2">Bath Ratio: <span className='text-sky-400 hover:underline'>{userDetails.bath}</span></div>
+                      <div className="text-sm text-gray-500">{slugDetails.bio}<span className='text-sky-400 text-xs'> - {slugDetails.gender}</span></div>
+                      <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
+                      <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
+                      <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</span></div>
+                      <div className="text-sm mt-2">Bath Ratio: <span className='text-sky-400 hover:underline'>{slugDetails.bath}</span></div>
                     </div>
                   </div>
 
@@ -446,7 +448,7 @@ const Profile = ({ params }) => {
                     <div className="mt-8 justify-start text-base font-medium items-start">
                       <div className="flex flex-row justify-center items-center pl-0">
                         <Link href={''} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 mr-4'>Follow</Link>
-                        <button onClick={logout} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500'>Message</button>
+                        <Link href={''} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500'>Message</Link>
                         <Link href={'/menu/Setting'} className='p-1 px-4 rounded-2xl hover:scale-105'>
                           <svg aria-label="Options" class="x1lliihq x1n2onr6" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Options</title><circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path d="M14.232 3.656a1.269 1.269 0 0 1-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 0 1-.796.66m-.001 16.688a1.269 1.269 0 0 1 .796.66l.505.996h1.862l.505-.996a1.269 1.269 0 0 1 .796-.66M3.656 9.768a1.269 1.269 0 0 1-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 0 1 .66.796m16.688-.001a1.269 1.269 0 0 1 .66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 0 1-.66-.796M7.678 4.522a1.269 1.269 0 0 1-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 0 1-.096 1.03m11.8 11.799a1.269 1.269 0 0 1 1.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 0 1 .096-1.03m-14.956.001a1.269 1.269 0 0 1 .096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 0 1 1.03.096m11.799-11.8a1.269 1.269 0 0 1-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 0 1-1.03-.096" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
                         </Link>
@@ -487,7 +489,7 @@ const Profile = ({ params }) => {
                 <div className="grid grid-cols-2 px-6 space-x-4">
                   <Link href={`/user/profile/${userDetails.name}`} className="flex justify-center text-lg font-medium items-center">
                     <div className={`border p-2 rounded-full ${userDetails.role === 'admin' ? 'border-amber-400' : ''} ${userDetails.tick === 'yes' ? 'border-sky-400' : ''} ${userDetails.tick === 'active' ? 'border-teal-500' : ''}`}>
-                      <Image src={`/avatars/${userDetails.avatar}`} width={1000} height={1000} className="w-28 h-28 rounded-full cursor-pointer hover:scale-105" alt="Image" />
+                      <Image src={`/avatars/${slugDetails.avatar}`} width={1000} height={1000} className="w-28 h-28 rounded-full cursor-pointer hover:scale-105" alt="Image" />
                       <span className="sr-only">Search</span>
                     </div>
                   </Link>
@@ -557,11 +559,11 @@ const Profile = ({ params }) => {
 
                       </div>
 
-                      <div className="text-xs text-gray-500">{userDetails.bio} <span className='text-sky-400 text-xs'> - {userDetails.gender}</span></div>
-                      <div className="text-xs mt-2">Relation: <span className='text-sky-400 hover:underline'>{userDetails.relation}</span></div>
-                      <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails.year}</span></div>
-                      <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{userDetails.LoveTo}</span></div>
-                      <div className="text-xs mt-2">Bath Ration: <span className='text-sky-400 hover:underline truncate'>{userDetails.bath}</span></div>
+                      <div className="text-xs text-gray-500">{slugDetails.bio} <span className='text-sky-400 text-xs'> - {slugDetails.gender}</span></div>
+                      <div className="text-xs mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
+                      <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
+                      <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{slugDetails.LoveTo}</span></div>
+                      <div className="text-xs mt-2">Bath Ration: <span className='text-sky-400 hover:underline truncate'>{slugDetails.bath}</span></div>
                     </div>
                   </div>
                 </div>
