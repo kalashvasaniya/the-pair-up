@@ -348,7 +348,7 @@ const Profile = ({ params }) => {
         </div>
       )}
       {/* other  */}
-      {params.slug !== userDetails1.name && userDetails && (
+      {params.slug !== userDetails1.name && slugDetails && userDetails && (
         <div className="bg-black text-white">
           <div className="md:grid md:grid-cols-12 flex flex-col">
             <RightSideNavbar />
@@ -361,6 +361,7 @@ const Profile = ({ params }) => {
                   <Link href={`/user/profile/${userDetails.name}`} className="flex justify-end text-lg font-medium items-center">
                     <div className={`border p-2 rounded-full ${userDetails.role === 'admin' ? 'border-amber-400' : ''} ${userDetails.tick === 'yes' ? 'border-sky-400' : ''} ${userDetails.tick === 'active' ? 'border-teal-500' : ''}`}>
                       <Image src={`/avatars/${slugDetails.avatar}`} width={1000} height={1000} className="w-40 h-40 rounded-full cursor-pointer hover:scale-105" alt="Image" />
+
                       <span className="sr-only">Search</span>
                     </div>
                   </Link>
@@ -611,7 +612,7 @@ const Profile = ({ params }) => {
       {params.slug !== userDetails1.name && !userDetails && (
         <div className="bg-pink flex flex-col justify-center h-screen">
           <div className="text-base flex justify-center underline text-sky-400 mb-6">Sorry, this page isn't available.</div>
-          <div className="flex justify-center">The link you followed may be broken, or the page may have been removed. </div>
+          <div className="flex justify-center px-4">The link you followed may be broken, or the page may have been removed. </div>
           <div className="mt-6 flex justify-center">
             <Link href={`/user/profile/${userDetails1.name}`} className="hover:underline">
               <button className='p-2 px-3 bg-sky-400 rounded-3xl hover:scale-105'>
