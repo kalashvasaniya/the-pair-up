@@ -3,7 +3,7 @@ import React from "react"
 import Login from "./user/login/page"
 import Image from "next/image"
 import Link from "next/link"
-import Contact from "./Contact/page"
+import Contact from "./EXT/Contact/page"
 import { useEffect } from "react"
 import Navbar from "@/components/Navbar/page"
 import Footer from "@/components/Footer/page"
@@ -53,7 +53,7 @@ export default function Main() {
                   </span>
                   <br />
                   <div className="pt-6 space-x-4">
-                    <Link href={'/About'} className="border p-2 px-4 rounded-3xl decoration-white text-white">Read</Link>
+                    <Link href={'/EXT/About'} className="border p-2 px-4 rounded-3xl decoration-white text-white">Read</Link>
                   </div>
                 </div>
 

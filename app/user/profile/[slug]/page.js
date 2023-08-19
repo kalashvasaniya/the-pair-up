@@ -614,7 +614,7 @@ const Profile = ({ params }) => {
       )}
       {/* not exist  */}
       {params.slug !== userDetails1.name && !userDetails && (
-        <div className="bg-pink flex flex-col justify-center h-screen">
+        <div className="bg-black text-white flex flex-col justify-center h-screen">
           <div className="text-base flex justify-center underline text-sky-400 mb-6">Sorry, this page isn't available.</div>
           <div className="flex justify-center px-4">The link you followed may be broken, or the page may have been removed. </div>
           <div className="mt-6 flex justify-center">

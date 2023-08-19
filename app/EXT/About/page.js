@@ -6,7 +6,7 @@ const About = () => {
     return (
         <>
             <Navbar />
-            <section className="bg-transparent my-32 mx-8">
+            <section className="py-32 px-8 bg-black text-white">
                 <div className="gap-16 items-center py-4 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
                     <div className="font-light text-gray-300 sm:text-lg ">
                         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white">Let's talk about <span className="self-center text-4xl text-white font-extrabold"><span className='text-4xl font-extrabold line-through decoration-white text-sky-400'>The</span> PairUp

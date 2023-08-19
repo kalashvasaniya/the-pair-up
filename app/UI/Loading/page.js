@@ -3,7 +3,7 @@ import React from 'react';
 const Loading = () => {
     return (
         <div>
-            <div className='flex justify-center items-center h-screen'>
+            <div className='flex justify-center items-center h-screen bg-black'>
                 <video
                     autoPlay // This makes the video play automatically
                     muted   // This mutes the video (important for autoplay in some browsers)

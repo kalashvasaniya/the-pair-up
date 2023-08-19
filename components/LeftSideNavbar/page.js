@@ -203,8 +203,8 @@ const LeftSideNavbar = () => {
                 {/* Footer LeftSideNavbar  */}
                 <div className="mt-12 px-6 text-xs flex flex-col">
                     <div className="flex flex-row space-x-2 text-gray-400">
-                        <Link href={'/About'} target='_blank' className="hover:underline">About</Link>
-                        <Link href={'/Contact'} target='_blank' className="hover:underline">Contact</Link>
+                        <Link href={'/EXT/About'} target='_blank' className="hover:underline">About</Link>
+                        <Link href={'/EXT/Contact'} target='_blank' className="hover:underline">Contact</Link>
                         <Link href={'https://github.com/kalashvasaniya/the-pair-up/blob/main/SECURITY.md'} target='_blank' className="hover:underline">Privacy</Link>
                         <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} target='_blank' className="hover:underline">Feedback</Link>
                     </div>
