@@ -5,8 +5,61 @@ import Image from 'next/image'
 import { useTPU } from '@/app/layout'
 import { useRef } from 'react'
 import Search from '@/app/Search/page'
+import { useEffect, useState } from 'react'
 
 const RightSideNavbar = () => {
+    const [userDetails1, setUserDetails1] = useState('');
+    const [userDetails2, setUserDetails2] = useState('');
+
+    useEffect(() => {
+        fetchUserDetails1()
+        fetchUserDetails2();
+    }, [])
+
+    const fetchUserDetails1 = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUserDetails1(data.userDetails1);
+                console.log("User Details", data);
+            } else {
+                // Handle error
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const fetchUserDetails2 = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUserDetails2(data.userDetails2);
+                console.log("User Details", data);
+            } else {
+                // Handle error
+            }
+        } catch (error) {
+            console.log("hooo")
+        }
+    };
+
     // search 
     const toggleCart1 = () => {
         if (ref1.current.classList.contains('-translate-x-full')) {
@@ -124,9 +177,9 @@ const RightSideNavbar = () => {
                     </Link>
 
                     {/* Profile  */}
-                    <Link href={'/user/profile'} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-gray-700 rounded-2xl py-2">
+                    <Link href={`/user/profile/${userDetails1.name}`} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-gray-700 rounded-2xl py-2">
                         <div className="pr-4">
-                            <Image src={'/logo.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-7 h-7 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                            <Image src={`/avatars/${userDetails2.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-7 h-7 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
                             <span className="sr-only">Search</span>
                         </div>
                         <div className="">Profile</div>
@@ -139,6 +192,7 @@ const RightSideNavbar = () => {
                         </div>
                         <div className="">Menu</div>
                     </button>
+
                     <div id="dropdownTop" class="z-10 hidden text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52">
                         <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
                             <Link href={'/menu/Setting'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Settings</Link>

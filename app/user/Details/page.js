@@ -7,14 +7,6 @@ import Navbar from '@/components/Navbar/page'
 import Footer from '@/components/Footer/page'
 
 const Details = () => {
-    useEffect(() => {
-        if (!localStorage.getItem('token')) {
-            window.location.href = '/';
-        } else {
-
-        }
-    }, [])
-
     const [bio, setBio] = useState('')
     const [relation, setRelation] = useState('');
     const [year, setYear] = useState('');
@@ -22,6 +14,62 @@ const Details = () => {
     const [gender, setGender] = useState('');
     const [bath, setBath] = useState('');
     const [avatar, setAvatar] = useState('');
+
+    const [userDetails1, setUserDetails1] = useState('');
+    const [userDetails2, setUserDetails2] = useState('');
+
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            window.location.href = '/';
+        } else {
+
+        }
+        fetchUserDetails1()
+        fetchUserDetails2();
+    }, [])
+
+    const fetchUserDetails1 = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUserDetails1(data.userDetails1);
+            } else {
+                // Handle error
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const fetchUserDetails2 = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUserDetails2(data.userDetails2);
+            } else {
+                // Handle error
+            }
+        } catch (error) {
+            console.log("hooo")
+        }
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,7 +94,7 @@ const Details = () => {
             setGender('');
             setBath('');
             setAvatar('');
-            window.location.href = "/user/profile"
+            window.location.href = `/user/profile/${userDetails1.name}`
         } else {
             alert(json.error);
         }

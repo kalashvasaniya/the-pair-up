@@ -2,8 +2,59 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
 const BottomNavbar = () => {
+    const [userDetails1, setUserDetails1] = useState('');
+    const [userDetails2, setUserDetails2] = useState('');
+
+    useEffect(() => {
+        fetchUserDetails1()
+        fetchUserDetails2();
+    }, [])
+
+    const fetchUserDetails1 = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUserDetails1(data.userDetails1);
+            } else {
+                // Handle error
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const fetchUserDetails2 = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setUserDetails2(data.userDetails2);
+            } else {
+                // Handle error
+            }
+        } catch (error) {
+            console.log("hooo")
+        }
+    };
+    
     return (
         <>
             {/* bottom navbar */}
@@ -34,7 +85,7 @@ const BottomNavbar = () => {
                             <span className="sr-only">Search</span>
                         </Link>
 
-                        <Link href={'/user/profile'} className="flex justify-center items-center">
+                        <Link href={`/user/profile/${userDetails1.name}`} className="flex justify-center items-center">
                             <Image src={'/logo.jpeg'} width={100} height={100} className="w-10 h-10 rounded-full cursor-pointer hover:scale-110" alt="Image" />
                         </Link>
 
