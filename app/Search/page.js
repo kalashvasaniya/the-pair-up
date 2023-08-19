@@ -5,10 +5,14 @@ import Link from 'next/link'
 
 const Search = () => {
     useEffect(() => {
-        // if (!localStorage.getItem('token')) {
-        //     window.location.href = '/'
-        // }
+        if (!localStorage.getItem('token')) {
+            window.location.href = '/'
+        }
     }, [])
+
+    const searchUser = () => {
+    }
+    
     return (
         <>
             <div className="p-4">
@@ -20,7 +24,7 @@ const Search = () => {
                     </Link>
                     <hr className="my-3" />
                 </div>
-                <form class="flex items-center">
+                <form onSubmit={searchUser} class="flex items-center">
                     <label for="simple-search" class="sr-only">Search</label>
                     <div class="relative w-full">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
