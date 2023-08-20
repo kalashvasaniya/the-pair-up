@@ -153,7 +153,7 @@ const Home = () => {
                   </nav>)}
               </div>
 
-              <div className="md:mt-36 mt-28">
+              <div>
                 {/* <div className="text-2xl md:text-4xl font-extrabold text-sky-400 flex justify-center mb-2">Feed</div> */}
                 <Feed />
               </div>

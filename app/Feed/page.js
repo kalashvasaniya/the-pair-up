@@ -1,5 +1,7 @@
+"use client"
 import React from 'react'
 import { useEffect } from 'react'
+import Story from './Story/page'
 
 const Feed = () => {
     useEffect(() => {
@@ -9,11 +11,15 @@ const Feed = () => {
     }, [])
     return (
         <>
-            <div className="p-3">
-                <div className="pb-96 md:pb-[35rem]">
-
+            <Story />
+            <hr className='border border-gray-700 mb-3 md:mx-10' />
+            <div className="px-4 p-1">
+                <div className="">
+                    dsfsdf
                 </div>
-                <div className=""></div>
+                <div className="">
+                    dsfsdf
+                </div>
             </div>
         </>
     )
