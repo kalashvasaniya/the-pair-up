@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useTPU } from '@/app/layout'
 import { useRef } from 'react'
 import Search from '@/app/Search/page'
+import Notification from '@/app/Notification/page'
 import { useEffect, useState } from 'react'
 
 const RightSideNavbar = () => {
@@ -157,6 +158,7 @@ const RightSideNavbar = () => {
                         </button>
                         <hr className="my-3" />
                         {/* Here notofication */}
+                        <Notification />
                     </div>
 
                     {/* Create  */}

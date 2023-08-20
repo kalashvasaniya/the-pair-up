@@ -5,6 +5,7 @@ import BottomNavbar from '@/components/BottomNavbar/page'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Feed from '../Feed/page'
+import Notification from '@/app/Notification/page'
 import RightSideNavbar from '@/components/RightSideNavbar/page'
 import LeftSideNavbar from '@/components/LeftSideNavbar/page'
 import { useRef } from 'react'
@@ -95,7 +96,7 @@ const Home = () => {
 
               {/* Navbar in mobile  */}
               <div className="md:hidden">
-                <nav className="bg-black fixed w-full z-20 top-0 left-0 border-b">
+                <nav className="bg-black fixed w-full z-50 top-0 left-0 border-b">
 
                   {/* top navbar */}
                   <div className="grid grid-cols-2 gap-32">
@@ -133,6 +134,7 @@ const Home = () => {
                         </button>
                         <hr className="my-3 -mx-3" />
                         {/* Here notofication */}
+                        <Notification />
                       </div>
 
                     </div>
