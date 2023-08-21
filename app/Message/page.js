@@ -18,7 +18,7 @@ const Message = () => {
     const searchUser = async (slug) => {
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/searchUser?slug=${slug}`, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },

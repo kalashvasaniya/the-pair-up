@@ -18,7 +18,7 @@ const Search = () => {
     const searchUser = async (slug) => {
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/searchUser?slug=${slug}`, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -27,7 +27,6 @@ const Search = () => {
                 const data = await response.json();
                 setUserDetails(data.users);
                 setSlugDetails(data.details)
-                console.log("User", userDetails, slugDetails);
             } else {
                 throw new Error("Something went wrong!");
             }

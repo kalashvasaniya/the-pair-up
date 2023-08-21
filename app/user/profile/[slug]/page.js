@@ -29,7 +29,7 @@ const Profile = ({ params }) => {
   const fetchUserDetails = async (slug) => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/checkSlug?slug=${slug}`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         }
@@ -38,7 +38,6 @@ const Profile = ({ params }) => {
         const data = await response.json();
         setUserDetails(data.user[0]);
         setSlugDetails(data.details[0])
-        console.log("User Details", data);
       } else throw new Error("Something went wrong!");
     } catch (error) {
       console.log(error)
@@ -48,7 +47,7 @@ const Profile = ({ params }) => {
   const fetchUserDetails1 = async () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -69,7 +68,7 @@ const Profile = ({ params }) => {
   const fetchUserDetails2 = async () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
