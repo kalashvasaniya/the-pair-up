@@ -14,6 +14,8 @@ const RightSideNavbar = () => {
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
 
+    const [showTooltip, setShowTooltip] = useState(false);
+
     useEffect(() => {
         fetchUserDetails1()
         fetchUserDetails2();
@@ -107,6 +109,10 @@ const RightSideNavbar = () => {
             ref4.current.classList.add('-translate-x-full')
         }
     }
+    // Create
+    const toggleTooltip = () => {
+        setShowTooltip(!showTooltip);
+    };
 
     // search 
     const ref1 = useRef();
@@ -204,13 +210,27 @@ const RightSideNavbar = () => {
 
 
                     {/* Create  */}
-                    <Link href={''} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
-                        <div className="pr-4">
-                            <svg className='w-7 h-7 text-sky-400 group-hover:text-sky-400' aria-label="New post" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="6.545" x2="17.455" y1="12.001" y2="12.001"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="12.003" x2="12.003" y1="6.545" y2="17.455"></line></svg>
-                        </div>
-                        <div className="">Create</div>
-                    </Link>
+                    <div className="relative">
+                        <div onClick={toggleTooltip} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2 cursor-pointer">
+                            <div className="pr-4">
+                                <svg className='w-7 h-7 text-sky-400 group-hover:text-sky-400' aria-label="New post" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552Z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="6.545" x2="17.455" y1="12.001" y2="12.001"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="12.003" x2="12.003" y1="6.545" y2="17.455"></line></svg>
+                            </div>
+                            <div className="">Create</div>
+                            {showTooltip && (
+                                <>
+                                    <div className="ml-10 text-base bg-transparent text-sky-400 rounded-2xl mx-10">
+                                        <div className="flex flex-row space-x-3">
 
+                                            <button className="px-2 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Story</button>
+
+                                            <button className="px-2 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Post</button>
+
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
 
                     {/* Intrested  */}
                     <div onClick={toggleCart3} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
@@ -265,7 +285,7 @@ const RightSideNavbar = () => {
 
                 </div>
                 <div className=""></div>
-            </div>
+            </div >
         </>
     )
 }

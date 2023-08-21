@@ -86,10 +86,12 @@ const BottomNavbar = () => {
                         </Link>
 
                         <Link href={`/user/profile/${userDetails1.name}`} className="flex justify-center items-center">
-                            {userDetails2.avatar ? (
-                                <Image src={`/avatars/${userDetails2.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-10 h-10 rounded-full cursor-pointer hover:scale-105" alt="User dropdown" />
-                            ) : (<Image src={`/avatars/dummy.jpeg`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-10 h-10 rounded-full cursor-pointer hover:scale-105" alt="User dropdown" />)}
-                            <span className="sr-only">Search</span>
+                            <div className={`border p-1 rounded-full ${userDetails1.role === 'admin' ? 'border-amber-400' : ''} ${userDetails1.tick === 'yes' ? 'border-sky-400' : ''} ${userDetails1.tick === 'active' ? 'border-teal-500' : ''}`}>
+                                {userDetails2.avatar ? (
+                                    <Image src={`/avatars/${userDetails2.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-10 h-10 rounded-full cursor-pointer hover:scale-105" alt="User dropdown" />
+                                ) : (<Image src={`/avatars/dummy.jpeg`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-10 h-10 rounded-full cursor-pointer hover:scale-105" alt="User dropdown" />)}
+                                <span className="sr-only">Search</span>
+                            </div>
                         </Link>
 
                     </div>
