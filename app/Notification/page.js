@@ -37,7 +37,7 @@ const Search = () => {
     return (
         <>
             <div className="p-4">
-                Hello
+                Hello Notification
             </div>
         </>
     )

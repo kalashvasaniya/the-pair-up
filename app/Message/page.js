@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import Image from 'next/image'
 
-const Search = () => {
+const Message = () => {
     const [userDetails, setUserDetails] = useState([]);
     const [slugDetails, setSlugDetails] = useState(null);
 
@@ -39,17 +39,7 @@ const Search = () => {
     return (
         <>
             <div className="p-4">
-
-                {/* Nothing  */}
-                <div className='md:hidden block'>
-                    <div className="text-base font-semibold font-mono text-sky-400">Search</div>
-                    <Link href={'/Home'} type="button" className="text-gray-400 bg-transparent hover:bg-sky-500 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center" >
-                        <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                        <span className="sr-only">Close menu</span>
-                    </Link>
-                    <hr className="my-3" />
-                </div>
-
+              
                 <form onSubmit={(e) => {
                     e.preventDefault(),
                         searchUser(e.target.simpleSearch.value)
@@ -73,14 +63,13 @@ const Search = () => {
                     </button>
                 </form>
 
-
                 {/* Display all users and their details */}
                 {userDetails && userDetails.length > 0 && slugDetails && (
                     <div className="mt-6">
 
                         {userDetails.map((user, index) => (
 
-                            <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
+                            <Link key={index} href={``} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
 
                                 {user.details && slugDetails.map((details, index2) => (
 
@@ -172,12 +161,15 @@ const Search = () => {
                             </Link>
                         ))}
 
+                        <hr className='mt-3 border-gray-400' />
                     </div>
                 )}
-
+                <div className="pt-3">
+                    Show followers
+                </div>
             </div>
         </>
     )
 }
 
-export default Search
+export default Message
