@@ -83,6 +83,10 @@ const RightSideNavbar = () => {
             ref2.current.classList.add('-translate-x-full')
         }
     }
+    // Live
+    const Change = () => {
+
+    }
 
     // search 
     const ref1 = useRef();
@@ -170,12 +174,12 @@ const RightSideNavbar = () => {
                     </Link>
 
                     {/* Live  */}
-                    <Link href={'/Feed/Live'} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
+                    <Link onClick={Change} href={''} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
                         <div className="pr-4">
                             <Image className='w-7 h-7' width={28} height={28} src={'/live-7.png'}></Image>
                             <span className="sr-only">Search</span>
                         </div>
-                        <div className="">Live</div>
+                        <div className="">Intrested</div>
                     </Link>
 
                     {/* Profile  */}

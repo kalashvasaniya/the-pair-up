@@ -84,7 +84,10 @@ const GuidetoVerification = () => {
                         </div>
                     </div>
                     <div className="mt-8 font-semibold md:block flex flex-col justify-center items-center text-center">Earn Verification by Reaching Milestones: <span className='text-sky-400'>Click to Obtain Verification Badge :)</span></div>
-                    <Link className="mt-4 bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl" href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} target='_blank'>Apply</Link>
+                    <div className="flex flex-row mt-4 space-x-4">
+                        <Link href={'/Home'} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl'>Back</Link>
+                        <Link className="bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl" href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} target='_blank'>Apply</Link>
+                    </div>
                 </section>
             </div>
         </>

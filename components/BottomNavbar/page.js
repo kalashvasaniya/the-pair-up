@@ -54,7 +54,7 @@ const BottomNavbar = () => {
             console.log("hooo")
         }
     };
-    
+
     return (
         <>
             {/* bottom navbar */}
@@ -86,7 +86,10 @@ const BottomNavbar = () => {
                         </Link>
 
                         <Link href={`/user/profile/${userDetails1.name}`} className="flex justify-center items-center">
-                            <Image src={'/logo.jpeg'} width={100} height={100} className="w-10 h-10 rounded-full cursor-pointer hover:scale-110" alt="Image" />
+                            {userDetails2.avatar ? (
+                                <Image src={`/avatars/${userDetails2.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-10 h-10 rounded-full cursor-pointer hover:scale-105" alt="User dropdown" />
+                            ) : (<Image src={`/avatars/dummy.jpeg`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-10 h-10 rounded-full cursor-pointer hover:scale-105" alt="User dropdown" />)}
+                            <span className="sr-only">Search</span>
                         </Link>
 
                     </div>

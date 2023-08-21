@@ -15,10 +15,10 @@ const Feed = () => {
             <hr className='border border-gray-700 mb-3 md:mx-10' />
             <div className="px-4 p-1">
                 <div className="">
-                    dsfsdf
+
                 </div>
                 <div className="">
-                    dsfsdf
+
                 </div>
             </div>
         </>

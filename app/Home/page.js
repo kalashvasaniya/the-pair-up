@@ -19,8 +19,10 @@ const Home = () => {
     if (!localStorage.getItem('token')) {
       window.location.href = '/'
     }
+
     fetchUserDetails1()
     fetchUserDetails2();
+
     const timer = setTimeout(() => {
       setIsVisible(false);
     }, 10000); // 10 seconds in milliseconds
@@ -154,8 +156,9 @@ const Home = () => {
               </div>
 
               <div>
-                {/* <div className="text-2xl md:text-4xl font-extrabold text-sky-400 flex justify-center mb-2">Feed</div> */}
+
                 <Feed />
+
               </div>
             </div>
 
