@@ -224,7 +224,7 @@ const RightSideNavbar = () => {
 
                             {showTooltip && (
                                 <>
-                                    <div className="ml-6 text-base bg-transparent text-sky-400 rounded-2xl mx-10">
+                                    <div className="ml-6 text-base bg-transparent text-sky-400 rounded-2xl">
                                         <div className="flex flex-row space-x-2">
 
                                             <button className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Story</button>

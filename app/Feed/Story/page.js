@@ -19,8 +19,8 @@ const Story = () => {
 
     return (
         <>
-            <div className="mt-20 mb-1 md:mx-12">
-                <div className="flex overflow-x-auto space-x-3">
+            <div className="mt-20 mb-1 md:mx-12 border-b border-gray-500 z-50 bg-black ">
+                <div className="flex overflow-x-auto space-x-3 mb-1">
 
                     {/* Founder  */}
                     <div className="relative z-10">

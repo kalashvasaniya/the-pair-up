@@ -143,7 +143,7 @@ const LeftSideNavbar = () => {
 
                 {/* Suggestion user  */}
                 <div className="mt-10 mb-10 space-y-3 px-4">
-                    <div class="w-full p-4 text-gray-100 bg-gray-700 rounded-lg">
+                    <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
                                 <span class="mb-1 text-sm font-semibold text-sky-400">Kalash</span>
@@ -151,7 +151,7 @@ const LeftSideNavbar = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="w-full p-4 text-gray-100 bg-gray-700 rounded-lg">
+                    <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
                                 <span class="mb-1 text-sm font-semibold text-sky-400">Jese Leos</span>
@@ -159,7 +159,7 @@ const LeftSideNavbar = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="w-full p-4 text-gray-100 bg-gray-700 rounded-lg">
+                    <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
                                 <span class="mb-1 text-sm font-semibold text-sky-400">Jese Leos</span>
