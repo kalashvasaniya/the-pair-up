@@ -10,11 +10,15 @@ import RightSideNavbar from '@/components/RightSideNavbar/page'
 import LeftSideNavbar from '@/components/LeftSideNavbar/page'
 import { useRef } from 'react'
 import Message from '../Message/page'
+import { useTPU } from '@/app/layout'
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(true);
+
   const [userDetails1, setUserDetails1] = useState('');
   const [userDetails2, setUserDetails2] = useState('');
+
+  const [showTooltip2, setShowTooltip2] = useState(false);
 
   useEffect(() => {
     if (!localStorage.getItem('token')) {
@@ -100,6 +104,11 @@ const Home = () => {
     }
   };
 
+  // Menu
+  const toggleTooltip2 = () => {
+    setShowTooltip2(!showTooltip2);
+  };
+  const { logout } = useTPU()
   return (
     <>
       <div className="bg-black text-white">
@@ -125,7 +134,7 @@ const Home = () => {
                       </Link>
                     </div>
 
-                    <div className="flex flex-row space-x-1 justify-end mx-auto p-4">
+                    <div className="flex flex-row justify-end p-4">
 
                       {/* Message  */}
                       <div onClick={toggleCart1} href={''} className="flex-row flex text-xl cursor-pointer font-semibold items-center hover:bg-sky-900 rounded-2xl">
@@ -166,6 +175,24 @@ const Home = () => {
                         {/* Here notofication */}
                         <Notification />
                       </div>
+
+                      <div onClick={toggleTooltip2} className="flex-row flex text-xl cursor-pointer font-semibold items-center hover:bg-sky-900 rounded-2xl">
+                        <div className="px-2 flex justify-center items-center text-center">
+                          <svg aria-label="Settings" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="4" y2="4"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="12" y2="12"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="20" y2="20"></line></svg>
+                        </div>
+                      </div>
+
+                      {showTooltip2 && (
+                        <div class="z-10 absolute text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52 top-16 -right-0">
+                          <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
+                            <Link href={'/menu/Setting'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Settings</Link>
+                            <Link href={'/menu/GuidetoVerification'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Guide to Verification</Link>
+                            <Link href={'/menu/Saved'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Saved Post</Link>
+                            <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Report</Link>
+                            <button onClick={logout} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Logout</button>
+                          </div>
+                        </div>
+                      )}
 
                     </div>
                   </div>

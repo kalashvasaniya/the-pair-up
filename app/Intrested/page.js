@@ -53,6 +53,8 @@ const Intrested = () => {
 
         <div className="text-base font-mono pb-4">Here are the individuals who are eagerly seeking a connection of the heart.</div>
 
+        <hr className='' />
+
         {userDetails && userDetails.length > 0 && slugDetails && (
           <div className="mt-6">
 

@@ -58,7 +58,7 @@ const LeftSideNavbar = () => {
 
     return (
         <>
-            <div className="md:block hidden col-start-11 col-end-13 bg-black h-screen border-l border-gray-500">
+            <div className="md:block hidden col-start-11 col-end-13 bg-black border-l rounded-l-[5rem] border-gray-500">
 
                 {/* Profile  */}
                 <div className="mt-20 px-6">
@@ -142,62 +142,36 @@ const LeftSideNavbar = () => {
                 </div>
 
                 {/* Suggestion user  */}
-                {/* <div className="mt-10 px-6">
-                    <div className="text-base font-semibold underline-offset-2 underline text-sky-400 mb-6">Suggestion for you</div>
-                    <div className="flex flex-col space-y-3">
-                        <Link href={`/user/profile/${userDetails1.name}`} className="flex-row flex text-lg font-medium items-center">
-                            <div className="pr-4">
-                                <Image src={'/logo1.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                <span className="sr-only">Search</span>
+                <div className="mt-10 mb-10 space-y-3 px-4">
+                    <div class="w-full p-4 text-gray-100 bg-gray-700 rounded-lg">
+                        <div class="flex">
+                            <div class="ml-3 text-sm font-normal">
+                                <span class="mb-1 text-sm font-semibold text-sky-400">Kalash</span>
+                                <div class="mb-2 text-sm font-normal">Hi Neil, thanks for sharing your thoughts regarding Flowbite.</div>
                             </div>
-                            <div className="">
-                                <div className="text-sm">yuvrajsahni</div>
-                            </div>
-                        </Link>
-                        <Link href={`/user/profile/${userDetails1.name}`} className="flex-row flex text-lg font-medium items-center">
-                            <div className="pr-4">
-                                <Image src={'/logo2.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                <span className="sr-only">Search</span>
-                            </div>
-                            <div className="">
-                                <div className="text-sm">dharanshneema</div>
-                            </div>
-                        </Link>
-                        <Link href={`/user/profile/${userDetails1.name}`} className="flex-row flex text-lg font-medium items-center">
-                            <div className="pr-4">
-                                <Image src={'/logo3.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                <span className="sr-only">Search</span>
-                            </div>
-                            <div className="">
-                                <div className="text-sm">adamyajha</div>
-                            </div>
-                        </Link>
-                        <Link href={`/user/profile/${userDetails1.name}`} className="flex-row flex text-lg font-medium items-center">
-                            <div className="pr-4">
-                                <Image src={'/logo4.jpeg'} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-8 h-8 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                <span className="sr-only">Search</span>
-                            </div>
-                            <div className="">
-                                <div className="text-sm">aliabhat</div>
-                            </div>
-                        </Link>
+                        </div>
                     </div>
-                </div> */}
+                    <div class="w-full p-4 text-gray-100 bg-gray-700 rounded-lg">
+                        <div class="flex">
+                            <div class="ml-3 text-sm font-normal">
+                                <span class="mb-1 text-sm font-semibold text-sky-400">Jese Leos</span>
+                                <div class="mb-2 text-sm font-normal">Hi Neil, thanks for sharing your thoughts regarding Flowbite.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full p-4 text-gray-100 bg-gray-700 rounded-lg">
+                        <div class="flex">
+                            <div class="ml-3 text-sm font-normal">
+                                <span class="mb-1 text-sm font-semibold text-sky-400">Jese Leos</span>
+                                <div class="mb-2 text-sm font-normal">Hi Neil, thanks for sharing your thoughts regarding Flowbite.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 {/* suggestion  */}
-                <div className="mb-20 mt-20 px-6">
-                    <div className="text-base font-semibold underline-offset-2 underline text-sky-400 mb-6">Updates From College</div>
-                    <div className="flex flex-col space-y-3 uppercase">
-                        <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - FAT Marks are out For 2021 Batch. <span className='text-sky-400'>(26 July 2023)</span></Link>
-                        <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - TOP 10 RANK HOLDERS : 38TH ANNUAL CONVOCATION. <span className='text-sky-400'>(26 July 2023)</span></Link>
-                        <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - HOSTEL VACATING CONSENT FORM. <span className='text-sky-400'>(26 July 2023)</span></Link>
-                        <Link href={'https://vtop.vit.ac.in/'} target='_blank' className="hover:underline text-xs"> - Student got 10th Rank. <span className='text-sky-400'>(26 July 2023)</span></Link>
-                    </div>
-                    <div className="mt-4">
-                        <Link href={'/EXT/CollegeUpdate'} className="hover:underline">
-                            More...
-                        </Link>
-                    </div>
+                <div className="mt-10 px-6">
+                    <Link href={'/EXT/CollegeUpdate'} className="text-base font-mono font-semibold underline-offset-2 hover:underline text-sky-400 mb-6">College Updates</Link>
                 </div>
 
                 {/* Footer LeftSideNavbar  */}

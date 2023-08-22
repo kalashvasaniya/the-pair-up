@@ -130,7 +130,7 @@ const RightSideNavbar = () => {
     const { logout } = useTPU()
     return (
         <>
-            <div className="md:block hidden bg-black h-screen col-start-1 col-end-4 border-r border-gray-500 rounded-r-[5rem]">
+            <div className="md:block fixed hidden bg-black h-screen col-start-1 col-end-4 border-r border-gray-500 rounded-r-[5rem]">
                 <div className="mt-16 px-8">
 
                     <Link href={'/Home'} className="flex items-center">
