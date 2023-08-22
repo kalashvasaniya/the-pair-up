@@ -187,7 +187,6 @@ const Home = () => {
                           <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
                             <Link href={'/menu/Setting'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Settings</Link>
                             <Link href={'/menu/GuidetoVerification'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Guide to Verification</Link>
-                            <Link href={'/menu/Saved'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Saved Post</Link>
                             <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Report</Link>
                             <button onClick={logout} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Logout</button>
                           </div>

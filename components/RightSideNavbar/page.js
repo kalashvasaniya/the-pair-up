@@ -227,9 +227,9 @@ const RightSideNavbar = () => {
                                     <div className="ml-6 text-base bg-transparent text-sky-400 rounded-2xl">
                                         <div className="flex flex-row space-x-2">
 
-                                            <button className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Story</button>
+                                            <Link href={'/Feed/Create/Story'} className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Story</Link>
 
-                                            <button className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Post</button>
+                                            <Link href={'/Feed/Create/Post'} className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Post</Link>
 
                                         </div>
                                     </div>
@@ -260,7 +260,7 @@ const RightSideNavbar = () => {
 
                     {/* Profile  */}
                     <Link href={`/user/profile/${userDetails1.name}`} className="flex-row flex mt-4 px-4 text-xl font-medium items-center hover:bg-gray-700 rounded-2xl py-2">
-                        <div className="pr-4">
+                        <div className={`border p-1 mr-4 rounded-full ${userDetails1.role === 'admin' ? 'border-amber-400' : ''} ${userDetails1.tick === 'yes' ? 'border-sky-400' : ''} ${userDetails1.tick === 'active' ? 'border-teal-500' : ''}`}>
                             {userDetails2.avatar ? (
                                 <Image src={`/avatars/${userDetails2.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-7 h-7 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
                             ) : (<Image src={`/avatars/dummy.jpeg`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-7 h-7 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />)}
@@ -280,11 +280,10 @@ const RightSideNavbar = () => {
                         </div>
 
                         {showTooltip2 && (
-                            <div class="z-10 absolute text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52 -top-60 -right-0">
+                            <div class="z-10 absolute text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52 -top-52 -right-0">
                                 <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
                                     <Link href={'/menu/Setting'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Settings</Link>
                                     <Link href={'/menu/GuidetoVerification'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Guide to Verification</Link>
-                                    <Link href={'/menu/Saved'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Saved Post</Link>
                                     <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Report</Link>
                                     <button onClick={logout} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Logout</button>
                                 </div>

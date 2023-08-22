@@ -10,6 +10,8 @@ const Feed = () => {
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
 
+    const [showTooltip2, setShowTooltip2] = useState(false);
+
     const [isIcon, setIsIcon] = useState(false);
 
     useEffect(() => {
@@ -62,6 +64,10 @@ const Feed = () => {
     // Like 
     const handleButtonClick = () => {
         setIsIcon(!isIcon);
+    };
+    // Delete
+    const toggleTooltip2 = () => {
+        setShowTooltip2(!showTooltip2);
     };
 
     return (
@@ -158,9 +164,19 @@ const Feed = () => {
                             </div>
 
                             {/* 3 dots  */}
-                            <button className="">
-                                <svg aria-label="More Options" class="_ab6-" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
-                            </button>
+                            <div className="relative">
+                                <div onClick={toggleTooltip2} className="cursor-pointer  hover:bg-sky-400 rounded-full">
+                                    <svg aria-label="More Options" class="_ab6-" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
+                                </div>
+
+                                {showTooltip2 && (
+                                    <div class="z-10 absolute text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52 top-6 right-0">
+                                        <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
+                                            <button class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Detele Post</button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         <hr className='mx-4 border-gray-500' />
