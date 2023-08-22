@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import Navbar from '@/components/Navbar/page'
 import Footer from '@/components/Footer/page'
+import Image from 'next/image'
 
 const Details = () => {
     const [bio, setBio] = useState('')
@@ -132,6 +133,7 @@ const Details = () => {
                     </Link>
                     <form onSubmit={handleSubmit} className="w-full sm:max-w-md p-8">
 
+                        {/* BIO  */}
                         <div className="relative z-0 w-full mb-6 group">
                             <input value={bio} onChange={handleChange} type='text' name="bio" id="bio" placeholder='.'
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
@@ -144,6 +146,7 @@ const Details = () => {
                             </label>
                         </div>
 
+                        {/* REALTION  */}
                         <div className="relative z-0 w-full mb-6 group">
                             <select value={relation} onChange={handleChange} name="relation" id="relation"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
@@ -160,6 +163,7 @@ const Details = () => {
                             </label>
                         </div>
 
+                        {/* YEAR  */}
                         <div className="relative z-0 w-full mb-6 group">
                             <select value={year} onChange={handleChange} name="year" id="year"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
@@ -178,6 +182,7 @@ const Details = () => {
                             </label>
                         </div>
 
+                        {/* LOVE TO  */}
                         <div className="relative z-0 w-full mb-6 group">
                             <select value={LoveTo} onChange={handleChange} name="LoveTo" id="LoveTo"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
@@ -224,6 +229,7 @@ const Details = () => {
                             </label>
                         </div>
 
+                        {/* GENDER  */}
                         <div className="relative z-0 w-full mb-6 group">
                             <select value={gender} onChange={handleChange} name="gender" id="gender"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
@@ -242,6 +248,7 @@ const Details = () => {
                             </label>
                         </div>
 
+                        {/* BATH  */}
                         <div className="relative z-0 w-full mb-6 group">
                             <select value={bath} onChange={handleChange} name="bath" id="bath"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
@@ -262,6 +269,7 @@ const Details = () => {
                             </label>
                         </div>
 
+                        {/* AVATAR  */}
                         <div className="relative z-0 w-full mb-6 group">
                             <select value={avatar} onChange={handleChange} name="avatar" id="avatar"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"

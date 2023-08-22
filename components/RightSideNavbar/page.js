@@ -15,6 +15,7 @@ const RightSideNavbar = () => {
     const [userDetails2, setUserDetails2] = useState('');
 
     const [showTooltip, setShowTooltip] = useState(false);
+    const [showTooltip2, setShowTooltip2] = useState(false);
 
     useEffect(() => {
         fetchUserDetails1()
@@ -112,6 +113,10 @@ const RightSideNavbar = () => {
     // Create
     const toggleTooltip = () => {
         setShowTooltip(!showTooltip);
+    };
+    // Create
+    const toggleTooltip2 = () => {
+        setShowTooltip2(!showTooltip2);
     };
 
     // search 
@@ -266,21 +271,25 @@ const RightSideNavbar = () => {
 
 
                     {/* Menu  */}
-                    <button id="dropdownTopButton" data-dropdown-toggle="dropdownTop" data-dropdown-placement="top" aria-hidden="true" className="flex-row flex mt-32 pl-4 pr-44 text-xl font-medium items-center hover:bg-gray-700 rounded-2xl py-2">
-                        <div className="pr-4">
-                            <svg aria-label="Settings" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="4" y2="4"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="12" y2="12"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="20" y2="20"></line></svg>
+                    <div className="relative">
+                        <div onClick={toggleTooltip2} className="flex-row cursor-pointer flex mt-32 pl-4 pr-44 text-xl font-medium items-center hover:bg-gray-700 rounded-2xl py-2">
+                            <div className="pr-4">
+                                <svg aria-label="Settings" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="4" y2="4"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="12" y2="12"></line><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="3" x2="21" y1="20" y2="20"></line></svg>
+                            </div>
+                            <div className="">Menu</div>
                         </div>
-                        <div className="">Menu</div>
-                    </button>
 
-                    <div id="dropdownTop" class="z-10 hidden text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52">
-                        <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
-                            <Link href={'/menu/Setting'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Settings</Link>
-                            <Link href={'/menu/GuidetoVerification'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Guide to Verification</Link>
-                            <Link href={'/menu/Saved'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Saved Post</Link>
-                            <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Report</Link>
-                            <button onClick={logout} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Logout</button>
-                        </div>
+                        {showTooltip2 && (
+                            <div class="z-10 absolute text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52 -top-60 -right-0">
+                                <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
+                                    <Link href={'/menu/Setting'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Settings</Link>
+                                    <Link href={'/menu/GuidetoVerification'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Guide to Verification</Link>
+                                    <Link href={'/menu/Saved'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Saved Post</Link>
+                                    <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Report</Link>
+                                    <button onClick={logout} class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Logout</button>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
 
