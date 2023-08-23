@@ -73,7 +73,7 @@ const Signup = () => {
                     <form onSubmit={handleSubmit} className="w-full sm:max-w-md p-8">
 
                         <div className="relative z-0 w-full mb-6 group">
-                            <input value={email} onChange={handleChange} pattern="[a-zA-Z0-9._%+-]+@(?:[^.]+\.edu|[^.]+\.ac\.in)" type="email" name="email" id="email"
+                            <input value={email} onChange={handleChange} type="email" name="email" id="email"
                                 className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400  peer"
                                 placeholder=" "
                                 required />

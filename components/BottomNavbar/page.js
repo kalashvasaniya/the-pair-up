@@ -90,9 +90,9 @@ const BottomNavbar = () => {
                                         <div className="ml-6 text-base bg-transparent text-sky-400 rounded-2xl mx-10">
                                             <div className="flex flex-row space-x-2 justify-center text-center items-center">
 
-                                                <button className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Story</button>
+                                                <Link href={'/Feed/Create/Story'} className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Story</Link>
 
-                                                <button className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Post</button>
+                                                <Link href={'/Feed/Create/Post'} className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Post</Link>
 
                                             </div>
                                         </div>

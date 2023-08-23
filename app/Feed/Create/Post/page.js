@@ -11,8 +11,6 @@ const Post = () => {
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
 
-    const [isIcon, setIsIcon] = useState(false);
-
     useEffect(() => {
         fetchUserDetails1()
         fetchUserDetails2();
@@ -58,11 +56,6 @@ const Post = () => {
         } catch (error) {
             console.log("hooo")
         }
-    };
-
-    // Like 
-    const handleButtonClick = () => {
-        setIsIcon(!isIcon);
     };
 
     return (
@@ -173,18 +166,18 @@ const Post = () => {
                             <div className="mx-4 border-gray-500 text-sm py-4 px-2">
                                 {/* Input Area */}
                                 <div className="mb-4">
-                                    <label htmlFor="inputField" className="block text-gray-700">Input Field</label>
+                                    <label htmlFor="inputField" className="block text-white mb-2">Input Field</label>
                                     <input
                                         type="text"
                                         id="inputField"
-                                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                                        placeholder="Enter text here"
+                                        className="w-full px-4 py-2 border rounded-lg bg-gray-700 text-white"
+                                        placeholder="Enter Text"
                                     />
                                 </div>
 
                                 {/* Image Area */}
                                 <div className="mb-4">
-                                    <label htmlFor="imageUpload" className="block text-gray-700">Image Upload</label>
+                                    <label htmlFor="imageUpload" className="block text-white mb-2">Image Upload</label>
                                     <input
                                         type="file"
                                         id="imageUpload"
