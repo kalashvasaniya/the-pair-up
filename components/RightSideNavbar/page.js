@@ -244,7 +244,7 @@ const RightSideNavbar = () => {
                             <Image className='w-7 h-7' width={28} height={28} src={'/live-7.png'}></Image>
                             <span className="sr-only">Intrested</span>
                         </div>
-                        <div className="">Intrested</div>
+                        <div className="">Interested</div>
                     </div>
 
                     <div ref={ref3} className="absolute border-r border-gray-500 top-0 left-0 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black" tabIndex="-1">
