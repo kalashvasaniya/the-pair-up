@@ -99,7 +99,7 @@ const Intrested = () => {
           <hr className="my-3" />
         </div>
 
-        <div className="text-base font-mono pb-4">Here are the individuals who are eagerly seeking a connection of the heart.</div>
+        <div className="text-base font-mono pb-4">Here are the individuals who are eagerly seeking a connection of the <span className='text-red-500 underline underline-offset-2'>Heart</span>.</div>
 
         <hr className='mb-4' />
 
