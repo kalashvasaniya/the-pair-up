@@ -1,27 +1,47 @@
-"use client"
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 const Search = () => {
     const [userDetails, setUserDetails] = useState([]);
     const [slugDetails, setSlugDetails] = useState(null);
-
-    // DATE 
-    const currentDate = new Date();
-    const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ]
-    const monthIndex = currentDate.getMonth();
-    const monthName = monthNames[monthIndex];
-    const formattedDate = `${currentDate.getDate()} ${monthName} ${currentDate.getFullYear()}`;
+    const [formattedDate, setFormattedDate] = useState('');
 
     useEffect(() => {
         if (!localStorage.getItem('token')) {
-            window.location.href = '/'
+            window.location.href = '/';
         }
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        // Check if the formatted date is stored in localStorage
+        const storedFormattedDate = localStorage.getItem('formattedDate');
+
+        if (storedFormattedDate) {
+            // If it exists in localStorage, use it
+            setFormattedDate(storedFormattedDate);
+        } else {
+            // If it doesn't exist in localStorage, calculate and set it
+            const currentDate = new Date();
+            const dayOfWeekNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+            const dayOfWeekIndex = currentDate.getDay();
+            const monthIndex = currentDate.getMonth();
+
+            const hours = currentDate.getHours();
+            const minutes = currentDate.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const formattedTime = `${hours % 12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+
+            const formattedDateText = `${dayOfWeekNames[dayOfWeekIndex]} ${currentDate.getDate()} ${monthNames[monthIndex]} ${formattedTime}`;
+
+            setFormattedDate(formattedDateText);
+
+            // Store the formatted date in localStorage
+            localStorage.setItem('formattedDate', formattedDateText);
+        }
+    }, []);
 
     const searchUser = async (slug) => {
         try {
@@ -34,7 +54,7 @@ const Search = () => {
             if (response.ok) {
                 const data = await response.json();
                 setUserDetails(data.users);
-                setSlugDetails(data.details)
+                setSlugDetails(data.details);
                 console.log("User", userDetails, slugDetails);
             } else {
                 throw new Error("Something went wrong!");
@@ -48,19 +68,22 @@ const Search = () => {
         <>
             <div className="p-4">
 
-                <div id="toast-simple" class="flex items-center w-full max-w-xs p-4 space-x-4 text-white bg-green-500 divide-x divide-gray-200 rounded-lg" role="alert">
-                    <svg class="w-5 h-5 text-white rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9" />
+                {/* Login time  */}
+                <div id="toast-simple" className="flex items-center w-full max-w-xs p-4 space-x-4 text-white bg-green-500 divide-x divide-gray-200 rounded-lg" role="alert">
+                    <svg className="w-5 h-5 text-white rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m9 17 8 2L9 1 1 19l8-2Zm0 0V9" />
                     </svg>
                     <div className="flex flex-col">
-                        <div class="pl-4 text-sm font-normal">successfully Login</div>
-                        <div class="pl-4 text-xs font-mono text-gray-300">at {formattedDate}</div>
+                        <div className="pl-4 text-sm font-normal">Last Login</div>
+                        <div className="pl-4 text-xs font-mono text-gray-300">at {formattedDate}</div>
                     </div>
                 </div>
 
+                {/* other Notification  */}
+                
             </div>
         </>
-    )
+    );
 }
 
-export default Search
+export default Search;

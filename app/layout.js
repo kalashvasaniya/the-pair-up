@@ -29,6 +29,7 @@ export function useTPU() {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('formattedDate');
     setUser({ value: null })
     window.location.reload();
   }
