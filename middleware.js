@@ -19,7 +19,7 @@ db.on('error', (error) => {
 });
 
 db.once('open', () => {
-    console.log('Connected to MongoDB fuck yess');
+    console.log('Connected to MongoDB & The Goal is to Reach The PU');
 });
 
 export default db;

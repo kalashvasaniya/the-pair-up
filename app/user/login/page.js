@@ -6,8 +6,8 @@ import { useEffect } from 'react'
 import ScrollButton1 from '@/app/UI/ScrollButton1/page'
 
 const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [identifier, setIdentifier] = useState(''); // Use "identifier" to represent both email and username
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -24,12 +24,13 @@ const Login = () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ identifier, password })
         })
         const data = await res.json()
         console.log(data)
         if (data.success) {
             localStorage.setItem('token', data.token)
+            console.log(data)
             window.location.href = '/Home'
         } else {
             alert(data.error)
@@ -38,8 +39,8 @@ const Login = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target
-        if (name === 'email') {
-            setEmail(value)
+        if (name === 'identifier') {
+            setIdentifier(value)
         }
         if (name === 'password') {
             setPassword(value)
@@ -61,13 +62,13 @@ const Login = () => {
                             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
 
                                 <div className="relative z-0 w-full mb-6 group">
-                                    <input onChange={handleChange} type="email" name="email" id="email"
+                                    <input onChange={handleChange} type="text" name="identifier" id="identifier"
                                         className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-sky-400 peer"
                                         placeholder=" "
                                         required />
                                     <label
-                                        htmlFor="email"
-                                        className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                                        htmlFor="identifier"
+                                        className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username or E-mail ID</label>
                                 </div>
 
                                 <div className="relative z-0 w-full mb-6 group">

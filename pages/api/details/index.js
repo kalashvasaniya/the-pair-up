@@ -7,13 +7,22 @@ export default async function handler(req, res) {
         const token = req.headers.authorization; // Extract token from the authorization header
         var decoded = jwt_decode(token);
 
-        const users = await User.findOne({
-            email: decoded.email
-        });
+        let users;
+
+        if (decoded.email) {
+            users = await User.findOne({
+                email: decoded.email
+            });
+        } if (decoded.name) {
+            users = await User.findOne({
+                name: decoded.name
+            });
+        }
 
         if (!users) {
             return res.status(401).json({ message: "Unauthorized" });
         }
+
         if (req.method === 'GET') {
             try {
                 const user2 = await Details.findOne({
@@ -37,9 +46,7 @@ export default async function handler(req, res) {
             } catch (error) {
                 return res.status(401).json({ success: false, message: 'Unauthorized' });
             }
-        }
-
-        else {
+        } else {
             try {
                 let details = await Details.findOne({
                     user: users._id

@@ -2,7 +2,7 @@ import User from '@/models/User';
 import Token from '@/models/Token';
 import sendEmail from '@/utils/sendEmail';
 import CryptoJS from 'crypto-js';
-var jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'; // Updated import
 import jwt_decode from "jwt-decode";
 import db from '@/middleware';
 
@@ -13,7 +13,12 @@ export default async function handler(req, res) {
             var decoded = jwt_decode(token);
 
             if (decoded) {
-                const user = await User.findOne({ email: decoded.email });
+                let user;
+                if (decoded.email) {
+                    user = await User.findOne({ email: decoded.email });
+                } else if (decoded.name) {
+                    user = await User.findOne({ name: decoded.name });
+                }
 
                 if (user) {
                     const userDetails1 = {
@@ -30,23 +35,27 @@ export default async function handler(req, res) {
         } catch (error) {
             return res.status(401).json({ success: false, message: 'Unauthorized' });
         }
-    }
+    } else {
+        const { identifier, password } = req.body; // Updated variable name
 
-    else {
-        const { email, password } = req.body;
         try {
-            const user = await User.findOne({
-                email
-            });
+            let user;
+
+            // Determine whether the identifier is an email or username
+            if (identifier.includes('@')) {
+                user = await User.findOne({ email: identifier });
+            } else {
+                user = await User.findOne({ name: identifier });
+            }
 
             if (!user) {
-                return res.status(400).json({ success: false, error: 'Invalid email or password' });
+                return res.status(400).json({ success: false, error: 'Invalid email or username or password' });
             }
 
             let originalText = CryptoJS.AES.decrypt(user.password, "keykalash").toString(CryptoJS.enc.Utf8);
 
             if (originalText !== password) {
-                return res.status(400).json({ success: false, error: 'Invalid email or password' });
+                return res.status(400).json({ success: false, error: 'Invalid email or username or password' });
             }
 
             if (!user.verify) {
@@ -79,8 +88,8 @@ export default async function handler(req, res) {
                 return res.status(401).json({ success: false, error: 'Email not verified. Another Verification link will be sent to your email address.' })
             }
 
-            var token = jwt.sign({ name: user.name, email }, 'jwtsecret', { expiresIn: '2d' });
-            // This is important in this situation
+            var token = jwt.sign({ name: user.name, email: user.email }, 'jwtsecret', { expiresIn: '2d' });
+
             res.status(200).json({ success: true, token, name: user.name, email: user.email, role: user.role, tick: user.tick });
         } catch (error) {
             res.status(500).json({ success: false, error: 'Internal server error' });
