@@ -9,6 +9,7 @@ const Search = () => {
         if (!localStorage.getItem('token')) {
             window.location.href = '/';
         }
+        searchUser()
     }, []);
 
     useEffect(() => {
@@ -55,7 +56,7 @@ const Search = () => {
                 const data = await response.json();
                 setUserDetails(data.users);
                 setSlugDetails(data.details);
-                console.log("User", userDetails, slugDetails);
+                console.log("User notification", userDetails, slugDetails);
             } else {
                 throw new Error("Something went wrong!");
             }

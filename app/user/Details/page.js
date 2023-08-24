@@ -71,7 +71,6 @@ const Details = () => {
         }
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
