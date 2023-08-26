@@ -11,6 +11,12 @@ const Post = () => {
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
 
+    const [like, setLike] = useState('')
+    const [comment, setComment] = useState('')
+    const [content, setContent] = useState('')
+    const [image, setImage] = useState('')
+
+
     useEffect(() => {
         fetchUserDetails1()
         fetchUserDetails2();
@@ -58,6 +64,46 @@ const Post = () => {
         }
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({ like, comment, content, image }),
+        });
+        const json = await res.json();
+        console.log(res);
+        console.log("hello")
+
+        if (json.success) {
+            setLike('');
+            setComment('');
+            setContent('');
+            setImage('');
+        } else {
+            alert(json.error);
+        }
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        if (name === 'like') {
+            setLike(value);
+        } else if (name === 'comment') {
+            setComment(value);
+        } else if (name === 'content') {
+            setContent(value);
+        } else if (name === 'image') {
+            setImage(value);
+        }
+    };
+
+
     return (
         <>
             <RightSideNavbar />
@@ -66,144 +112,7 @@ const Post = () => {
 
                 <div className="md:max-w-xl py-6 flex flex-col justify-center items-center px-4">
 
-                    {/* User Details */}
-                    <div className="flex flex-col bg-gray-800 rounded-xl">
-                        {/* Name  */}
-                        <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-24 p-3 rounded-t-xl">
-                            {/* image  */}
-                            <div className="">
-                                <div className="">
-                                    <Link href={``} className="flex-row flex text-lg font-medium items-center">
-                                        <div className={`border p-1 mr-4 rounded-full ${userDetails1.role === 'admin' ? 'border-amber-400' : ''} ${userDetails1.tick === 'yes' ? 'border-sky-400' : ''} ${userDetails1.tick === 'active' ? 'border-teal-500' : ''}`}>
-
-                                            {userDetails2.avatar ? (
-                                                <Image src={`/avatars/${userDetails2.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-9 h-9 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                            ) : (<Image src={`/avatars/dummy.jpeg`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-9 h-9 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />)}
-                                            <span className="sr-only">Search</span>
-
-                                        </div>
-
-                                        {/* bio & tick  */}
-                                        <div className="">
-                                            {/* Tick  */}
-                                            <div className="flex flex-row">
-
-                                                <div className="text-sm flex justify-center items-center pr-2">{userDetails1.name}</div>
-
-                                                {userDetails1.role === 'admin' && (
-                                                    <div className="group">
-                                                        <div className="hover:scale-105">
-                                                            <svg className='flex justify-center items-center text-amber-400'
-                                                                viewBox="0 0 20 20"
-                                                                fill="currentColor"
-                                                                height="1em"
-                                                                width="1em">
-                                                                <path
-                                                                    fillRule="evenodd"
-                                                                    d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                )}
-                                                {userDetails1.tick === 'yes' && (
-                                                    <div className="group">
-                                                        <div className="hover:scale-105 pt-[0.10rem]">
-                                                            <svg className='flex justify-center items-center text-sky-400'
-                                                                viewBox="0 0 20 20"
-                                                                fill="currentColor"
-                                                                height="1em"
-                                                                width="1em">
-                                                                <path
-                                                                    fillRule="evenodd"
-                                                                    d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                )}
-                                                {userDetails1.tick === 'active' && (
-                                                    <div className="group">
-                                                        <div className="hover:scale-105 pt-[0.10rem]">
-                                                            <svg className='flex justify-center items-center text-teal-500'
-                                                                viewBox="0 0 20 20"
-                                                                fill="currentColor"
-                                                                height="1em"
-                                                                width="1em">
-                                                                <path
-                                                                    fillRule="evenodd"
-                                                                    d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </div>
-
-                                            {/* bio max 12 */}
-                                            <div className="text-sm text-gray-300 truncate">{userDetails2.bio ? (
-                                                <div className="text-xs text-gray-400 truncate">12 April at 09.28 PM</div>
-                                            ) : (
-                                                <div className="text-xs text-green-300 truncate">Click To Edit profile</div>
-                                            )}</div>
-                                        </div>
-
-                                    </Link>
-                                </div>
-                            </div>
-
-                            {/* 3 dots  */}
-                            <button className="">
-                                <svg aria-label="More Options" class="_ab6-" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
-                            </button>
-                        </div>
-
-                        <hr className='mx-4 border-gray-500' />
-
-                        {/* Post  */}
-                        <div className="mx-4 border-gray-500 text-sm py-4 px-2">
-
-                            <div className="mx-4 border-gray-500 text-sm py-4 px-2">
-                                {/* Input Area */}
-                                <div className="mb-4">
-                                    <label htmlFor="inputField" className="block text-white mb-2">Input Field</label>
-                                    <input
-                                        type="text"
-                                        id="inputField"
-                                        className="w-full px-4 py-2 border rounded-lg bg-gray-700 text-white"
-                                        placeholder="Enter Text"
-                                    />
-                                </div>
-
-                                {/* Image Area */}
-                                <div className="mb-4">
-                                    <label htmlFor="imageUpload" className="block text-white mb-2">Image Upload</label>
-                                    <input
-                                        type="file"
-                                        id="imageUpload"
-                                        className="hidden"
-                                        accept="image/*"
-                                    />
-                                    <label
-                                        htmlFor="imageUpload"
-                                        className="block px-4 py-2 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-blue-600"
-                                    >
-                                        Upload Image
-                                    </label>
-                                </div>
-
-                                {/* Other content within the div */}
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div className="md:max-w-xl py-6 flex flex-col justify-center items-center px-4">
-
-                    <form className="flex flex-col bg-gray-800 rounded-xl">
+                    <form onSubmit={handleSubmit} className="flex flex-col bg-gray-800 rounded-xl">
                         {/* Name  */}
                         <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-24 p-3 rounded-t-xl">
                             {/* image  */}
@@ -298,22 +207,41 @@ const Post = () => {
 
                         <hr className='mx-4 border-gray-500' />
 
-                        {/* Post  */}
+                        {/* Post */}
                         <div className="mx-4 border-gray-500 text-sm py-4 px-2">
-                            <div className="">
-                                Post Here Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat dignissimos suscipit nemo veniam similique laborum nostrum, saepe atque maiores. Sit animi laborum reprehenderit veniam,
-                            </div>
-                            <Image src={'/avatars/hedgehog-cute-cartoon-animal-funny-maths-shape-vector-47404491.webp'} width={1000} height={1000} className='mt-4 rounded-xl'></Image>
+                            <label htmlFor="content" className="text-white text-lg font-medium">
+                                Post Here
+                            </label>
+                            <textarea
+                                id="content"
+                                name="content"
+                                value={content}
+                                onChange={handleChange}
+                                className="block w-full p-2 text-white rounded-lg bg-gray-700"
+                                rows="4"
+                                placeholder="Write your post here..."
+                                required
+                            ></textarea>
+                            <label htmlFor="image" className="text-white text-lg font-medium mt-4">
+                                Upload an Image
+                            </label>
+                            <input
+                                type="file"
+                                id="image"
+                                name="image"
+                                value={image}
+                                onChange={handleChange}
+                                className="block w-full p-2 text-white rounded-lg bg-gray-700"
+                                accept="image/*"
+                            />
                         </div>
 
                         <hr className='mx-4 border-gray-500' />
 
-                        {/* Comment & Likes  */}
+                        {/* Comment & Likes */}
                         <div className="bg-gray-800 flex justify-between p-1">
                             <div className="flex flex-row space-x-4">
-
-                                <button className="pl-4 flex flex-row justify-center items-center space-x-2">
-
+                                <button value={like} onChange={handleChange} className="pl-4 flex flex-row justify-center items-center space-x-2">
                                     <svg
                                         viewBox="0 0 1024 1024"
                                         fill="currentColor"
@@ -323,12 +251,10 @@ const Post = () => {
                                     >
                                         <path d="M923 283.6a260.04 260.04 0 00-56.9-82.8 264.4 264.4 0 00-84-55.5A265.34 265.34 0 00679.7 125c-49.3 0-97.4 13.5-139.2 39-10 6.1-19.5 12.8-28.5 20.1-9-7.3-18.5-14-28.5-20.1-41.8-25.5-89.9-39-139.2-39-35.5 0-69.9 6.8-102.4 20.3-31.4 13-59.7 31.7-84 55.5a258.44 258.44 0 00-56.9 82.8c-13.9 32.3-21 66.6-21 101.9 0 33.3 6.8 68 20.3 103.3 11.3 29.5 27.5 60.1 48.2 91 32.8 48.9 77.9 99.9 133.9 151.6 92.8 85.7 184.7 144.9 188.6 147.3l23.7 15.2c10.5 6.7 24 6.7 34.5 0l23.7-15.2c3.9-2.5 95.7-61.6 188.6-147.3 56-51.7 101.1-102.7 133.9-151.6 20.7-30.9 37-61.5 48.2-91 13.5-35.3 20.3-70 20.3-103.3.1-35.3-7-69.6-20.9-101.9zM512 814.8S156 586.7 156 385.5C156 283.6 240.3 201 344.3 201c73.1 0 136.5 40.8 167.7 100.4C543.2 241.8 606.6 201 679.7 201c104 0 188.3 82.6 188.3 184.5 0 201.2-356 429.3-356 429.3z" />
                                     </svg>
-
-
                                     <Link className='text-xs flex justify-center items-center hover:underline' href={''}>0 Likes</Link>
                                 </button>
 
-                                <button className="px-4 flex flex-row justify-center items-center space-x-2">
+                                <button value={comment} onChange={handleChange} className="px-4 flex flex-row justify-center items-center space-x-2">
                                     <svg
                                         viewBox="0 0 24 24"
                                         fill="currentColor"
@@ -340,7 +266,6 @@ const Post = () => {
                                     </svg>
                                     <Link className='text-xs flex justify-center items-center hover:underline' href={''}>0 Comments</Link>
                                 </button>
-
                             </div>
                         </div>
 
@@ -351,7 +276,7 @@ const Post = () => {
 
                             <div>
                                 <div class="relative">
-                                    <input class="block w-full p-4 text-sm text-white rounded-full bg-gray-700" placeholder="Write comment" required />
+                                    <input class="block w-full p-4 text-sm text-white rounded-full bg-gray-700" placeholder="Write comment" />
                                     <button disabled={true} class="text-white hover:text-sky-400 absolute right-2 bottom-1.5 font-medium rounded-r-full text-sm px-4 py-2">
                                         <svg aria-label="Share Post" class="x1lliihq x1n2onr6" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Share Post</title><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
                                         </svg>
@@ -362,20 +287,15 @@ const Post = () => {
                         </div>
 
                         {/* Post  */}
-                        <button onClick={
-                            (e) => {
-                                e.preventDefault();
-                                console.log('post');
-                            }
-                        } type="submit" className="bg-gray-800 p-3 rounded-b-xl">
+                        <button type="submit" className="bg-gray-800 p-3 rounded-b-xl">
 
-                            <form>
+                            <div>
                                 <div class="flex flex-row justify-end">
                                     <button type="submit" class="hover:text-white text-sky-500 hover:bg-sky-500 rounded-full text-lg px-4 py-1 font-bold">
                                         Post
                                     </button>
                                 </div>
-                            </form>
+                            </div>
 
                         </button>
 

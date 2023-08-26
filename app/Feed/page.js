@@ -9,6 +9,7 @@ import Link from 'next/link'
 const Feed = () => {
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
+    const [userDetails3, setUserDetails3] = useState('');
 
     const [showTooltip2, setShowTooltip2] = useState(false);
 
@@ -17,6 +18,7 @@ const Feed = () => {
     useEffect(() => {
         fetchUserDetails1()
         fetchUserDetails2();
+        fetchUserDetails3();
     }, [])
 
     const fetchUserDetails1 = async () => {
@@ -60,6 +62,25 @@ const Feed = () => {
             console.log("hooo")
         }
     };
+
+    // Post 
+    const fetchUserDetails3 = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+            if (response.ok) {
+                const data = await response.json();
+                setUserDetails3(data.userDetails3);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     // Like 
     const handleButtonClick = () => {
