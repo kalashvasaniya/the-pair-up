@@ -3,39 +3,46 @@ import Post from '@/models/Post';
 import jwt_decode from "jwt-decode";
 
 export default async function handler(req, res) {
-    const token = req.headers.authorization; // Extract token from the authorization header
-    var decoded = jwt_decode(token);
-
-    let userss;
-
-    if (decoded.email) {
-        userss = await User.findOne({
-            email: decoded.email
-        });
-    } if (decoded.name) {
-        userss = await User.findOne({
-            name: decoded.name
-        });
-    }
-
-    if (!userss) {
-        return res.status(401).json({ message: "Unauthorized" });
-    }
-    console.log(userss)
 
     if (req.method === 'GET') {
         try {
-            const post = await Post.find({ user: userss._id });
-            if (post) {
-                return res.status(200).json({ success: true, post });
+            // Use a regular expression to perform a case-insensitive search on the "content" field
+            const regex = new RegExp(req.query.content, 'i');
+
+            const posts = await Post.find({ content: regex });
+
+            if (posts.length > 0) {
+                return res.status(200).json({ success: true, posts });
+            } else {
+                return res.status(400).json({ success: false, message: 'No posts found matching the query' });
             }
-            return res.status(400).json({ success: false, message: 'Post not found' });
         } catch (error) {
-            return res.status(401).json({ success: false, message: 'Unauthorized' });
+            return res.status(500).json({ success: false, message: 'Internal server error' });
         }
     }
+
     else {
         try {
+            const token = req.headers.authorization; // Extract token from the authorization header
+            var decoded = jwt_decode(token);
+
+            let userss;
+
+            if (decoded.email) {
+                userss = await User.findOne({
+                    email: decoded.email
+                });
+            } if (decoded.name) {
+                userss = await User.findOne({
+                    name: decoded.name
+                });
+            }
+
+            if (!userss) {
+                return res.status(401).json({ message: "Unauthorized" });
+            }
+            console.log(userss)
+
             let post = await Post.findOne({ user: userss._id });
 
             post = await Post.create({
