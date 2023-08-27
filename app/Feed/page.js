@@ -5,6 +5,7 @@ import Story from './Story/page'
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import ScrollButton1 from '../UI/ScrollButton1/page'
 
 const Feed = () => {
     const [userDetails1, setUserDetails1] = useState('');
@@ -39,21 +40,17 @@ const Feed = () => {
         }
     }
 
-    // Shuffle post
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-    // Shuffle the userDetails3 array
-    const shuffledUserDetails3 = shuffleArray(userDetails3);
-
     // Like 
     const handleButtonClick = () => {
         setIsIcon(!isIcon);
     };
+
+    function reverseArray(arr) {
+        return arr.slice().reverse();
+    }
+    // Example usage:
+    const userDetails = [...userDetails3]
+    const reverse = reverseArray(userDetails);
 
     // Delete
     const toggleTooltip2 = () => {
@@ -76,7 +73,7 @@ const Feed = () => {
 
                     {/* User Details */}
                     <div className="">
-                        {Array.isArray(shuffledUserDetails3) && shuffledUserDetails3.map((post, index) => (
+                        {Array.isArray(reverse) && reverse.map((post, index) => (
                             <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-8">
                                 {/* Name  */}
                                 <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-24 p-3 rounded-t-xl">
@@ -283,6 +280,8 @@ const Feed = () => {
 
                 </div>
             </div>
+
+            <ScrollButton1 />
         </>
 
     )

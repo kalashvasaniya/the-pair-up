@@ -59,7 +59,6 @@ export default async function handler(req, res) {
                 content: req.body.content,
                 image: req.body.image,
             });
-            console.log(post)
             return res.status(200).json({ success: true, post });
 
         }
