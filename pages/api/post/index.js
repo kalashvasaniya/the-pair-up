@@ -1,6 +1,7 @@
 import User from '@/models/User';
 import Post from '@/models/Post';
 import jwt_decode from "jwt-decode";
+import Details from '@/models/Details';
 
 export default async function handler(req, res) {
 
@@ -10,9 +11,15 @@ export default async function handler(req, res) {
             const regex = new RegExp(req.query.content, 'i');
 
             const posts = await Post.find({ content: regex });
+            const userPost = await User.find({
+                _id: posts.map((post) => post.user)
+            })
+            const userDetails = await Details.find({
+                user: posts.map((post) => post.user)
+            })
 
             if (posts.length > 0) {
-                return res.status(200).json({ success: true, posts });
+                return res.status(200).json({ success: true, posts, userPost, userDetails });
             } else {
                 return res.status(400).json({ success: false, message: 'No posts found matching the query' });
             }

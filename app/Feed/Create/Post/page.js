@@ -108,7 +108,11 @@ const Post = () => {
         <>
             <RightSideNavbar />
 
-            <div className="grid grid-row-2 justify-center items-center mb-24">
+            <div className="flex flex-col justify-center items-center mb-24">
+
+                <div className="text-4xl text-sky-400 font-bold pt-12">
+                    Create Post
+                </div>
 
                 <div className="md:max-w-xl py-6 flex flex-col justify-center items-center px-4">
 
@@ -190,7 +194,8 @@ const Post = () => {
                                                 <div className="text-xs text-gray-400 truncate">12 April at 09.28 PM</div>
                                             ) : (
                                                 <div className="text-xs text-green-300 truncate">Click To Edit profile</div>
-                                            )}</div>
+                                            )}
+                                            </div>
                                         </div>
 
                                     </Link>
@@ -209,31 +214,38 @@ const Post = () => {
 
                         {/* Post */}
                         <div className="mx-4 border-gray-500 text-sm py-4 px-2">
-                            <label htmlFor="content" className="text-white text-lg font-medium">
-                                Post Here
-                            </label>
-                            <textarea
-                                id="content"
-                                name="content"
-                                value={content}
-                                onChange={handleChange}
-                                className="block w-full p-2 text-white rounded-lg bg-gray-700"
-                                rows="4"
-                                placeholder="Write your post here..."
-                                required
-                            ></textarea>
-                            <label htmlFor="image" className="text-white text-lg font-medium mt-4">
-                                Upload an Image
-                            </label>
-                            <input
-                                type="file"
-                                id="image"
-                                name="image"
-                                value={image}
-                                onChange={handleChange}
-                                className="block w-full p-2 text-white rounded-lg bg-gray-700"
-                                accept="image/*"
-                            />
+                            <div className="">
+                                <label htmlFor="content" className="text-white text-base font-medium">
+                                    Post Here
+                                </label>
+                                <textarea
+                                    id="content"
+                                    name="content"
+                                    value={content}
+                                    onChange={handleChange}
+                                    className="block w-full p-2 text-white rounded-lg bg-gray-700"
+                                    rows="4"
+                                    placeholder="Write your post here..."
+                                    required
+                                    minLength={10}
+                                    maxLength={200}
+                                ></textarea>
+                            </div>
+
+                            <div className="pt-8 py-4">
+                                <label htmlFor="image" className="text-white text-base font-medium pt-8">
+                                    Upload an Image
+                                </label>
+                                <input
+                                    type="file"
+                                    id="image"
+                                    name="image"
+                                    value={image}
+                                    onChange={handleChange}
+                                    className="block w-full p-2 text-white rounded-lg bg-gray-700"
+                                    accept="image/*"
+                                />
+                            </div>
                         </div>
 
                         <hr className='mx-4 border-gray-500' />

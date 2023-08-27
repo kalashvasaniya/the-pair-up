@@ -18,6 +18,10 @@ const PostSchema = new Schema({
         type: Number,
         default: 0,
     },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
