@@ -11,6 +11,8 @@ const Post = () => {
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
 
+    const [postMessage, setPostMessage] = useState('')
+
     const [like, setLike] = useState('')
     const [comment, setComment] = useState('')
     const [content, setContent] = useState('')
@@ -80,6 +82,7 @@ const Post = () => {
         console.log("hello")
 
         if (json.success) {
+            setPostMessage('Post Created Successfully');
             setLike('');
             setComment('');
             setContent('');
@@ -113,6 +116,10 @@ const Post = () => {
                 <div className="text-4xl text-sky-400 font-bold pt-12">
                     Create Post
                 </div>
+
+                {postMessage && (
+                    <p className="text-green-400 md:text-xl text-lg py-4 font-bold underline underline-offset-1">{postMessage}</p>
+                )}
 
                 <div className="md:max-w-xl py-6 flex flex-col justify-center items-center px-4">
 
@@ -282,21 +289,6 @@ const Post = () => {
                         </div>
 
                         <hr className='mx-4 border-gray-500' />
-
-                        {/* Likes & comments  */}
-                        <div className="bg-gray-800 p-3 rounded-b-xl">
-
-                            <div>
-                                <div class="relative">
-                                    <input class="block w-full p-4 text-sm text-white rounded-full bg-gray-700" placeholder="Write comment" />
-                                    <button disabled={true} class="text-white hover:text-sky-400 absolute right-2 bottom-1.5 font-medium rounded-r-full text-sm px-4 py-2">
-                                        <svg aria-label="Share Post" class="x1lliihq x1n2onr6" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Share Post</title><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
 
                         {/* Post  */}
                         <button type="submit" className="bg-gray-800 p-3 rounded-b-xl">

@@ -67,7 +67,7 @@ const Signup = () => {
         const inputText = e.target.value;
         const lowercaseText = inputText.replace(/[^a-z]/g, '');
 
-        
+
         const { name, value } = e.target
         if (name === 'name') {
             setName(lowercaseText);
