@@ -27,7 +27,6 @@ const Message = () => {
                 const data = await response.json();
                 setUserDetails(data.users);
                 setSlugDetails(data.details)
-                console.log("User", userDetails, slugDetails);
             } else {
                 throw new Error("Something went wrong!");
             }

@@ -14,6 +14,8 @@ const Profile = ({ params }) => {
 
   const [userDetails1, setUserDetails1] = useState('');
   const [userDetails2, setUserDetails2] = useState('');
+  const [userDetails3, setUserDetails3] = useState('');
+  const [userDetails4, setUserDetails4] = useState('');
 
   const [isFollowing, setIsFollowing] = useState(false);
 
@@ -24,6 +26,7 @@ const Profile = ({ params }) => {
     fetchUserDetails(params.slug);
     fetchUserDetails1();
     fetchUserDetails2();
+    fetchUserDetails3();
   }, [params.slug]);
 
   const fetchUserDetails = async (slug) => {
@@ -85,6 +88,26 @@ const Profile = ({ params }) => {
       console.log("hooo")
     }
   };
+
+  // Post 
+  const fetchUserDetails3 = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      if (response.ok) {
+        const data = await response.json();
+        setUserDetails3(data.posts);
+        setUserDetails4(data.userPost);
+
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleButtonClick = () => {
     setIsFollowing(!isFollowing);
@@ -217,10 +240,46 @@ const Profile = ({ params }) => {
               {/* Posts Media & Tagged */}
               <div className="">
                 <div className="grid grid-cols-3 mt-3">
-                  <Link href={''} className="flex justify-center font-semibold hover:text-sky-400">Posts</Link>
-                  <Link href={''} className="flex justify-center font-semibold hover:text-sky-400">Media</Link>
-                  <Link href={''} className="flex justify-center font-semibold hover:text-sky-400">Tagged</Link>
+                  <button className="flex justify-center font-semibold text-sky-400">Posts</button>
+                  <button className="flex justify-center font-semibold hover:text-sky-400">Media</button>
+                  <button className="flex justify-center font-semibold hover:text-sky-400">Tagged</button>
                 </div>
+
+
+
+                {/* ALL POST  */}
+                <Link href={'/'}>
+                  <div className="grid grid-cols-3 gap-4 my-8">
+                    <div className="">
+                      {Array.isArray(userDetails3) && userDetails3.map((post, index) => (
+                        <div key={index} className="">
+                          {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                            <div key={index} className="">
+                              {params.slug === userPost.name && (
+                                <div key={index} className="">
+                                  {(userPost._id === post.user) && (
+                                    <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+                                      <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                        <div key={index} className="">
+                                          {post.content}
+                                        </div>
+                                        <div key={index} className="">
+                                          {post.image === '' ? <div className=""></div> : (
+                                            <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+
               </div>
 
             </div>
@@ -342,10 +401,43 @@ const Profile = ({ params }) => {
                     <hr className='w-screen mt-1 border-gray-600' />
 
                     <div className="grid grid-cols-3 mt-2">
-                      <Link href={''} className="flex justify-center font-semibold hover:text-sky-400 text-sm">Posts</Link>
+                      <Link href={''} className="flex justify-center font-semibold text-sky-400 text-sm">Posts</Link>
                       <Link href={''} className="flex justify-center font-semibold hover:text-sky-400 text-sm">Media</Link>
                       <Link href={''} className="flex justify-center font-semibold hover:text-sky-400 text-sm">Tagged</Link>
                     </div>
+
+                    {/* post all  */}
+                    <Link href={'/'}>
+                      <div className="flex gap-4 my-8 mx-6 mb-24">
+                        <div className="">
+                          {Array.isArray(userDetails3) && userDetails3.map((post, index) => (
+                            <div key={index} className="">
+                              {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                <div key={index} className="">
+                                  {params.slug === userPost.name && (
+                                    <div key={index} className="">
+                                      {(userPost._id === post.user) && (
+                                        <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+                                          <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                            <div key={index} className="">
+                                              {post.content}
+                                            </div>
+                                            <div key={index} className="">
+                                              {post.image === '' ? <div className=""></div> : (
+                                                <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </Link>
 
                   </div>
                 </div>
@@ -483,10 +575,46 @@ const Profile = ({ params }) => {
               {/* Posts Media & Tagged */}
               <div className="">
                 <div className="grid grid-cols-3 mt-3">
-                  <Link href={''} className="flex justify-center font-semibold hover:text-sky-400">Posts</Link>
-                  <Link href={''} className="flex justify-center font-semibold hover:text-sky-400">Media</Link>
-                  <Link href={''} className="flex justify-center font-semibold hover:text-sky-400">Tagged</Link>
+                  <button className="flex justify-center font-semibold text-sky-400">Posts</button>
+                  <button className="flex justify-center font-semibold hover:text-sky-400">Media</button>
+                  <button className="flex justify-center font-semibold hover:text-sky-400">Tagged</button>
                 </div>
+
+
+
+                {/* ALL POST  */}
+                <Link href={'/'}>
+                  <div className="grid grid-cols-3 gap-4 my-8">
+                    <div className="">
+                      {Array.isArray(userDetails3) && userDetails3.map((post, index) => (
+                        <div key={index} className="">
+                          {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                            <div key={index} className="">
+                              {params.slug === userPost.name && (
+                                <div key={index} className="">
+                                  {(userPost._id === post.user) && (
+                                    <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+                                      <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                        <div key={index} className="">
+                                          {post.content}
+                                        </div>
+                                        <div key={index} className="">
+                                          {post.image === '' ? <div className=""></div> : (
+                                            <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+
               </div>
 
             </div>
@@ -617,6 +745,39 @@ const Profile = ({ params }) => {
                       <Link href={''} className="flex justify-center font-semibold hover:text-sky-400 text-sm">Media</Link>
                       <Link href={''} className="flex justify-center font-semibold hover:text-sky-400 text-sm">Tagged</Link>
                     </div>
+
+                    {/* post all  */}
+                    <Link href={'/'}>
+                      <div className="flex gap-4 my-8 mx-6 mb-24">
+                        <div className="">
+                          {Array.isArray(userDetails3) && userDetails3.map((post, index) => (
+                            <div key={index} className="">
+                              {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                <div key={index} className="">
+                                  {params.slug === userPost.name && (
+                                    <div key={index} className="">
+                                      {(userPost._id === post.user) && (
+                                        <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+                                          <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                            <div key={index} className="">
+                                              {post.content}
+                                            </div>
+                                            <div key={index} className="">
+                                              {post.image === '' ? <div className=""></div> : (
+                                                <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </Link>
 
                   </div>
                 </div>

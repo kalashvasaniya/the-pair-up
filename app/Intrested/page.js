@@ -33,7 +33,6 @@ const Intrested = () => {
       if (response.ok) {
         const data = await response.json();
         setUserDetails1(data.userDetails1);
-        console.log("User interested", data);
       } else {
         // Handle error
       }
@@ -55,7 +54,6 @@ const Intrested = () => {
       if (response.ok) {
         const data = await response.json();
         setUserDetails2(data.userDetails2);
-        console.log("User interested", data);
       } else {
         // Handle error
       }
@@ -76,7 +74,6 @@ const Intrested = () => {
         const data = await response.json();
         setUserDetails(data.users);
         setSlugDetails(data.details)
-        console.log("userDetails", userDetails, "slug details", slugDetails)
       } else {
         throw new Error("Something went wrong!");
       }

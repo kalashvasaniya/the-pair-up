@@ -56,7 +56,6 @@ const Search = () => {
                 const data = await response.json();
                 setUserDetails(data.users);
                 setSlugDetails(data.details);
-                console.log("User notification", userDetails, slugDetails);
             } else {
                 throw new Error("Something went wrong!");
             }
