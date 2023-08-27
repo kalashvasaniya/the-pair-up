@@ -77,7 +77,7 @@ const Feed = () => {
                     {/* User Details */}
                     <div className="">
                         {Array.isArray(shuffledUserDetails3) && shuffledUserDetails3.map((post, index) => (
-                            <div key={index} className="flex flex-col bg-gray-800 rounded-xl">
+                            <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-8">
                                 {/* Name  */}
                                 <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-24 p-3 rounded-t-xl">
                                     {/* image  */}
@@ -85,85 +85,93 @@ const Feed = () => {
                                         <div className="">
 
                                             {userDetails1.map((userPost, index) => (
-                                                <Link key={index} href={`/user/profile/${userPost.name}`} className="flex-row flex text-lg font-medium items-center">
-                                                    <div key={index} className={`border p-1 mr-4 rounded-full ${userPost.role === 'admin' ? 'border-amber-400' : ''} ${userPost.tick === 'yes' ? 'border-sky-400' : ''} ${userPost.tick === 'active' ? 'border-teal-500' : ''}`}>
+                                                <div className="">
+                                                    {(userPost._id === post.user) && (
+                                                        <Link key={index} href={`/user/profile/${userPost.name}`} className="flex-row flex text-lg font-medium items-center">
+                                                            <div key={index} className={`border p-1 mr-4 rounded-full ${userPost.role === 'admin' ? 'border-amber-400' : ''} ${userPost.tick === 'yes' ? 'border-sky-400' : ''} ${userPost.tick === 'active' ? 'border-teal-500' : ''}`}>
 
-                                                        {userDetails2.map((userDetails, index) => (
-                                                            <div key={index} className="">
-                                                                {userDetails.avatar ? (
-                                                                    <Image key={index} src={`/avatars/${userDetails.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-9 h-9 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                                                ) : (<Image key={index} src={`/avatars/dummy.jpeg`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-9 h-9 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />)}
-                                                                <span className="sr-only">Search</span>
+                                                                {userDetails2.map((userDetails, index) => (
+                                                                    <div className="">
+                                                                        {(userDetails.user === post.user) && (
+                                                                            <div key={index} className="">
+                                                                                {userDetails.avatar ? (
+                                                                                    <Image key={index} src={`/avatars/${userDetails.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-9 h-9 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                                                                                ) : (<Image key={index} src={`/avatars/dummy.jpeg`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-9 h-9 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />)}
+                                                                                <span className="sr-only">Search</span>
+                                                                            </div>
+                                                                        )}
+                                                                    </div>
+
+                                                                ))}
                                                             </div>
 
-                                                        ))}
-                                                    </div>
+                                                            {/* bio & tick  */}
+                                                            <div className="">
+                                                                {/* Tick  */}
+                                                                <div className="flex flex-row">
 
-                                                    {/* bio & tick  */}
-                                                    <div className="">
-                                                        {/* Tick  */}
-                                                        <div className="flex flex-row">
+                                                                    <div className="text-sm flex justify-center items-center pr-2">{userPost.name}</div>
 
-                                                            <div className="text-sm flex justify-center items-center pr-2">{userPost.name}</div>
-
-                                                            {userPost.role === 'admin' && (
-                                                                <div className="group">
-                                                                    <div className="hover:scale-105">
-                                                                        <svg className='flex justify-center items-center text-amber-400'
-                                                                            viewBox="0 0 20 20"
-                                                                            fill="currentColor"
-                                                                            height="1em"
-                                                                            width="1em">
-                                                                            <path
-                                                                                fillRule="evenodd"
-                                                                                d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                            />
-                                                                        </svg>
-                                                                    </div>
+                                                                    {userPost.role === 'admin' && (
+                                                                        <div className="group">
+                                                                            <div className="hover:scale-105">
+                                                                                <svg className='flex justify-center items-center text-amber-400'
+                                                                                    viewBox="0 0 20 20"
+                                                                                    fill="currentColor"
+                                                                                    height="1em"
+                                                                                    width="1em">
+                                                                                    <path
+                                                                                        fillRule="evenodd"
+                                                                                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                                    />
+                                                                                </svg>
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
+                                                                    {userPost.tick === 'yes' && (
+                                                                        <div className="group">
+                                                                            <div className="hover:scale-105 pt-[0.10rem]">
+                                                                                <svg className='flex justify-center items-center text-sky-400'
+                                                                                    viewBox="0 0 20 20"
+                                                                                    fill="currentColor"
+                                                                                    height="1em"
+                                                                                    width="1em">
+                                                                                    <path
+                                                                                        fillRule="evenodd"
+                                                                                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                                    />
+                                                                                </svg>
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
+                                                                    {userPost.tick === 'active' && (
+                                                                        <div className="group">
+                                                                            <div className="hover:scale-105 pt-[0.10rem]">
+                                                                                <svg className='flex justify-center items-center text-teal-500'
+                                                                                    viewBox="0 0 20 20"
+                                                                                    fill="currentColor"
+                                                                                    height="1em"
+                                                                                    width="1em">
+                                                                                    <path
+                                                                                        fillRule="evenodd"
+                                                                                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                                    />
+                                                                                </svg>
+                                                                            </div>
+                                                                        </div>
+                                                                    )}
                                                                 </div>
-                                                            )}
-                                                            {userPost.tick === 'yes' && (
-                                                                <div className="group">
-                                                                    <div className="hover:scale-105 pt-[0.10rem]">
-                                                                        <svg className='flex justify-center items-center text-sky-400'
-                                                                            viewBox="0 0 20 20"
-                                                                            fill="currentColor"
-                                                                            height="1em"
-                                                                            width="1em">
-                                                                            <path
-                                                                                fillRule="evenodd"
-                                                                                d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                            />
-                                                                        </svg>
-                                                                    </div>
+
+                                                                {/* Date */}
+                                                                <div className="text-xs text-gray-400 truncate">
+                                                                    {formatDate(post.date)}
                                                                 </div>
-                                                            )}
-                                                            {userPost.tick === 'active' && (
-                                                                <div className="group">
-                                                                    <div className="hover:scale-105 pt-[0.10rem]">
-                                                                        <svg className='flex justify-center items-center text-teal-500'
-                                                                            viewBox="0 0 20 20"
-                                                                            fill="currentColor"
-                                                                            height="1em"
-                                                                            width="1em">
-                                                                            <path
-                                                                                fillRule="evenodd"
-                                                                                d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                            />
-                                                                        </svg>
-                                                                    </div>
-                                                                </div>
-                                                            )}
-                                                        </div>
-
-                                                        {/* Date */}
-                                                        <div className="text-xs text-gray-400 truncate">
-                                                            {formatDate(post.date)}
-                                                        </div>
-                                                    </div>
+                                                            </div>
 
 
-                                                </Link>
+                                                        </Link>
+                                                    )}
+                                                </div>
                                             ))}
                                         </div>
                                     </div>
@@ -205,6 +213,7 @@ const Feed = () => {
                                 <div key={index} className="bg-gray-800 flex justify-between p-1">
                                     <div className="flex flex-row space-x-4">
 
+                                        {/* Here  */}
                                         <button key={index} onClick={handleButtonClick} className="pl-4 flex flex-row justify-center items-center space-x-2">
 
                                             {!isIcon ? (
@@ -232,6 +241,7 @@ const Feed = () => {
                                                 {post.like === null ? '0' : post.like} Like
                                             </button>
                                         </button>
+
 
                                         <button key={index} className="px-4 flex flex-row justify-center items-center space-x-2">
                                             <svg
