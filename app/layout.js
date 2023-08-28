@@ -3,6 +3,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Example from './UI/Loader/page'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,6 +29,7 @@ export function useTPU() {
   }, []);
 
   const logout = () => {
+    <Example />
     localStorage.removeItem('token');
     localStorage.removeItem('formattedDate');
     setUser({ value: null })
