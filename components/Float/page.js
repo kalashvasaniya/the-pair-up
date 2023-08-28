@@ -11,12 +11,12 @@ const Float = () => {
     // Hide the banner after 10 seconds
     const timeoutId = setTimeout(() => {
       setShowBanner(false);
-    }, 15000);
+    }, 10000);
 
     return () => clearTimeout(timeoutId); // Cleanup the timeout if the component unmounts
 
   }, []);
-  
+
   return (
     <>
       {showBanner && !user.value ? <div id="marketing-banner" tabIndex="-1" className="md:mt-20 mt-[28rem] fixed z-50 flex flex-col md:flex-row justify-between w-[calc(100%-2rem)] p-3 -translate-x-1/2 rounded-lg lg:max-w-7xl left-1/2 top-6 bg-black">
@@ -26,7 +26,7 @@ const Float = () => {
           <div>
             <div className="flex justify-center">
               <span className="self-center md:text-lg text-sm text-white font-semibold px-2 font-mono">
-                <span className='underline text-sky-400'>Introverts</span> who struggle to <span className='underline text-sky-400'>make college friends</span> can utilise <span className='line-through decoration-white text-[#00B2FF]'>The</span>PairUp without <span className='underline text-sky-400'>revealing</span> their <span className='underline text-sky-400'>real names</span>.
+                <span className='underline text-sky-400'>Students</span> who struggle to <span className='underline text-sky-400'>make College Friends</span> can utilise <span className='line-through decoration-white text-[#00B2FF]'>The</span>PairUp without <span className='underline text-sky-400'>revealing</span> their <span className='underline text-sky-400'>identity</span>!
               </span>
             </div>
           </div>
