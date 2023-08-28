@@ -113,6 +113,20 @@ const Profile = ({ params }) => {
     setIsFollowing(!isFollowing);
   };
 
+  function reverseArray(arr) {
+    return arr.slice().reverse();
+  }
+  // Example usage:
+  const userDetails6 = [...userDetails3]
+  const reverse = reverseArray(userDetails6);
+
+  // Date 
+  function formatDate(inputDate) {
+    const options = { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', };
+    const date = new Date(inputDate);
+    return date.toLocaleDateString('en-IN', options);
+  }
+
   const { logout } = useTPU();
 
   return (
@@ -248,10 +262,10 @@ const Profile = ({ params }) => {
 
 
                 {/* ALL POST  */}
-                <Link href={'/'}>
+                <Link href={''}>
                   <div className="grid grid-cols-3 gap-4 my-8">
                     <div className="">
-                      {Array.isArray(userDetails3) && userDetails3.map((post, index) => (
+                      {Array.isArray(reverse) && reverse.map((post, index) => (
                         <div key={index} className="">
                           {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                             <div key={index} className="">
@@ -266,6 +280,9 @@ const Profile = ({ params }) => {
                                         <div key={index} className="">
                                           {post.image === '' ? <div className=""></div> : (
                                             <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                        </div>
+                                        <div className="text-xs mt-6 text-gray-400 truncate">
+                                          {formatDate(post.date)}
                                         </div>
                                       </div>
                                     </div>
@@ -410,7 +427,7 @@ const Profile = ({ params }) => {
                     <Link href={'/'}>
                       <div className="flex gap-4 my-8 mx-6 mb-24">
                         <div className="">
-                          {Array.isArray(userDetails3) && userDetails3.map((post, index) => (
+                          {Array.isArray(reverse) && reverse.map((post, index) => (
                             <div key={index} className="">
                               {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                 <div key={index} className="">
@@ -425,6 +442,9 @@ const Profile = ({ params }) => {
                                             <div key={index} className="">
                                               {post.image === '' ? <div className=""></div> : (
                                                 <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                            </div>
+                                            <div className="text-xs mt-6 text-gray-400 truncate">
+                                              {formatDate(post.date)}
                                             </div>
                                           </div>
                                         </div>
@@ -586,7 +606,7 @@ const Profile = ({ params }) => {
                 <Link href={'/'}>
                   <div className="grid grid-cols-3 gap-4 my-8">
                     <div className="">
-                      {Array.isArray(userDetails3) && userDetails3.map((post, index) => (
+                      {Array.isArray(reverse) && reverse.map((post, index) => (
                         <div key={index} className="">
                           {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                             <div key={index} className="">
@@ -601,6 +621,9 @@ const Profile = ({ params }) => {
                                         <div key={index} className="">
                                           {post.image === '' ? <div className=""></div> : (
                                             <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                        </div>
+                                        <div className="text-xs mt-6 text-gray-400 truncate">
+                                          {formatDate(post.date)}
                                         </div>
                                       </div>
                                     </div>
@@ -750,7 +773,7 @@ const Profile = ({ params }) => {
                     <Link href={'/'}>
                       <div className="flex gap-4 my-8 mx-6 mb-24">
                         <div className="">
-                          {Array.isArray(userDetails3) && userDetails3.map((post, index) => (
+                          {Array.isArray(reverse) && reverse.map((post, index) => (
                             <div key={index} className="">
                               {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                 <div key={index} className="">
@@ -765,6 +788,9 @@ const Profile = ({ params }) => {
                                             <div key={index} className="">
                                               {post.image === '' ? <div className=""></div> : (
                                                 <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                            </div>
+                                            <div className="text-xs mt-6 text-gray-400 truncate">
+                                              {formatDate(post.date)}
                                             </div>
                                           </div>
                                         </div>

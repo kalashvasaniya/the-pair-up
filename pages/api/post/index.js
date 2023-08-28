@@ -48,14 +48,13 @@ export default async function handler(req, res) {
             if (!userss) {
                 return res.status(401).json({ message: "Unauthorized" });
             }
-            console.log(userss)
 
             let post = await Post.findOne({ user: userss._id });
 
             post = await Post.create({
                 user: userss._id,
-                like: req.body.like,
-                comment: req.body.comment,
+                like: req.body.like || 0,
+                comment: req.body.comment || 0,
                 content: req.body.content,
                 image: req.body.image,
             });
