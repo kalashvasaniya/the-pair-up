@@ -139,7 +139,7 @@ const Profile = ({ params }) => {
     return date.toLocaleDateString('en-IN', options);
   }
 
-  const { logout } = useTPU();
+  const { logout, highlightHashTags } = useTPU();
 
   return (
     <>
@@ -298,7 +298,7 @@ const Profile = ({ params }) => {
                                           <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
                                             <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
                                               <div key={index} className="">
-                                                {post.content}
+                                                {highlightHashTags(post.content)}
                                               </div>
                                               <div key={index} className="">
                                                 {post.image === '' ? <div className=""></div> : (
@@ -467,7 +467,7 @@ const Profile = ({ params }) => {
                                               <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
                                                 <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
                                                   <div key={index} className="">
-                                                    {post.content}
+                                                    {highlightHashTags(post.content)}
                                                   </div>
                                                   <div key={index} className="">
                                                     {post.image === '' ? <div className=""></div> : (
@@ -588,7 +588,7 @@ const Profile = ({ params }) => {
                               </div>)}
                           </div>
 
-                          <div className="text-sm text-gray-500">{slugDetails.bio}<span className='text-sky-400 text-xs'> - {slugDetails.gender}</span></div>
+                          <div className="text-sm text-gray-500">{slugDetails.bio}<span className={`text-xs ${slugDetails.gender === 'Male' && 'text-sky-400' || slugDetails.gender === 'Female' && 'text-pink-500' || ((slugDetails.gender === 'Gay' || slugDetails.gender === 'Lesbian' || slugDetails.gender === 'Transgender') && 'text-red-500')}`}> - {slugDetails.gender}</span></div>
                           <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
                           <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
                           <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</span></div>
@@ -653,7 +653,7 @@ const Profile = ({ params }) => {
                                           <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
                                             <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
                                               <div key={index} className="">
-                                                {post.content}
+                                                {highlightHashTags(post.content)}
                                               </div>
                                               <div key={index} className="">
                                                 {post.image === '' ? <div className=""></div> : (
@@ -763,7 +763,7 @@ const Profile = ({ params }) => {
 
                           </div>
 
-                          <div className="text-xs text-gray-500">{slugDetails.bio} <span className='text-sky-400 text-xs'> - {slugDetails.gender}</span></div>
+                          <div className="text-xs text-gray-500">{slugDetails.bio} <span className={`text-xs ${slugDetails.gender === 'Male' && 'text-sky-400' || slugDetails.gender === 'Female' && 'text-pink-500' || ((slugDetails.gender === 'Gay' || slugDetails.gender === 'Lesbian' || slugDetails.gender === 'Transgender') && 'text-red-500')}`}> - {slugDetails.gender}</span></div>
                           <div className="text-xs mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
                           <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
                           <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{slugDetails.LoveTo}</span></div>
@@ -827,7 +827,7 @@ const Profile = ({ params }) => {
                                               <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
                                                 <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
                                                   <div key={index} className="">
-                                                    {post.content}
+                                                    {highlightHashTags(post.content)}
                                                   </div>
                                                   <div key={index} className="">
                                                     {post.image === '' ? <div className=""></div> : (

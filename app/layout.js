@@ -38,7 +38,23 @@ export function useTPU() {
     }
   }
 
-  return { logout, user };
+  const highlightHashTags = (content) => {
+    const regex1 = /#(\w+)/g;
+    const regex2 = /@(\w+)/g;
+
+    const highlightedContent1 = content.replace(
+      regex1,
+      '<span class="hashtag text-sky-400 hover:underline">$&</span>'
+    );
+    const highlightedContent2 = highlightedContent1.replace(
+      regex2,
+      `<a href="/user/profile/$1" class="hashtag text-sky-400 hover:underline">$&</a>`
+    );
+
+    return <div dangerouslySetInnerHTML={{ __html: highlightedContent2 }} />;
+  }
+
+  return { logout, user, highlightHashTags };
 }
 
 export default function RootLayout({ children }) {

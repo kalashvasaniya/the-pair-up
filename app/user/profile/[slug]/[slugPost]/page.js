@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTPU } from '@/app/layout'
 
 export default function postLink({ params }) {
   const [showLoader, setShowLoader] = useState(false);
@@ -90,6 +91,8 @@ export default function postLink({ params }) {
     const date = new Date(inputDate);
     return date.toLocaleDateString('en-IN', options);
   }
+
+  const { highlightHashTags } = useTPU();
 
   return (
     <>
@@ -279,7 +282,7 @@ export default function postLink({ params }) {
 
                             <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
                               <div className="">
-                                {post.content}
+                                {highlightHashTags(post.content)}
                               </div>
                               <div className="">
                                 {post.image === '' ? <div className=""></div> : (

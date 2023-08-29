@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ScrollButton1 from '../UI/ScrollButton1/page'
 import Example from '../UI/Loader/page'
+import { useTPU } from '../layout'
 
 const Feed = () => {
     const [userDetails1, setUserDetails1] = useState('');
@@ -76,6 +77,8 @@ const Feed = () => {
         const date = new Date(inputDate);
         return date.toLocaleDateString('en-IN', options);
     }
+
+    const { highlightHashTags } = useTPU();
 
     return (
 
@@ -237,7 +240,7 @@ const Feed = () => {
 
                                                                 <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
                                                                     <div className="">
-                                                                        {post.content}
+                                                                        {highlightHashTags(post.content)}
                                                                     </div>
                                                                     <div className="">
                                                                         {post.image === '' ? <div className=""></div> : (
