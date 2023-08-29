@@ -10,6 +10,7 @@ import Link from 'next/link'
 
 export default function postLink({ params }) {
   const [showLoader, setShowLoader] = useState(false);
+  const [userDetails1, setUserDetails1] = useState([]);
   const [userDetails3, setUserDetails3] = useState([]);
   const [userDetails4, setUserDetails4] = useState([]);
   const [userDetails5, setUserDetails5] = useState([]);
@@ -27,8 +28,30 @@ export default function postLink({ params }) {
       setShowLoader(true);
     }, 1000);
 
+    fetchUserDetails1()
     fetchUserDetails3()
   }, [])
+
+  const fetchUserDetails1 = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUserDetails1(data.userDetails1);
+      } else {
+        // Handle error
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   const fetchUserDetails3 = async () => {
     try {
@@ -208,26 +231,41 @@ export default function postLink({ params }) {
                                       </button>
 
                                       {/* Delete post  */}
-                                      {(params.slug === userPost.name) && (post.user === userPost._id) && (post.user === userDetails.user) && (post.slugPostLink === params.slugPost) && (
+                                      {(userDetails1.name === userPost.name) && (post.user === userPost._id) && (post.user === userDetails.user) && (post.slugPostLink === params.slugPost) && (
 
-                                        <button onClick={
-                                          async () => {
-                                            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post/${post._id}`, {
-                                              method: 'DELETE',
-                                              headers: {
-                                                'Content-Type': 'application/json'
-                                              },
-                                            })
-                                            if (response.ok) {
-                                              const data = await response.json();
-                                              console.log(data)
+                                        <button
+                                          onClick={async () => {
+                                            if (window.confirm("Are you sure you want to delete this post?")) {
+                                              try {
+                                                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
+                                                  method: 'DELETE',
+                                                  headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                                                  },
+                                                  body: JSON.stringify({
+                                                    slugPostLink: post.slugPostLink,
+                                                  }),
+                                                });
+
+                                                if (response.ok) {
+                                                  const data = await response.json();
+                                                  console.log(data);
+                                                  window.location.href = `/user/profile/${userDetails1.name}`
+                                                } else {
+                                                  console.error('Failed to delete post:', response.statusText);
+                                                }
+                                              } catch (error) {
+                                                console.error('Error deleting post:', error);
+                                              }
                                             }
-                                          }
-                                        } class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">
-                                          Detele Post
+                                          }}
+                                          className="flex justify-center px-4 py-3 hover:bg-gray-600 text-white"
+                                        >
+                                          Delete Post
                                         </button>
-                                      )}
 
+                                      )}
 
                                     </div>
                                   </div>
