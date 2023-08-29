@@ -276,10 +276,10 @@ const Profile = ({ params }) => {
 
 
                     {/* ALL POST  */}
-                    <Link href={''}>
-                      <div className="grid grid-cols-3 gap-4 my-8">
-                        <div className="">
-                          {Array.isArray(reverse) && reverse.map((post, index) => (
+                    <div className="grid grid-cols-3 gap-4 my-8">
+                      <div className="">
+                        {Array.isArray(reverse) && reverse.map((post, index) => (
+                          <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
                             <div key={index} className="">
                               {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                 <div key={index} className="">
@@ -306,10 +306,10 @@ const Profile = ({ params }) => {
                                 </div>
                               ))}
                             </div>
-                          ))}
-                        </div>
+                          </Link>
+                        ))}
                       </div>
-                    </Link>
+                    </div>
 
                   </div>
 
@@ -438,10 +438,10 @@ const Profile = ({ params }) => {
                         </div>
 
                         {/* post all  */}
-                        <Link href={'/'}>
-                          <div className="flex gap-4 my-8 mx-6 mb-24">
-                            <div className="">
-                              {Array.isArray(reverse) && reverse.map((post, index) => (
+                        <div className="flex gap-4 my-8 mx-6 mb-24">
+                          <div className="">
+                            {Array.isArray(reverse) && reverse.map((post, index) => (
+                              <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
                                 <div key={index} className="">
                                   {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                     <div key={index} className="">
@@ -468,10 +468,10 @@ const Profile = ({ params }) => {
                                     </div>
                                   ))}
                                 </div>
-                              ))}
-                            </div>
+                              </Link>
+                            ))}
                           </div>
-                        </Link>
+                        </div>
 
                       </div>
                     </div>
@@ -617,10 +617,10 @@ const Profile = ({ params }) => {
 
 
                     {/* ALL POST  */}
-                    <Link href={'/'}>
-                      <div className="grid grid-cols-3 gap-4 my-8">
-                        <div className="">
-                          {Array.isArray(reverse) && reverse.map((post, index) => (
+                    <div className="grid grid-cols-3 gap-4 my-8">
+                      <div className="">
+                        {Array.isArray(reverse) && reverse.map((post, index) => (
+                          <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
                             <div key={index} className="">
                               {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                 <div key={index} className="">
@@ -647,10 +647,10 @@ const Profile = ({ params }) => {
                                 </div>
                               ))}
                             </div>
-                          ))}
-                        </div>
+                          </Link>
+                        ))}
                       </div>
-                    </Link>
+                    </div>
 
                   </div>
 
@@ -784,10 +784,10 @@ const Profile = ({ params }) => {
                         </div>
 
                         {/* post all  */}
-                        <Link href={'/'}>
-                          <div className="flex gap-4 my-8 mx-6 mb-24">
-                            <div className="">
-                              {Array.isArray(reverse) && reverse.map((post, index) => (
+                        <div className="flex gap-4 my-8 mx-6 mb-24">
+                          <div className="">
+                            {Array.isArray(reverse) && reverse.map((post, index) => (
+                              <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
                                 <div key={index} className="">
                                   {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                     <div key={index} className="">
@@ -814,10 +814,10 @@ const Profile = ({ params }) => {
                                     </div>
                                   ))}
                                 </div>
-                              ))}
-                            </div>
+                              </Link>
+                            ))}
                           </div>
-                        </Link>
+                        </div>
 
                       </div>
                     </div>

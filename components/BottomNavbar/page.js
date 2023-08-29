@@ -7,9 +7,6 @@ import { useState, useEffect } from 'react'
 const BottomNavbar = () => {
     const [showTooltip, setShowTooltip] = useState(false);
 
-    const toggleTooltip = () => {
-        setShowTooltip(!showTooltip);
-    };
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
 
@@ -58,6 +55,10 @@ const BottomNavbar = () => {
         } catch (error) {
             console.log("hooo")
         }
+    };
+
+    const toggleTooltip = () => {
+        setShowTooltip(!showTooltip);
     };
 
     return (

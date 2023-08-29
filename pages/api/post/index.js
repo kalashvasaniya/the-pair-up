@@ -10,10 +10,14 @@ export default async function handler(req, res) {
             // Use a regular expression to perform a case-insensitive search on the "content" field
             const regex = new RegExp(req.query.content, 'i');
 
-            const posts = await Post.find({ content: regex });
+            const posts = await Post.find({
+                content: regex
+            })
+
             const userPost = await User.find({
                 _id: posts.map((post) => post.user)
             })
+
             const userDetails = await Details.find({
                 user: posts.map((post) => post.user)
             })
@@ -57,6 +61,7 @@ export default async function handler(req, res) {
                 comment: req.body.comment || 0,
                 content: req.body.content,
                 image: req.body.image,
+                slugPostLink: Date.now().toString() + Math.floor(Math.random() * 10000).toString(),
             });
             return res.status(200).json({ success: true, post });
 

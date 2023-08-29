@@ -22,6 +22,11 @@ const PostSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    slugPostLink: {
+        type: String,
+        default: '',
+        unique: true,
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
