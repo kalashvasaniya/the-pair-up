@@ -12,6 +12,7 @@ import Example from '@/app/UI/Loader/page'
 const Profile = ({ params }) => {
   const [userDetails, setUserDetails] = useState(null);
   const [slugDetails, setSlugDetails] = useState(null);
+  const [postDetails, setPostDetails] = useState(null);
 
   const [userDetails1, setUserDetails1] = useState('');
   const [userDetails2, setUserDetails2] = useState('');
@@ -50,6 +51,8 @@ const Profile = ({ params }) => {
         const data = await response.json();
         setUserDetails(data.user[0]);
         setSlugDetails(data.details[0])
+        setPostDetails(data.posts[0])
+        console.log("User Details", userDetails, "Slug details:", slugDetails, "post", postDetails)
       } else throw new Error("Something went wrong!");
     } catch (error) {
       console.log(error)
@@ -276,40 +279,47 @@ const Profile = ({ params }) => {
 
 
                     {/* ALL POST  */}
-                    <div className="grid grid-cols-3 gap-4 my-8">
-                      <div className="">
-                        {Array.isArray(reverse) && reverse.map((post, index) => (
-                          <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
-                            <div key={index} className="">
-                              {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                <div key={index} className="">
-                                  {params.slug === userPost.name && (
-                                    <div key={index} className="">
-                                      {(userPost._id === post.user) && (
-                                        <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
-                                          <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
-                                            <div key={index} className="">
-                                              {post.content}
-                                            </div>
-                                            <div key={index} className="">
-                                              {post.image === '' ? <div className=""></div> : (
-                                                <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
-                                            </div>
-                                            <div className="text-xs mt-6 text-gray-400 truncate">
-                                              {formatDate(post.date)}
+                    {postDetails === undefined ? (
+                      // If no posts, show a message to create a post
+                      <div className="my-8 flex justify-center pt-12">
+                        <Link href={'http://localhost:3000/Feed/Create/Post'} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-3 gap-4 my-8">
+                        <div className="">
+                          {Array.isArray(reverse) && reverse.map((post, index) => (
+                            <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
+                              <div key={index} className="">
+                                {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                  <div key={index} className="">
+                                    {params.slug === userPost.name && (
+                                      <div key={index} className="">
+                                        {(userPost._id === post.user) && (
+                                          <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+                                            <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                              <div key={index} className="">
+                                                {post.content}
+                                              </div>
+                                              <div key={index} className="">
+                                                {post.image === '' ? <div className=""></div> : (
+                                                  <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                              </div>
+                                              <div className="text-xs mt-6 text-gray-400 truncate">
+                                                {formatDate(post.date)}
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>
-                                      )}
-                                    </div>
-                                  )}
-                                </div>
-                              ))}
-                            </div>
-                          </Link>
-                        ))}
+                                        )}
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                   </div>
 
@@ -438,40 +448,47 @@ const Profile = ({ params }) => {
                         </div>
 
                         {/* post all  */}
-                        <div className="flex gap-4 my-8 mx-6 mb-24">
-                          <div className="">
-                            {Array.isArray(reverse) && reverse.map((post, index) => (
-                              <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
-                                <div key={index} className="">
-                                  {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                    <div key={index} className="">
-                                      {params.slug === userPost.name && (
-                                        <div key={index} className="">
-                                          {(userPost._id === post.user) && (
-                                            <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
-                                              <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
-                                                <div key={index} className="">
-                                                  {post.content}
-                                                </div>
-                                                <div key={index} className="">
-                                                  {post.image === '' ? <div className=""></div> : (
-                                                    <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
-                                                </div>
-                                                <div className="text-xs mt-6 text-gray-400 truncate">
-                                                  {formatDate(post.date)}
+                        {postDetails === undefined ? (
+                          // If no posts, show a message to create a post
+                          <div className="my-8 flex justify-center">
+                            <Link href={'http://localhost:3000/Feed/Create/Post'} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
+                          </div>
+                        ) : (
+                          <div className="flex gap-4 my-8 mx-6 mb-24">
+                            <div className="">
+                              {Array.isArray(reverse) && reverse.map((post, index) => (
+                                <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
+                                  <div key={index} className="">
+                                    {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                      <div key={index} className="">
+                                        {params.slug === userPost.name && (
+                                          <div key={index} className="">
+                                            {(userPost._id === post.user) && (
+                                              <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+                                                <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                                  <div key={index} className="">
+                                                    {post.content}
+                                                  </div>
+                                                  <div key={index} className="">
+                                                    {post.image === '' ? <div className=""></div> : (
+                                                      <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                  </div>
+                                                  <div className="text-xs mt-6 text-gray-400 truncate">
+                                                    {formatDate(post.date)}
+                                                  </div>
                                                 </div>
                                               </div>
-                                            </div>
-                                          )}
-                                        </div>
-                                      )}
-                                    </div>
-                                  ))}
-                                </div>
-                              </Link>
-                            ))}
+                                            )}
+                                          </div>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
                           </div>
-                        </div>
+                        )}
 
                       </div>
                     </div>
@@ -617,40 +634,47 @@ const Profile = ({ params }) => {
 
 
                     {/* ALL POST  */}
-                    <div className="grid grid-cols-3 gap-4 my-8">
-                      <div className="">
-                        {Array.isArray(reverse) && reverse.map((post, index) => (
-                          <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
-                            <div key={index} className="">
-                              {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                <div key={index} className="">
-                                  {params.slug === userPost.name && (
-                                    <div key={index} className="">
-                                      {(userPost._id === post.user) && (
-                                        <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
-                                          <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
-                                            <div key={index} className="">
-                                              {post.content}
-                                            </div>
-                                            <div key={index} className="">
-                                              {post.image === '' ? <div className=""></div> : (
-                                                <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
-                                            </div>
-                                            <div className="text-xs mt-6 text-gray-400 truncate">
-                                              {formatDate(post.date)}
+                    {postDetails === undefined ? (
+                      // If no posts, show a message to create a post
+                      <div className="my-8 flex justify-center pt-12">
+                        <div className='text-sky-400 font-medium'>No posts available!</div>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-3 gap-4 my-8">
+                        <div className="">
+                          {Array.isArray(reverse) && reverse.map((post, index) => (
+                            <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
+                              <div key={index} className="">
+                                {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                  <div key={index} className="">
+                                    {params.slug === userPost.name && (
+                                      <div key={index} className="">
+                                        {(userPost._id === post.user) && (
+                                          <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+                                            <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                              <div key={index} className="">
+                                                {post.content}
+                                              </div>
+                                              <div key={index} className="">
+                                                {post.image === '' ? <div className=""></div> : (
+                                                  <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                              </div>
+                                              <div className="text-xs mt-6 text-gray-400 truncate">
+                                                {formatDate(post.date)}
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>
-                                      )}
-                                    </div>
-                                  )}
-                                </div>
-                              ))}
-                            </div>
-                          </Link>
-                        ))}
+                                        )}
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                   </div>
 
@@ -784,40 +808,47 @@ const Profile = ({ params }) => {
                         </div>
 
                         {/* post all  */}
-                        <div className="flex gap-4 my-8 mx-6 mb-24">
-                          <div className="">
-                            {Array.isArray(reverse) && reverse.map((post, index) => (
-                              <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
-                                <div key={index} className="">
-                                  {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                    <div key={index} className="">
-                                      {params.slug === userPost.name && (
-                                        <div key={index} className="">
-                                          {(userPost._id === post.user) && (
-                                            <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
-                                              <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
-                                                <div key={index} className="">
-                                                  {post.content}
-                                                </div>
-                                                <div key={index} className="">
-                                                  {post.image === '' ? <div className=""></div> : (
-                                                    <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
-                                                </div>
-                                                <div className="text-xs mt-6 text-gray-400 truncate">
-                                                  {formatDate(post.date)}
+                        {postDetails === undefined ? (
+                          // If no posts, show a message to create a post
+                          <div className="my-8 flex justify-center">
+                            <div className='text-sky-400 font-medium'>No posts available!</div>
+                          </div>
+                        ) : (
+                          <div className="flex gap-4 my-8 mx-6 mb-24">
+                            <div className="">
+                              {Array.isArray(reverse) && reverse.map((post, index) => (
+                                <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
+                                  <div key={index} className="">
+                                    {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                      <div key={index} className="">
+                                        {params.slug === userPost.name && (
+                                          <div key={index} className="">
+                                            {(userPost._id === post.user) && (
+                                              <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+                                                <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                                  <div key={index} className="">
+                                                    {post.content}
+                                                  </div>
+                                                  <div key={index} className="">
+                                                    {post.image === '' ? <div className=""></div> : (
+                                                      <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                  </div>
+                                                  <div className="text-xs mt-6 text-gray-400 truncate">
+                                                    {formatDate(post.date)}
+                                                  </div>
                                                 </div>
                                               </div>
-                                            </div>
-                                          )}
-                                        </div>
-                                      )}
-                                    </div>
-                                  ))}
-                                </div>
-                              </Link>
-                            ))}
+                                            )}
+                                          </div>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
                           </div>
-                        </div>
+                        )}
 
                       </div>
                     </div>

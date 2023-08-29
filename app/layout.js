@@ -29,11 +29,13 @@ export function useTPU() {
   }, []);
 
   const logout = () => {
-    <Example />
-    localStorage.removeItem('token');
-    localStorage.removeItem('formattedDate');
-    setUser({ value: null })
-    window.location.reload();
+    if (window.confirm("Are you sure you want to Logout?")) {
+      <Example />
+      localStorage.removeItem('token');
+      localStorage.removeItem('formattedDate');
+      setUser({ value: null })
+      window.location.reload();
+    }
   }
 
   return { logout, user };
