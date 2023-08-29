@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         }
     }
 
-    else {
+    else if (req.method === 'POST') {
         try {
             const token = req.headers.authorization; // Extract token from the authorization header
             var decoded = jwt_decode(token);

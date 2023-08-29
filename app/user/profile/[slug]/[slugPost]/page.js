@@ -14,6 +14,8 @@ export default function postLink({ params }) {
   const [userDetails4, setUserDetails4] = useState([]);
   const [userDetails5, setUserDetails5] = useState([]);
 
+  const [isCopied, setIsCopied] = useState(false);
+
   // Like
   const [isIcon, setIsIcon] = useState(false);
 
@@ -52,9 +54,11 @@ export default function postLink({ params }) {
     setIsIcon(!isIcon)
   }
 
-  // Delete
-  const toggleTooltip2 = () => {
-    setShowTooltip2(!showTooltip2);
+  const toggleTooltip = (userId) => {
+    setShowTooltip2((prevVisibility) => ({
+      ...prevVisibility,
+      [userId]: !prevVisibility[userId] || false,
+    }));
   };
 
   // Date 
@@ -179,14 +183,52 @@ export default function postLink({ params }) {
 
                               {/* 3 dots  */}
                               <div className="relative">
-                                <div onClick={toggleTooltip2} className="cursor-pointer  hover:bg-sky-400 rounded-full">
+                                <div onClick={() => {
+                                  toggleTooltip(post._id)
+                                }} className="cursor-pointer  hover:bg-sky-400 rounded-full">
                                   <svg aria-label="More Options" class="_ab6-" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
                                 </div>
 
-                                {showTooltip2 && (
+                                {showTooltip2[post._id] && (
                                   <div class="z-10 absolute text-white bg-gray-700 divide-y divide-gray-100 rounded-lg shadow w-52 top-6 right-0">
                                     <div class="flex flex-col justify-center py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
-                                      <button class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">Detele Post</button>
+                                      <button
+                                        onClick={async () => {
+                                          // Attempt to copy the link to the clipboard
+                                          await navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`)
+                                          setIsCopied(true);
+                                          setTimeout(() => {
+                                            setIsCopied(false);
+                                          }, 2000);
+
+                                        }}
+                                        className={`flex justify-center px-4 py-3 text-white ${isCopied ? 'bg-green-500' : 'hover:bg-gray-600'}`}
+                                      >
+                                        {isCopied ? 'Link Copied!' : 'Share'}
+                                      </button>
+
+                                      {/* Delete post  */}
+                                      {(params.slug === userPost.name) && (post.user === userPost._id) && (post.user === userDetails.user) && (post.slugPostLink === params.slugPost) && (
+
+                                        <button onClick={
+                                          async () => {
+                                            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post/${post._id}`, {
+                                              method: 'DELETE',
+                                              headers: {
+                                                'Content-Type': 'application/json'
+                                              },
+                                            })
+                                            if (response.ok) {
+                                              const data = await response.json();
+                                              console.log(data)
+                                            }
+                                          }
+                                        } class="flex justify-center px-4 py-3 hover:bg-gray-600 text-white">
+                                          Detele Post
+                                        </button>
+                                      )}
+
+
                                     </div>
                                   </div>
                                 )}
