@@ -294,8 +294,8 @@ const Profile = ({ params }) => {
                   <div className="">
                     <div className="grid grid-cols-3 mt-3">
                       <button className="flex justify-center font-semibold text-sky-400">Posts</button>
-                      <button className="flex justify-center font-semibold hover:text-sky-400">Media</button>
-                      <button className="flex justify-center font-semibold hover:text-sky-400">Tagged</button>
+                      <button className="flex justify-center font-semibold text-sky-400">Media</button>
+                      <button className="flex justify-center font-semibold text-sky-400">Tagged</button>
                     </div>
 
 
@@ -309,6 +309,7 @@ const Profile = ({ params }) => {
                         </div>
                       ) : (
                         <div className="grid grid-cols-3 gap-6 my-8">
+                          {/* Post */}
                           <div className="">
                             {Array.isArray(reverse) && reverse.map((post, index) => (
                               <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
@@ -369,6 +370,48 @@ const Profile = ({ params }) => {
                           </div>
 
                           {/* Tagged  */}
+                          <div className="">
+                            {Array.isArray(reverse) && reverse.map((post, index) => (
+                              <div key={index} className="">
+                                {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                  <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                    {post.content.includes("@" + params.slug) ? (
+
+                                      <div key={index} className="">
+                                        <div key={index} className="">
+                                          {(userPost._id === post.user) && (
+                                            <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+
+                                              <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                                <div key={index} className="">
+                                                  {highlightHashTags(post.content)}
+                                                </div>
+                                                <div key={index} className="">
+                                                  {post.image === '' ? <div className=""></div> : (
+                                                    <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                </div>
+                                                <div className="text-xs mt-6 text-gray-400 flex flex-col">
+                                                  {formatDate(post.date)}
+                                                  <div key={index} className="text-gray-400 mt-4">
+                                                    Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                            </div>
+                                          )}
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <div className="hidden"></div>
+                                    )}
+                                  </Link>
+                                ))}
+                              </div>
+
+                            ))}
+                          </div>
+
                         </div>
                       )}
                     </div>
@@ -544,7 +587,7 @@ const Profile = ({ params }) => {
                               </div>
                             </div>}
 
-                            {showFeed && <div className="">
+                            {showFeed && (<div className="">
                               {Array.isArray(reverse) && reverse.map((post, index) => (
                                 <div key={index} className="">
                                   {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
@@ -567,9 +610,49 @@ const Profile = ({ params }) => {
                                   ))}
                                 </div>
                               ))}
-                            </div>}
+                            </div>)}
 
-                            {showTagged && <UTagged />}
+                            {showTagged && <div className="">
+                              {Array.isArray(reverse) && reverse.map((post, index) => (
+                                <div key={index} className="">
+                                  {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                    <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                      {post.content.includes("@" + params.slug) ? (
+
+                                        <div key={index} className="">
+                                          <div key={index} className="">
+                                            {(userPost._id === post.user) && (
+                                              <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+
+                                                <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                                  <div key={index} className="">
+                                                    {highlightHashTags(post.content)}
+                                                  </div>
+                                                  <div key={index} className="">
+                                                    {post.image === '' ? <div className=""></div> : (
+                                                      <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                  </div>
+                                                  <div className="text-xs mt-6 text-gray-400 flex flex-col">
+                                                    {formatDate(post.date)}
+                                                    <div key={index} className="text-gray-400 mt-2">
+                                                      Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                              </div>
+                                            )}
+                                          </div>
+                                        </div>
+                                      ) : (
+                                        <div className="hidden"></div>
+                                      )}
+                                    </Link>
+                                  ))}
+                                </div>
+
+                              ))}
+                            </div>}
                           </div>
                         )}
 
@@ -710,8 +793,8 @@ const Profile = ({ params }) => {
                   <div className="">
                     <div className="grid grid-cols-3 mt-3">
                       <button className="flex justify-center font-semibold text-sky-400">Posts</button>
-                      <button className="flex justify-center font-semibold hover:text-sky-400">Media</button>
-                      <button className="flex justify-center font-semibold hover:text-sky-400">Tagged</button>
+                      <button className="flex justify-center font-semibold text-sky-400">Media</button>
+                      <button className="flex justify-center font-semibold text-sky-400">Tagged</button>
                     </div>
 
 
@@ -724,6 +807,7 @@ const Profile = ({ params }) => {
                       </div>
                     ) : (
                       <div className="grid grid-cols-3 gap-4 my-8">
+                        {/* Post  */}
                         <div className="">
                           {Array.isArray(reverse) && reverse.map((post, index) => (
                             <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
@@ -782,8 +866,48 @@ const Profile = ({ params }) => {
                             </div>
                           ))}
                         </div>
-
                         {/* Tagged  */}
+                        <div className="">
+                          {Array.isArray(reverse) && reverse.map((post, index) => (
+                            <div key={index} className="">
+                              {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                  {post.content.includes("@" + params.slug) ? (
+
+                                    <div key={index} className="">
+                                      <div key={index} className="">
+                                        {(userPost._id === post.user) && (
+                                          <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+
+                                            <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                              <div key={index} className="">
+                                                {highlightHashTags(post.content)}
+                                              </div>
+                                              <div key={index} className="">
+                                                {post.image === '' ? <div className=""></div> : (
+                                                  <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                              </div>
+                                              <div className="text-xs mt-6 text-gray-400 flex flex-col">
+                                                {formatDate(post.date)}
+                                                <div key={index} className="text-gray-400 mt-2">
+                                                  Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                          </div>
+                                        )}
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <div className="hidden"></div>
+                                  )}
+                                </Link>
+                              ))}
+                            </div>
+
+                          ))}
+                        </div>
                       </div>
                     )}
 
@@ -988,7 +1112,47 @@ const Profile = ({ params }) => {
                               ))}
                             </div>}
 
-                            {showTagged && <UTagged />}
+                            {showTagged && <div className="">
+                              {Array.isArray(reverse) && reverse.map((post, index) => (
+                                <div key={index} className="">
+                                  {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+                                    <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                      {post.content.includes("@" + params.slug) ? (
+
+                                        <div key={index} className="">
+                                          <div key={index} className="">
+                                            {(userPost._id === post.user) && (
+                                              <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-4">
+
+                                                <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                                  <div key={index} className="">
+                                                    {highlightHashTags(post.content)}
+                                                  </div>
+                                                  <div key={index} className="">
+                                                    {post.image === '' ? <div className=""></div> : (
+                                                      <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                  </div>
+                                                  <div className="text-xs mt-6 text-gray-400 flex flex-col">
+                                                    {formatDate(post.date)}
+                                                    <div key={index} className="text-gray-400 mt-2">
+                                                      Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                              </div>
+                                            )}
+                                          </div>
+                                        </div>
+                                      ) : (
+                                        <div className="hidden"></div>
+                                      )}
+                                    </Link>
+                                  ))}
+                                </div>
+
+                              ))}
+                            </div>}
                           </div>
                         )}
 
