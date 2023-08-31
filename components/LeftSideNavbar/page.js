@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import { useEffect } from 'react'
@@ -146,23 +147,21 @@ const LeftSideNavbar = () => {
                     <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
-                                <span class="mb-1 text-sm font-semibold text-amber-400">Founder</span>
-                                <div class="mb-2 text-sm font-normal">Hi <span className='text-sky-500'>{userDetails1.name}</span>, "Your presence in The PairUp makes it a more vibrant and interesting place."</div>
+                                <div class="mb-2 text-sm font-normal">Hi <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails1.name}`} className='text-sky-500 hover:underline'>{userDetails1.name}</Link>, "Your presence in The PairUp makes it a more vibrant and interesting place."</div>
                             </div>
                         </div>
                     </div>
                     <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
-                                <div class="mb-2 text-sm font-normal">Hi <span className='text-sky-500'>{userDetails1.name}</span>, "Your presence in The PairUp makes it a more vibrant and interesting place."</div>
+                                <div class="mb-2 text-sm font-normal">We're expanding PairUp to the whole world! But first, we need your honest <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} className='text-sky-500 hover:underline' target='_blank'>Feedback</Link> to make it even better.</div>
                             </div>
                         </div>
                     </div>
                     <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
-                                <span class="mb-1 text-sm font-semibold text-sky-400">Jese Leos</span>
-                                <div class="mb-2 text-sm font-normal">Hi Neil, thanks for sharing your thoughts regarding Flowbite.</div>
+                                <div class="mb-2 text-sm font-normal">For Now, The PairUp is exclusively available to a select group of fewer than <span className='underline decoration-sky-400 '>50 colleges</span>."</div>
                             </div>
                         </div>
                     </div>
@@ -176,9 +175,9 @@ const LeftSideNavbar = () => {
                 {/* Footer LeftSideNavbar  */}
                 <div className="mt-12 px-6 text-xs flex flex-col">
                     <div className="flex flex-row space-x-2 text-gray-400">
-                        <Link href={'/EXT/About'} target='_blank' className="hover:underline">About</Link>
-                        <Link href={'/EXT/Contact'} target='_blank' className="hover:underline">Contact</Link>
-                        <Link href={'https://github.com/kalashvasaniya/the-pair-up/blob/main/SECURITY.md'} target='_blank' className="hover:underline">Privacy</Link>
+                        <Link href={'/EXT/About'} className="hover:underline">About</Link>
+                        <Link href={'/EXT/Contact'} className="hover:underline">Contact</Link>
+                        <Link href={'/EXT/Security'} className="hover:underline">Security</Link>
                         <Link href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} target='_blank' className="hover:underline">Feedback</Link>
                     </div>
                     <Link href={''} className="mt-2">

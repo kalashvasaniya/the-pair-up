@@ -1,3 +1,4 @@
+"use client"
 import Footer from '@/components/Footer/page'
 import Navbar from '@/components/Navbar/page'
 import React from 'react'
@@ -12,8 +13,8 @@ const About = () => {
                         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white">Let's talk about <span className="self-center text-4xl text-white font-extrabold"><span className='text-4xl font-extrabold line-through decoration-white text-sky-400'>The</span> PairUp
                             <span className='text-4xl font-extrabold text-sky-400'>!</span>
                         </span></h2>
-                        <p className="mb-4">The emergence of the pseudonymous era in social networking marks a transformative shift in online interactions. In this new era, individuals can engage and share without revealing their true identities, allowing for a level of privacy and personal expression previously unavailable in traditional platforms.</p>
-                        <p>Pseudonymous social networks encourage open dialogue, creativity, and authenticity, fostering a sense of community where ideas, rather than personal details, take center stage. This paradigm offers users the freedom to explore diverse interests, connect with like-minded individuals, and embrace a more liberated and genuine online presence.</p>
+                        <div className="mb-4">The emergence of the pseudonymous era in social networking marks a transformative shift in online interactions. In this new era, individuals can engage and share without revealing their true identities, allowing for a level of privacy and personal expression previously unavailable in traditional platforms.</div>
+                        <div>Pseudonymous social networks encourage open dialogue, creativity, and authenticity, fostering a sense of community where ideas, rather than personal details, take center stage. This paradigm offers users the freedom to explore diverse interests, connect with like-minded individuals, and embrace a more liberated and genuine online presence.</div>
                     </div>
                     <div className="grid grid-cols-2 gap-4 mt-8">
                         <img className="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1" />

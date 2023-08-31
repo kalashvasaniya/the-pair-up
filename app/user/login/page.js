@@ -101,10 +101,10 @@ const Login = () => {
 
                             {/* FIND WITH ME  */}
                             <div class="pt-28 text-sky-400 bottomtotop">
-                                <div class="justify-start px-2 text-center flex md:justify-start animate-bounce">
+                                <div class="justify-start px-1 text-center flex md:justify-start animate-bounce">
                                     FIND WITH ME
                                 </div>
-                                <ul class="pt-4 flex space-x-6 justify-start px-2 text-center">
+                                <ul class="pt-4 flex space-x-6 justify-start text-center">
                                     <li class="transition p-1 ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
                                         <Link href="http://linkedin.com/company/thepairup" target="_blank" rel="noopener noreferrer">
                                             <svg className='text-white' stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
@@ -147,9 +147,9 @@ const Login = () => {
                                             </svg>
                                         </Link>
                                     </li>
-                                    <li class="pr-12">
+                                    <li class="">
                                         <Link href={'mailto:admin@thepairup.com'} target="_blank" rel="noopener noreferrer">
-                                            <button className='hover:scale-110 transition ease-in-out delay-150 duration-300  font-semibold bg-sky-400 px-5 p-1 text-white rounded-full'>Email</button>
+                                            <button className='hover:scale-110 transition ease-in-out delay-150 duration-300  font-semibold bg-sky-400 md:px-6 px-3 p-1 text-white rounded-full'>Email</button>
                                         </Link>
                                     </li>
                                 </ul>

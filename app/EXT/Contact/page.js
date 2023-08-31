@@ -16,7 +16,7 @@ function ContactForm() {
 
     return (
         <>
-            <form className='flex flex-col justify-center md:my-0 my-16' onSubmit={handleSubmit}>
+            <form className='flex flex-col justify-center md:my-0 my-16 max-w-xl' onSubmit={handleSubmit}>
                 <div className="font-mono text-3xl underline-offset-4 underline text-center text-white">
                     Join Waitlist
                 </div>
