@@ -50,7 +50,7 @@ const Login = () => {
 
     return (
         <>
-            <section className="bg-black py-0">
+            <section className="bg-black py-12">
                 <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">
                     <div className="w-full sm:max-w-md">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -60,6 +60,7 @@ const Login = () => {
                                 <span className="self-center text-3xl whitespace-nowrap text-white font-extrabold  ">
                                     <span className='line-through decoration-white text-sky-400'>The</span> PairUp</span>
                             </Link>
+
                             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
 
                                 <div className="relative z-0 w-full mb-6 group">
@@ -98,14 +99,13 @@ const Login = () => {
                                 </p>
                             </form>
 
-
                             {/* FIND WITH ME  */}
-                            <div class="pt-32 text-sky-400 bottomtotop">
-                                <div class="justify-start px-4 text-center flex md:justify-start animate-bounce">
+                            <div class="pt-28 text-sky-400 bottomtotop">
+                                <div class="justify-start px-2 text-center flex md:justify-start animate-bounce">
                                     FIND WITH ME
                                 </div>
-                                <ul class="pt-12 flex space-x-8 justify-start px-4 text-center">
-                                    <li class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
+                                <ul class="pt-4 flex space-x-6 justify-start px-2 text-center">
+                                    <li class="transition p-1 ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
                                         <Link href="http://linkedin.com/company/thepairup" target="_blank" rel="noopener noreferrer">
                                             <svg className='text-white' stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
                                                 height="25" width="25" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +115,7 @@ const Login = () => {
                                             </svg>
                                         </Link>
                                     </li>
-                                    <li class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
+                                    <li class="transition p-1 ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
                                         <Link href="http://twitter.com/thepairup" target="_blank" rel="noopener noreferrer">
                                             <svg className='text-white' width="25" height="26" viewBox="0 0 20 16" aria-hidden="true">
                                                 <g fill="none" fill-rule="evenodd">
@@ -127,8 +127,8 @@ const Login = () => {
                                             </svg>
                                         </Link>
                                     </li>
-                                    <li class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
-                                        <Link href="http://youtube.com/c/thepairup" target="_blank" rel="noopener noreferrer"><svg className='text-white'
+                                    <li class="transition p-1 ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
+                                        <Link href="https://www.youtube.com/channel/UCburjfRVtD3gKLI2jZ9oxdw" target="_blank" rel="noopener noreferrer"><svg className='text-white'
                                             stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512"
                                             height="25" width="25" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -137,7 +137,7 @@ const Login = () => {
                                         </svg>
                                         </Link>
                                     </li>
-                                    <li class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
+                                    <li class="transition p-1 ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
                                         <Link href="https://www.instagram.com/thepairup" target="_blank" rel="noopener noreferrer">
                                             <svg className='text-white' stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
                                                 height="25" width="25" xmlns="http://www.w3.org/2000/svg">
@@ -147,9 +147,9 @@ const Login = () => {
                                             </svg>
                                         </Link>
                                     </li>
-                                    <li className='transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300'>
-                                        <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/Founder`} target="_blank" rel="noopener noreferrer">
-                                            <Image src={'/favicon.png'} width={100} height={100} className='w-6 h-6'></Image>
+                                    <li class="pr-12">
+                                        <Link href={'mailto:admin@thepairup.com'} target="_blank" rel="noopener noreferrer">
+                                            <button className='hover:scale-110 transition ease-in-out delay-150 duration-300  font-semibold bg-sky-400 px-5 p-1 text-white rounded-full'>Email</button>
                                         </Link>
                                     </li>
                                 </ul>
