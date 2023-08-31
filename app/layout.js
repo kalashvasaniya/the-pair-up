@@ -41,17 +41,23 @@ export function useTPU() {
   const highlightHashTags = (content) => {
     const regex1 = /#(\w+)/g;
     const regex2 = /@(\w+)/g;
+    const regex3 = /(\s|^)([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(?=[\s$.,])/g;
 
-    const highlightedContent1 = content.replace(
-      regex1,
-      '<span class="hashtag text-sky-400 hover:underline">$&</span>'
-    );
-    const highlightedContent2 = highlightedContent1.replace(
-      regex2,
-      `<a href="/user/profile/$1" class="hashtag text-sky-400 hover:underline">$&</a>`
-    );
+    const highlightedContent = content
+      .replace(
+        regex1,
+        '<span class="hashtag text-sky-400 hover:underline">$&</span>'
+      )
+      .replace(
+        regex2,
+        `<a href="/user/profile/$1" class="hashtag text-sky-400 hover:underline">$&</a>`
+      )
+      .replace(
+        regex3,
+        '<a href="http://$2" class="text-sky-400 hover:underline"> $2</a>'
+      );
 
-    return <div dangerouslySetInnerHTML={{ __html: highlightedContent2 }} />;
+    return <div dangerouslySetInnerHTML={{ __html: highlightedContent }} />;
   }
 
   return { logout, user, highlightHashTags };

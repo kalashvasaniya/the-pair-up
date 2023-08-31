@@ -112,7 +112,7 @@ export default function postLink({ params }) {
                         <div className="flex flex-col justify-center items-center py-10">
 
                           {/* Here  */}
-                          <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-8">
+                          <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-8 max-w-xl mx-4">
                             {/* Name  */}
                             <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-24 p-3 rounded-t-xl">
                               {/* image  */}

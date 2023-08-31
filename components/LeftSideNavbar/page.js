@@ -141,21 +141,20 @@ const LeftSideNavbar = () => {
                     </Link>
                 </div>
 
-                {/* Suggestion user  */}
+                {/* User Updateds  */}
                 <div className="mt-10 mb-10 space-y-3 px-4">
                     <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
-                                <span class="mb-1 text-sm font-semibold text-sky-400">Kalash</span>
-                                <div class="mb-2 text-sm font-normal">Hi Neil, thanks for sharing your thoughts regarding Flowbite.</div>
+                                <span class="mb-1 text-sm font-semibold text-amber-400">Founder</span>
+                                <div class="mb-2 text-sm font-normal">Hi <span className='text-sky-500'>{userDetails1.name}</span>, "Your presence in The PairUp makes it a more vibrant and interesting place."</div>
                             </div>
                         </div>
                     </div>
                     <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
-                                <span class="mb-1 text-sm font-semibold text-sky-400">Jese Leos</span>
-                                <div class="mb-2 text-sm font-normal">Hi Neil, thanks for sharing your thoughts regarding Flowbite.</div>
+                                <div class="mb-2 text-sm font-normal">Hi <span className='text-sky-500'>{userDetails1.name}</span>, "Your presence in The PairUp makes it a more vibrant and interesting place."</div>
                             </div>
                         </div>
                     </div>
@@ -169,7 +168,7 @@ const LeftSideNavbar = () => {
                     </div>
                 </div>
 
-                {/* suggestion  */}
+                {/* CollegeUpdate  */}
                 <div className="mt-10 px-6">
                     <Link href={'/EXT/CollegeUpdate'} className="text-base font-mono font-semibold underline-offset-2 hover:underline text-sky-400 mb-6">College Updates</Link>
                 </div>
@@ -187,7 +186,7 @@ const LeftSideNavbar = () => {
                     </Link>
                 </div>
 
-            </div>
+            </div >
         </>
     )
 }
