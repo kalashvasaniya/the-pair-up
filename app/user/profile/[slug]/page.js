@@ -160,7 +160,6 @@ const Profile = ({ params }) => {
     setShowTagged(!showTagged);
   };
 
-
   const { logout, highlightHashTags } = useTPU();
 
   return (
