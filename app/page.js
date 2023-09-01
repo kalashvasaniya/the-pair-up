@@ -77,3 +77,21 @@ export default function Main() {
     </>
   )
 }
+
+// Live DataBases Like Social Network
+
+// let lastObjectId = null;
+
+// const fetchAndDisplayNewData = () => {
+//   const query = lastObjectId
+//     ? { _id: { $gt: lastObjectId } }
+//     : {};
+
+//   const cursor = db.users.find(query);
+
+//   cursor.forEach((document) => {
+//     printjson(document);
+//     lastObjectId = document._id;
+//   });
+// };
+// const intervalId = setInterval(fetchAndDisplayNewData, 1000);

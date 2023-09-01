@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 
 const Footer = () => {
@@ -10,17 +11,17 @@ const Footer = () => {
 
 
           <div className="sm:flex sm:items-center sm:justify-between ">
-            <p className="text-sm text-white border-l-2">
+            <div className="text-sm text-white border-l-2">
               <span className="ml-4 font-semibold">
                 <a href="https://github.com/kalashvasaniya/the-pair-up/blob/main/LICENSE"
                   target="_blank">
                   © 2023 ThePairUp — All Rights Reserved
                 </a>
               </span>
-            </p>
+            </div>
 
             <div className="hidden md:block">
-              <p className="text-base text-white flex flex-row space-x-10">
+              <div className="text-base text-white flex flex-row space-x-10">
 
                 <button>
                   <span
@@ -58,7 +59,7 @@ const Footer = () => {
                   </button>
                 </div>
 
-              </p>
+              </div>
             </div>
           </div>
         </div>

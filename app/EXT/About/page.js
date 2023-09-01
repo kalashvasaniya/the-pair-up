@@ -2,6 +2,7 @@
 import Footer from '@/components/Footer/page'
 import Navbar from '@/components/Navbar/page'
 import React from 'react'
+import Link from 'next/link'
 
 const About = () => {
     return (
@@ -14,8 +15,10 @@ const About = () => {
                             <span className='text-4xl font-extrabold text-sky-400'>!</span>
                         </span></h2>
                         <div className="mb-4">The emergence of the pseudonymous era in social networking marks a transformative shift in online interactions. In this new era, individuals can engage and share without revealing their true identities, allowing for a level of privacy and personal expression previously unavailable in traditional platforms.</div>
-                        <div>Pseudonymous social networks encourage open dialogue, creativity, and authenticity, fostering a sense of community where ideas, rather than personal details, take center stage. This paradigm offers users the freedom to explore diverse interests, connect with like-minded individuals, and embrace a more liberated and genuine online presence.</div>
+                        <div className="mb-4">Pseudonymous social networks encourage open dialogue, creativity, and authenticity, fostering a sense of community where ideas, rather than personal details, take center stage. This paradigm offers users the freedom to explore diverse interests, connect with like-minded individuals, and embrace a more liberated and genuine online presence.</div>
+                        <Link href={'/Home'} className='bg-sky-500 hover:scale-105 p-1 px-3 rounded-2xl'>Back</Link>
                     </div>
+
                     <div className="grid grid-cols-2 gap-4 mt-8">
                         <img className="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1" />
                         <img className="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2" />
