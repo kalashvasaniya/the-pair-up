@@ -113,7 +113,6 @@ const Post = () => {
         }
     };
 
-
     return (
         <>
             {!showLoader ? (
@@ -315,7 +314,6 @@ const Post = () => {
                                 </button>
 
                             </form>
-
 
                         </div>
 

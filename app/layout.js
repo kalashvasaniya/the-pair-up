@@ -41,7 +41,7 @@ export function useTPU() {
   const highlightHashTags = (content) => {
     const regex1 = /#(\w+)/g;
     const regex2 = /@(\w+)/g;
-    const regex3 = /(\s|^)([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(?=[\s$.,])/g;
+    const regex3 = /(\s|^)([a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\/?[a-zA-Z0-9/.-]*)(?=[\s$.,])/g;
 
     const highlightedContent = content
       .replace(
@@ -57,7 +57,13 @@ export function useTPU() {
       )
       .replace(
         regex3,
-        '<a href="http://$2" class="text-sky-400 hover:underline"> $2</a>'
+        (p2) => {
+          if (p2.startsWith('http://') || p2.startsWith('https://')) {
+            return `<a href="${p2}" class="text-sky-400 hover:underline"> ${p2}</a>`;
+          } else {
+            return `<a href="https://${p2}" class="text-sky-400 hover:underline"> ${p2}</a>`;
+          }
+        }
       );
 
     return <div dangerouslySetInnerHTML={{ __html: highlightedContent }} />;

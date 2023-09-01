@@ -102,7 +102,7 @@ const Login = () => {
                             {/* FIND WITH ME  */}
                             <div class="pt-28 text-sky-400 bottomtotop">
                                 <div class="justify-start px-1 text-center flex md:justify-start animate-bounce">
-                                    FIND WITH ME
+                                    Explore with me!
                                 </div>
                                 <ul class="pt-4 flex space-x-6 justify-start text-center">
                                     <li class="transition p-1 ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
