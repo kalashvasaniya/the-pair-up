@@ -82,7 +82,7 @@ const Home = () => {
         const data = await response.json();
         setUserDetails1(data.userDetails1);
       } else {
-        // Handle error
+        localStorage.removeItem('token')
       }
     } catch (error) {
       console.log(error)

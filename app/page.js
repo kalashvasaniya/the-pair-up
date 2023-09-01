@@ -95,3 +95,26 @@ export default function Main() {
 //   });
 // };
 // const intervalId = setInterval(fetchAndDisplayNewData, 1000);
+
+
+
+
+// in Line 
+
+// let lastObjectId = null;
+
+// const fetchAndDisplayNewData = () => {
+//   const query = lastObjectId
+//     ? { _id: { $gt: lastObjectId } }
+//     : {};
+
+//   const cursor = db.users.find(query);
+
+//   cursor.forEach((document) => {
+//     const userData = JSON.stringify(document);
+//     print(userData);
+//     lastObjectId = document._id;
+//   });
+// };
+
+// const intervalId = setInterval(fetchAndDisplayNewData, 1000);

@@ -46,11 +46,14 @@ export function useTPU() {
     const highlightedContent = content
       .replace(
         regex1,
-        '<span class="hashtag text-sky-400 hover:underline">$&</span>'
+        '<span class="hashtag text-sky-400 hover:underline lowercase">$&</span>'
       )
       .replace(
         regex2,
-        `<a href="/user/profile/$1" class="hashtag text-sky-400 hover:underline">$&</a>`
+        (match, p1) =>
+          p1 === 'Founder'
+            ? `<a href="/user/profile/${p1}" class="hashtag text-sky-400 hover:underline">${match}</a>`
+            : `<a href="/user/profile/${p1.toLowerCase()}" class="hashtag text-sky-400 hover:underline lowercase">${match}</a>`
       )
       .replace(
         regex3,

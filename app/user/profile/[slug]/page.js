@@ -1045,8 +1045,8 @@ const Profile = ({ params }) => {
                         {/* post all  */}
                         {postDetails === undefined ? (
                           // If no posts, show a message to create a post
-                          <div className="my-8 flex justify-center">
-                            <Link href={'http://localhost:3000/Feed/Create/Post'} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
+                          <div className="my-8 flex justify-center pt-12">
+                            <div className='text-sky-400 font-medium'>No posts available!</div>
                           </div>
                         ) : (
                           <div className="flex gap-4 my-8 mx-6 mb-24">
