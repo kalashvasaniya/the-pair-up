@@ -35,9 +35,9 @@ const Story = () => {
                             <div class="z-10 w-64 text-sm text-gray-500 bg-white border border-gray-200 rounded-lg top-20">
                                 <div className="">
                                     <div class="z-10 px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg">
-                                        <h3 class="font-semibold ">Story Feature</h3>
+                                        <h3 class="font-semibold text-black">Story Feature</h3>
                                     </div>
-                                    <div class="px-3 py-2">
+                                    <div class="px-3 py-2 text-gray-700">
                                         <p>Exclusive for Verified and Active Members!
                                             <br />
                                             How to Join the Elite Circle?

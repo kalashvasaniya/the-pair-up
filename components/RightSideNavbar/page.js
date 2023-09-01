@@ -227,9 +227,12 @@ const RightSideNavbar = () => {
                                     <div className="ml-6 text-base bg-transparent text-sky-400 rounded-2xl">
                                         <div className="flex flex-row space-x-2">
 
-                                            {(userDetails1.tick === 'yes' || userDetails1.tick === 'active' || userDetails1.role === 'admin') && (
-                                                < Link href={'/Feed/Create/Story'} className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Story</Link>
-                                            )}
+                                            {(userDetails1.tick === 'yes' || userDetails1.tick === 'active' || userDetails1.role === 'admin') ? (
+                                                < Link href={'/Feed/Create/Story'} className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">
+                                                    Story
+                                                </Link>) : (< button disabled={true} className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">
+                                                    Story
+                                                </button>)}
 
                                             <Link href={'/Feed/Create/Post'} className="px-3 p-1 bg-black hover:scale-110 border border-gray-600 hover:text-sky-400 rounded-2xl">Post</Link>
 
