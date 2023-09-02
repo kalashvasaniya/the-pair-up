@@ -12,8 +12,14 @@ const Post = () => {
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
 
+    // Clear the success message after 1 second
+
+
     const [postMessage, setPostMessage] = useState('')
     const [showLoader, setShowLoader] = useState(false);
+
+    const [successMessage, setSuccessMessage] = useState(null);
+    const [isInputVisible, setIsInputVisible] = useState(true);
 
     const [like, setLike] = useState('')
     const [comment, setComment] = useState('')
@@ -26,6 +32,10 @@ const Post = () => {
             // After 2 seconds, show the Story
             setShowLoader(true);
         }, 1000);
+
+        setTimeout(() => {
+            setSuccessMessage(null);
+        });
 
         fetchUserDetails1()
         fetchUserDetails2();
@@ -76,28 +86,65 @@ const Post = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            },
-            body: JSON.stringify({ like, comment, content, image }),
-        });
-        const json = await res.json();
-        console.log(res);
-        console.log("hello")
+        try {
+            // Upload image to Cloudinary
+            const formData = new FormData();
+            formData.append('file', image);
+            formData.append('upload_preset', 'thepairup');
+            formData.append('cloud_name', 'dwb211sw5');
 
-        if (json.success) {
-            setPostMessage('Post Created Successfully');
-            setLike('');
-            setComment('');
-            setContent('');
-            setImage('');
-        } else {
-            alert(json.error);
+            const response = await fetch('https://api.cloudinary.com/v1_1/dwb211sw5/image/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to upload image');
+            }
+
+            const imageData = await response.json();
+            console.log(imageData.url);
+
+            // Submit form data to your API
+            const postData = {
+                like,
+                comment,
+                content,
+                image: imageData.url, // Use the image URL from Cloudinary
+            };
+
+            const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                body: JSON.stringify(postData),
+            });
+
+            if (res.ok) {
+                const json = await res.json();
+                console.log(json);
+
+                if (json.success) {
+                    setIsInputVisible(false);
+                    setSuccessMessage('Image uploaded');
+                    setPostMessage('Post Created Successfully');
+                    setLike('');
+                    setComment('');
+                    setContent('');
+                } else {
+                    throw new Error('Failed to create post');
+                }
+            } else {
+                throw new Error('Failed to create post');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while submitting the form.');
         }
     };
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -108,8 +155,6 @@ const Post = () => {
             setComment(value);
         } else if (name === 'content') {
             setContent(value);
-        } else if (name === 'image') {
-            setImage(value);
         }
     };
 
@@ -252,19 +297,22 @@ const Post = () => {
                                             </div>
 
                                             <div className="pt-8 py-4">
-                                                <label htmlFor="image" className="text-white text-base font-medium pt-8">
-                                                    Upload an Image
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    id="image"
-                                                    name="image"
-                                                    value={image}
-                                                    onChange={handleChange}
-                                                    className="block w-full p-2 text-white rounded-lg bg-gray-700"
-                                                    accept="image/*"
-                                                />
+                                                <div className="flex flex-col space-x-4">
+                                                    {isInputVisible && (
+                                                        <input
+                                                            type="file"
+                                                            id='fileInput'
+                                                            accept="image/*"
+                                                            onChange={(e) => {
+                                                                setImage(e.target.files[0])
+                                                            }} />
+                                                    )}
+                                                    {successMessage && (
+                                                        <div className="text-green-500 mt-2">{successMessage}</div>
+                                                    )}
+                                                </div>
                                             </div>
+
                                         </div>
 
                                         <hr className='mx-4 border-gray-500' />

@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import ScrollButton1 from '@/app/UI/ScrollButton1/page'
-import Image from 'next/image'
 
 const Login = () => {
     const [identifier, setIdentifier] = useState(''); // Use "identifier" to represent both email and username
