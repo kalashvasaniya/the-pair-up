@@ -23,6 +23,8 @@ const Profile = ({ params }) => {
   const [showTagged, setShowTagged] = useState(false);
 
   const [isFollowing, setIsFollowing] = useState(false);
+  const [divCount, setDivCount] = useState(0);
+
 
   const [showLoader, setShowLoader] = useState(false);
 
@@ -117,7 +119,6 @@ const Profile = ({ params }) => {
         const data = await response.json();
         setUserDetails3(data.posts);
         setUserDetails4(data.userPost);
-
       }
     } catch (error) {
       console.log(error)
@@ -160,10 +161,33 @@ const Profile = ({ params }) => {
     setShowTagged(!showTagged);
   };
 
+  let totalPosts = 0;
+
   const { logout, highlightHashTags } = useTPU();
 
   return (
     <>
+      {/* Count  */}
+      <div className="hidden">
+        {Array.isArray(reverse) && reverse.map((post, index) => (
+          <div key={index} className="">
+            {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
+              <div key={index} className="">
+                {params.slug === userPost.name && (
+                  <div key={index} className="">
+                    {(userPost._id === post.user) && (
+                      <div key={index} className="">
+                        {/* here  */}
+                        {totalPosts++}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
       {!showLoader ? (
         // Render the Story component after 2 seconds
         <Example />
@@ -277,7 +301,7 @@ const Profile = ({ params }) => {
                             </Link>
                           </div>
                           <div className="flex flex-row space-x-8 mt-8">
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>8</span> post</div>
+                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>243</span> followers</div>
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>1846</span> following</div>
                           </div>
@@ -528,7 +552,7 @@ const Profile = ({ params }) => {
 
                         {/* user details  */}
                         <div className="grid grid-cols-3 mt-1">
-                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>8</span> post</div>
+                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>243</span> followers</div>
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>1846</span> following</div>
                         </div>
@@ -776,7 +800,7 @@ const Profile = ({ params }) => {
                             </Link>
                           </div>
                           <div className="flex flex-row space-x-8 mt-8">
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>8</span> post</div>
+                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>243</span> followers</div>
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>1846</span> following</div>
                           </div>
@@ -1028,7 +1052,7 @@ const Profile = ({ params }) => {
 
                         {/* user details  */}
                         <div className="grid grid-cols-3 mt-1">
-                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>8</span> post</div>
+                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>243</span> followers</div>
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>1846</span> following</div>
                         </div>
