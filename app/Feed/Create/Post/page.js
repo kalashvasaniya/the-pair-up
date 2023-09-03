@@ -92,6 +92,7 @@ const Post = () => {
             formData.append('file', image);
             formData.append('upload_preset', 'thepairup');
             formData.append('cloud_name', 'dwb211sw5');
+            formData.append('folder', 'TPUPost');
 
             const response = await fetch('https://api.cloudinary.com/v1_1/dwb211sw5/image/upload', {
                 method: 'POST',
