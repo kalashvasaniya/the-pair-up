@@ -9,10 +9,23 @@ const BottomNavbar = () => {
 
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handleScroll = () => {
+        if (window.scrollY > 100) {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
+    };
 
     useEffect(() => {
         fetchUserDetails1()
         fetchUserDetails2();
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, [])
 
     const fetchUserDetails1 = async () => {
@@ -64,7 +77,8 @@ const BottomNavbar = () => {
     return (
         <>
             {/* bottom navbar */}
-            < nav className='md:hidden bg-sky-400 z-50 ' >
+            < nav className={`md:hidden bg-sky-400 z-50 ${isVisible ? 'hidden' : 'block'
+                }`} >
                 <div className="fixed z-50 w-full h-16 max-w-xs -translate-x-1/2 border border-gray-500 bg-black rounded-full bottom-4 left-1/2">
                     <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
 

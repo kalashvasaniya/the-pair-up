@@ -8,6 +8,7 @@ import { useTPU } from '@/app/layout'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Example from '@/app/UI/Loader/page'
+import ScrollButton1 from '@/app/UI/ScrollButton1/page'
 
 const Profile = ({ params }) => {
   const [userDetails, setUserDetails] = useState(null);
@@ -1339,6 +1340,7 @@ const Profile = ({ params }) => {
               </div>
             </div>
           )}
+          <ScrollButton1 />
           <BottomNavbar />
         </div>
       )}
