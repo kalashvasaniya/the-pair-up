@@ -87,40 +87,13 @@ const Post = () => {
         e.preventDefault();
 
         try {
-            // Upload image to Cloudinary
-            const formData = new FormData();
-            formData.append('file', image);
-            formData.append('upload_preset', 'thepairup');
-            formData.append('cloud_name', 'dwb211sw5');
-            formData.append('folder', 'TPUPost');
-
-            const response = await fetch('https://api.cloudinary.com/v1_1/dwb211sw5/image/upload', {
-                method: 'POST',
-                body: formData,
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to upload image');
-            }
-
-            const imageData = await response.json();
-            console.log(imageData.url);
-
-            // Submit form data to your API
-            const postData = {
-                like,
-                comment,
-                content,
-                image: imageData.url, // Use the image URL from Cloudinary
-            };
-
             const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
-                body: JSON.stringify(postData),
+                body: JSON.stringify({ like, comment, content, image })
             });
 
             if (res.ok) {
@@ -134,6 +107,7 @@ const Post = () => {
                     setLike('');
                     setComment('');
                     setContent('');
+                    setImage('')
                 } else {
                     throw new Error('Failed to create post');
                 }
@@ -156,6 +130,8 @@ const Post = () => {
             setComment(value);
         } else if (name === 'content') {
             setContent(value);
+        } else if (name === 'image') {
+            setImage(value);
         }
     };
 
@@ -302,11 +278,10 @@ const Post = () => {
                                                     {isInputVisible && (
                                                         <input
                                                             type="file"
-                                                            id='fileInput'
-                                                            accept="image/*"
-                                                            onChange={(e) => {
-                                                                setImage(e.target.files[0])
-                                                            }} />
+                                                            name="image"
+                                                            id="image"
+                                                            value={image}
+                                                            onChange={handleChange} />
                                                     )}
                                                     {successMessage && (
                                                         <div className="text-green-500 mt-2">{successMessage}</div>
