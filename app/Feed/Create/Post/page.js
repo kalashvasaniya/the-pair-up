@@ -11,9 +11,7 @@ import Example from '@/app/UI/Loader/page'
 const Post = () => {
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
-
-    // Clear the success message after 1 second
-
+    const [createObjectURL, setCreateObjectURL] = useState(null);
 
     const [postMessage, setPostMessage] = useState('')
     const [showLoader, setShowLoader] = useState(false);
@@ -25,7 +23,6 @@ const Post = () => {
     const [comment, setComment] = useState('')
     const [content, setContent] = useState('')
     const [image, setImage] = useState('')
-
 
     useEffect(() => {
         setTimeout(() => {
@@ -119,7 +116,6 @@ const Post = () => {
             alert('An error occurred while submitting the form.');
         }
     };
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -275,6 +271,9 @@ const Post = () => {
 
                                             <div className="pt-8 py-4">
                                                 <div className="flex flex-col space-x-4">
+                                                    {isInputVisible && (
+                                                        <img src={createObjectURL} className='rounded-3xl mb-4' />
+                                                    )}
                                                     {isInputVisible && (
                                                         <input
                                                             type="file"
