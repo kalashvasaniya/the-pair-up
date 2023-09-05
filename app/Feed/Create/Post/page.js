@@ -126,8 +126,6 @@ const Post = () => {
             setComment(value);
         } else if (name === 'content') {
             setContent(value);
-        } else if (name === 'image') {
-            setImage(value);
         }
     };
 
@@ -279,8 +277,10 @@ const Post = () => {
                                                             type="file"
                                                             name="image"
                                                             id="image"
-                                                            value={image}
-                                                            onChange={handleChange} />
+                                                            onChange={(e) => {
+                                                                setImage(URL.createObjectURL(e.target.files[0]))
+                                                                setCreateObjectURL(URL.createObjectURL(e.target.files[0]))
+                                                            }} />
                                                     )}
                                                     {successMessage && (
                                                         <div className="text-green-500 mt-2">{successMessage}</div>
