@@ -18,6 +18,10 @@ const Post = () => {
 
     const [successMessage, setSuccessMessage] = useState(null);
     const [isInputVisible, setIsInputVisible] = useState(true);
+    const [uploading, setUploading] = useState(false);
+    const [uploadSuccess, setUploadSuccess] = useState(false);
+    const [uploadMessage, setUploadMessage] = useState('Upload Image');
+    const [uploadButtonDisabled, setUploadButtonDisabled] = useState(true);
 
     const [like, setLike] = useState('')
     const [comment, setComment] = useState('')
@@ -80,6 +84,37 @@ const Post = () => {
         }
     };
 
+    const submit = async (e) => {
+        e.preventDefault();
+
+        setUploading(true);
+        setUploadMessage('Uploading...');
+
+        // Simulate the upload process for 5 seconds (replace with your actual upload logic)
+        setTimeout(() => {
+            setUploading(false);
+            setUploadSuccess(true);
+            setUploadMessage('Upload Successful');
+        }, 5000);
+        const formData = new FormData();
+        formData.append('file', image);
+        formData.append('upload_preset', 'thepairup');
+        formData.append('cloud_name', 'dwb211sw5');
+        formData.append('folder', 'TPUList');
+
+        const response2 = await fetch('https://api.cloudinary.com/v1_1/dwb211sw5/image/upload', {
+            method: 'POST',
+            body: formData,
+        });
+        if (response2.ok) {
+            const data = await response2.json();
+            setImage(data.secure_url);
+            console.log('Upload response:', data);
+        } else {
+            console.error('Upload failed:', response2.statusText);
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -93,47 +128,26 @@ const Post = () => {
                 body: JSON.stringify({ like, comment, content, image })
             });
 
-            if (res.ok) {
-                const json = await res.json();
-                console.log("helo");
+            const json = await res.json();
+            console.log("hello", json);
 
-                if (json.success) {
-                    setIsInputVisible(false);
-                    setSuccessMessage('Image uploaded');
-                    setPostMessage('Post Created Successfully');
-                    setLike('');
-                    setComment('');
-                    setContent('');
-                    setImage('');
+            if (json.success) {
+                setIsInputVisible(false);
+                setSuccessMessage('Image uploaded');
+                setPostMessage('Post Created Successfully');
+                setLike('');
+                setComment('');
+                setContent('');
 
-                    const formData = new FormData();
-                    formData.append('file', image);
-                    formData.append('upload_preset', 'thepairup');
-                    formData.append('cloud_name', 'dwb211sw5');
-
-                    const response = await fetch('https://api.cloudinary.com/v1_1/dwb211sw5/image/upload/', {
-                        method: 'POST',
-                        body: formData,
-                    });
-                    if (response.ok) {
-                        const data = await response.json();
-                        setImage(data.secure_url)
-                        console.log('Upload response:', data);
-                    } else {
-                        console.error('Upload failed:', response.statusText);
-                    }
-                } else {
-                    throw new Error('Failed to create post2');
-                }
             } else {
-                console.log("helo2");
-                throw new Error('Failed to create post3');
+                throw new Error('Failed to create post');
             }
         } catch (error) {
             console.error(error);
             alert('An error occurred while submitting the form.');
         }
     };
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -296,7 +310,22 @@ const Post = () => {
                                                             onChange={(e) => {
                                                                 setImage(e.target.files[0])
                                                                 setCreateObjectURL(URL.createObjectURL(e.target.files[0]))
-                                                            }} />
+                                                                if (e.target.files.length > 0) {
+                                                                    setUploadButtonDisabled(false); // Enable the button
+                                                                } else {
+                                                                    setUploadButtonDisabled(true); // Disable the button
+                                                                }
+                                                            }}
+                                                        />
+                                                    )}
+                                                    {isInputVisible && (
+                                                        <button
+                                                            className={`bg-sky-500 text-lg px-4 p-2 rounded-full ${uploadSuccess ? 'bg-green-500' : ''}`}
+                                                            onClick={uploadSuccess ? null : submit}
+                                                            disabled={uploading || uploadButtonDisabled}
+                                                        >
+                                                            {uploadMessage}
+                                                        </button>
                                                     )}
                                                     {successMessage && (
                                                         <div className="text-green-500 mt-2">{successMessage}</div>
