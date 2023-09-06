@@ -348,7 +348,7 @@ const Profile = ({ params }) => {
                                                 </div>
                                                 <div key={index} className="">
                                                   {post.image === '' ? <div className=""></div> : (
-                                                    <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                    <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                 </div>
                                                 <div className="text-xs mt-6 text-gray-400 truncate">
                                                   {formatDate(post.date)}
@@ -378,7 +378,7 @@ const Profile = ({ params }) => {
                                             <div className="text-sm">
                                               <div key={index} className="">
                                                 {post.image === '' ? <div className="hidden"></div> : (
-                                                  <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='rounded-xl mb-4'></Image>)}
+                                                  <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='rounded-xl mb-4'></Image>)}
                                               </div>
                                             </div>
                                           </div>
@@ -411,7 +411,7 @@ const Profile = ({ params }) => {
                                                     </div>
                                                     <div key={index} className="">
                                                       {post.image === '' ? <div className=""></div> : (
-                                                        <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                        <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                     </div>
                                                     <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                       {formatDate(post.date)}
@@ -443,7 +443,7 @@ const Profile = ({ params }) => {
                                                     </div>
                                                     <div key={index} className="">
                                                       {post.image === '' ? <div className=""></div> : (
-                                                        <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                        <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                     </div>
                                                     <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                       {formatDate(post.date)}
@@ -626,7 +626,7 @@ const Profile = ({ params }) => {
                                                     </div>
                                                     <div key={index} className="">
                                                       {post.image === '' ? <div className=""></div> : (
-                                                        <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                        <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                     </div>
                                                     <div className="text-xs mt-6 text-gray-400 truncate">
                                                       {formatDate(post.date)}
@@ -656,7 +656,7 @@ const Profile = ({ params }) => {
                                               <div className="text-sm">
                                                 <div key={index} className="">
                                                   {post.image === '' ? <div className="hidden"></div> : (
-                                                    <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='rounded-xl mb-4'></Image>)}
+                                                    <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='rounded-xl mb-4'></Image>)}
                                                 </div>
                                               </div>
                                             </div>
@@ -688,7 +688,7 @@ const Profile = ({ params }) => {
                                                       </div>
                                                       <div key={index} className="">
                                                         {post.image === '' ? <div className=""></div> : (
-                                                          <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                          <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                       </div>
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
@@ -720,7 +720,7 @@ const Profile = ({ params }) => {
                                                       </div>
                                                       <div key={index} className="">
                                                         {post.image === '' ? <div className=""></div> : (
-                                                          <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                          <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                       </div>
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
@@ -916,7 +916,7 @@ const Profile = ({ params }) => {
                                               </div>
                                               <div key={index} className="">
                                                 {post.image === '' ? <div className=""></div> : (
-                                                  <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                  <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                               </div>
                                               <div className="text-xs mt-6 text-gray-400 truncate">
                                                 {formatDate(post.date)}
@@ -946,7 +946,7 @@ const Profile = ({ params }) => {
                                           <div className="text-sm">
                                             <div key={index} className="">
                                               {post.image === '' ? <div className="hidden"></div> : (
-                                                <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='rounded-xl mb-4'></Image>)}
+                                                <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='rounded-xl mb-4'></Image>)}
                                             </div>
                                           </div>
                                         </div>
@@ -978,7 +978,7 @@ const Profile = ({ params }) => {
                                                   </div>
                                                   <div key={index} className="">
                                                     {post.image === '' ? <div className=""></div> : (
-                                                      <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                      <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                   </div>
                                                   <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                     {formatDate(post.date)}
@@ -1010,7 +1010,7 @@ const Profile = ({ params }) => {
                                                   </div>
                                                   <div key={index} className="">
                                                     {post.image === '' ? <div className=""></div> : (
-                                                      <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                      <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                   </div>
                                                   <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                     {formatDate(post.date)}
@@ -1196,7 +1196,7 @@ const Profile = ({ params }) => {
                                                     </div>
                                                     <div key={index} className="">
                                                       {post.image === '' ? <div className=""></div> : (
-                                                        <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                        <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                     </div>
                                                     <div className="text-xs mt-6 text-gray-400 truncate">
                                                       {formatDate(post.date)}
@@ -1226,7 +1226,7 @@ const Profile = ({ params }) => {
                                               <div className="text-sm">
                                                 <div key={index} className="">
                                                   {post.image === '' ? <div className="hidden"></div> : (
-                                                    <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='rounded-xl mb-4'></Image>)}
+                                                    <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='rounded-xl mb-4'></Image>)}
                                                 </div>
                                               </div>
                                             </div>
@@ -1258,7 +1258,7 @@ const Profile = ({ params }) => {
                                                       </div>
                                                       <div key={index} className="">
                                                         {post.image === '' ? <div className=""></div> : (
-                                                          <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                          <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                       </div>
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
@@ -1290,7 +1290,7 @@ const Profile = ({ params }) => {
                                                       </div>
                                                       <div key={index} className="">
                                                         {post.image === '' ? <div className=""></div> : (
-                                                          <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
+                                                          <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl'></Image>)}
                                                       </div>
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}

@@ -95,7 +95,7 @@ const Post = () => {
 
             if (res.ok) {
                 const json = await res.json();
-                console.log(json);
+                console.log("helo");
 
                 if (json.success) {
                     setIsInputVisible(false);
@@ -104,12 +104,30 @@ const Post = () => {
                     setLike('');
                     setComment('');
                     setContent('');
-                    setImage('')
+                    setImage('');
+
+                    const formData = new FormData();
+                    formData.append('file', image);
+                    formData.append('upload_preset', 'thepairup');
+                    formData.append('cloud_name', 'dwb211sw5');
+
+                    const response = await fetch('https://api.cloudinary.com/v1_1/dwb211sw5/image/upload/', {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        setImage(data.secure_url)
+                        console.log('Upload response:', data);
+                    } else {
+                        console.error('Upload failed:', response.statusText);
+                    }
                 } else {
-                    throw new Error('Failed to create post');
+                    throw new Error('Failed to create post2');
                 }
             } else {
-                throw new Error('Failed to create post');
+                console.log("helo2");
+                throw new Error('Failed to create post3');
             }
         } catch (error) {
             console.error(error);
@@ -275,10 +293,8 @@ const Post = () => {
                                                     {isInputVisible && (
                                                         <input
                                                             type="file"
-                                                            name="image"
-                                                            id="image"
                                                             onChange={(e) => {
-                                                                setImage(URL.createObjectURL(e.target.files[0]))
+                                                                setImage(e.target.files[0])
                                                                 setCreateObjectURL(URL.createObjectURL(e.target.files[0]))
                                                             }} />
                                                     )}

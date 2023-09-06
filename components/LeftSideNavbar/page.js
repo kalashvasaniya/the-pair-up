@@ -161,7 +161,7 @@ const LeftSideNavbar = () => {
                     <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
-                                <div class="mb-2 text-sm font-normal">For Now, The PairUp is exclusively available to a select group of fewer than <span className='underline decoration-sky-400 '>50 colleges</span>."</div>
+                                <div class="mb-2 text-sm font-normal">"PairUp, is an exclusive for the exceptional scholars of VIT Student, where only <span className='underline decoration-sky-400 '>4 colleges </span>unite."</div>
                             </div>
                         </div>
                     </div>
@@ -173,7 +173,7 @@ const LeftSideNavbar = () => {
                 </div>
 
                 {/* Footer LeftSideNavbar  */}
-                <div className="mt-12 px-6 text-xs flex flex-col">
+                <div className="mt-8 px-6 text-xs flex flex-col">
                     <div className="flex flex-row space-x-2 text-gray-400">
                         <Link href={'/EXT/About'} className="hover:underline">About</Link>
                         <Link href={'/EXT/Contact'} className="hover:underline">Contact</Link>

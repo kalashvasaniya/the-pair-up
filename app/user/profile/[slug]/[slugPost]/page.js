@@ -286,7 +286,7 @@ export default function postLink({ params }) {
                               </div>
                               <div className="">
                                 {post.image === '' ? <div className=""></div> : (
-                                  <Image src={`/${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl w-full'></Image>)}
+                                  <Image src={`${post.image}`} width={1000} height={1000} alt={`${post.image}`} className='mt-4 rounded-xl w-full'></Image>)}
                               </div>
                             </div>
 
