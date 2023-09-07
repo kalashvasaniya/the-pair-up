@@ -33,6 +33,7 @@ export function useTPU() {
       <Example />
       localStorage.removeItem('token');
       localStorage.removeItem('formattedDate');
+      localStorage.removeItem('bannerCanceled');
       setUser({ value: null })
       window.location.reload();
     }

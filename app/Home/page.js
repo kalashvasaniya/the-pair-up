@@ -12,6 +12,7 @@ import { useRef } from 'react'
 import Message from '../Message/page'
 import { useTPU } from '@/app/layout'
 import Example from '../UI/Loader/page'
+import PopupMsg from '@/components/PopupMsg/page'
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -222,6 +223,7 @@ const Home = () => {
 
                   <div>
 
+                    <PopupMsg />
                     <Feed />
 
                   </div>

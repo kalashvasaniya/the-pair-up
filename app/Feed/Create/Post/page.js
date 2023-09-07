@@ -109,7 +109,6 @@ const Post = () => {
         if (response2.ok) {
             const data = await response2.json();
             setImage(data.secure_url);
-            console.log('Upload response:', data);
         } else {
             console.error('Upload failed:', response2.statusText);
         }
@@ -129,7 +128,6 @@ const Post = () => {
             });
 
             const json = await res.json();
-            console.log("hello", json);
 
             if (json.success) {
                 setIsInputVisible(false);
@@ -138,7 +136,9 @@ const Post = () => {
                 setLike('');
                 setComment('');
                 setContent('');
-
+                setTimeout(() => {
+                    window.location.href = '/Home'
+                }, 2000);
             } else {
                 throw new Error('Failed to create post');
             }
@@ -147,7 +147,6 @@ const Post = () => {
             alert('An error occurred while submitting the form.');
         }
     };
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -281,6 +280,7 @@ const Post = () => {
 
                                         {/* Post */}
                                         <div className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                            {/* Content */}
                                             <div className="">
                                                 <label htmlFor="content" className="text-white text-base font-medium">
                                                     Post Here
@@ -298,7 +298,7 @@ const Post = () => {
                                                     maxLength={200}
                                                 ></textarea>
                                             </div>
-
+                                            {/* image */}
                                             <div className="pt-8 py-4">
                                                 <div className="flex flex-col space-x-4">
                                                     {isInputVisible && (

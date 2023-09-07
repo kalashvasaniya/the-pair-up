@@ -25,7 +25,7 @@ const Setting = () => {
         <Example />
       ) : (
         <div className="">
-
+          Hello
         </div>
       )}
     </>

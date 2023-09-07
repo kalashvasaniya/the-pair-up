@@ -35,7 +35,6 @@ const RightSideNavbar = () => {
             if (response.ok) {
                 const data = await response.json();
                 setUserDetails1(data.userDetails1);
-                console.log("User Details", data);
             } else {
                 // Handle error
             }
@@ -57,7 +56,6 @@ const RightSideNavbar = () => {
             if (response.ok) {
                 const data = await response.json();
                 setUserDetails2(data.userDetails2);
-                console.log("User Details", data);
             } else {
                 // Handle error
             }
