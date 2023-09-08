@@ -59,7 +59,7 @@ const LeftSideNavbar = () => {
 
     return (
         <>
-            <div className="md:block hidden col-start-11 col-end-13 bg-black border-l rounded-l-[5rem] border-gray-500">
+            <div className="md:block hidden col-start-11 col-end-13 bg-black border-l h-screen rounded-l-[5rem] border-gray-500">
 
                 {/* Profile  */}
                 <div className="mt-20 px-6">

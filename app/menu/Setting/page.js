@@ -25,7 +25,7 @@ const Setting = () => {
         // Render the Story component after 2 seconds
         <Example />
       ) : (
-        <div className="h-screen flex flex-col justify-center items-center">
+        <div className="h-screen flex flex-col justify-center items-center bg-black text-white">
           <div class="text-gray-400">
             <div class="flex md:flex-row flex-col text-center justify-center">
               <div class="p-10 hover:scale-110 transition ease-in-out delay-150">

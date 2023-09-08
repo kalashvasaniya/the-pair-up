@@ -166,11 +166,11 @@ const Post = () => {
                 // Render the Story component after 2 seconds
                 <Example />
             ) : (
-                <div className="">
+                <div className="bg-black">
                     {userDetails2.avatar ? (
                         <div className="">
                             <RightSideNavbar />
-                            <div className="flex flex-col justify-center items-center mb-24">
+                            <div className="flex flex-col justify-center items-center pb-52">
 
                                 <div className="text-4xl text-sky-400 font-bold pt-12">
                                     Create Post
@@ -180,7 +180,7 @@ const Post = () => {
                                     <p className="text-green-400 md:text-xl text-lg py-4 font-bold underline underline-offset-1">{postMessage}</p>
                                 )}
 
-                                <div className="md:max-w-xl py-6 flex flex-col justify-center items-center px-4">
+                                <div className="max-w-xl my-6 flex flex-col justify-center items-center bg-black">
 
                                     <form onSubmit={handleSubmit} className="flex flex-col bg-gray-800 rounded-xl">
                                         {/* Name  */}
@@ -203,7 +203,7 @@ const Post = () => {
                                                             {/* Tick  */}
                                                             <div className="flex flex-row">
 
-                                                                <div className="text-sm flex justify-center items-center pr-2">{userDetails1.name}</div>
+                                                                <div className="text-sm flex justify-center items-center pr-2 text-white">{userDetails1.name}</div>
 
                                                                 {userDetails1.role === 'admin' && (
                                                                     <div className="group">
@@ -279,7 +279,7 @@ const Post = () => {
                                         <hr className='mx-4 border-gray-500' />
 
                                         {/* Post */}
-                                        <div className="mx-4 border-gray-500 text-sm py-4 px-2">
+                                        <div className="mx-4 border-gray-500 text-sm py-4">
                                             {/* Content */}
                                             <div className="">
                                                 <label htmlFor="content" className="text-white text-base font-medium">
@@ -320,7 +320,7 @@ const Post = () => {
                                                     )}
                                                     {isInputVisible && (
                                                         <button
-                                                            className={`bg-sky-500 text-lg px-4 p-2 rounded-full ${uploadSuccess ? 'bg-green-500' : ''}`}
+                                                            className={`bg-sky-500 text-lg px-4 p-2 rounded-full text-white ${uploadSuccess ? 'bg-green-500' : ''}`}
                                                             onClick={uploadSuccess ? null : submit}
                                                             disabled={uploading || uploadButtonDisabled}
                                                         >
@@ -338,7 +338,7 @@ const Post = () => {
                                         <hr className='mx-4 border-gray-500' />
 
                                         {/* Comment & Likes */}
-                                        <div className="bg-gray-800 flex justify-between p-1">
+                                        <div className="bg-gray-800 flex justify-between p-1 text-white">
                                             <div className="flex flex-row space-x-4">
                                                 <button value={like} onChange={handleChange} className="pl-4 flex flex-row justify-center items-center space-x-2">
                                                     <svg

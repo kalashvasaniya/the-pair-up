@@ -81,7 +81,7 @@ export default function RootLayout({ children }) {
       <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
       </head>
-      <body className={`${inter.className} bg-black`}>
+      <body className={inter.className}>
         {children}
         <div className="bg-black ">
         </div>

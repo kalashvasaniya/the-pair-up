@@ -90,8 +90,8 @@ const Feed = () => {
                 <div className="">
                     <Story />
 
-                    <div className="flex justify-center">
-                        <div className="md:max-w-xl space-y-6 mt-4 mb-32">
+                    <div className="flex justify-center bg-black">
+                        <div className="md:max-w-xl space-y-6 mt-4 mb-32 bg-black">
 
                             {/* User Details */}
                             <div className="">
@@ -104,7 +104,7 @@ const Feed = () => {
                                                         {(post.user === userPost._id) && (post.user === userDetails.user) && (
                                                             <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-8">
                                                                 {/* Name  */}
-                                                                <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-24 p-3 rounded-t-xl">
+                                                                <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-20 p-3 rounded-t-xl">
                                                                     {/* image  */}
                                                                     <div className="">
                                                                         <div className="">

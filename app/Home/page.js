@@ -122,14 +122,14 @@ const Home = () => {
         // Render the Story component after 2 seconds
         <Example />
       ) : (
-        <div className="">
+        <div className="bg-black">
           <div className="bg-black text-white">
             <div className="">
-              <div className="md:grid md:grid-cols-12 flex flex-col">
+              <div className="md:grid md:grid-cols-12 flex flex-col bg-black">
 
                 <RightSideNavbar />
 
-                <div className="col-start-4 col-end-11 bg-black h-screen px-4">
+                <div className="col-start-4 col-end-11 bg-black px-4">
 
                   {/* Navbar in mobile  */}
                   <div className="md:hidden">
@@ -221,7 +221,7 @@ const Home = () => {
                       </nav>)}
                   </div>
 
-                  <div>
+                  <div className='bg-black'>
 
                     <PopupMsg />
                     <Feed />

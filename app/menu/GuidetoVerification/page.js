@@ -27,7 +27,7 @@ const GuidetoVerification = () => {
             ) : (
                 <div className="">
                     <Navbar />
-                    <div className="text-white bg-black h-screen">
+                    <div className="text-white bg-black">
                         <section class="px-8 flex flex-col justify-center items-center py-40">
                             <div class="flex flex-col space-y-16">
                                 <div class="">
