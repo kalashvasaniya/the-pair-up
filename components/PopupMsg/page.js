@@ -30,7 +30,7 @@ const PopupMsg = () => {
     return (
         <>
             {showBanner && user.value ? (
-                <div className="fixed top-0 z-50 left-0 w-full bg-sky-500 text-white text-center md:py-4 py-7">
+                <div className="fixed top-0 z-50 left-0 w-full bg-sky-500 border-b border-white text-white text-center md:py-4 py-7">
                     <p className="text-sm font-mono font-semibold flex justify-center">2021 Batch FAT Results are out!
                         <button onClick={cancel}>
                             <svg

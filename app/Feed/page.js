@@ -256,7 +256,7 @@ const Feed = () => {
                                                                     <div className="flex flex-row space-x-4">
 
                                                                         {/* Here  */}
-                                                                        <button className={`pl-4 flex flex-row justify-center items-center space-x-2 ${post.like > 0 ? 'liked' : ''}`}
+                                                                        <button className={`pl-4 flex flex-row justify-center items-center space-x-2 ${post.like >= 0 ? 'liked' : ''}`}
                                                                             key={index}
                                                                             onClick={async (e) => {
                                                                                 e.preventDefault();
