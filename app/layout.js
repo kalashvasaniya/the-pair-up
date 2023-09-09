@@ -16,7 +16,6 @@ export function useTPU() {
   const [user, setUser] = useState({ value: null });
 
   useEffect(() => {
-
     const token = localStorage.getItem('token')
     try {
       if (token) {
@@ -75,7 +74,25 @@ export function useTPU() {
 
 export default function RootLayout({ children }) {
 
+  // Inspect Element of 
+
+  // document.addEventListener("contextmenu", function (e) {
+  //   e.preventDefault()
+  // })
+  // document.onkeydown = function (e) {
+  //   if (e.ctrlKey &&
+  //     (e.keyCode === 67 ||
+  //       e.keyCode === 86 ||
+  //       e.keyCode === 85 ||
+  //       e.keyCode === 117)) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
+
   // const { logout } = useTPU();
+  
   return (
     <html lang="en">
       <head>
