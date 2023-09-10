@@ -74,7 +74,7 @@ export function useTPU() {
 
 export default function RootLayout({ children }) {
 
-  // Inspect Element of 
+  // Inspect Element Shutdown babes....
 
   // document.addEventListener("contextmenu", function (e) {
   //   e.preventDefault()
@@ -92,7 +92,7 @@ export default function RootLayout({ children }) {
   // }
 
   // const { logout } = useTPU();
-  
+
   return (
     <html lang="en">
       <head>
@@ -106,6 +106,6 @@ export default function RootLayout({ children }) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </body>
-    </html>
+    </html >
   )
 }

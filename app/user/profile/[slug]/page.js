@@ -281,11 +281,23 @@ const Profile = ({ params }) => {
                               </div>)}
                           </div>
 
-                          <div className="text-sm text-gray-500">{userDetails2.bio}<span className='text-sky-400 text-xs'> - {userDetails2.gender}</span></div>
-                          <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{userDetails2.relation}</span></div>
-                          <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
-                          <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{userDetails2.LoveTo}</span></div>
-                          <div className="text-sm mt-2">Bath: <span className='text-sky-400 hover:underline'>{userDetails2.bath}</span></div>
+
+                          <div className="text-sm text-gray-500">{userDetails2.bio}<span className='text-sky-400 text-xs'>  {userDetails2.gender}</span></div>
+                          {userDetails1.tick === 'active' ? (
+                            <div className="">
+                              <div className="text-sm mt-2">Leader: <span className='text-sky-400 hover:underline'>{userDetails2.relation}</span></div>
+                              <div className="text-sm mt-2">Since: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
+                              <div className="text-sm mt-2">Website: <Link href={`https://${userDetails2.LoveTo}`} className='text-sky-400 hover:underline'>{userDetails2.LoveTo}</Link></div>
+                              <div className="text-sm mt-2">Insta: <Link href={`https://instagram.com/${userDetails2.bath}`} className='text-sky-400 hover:underline'>{userDetails2.bath}</Link></div>
+                            </div>
+                          ) : (
+                            <div className="">
+                              <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{userDetails2.relation}</span></div>
+                              <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
+                              <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{userDetails2.LoveTo}</span></div>
+                              <div className="text-sm mt-2">Bath: <span className='text-sky-400 hover:underline'>{userDetails2.bath}</span></div>
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -293,7 +305,9 @@ const Profile = ({ params }) => {
                       <div className="md:grid flex col-start-5 col-end-13">
                         <div className="mt-8 justify-start text-base font-medium items-start">
                           <div className="flex flex-row justify-center items-center pl-0">
-                            <Link href={'/user/Details'} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 mr-4'>Edit Profile</Link>
+                            {userDetails1.tick === 'active' ? (<Link href={''} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 mr-4'>Hola 👋</Link>) : (
+                              <Link href={'/user/Details'} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 mr-4'>Edit Profile</Link>
+                            )}
                             <button onClick={logout} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500'>Logout</button>
                             <Link href={'/menu/Setting'} className='p-1 px-4 rounded-2xl hover:scale-105'>
                               <svg aria-label="Options" class="x1lliihq x1n2onr6" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Options</title><circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path d="M14.232 3.656a1.269 1.269 0 0 1-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 0 1-.796.66m-.001 16.688a1.269 1.269 0 0 1 .796.66l.505.996h1.862l.505-.996a1.269 1.269 0 0 1 .796-.66M3.656 9.768a1.269 1.269 0 0 1-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 0 1 .66.796m16.688-.001a1.269 1.269 0 0 1 .66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 0 1-.66-.796M7.678 4.522a1.269 1.269 0 0 1-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 0 1-.096 1.03m11.8 11.799a1.269 1.269 0 0 1 1.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 0 1 .096-1.03m-14.956.001a1.269 1.269 0 0 1 .096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 0 1 1.03.096m11.799-11.8a1.269 1.269 0 0 1-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 0 1-1.03-.096" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -327,7 +341,7 @@ const Profile = ({ params }) => {
                       {postDetails === undefined ? (
                         // If no posts, show a message to create a post
                         <div className="my-8 flex justify-center pt-12">
-                          <Link href={'http://localhost:3000/Feed/Create/Post'} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
+                          <Link href={`${process.env.NEXT_PUBLIC_HOST}/Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
                         </div>
                       ) : (
                         <div className="grid grid-cols-3 gap-6 my-8">
@@ -559,11 +573,22 @@ const Profile = ({ params }) => {
 
                           </div>
 
-                          <div className="text-xs text-gray-500">{userDetails2.bio} <span className='text-sky-400 text-xs'> - {userDetails2.gender}</span></div>
-                          <div className="text-xs mt-2">Relation: <span className='text-sky-400 hover:underline'>{userDetails2.relation}</span></div>
-                          <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
-                          <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{userDetails2.LoveTo}</span></div>
-                          <div className="text-xs mt-2">Bath: <span className='text-sky-400 hover:underline truncate'>{userDetails2.bath}</span></div>
+                          <div className="text-xs text-gray-500">{userDetails2.bio} <span className='text-sky-400 text-xs'> {userDetails2.gender}</span></div>
+                          {userDetails1.tick === 'active' ? (
+                            <div className="">
+                              <div className="text-xs mt-2">Leader: <span className='text-sky-400 hover:underline'>{userDetails2.relation}</span></div>
+                              <div className="text-xs mt-2">Since: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
+                              <div className="text-xs mt-2">Website: <Link href={`https://${userDetails2.LoveTo}`} className='text-sky-400 hover:underline'>{userDetails2.LoveTo}</Link></div>
+                              <div className="text-xs mt-2">Insta: <Link href={`https://instagram.com/${userDetails2.bath}`} className='text-sky-400 hover:underline'>{userDetails2.bath}</Link></div>
+                            </div>
+                          ) : (
+                            <div className="">
+                              <div className="text-xs mt-2">Relation: <span className='text-sky-400 hover:underline'>{userDetails2.relation}</span></div>
+                              <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
+                              <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{userDetails2.LoveTo}</span></div>
+                              <div className="text-xs mt-2">Bath: <span className='text-sky-400 hover:underline truncate'>{userDetails2.bath}</span></div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -575,7 +600,9 @@ const Profile = ({ params }) => {
 
                         {/* button  */}
                         <div className="flex flex-row justify-center items-center">
-                          <Link href={'/user/Details'} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 mr-4 text-sm'>Edit Profile</Link>
+                          {userDetails1.tick === 'active' ? (<Link href={''} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 mr-4'>Hola 👋</Link>) : (
+                            <Link href={'/user/Details'} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 mr-4'>Edit Profile</Link>
+                          )}
                           <button onClick={logout} href={''} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 text-sm'>Logout</button>
                           <Link href={'/menu/Setting'} className='p-1 px-4 rounded-2xl hover:scale-105'>
                             <svg aria-label="Options" class="x1lliihq x1n2onr6" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Options</title><circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path d="M14.232 3.656a1.269 1.269 0 0 1-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 0 1-.796.66m-.001 16.688a1.269 1.269 0 0 1 .796.66l.505.996h1.862l.505-.996a1.269 1.269 0 0 1 .796-.66M3.656 9.768a1.269 1.269 0 0 1-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 0 1 .66.796m16.688-.001a1.269 1.269 0 0 1 .66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 0 1-.66-.796M7.678 4.522a1.269 1.269 0 0 1-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 0 1-.096 1.03m11.8 11.799a1.269 1.269 0 0 1 1.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 0 1 .096-1.03m-14.956.001a1.269 1.269 0 0 1 .096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 0 1 1.03.096m11.799-11.8a1.269 1.269 0 0 1-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 0 1-1.03-.096" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -604,7 +631,7 @@ const Profile = ({ params }) => {
                         {postDetails === undefined ? (
                           // If no posts, show a message to create a post
                           <div className="my-8 flex justify-center">
-                            <Link href={'http://localhost:3000/Feed/Create/Post'} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
+                            <Link href={`${process.env.NEXT_PUBLIC_HOST}/Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
                           </div>
                         ) : (
                           <div className="flex gap-4 my-8 mx-6 mb-24">
@@ -846,11 +873,22 @@ const Profile = ({ params }) => {
                               </div>)}
                           </div>
 
-                          <div className="text-sm text-gray-500">{slugDetails.bio}<span className={`text-xs ${slugDetails.gender === 'Male' && 'text-sky-400' || slugDetails.gender === 'Female' && 'text-pink-500' || ((slugDetails.gender === 'Gay' || slugDetails.gender === 'Lesbian' || slugDetails.gender === 'Transgender') && 'text-red-500')}`}> - {slugDetails.gender}</span></div>
-                          <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
-                          <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
-                          <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</span></div>
-                          <div className="text-sm mt-2">Bath: <span className='text-sky-400 hover:underline'>{slugDetails.bath}</span></div>
+                          <div className="text-sm text-gray-500">{slugDetails.bio}<span className={`text-xs ${slugDetails.gender === 'Male' && 'text-sky-400' || slugDetails.gender === 'Female' && 'text-pink-500' || ((slugDetails.gender === 'Gay' || slugDetails.gender === 'Lesbian' || slugDetails.gender === 'Transgender') && 'text-red-500')}`}> {slugDetails.gender}</span></div>
+                          {userDetails.tick === 'active' ? (
+                            <div className="">
+                              <div className="text-sm mt-2">Leader: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
+                              <div className="text-sm mt-2">Since: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
+                              <div className="text-sm mt-2">Website: <Link href={`https://${slugDetails.LoveTo}`} className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</Link></div>
+                              <div className="text-sm mt-2">Insta: <Link href={`https://instagram.com/${slugDetails.bath}`} className='text-sky-400 hover:underline'>{slugDetails.bath}</Link></div>
+                            </div>
+                          ) : (
+                            <div className="">
+                              <div className="text-sm mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
+                              <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
+                              <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</span></div>
+                              <div className="text-sm mt-2">Bath: <span className='text-sky-400 hover:underline'>{slugDetails.bath}</span></div>
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -1125,11 +1163,22 @@ const Profile = ({ params }) => {
 
                           </div>
 
-                          <div className="text-xs text-gray-500">{slugDetails.bio} <span className={`text-xs ${slugDetails.gender === 'Male' && 'text-sky-400' || slugDetails.gender === 'Female' && 'text-pink-500' || ((slugDetails.gender === 'Gay' || slugDetails.gender === 'Lesbian' || slugDetails.gender === 'Transgender') && 'text-red-500')}`}> - {slugDetails.gender}</span></div>
-                          <div className="text-xs mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
-                          <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
-                          <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{slugDetails.LoveTo}</span></div>
-                          <div className="text-xs mt-2">Bath: <span className='text-sky-400 hover:underline truncate'>{slugDetails.bath}</span></div>
+                          <div className="text-xs text-gray-500">{slugDetails.bio} <span className={`text-xs ${slugDetails.gender === 'Male' && 'text-sky-400' || slugDetails.gender === 'Female' && 'text-pink-500' || ((slugDetails.gender === 'Gay' || slugDetails.gender === 'Lesbian' || slugDetails.gender === 'Transgender') && 'text-red-500')}`}> {slugDetails.gender}</span></div>
+                          {userDetails.tick === 'active' ? (
+                            <div className="">
+                              <div className="text-xs mt-2">Leader: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
+                              <div className="text-xs mt-2">Since: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
+                              <div className="text-xs mt-2">Website: <Link href={`https://${slugDetails.LoveTo}`} className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</Link></div>
+                              <div className="text-xs mt-2">Insta: <Link href={`https://instagram.com/${slugDetails.bath}`} className='text-sky-400 hover:underline'>{slugDetails.bath}</Link></div>
+                            </div>
+                          ) : (
+                            <div className="">
+                              <div className="text-xs mt-2">Relation: <span className='text-sky-400 hover:underline'>{slugDetails.relation}</span></div>
+                              <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
+                              <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{slugDetails.LoveTo}</span></div>
+                              <div className="text-xs mt-2">Bath: <span className='text-sky-400 hover:underline truncate'>{slugDetails.bath}</span></div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

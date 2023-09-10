@@ -167,7 +167,7 @@ const Post = () => {
                 <Example />
             ) : (
                 <div className="bg-black">
-                    {userDetails2.avatar ? (
+                    {userDetails2.bio ? (
                         <div className="">
                             <RightSideNavbar />
                             <div className="flex flex-col justify-center items-center pb-52">

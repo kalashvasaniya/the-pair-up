@@ -116,7 +116,7 @@ const Feed = () => {
                                                         {(post.user === userPost._id) && (post.user === userDetails.user) && (
                                                             <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-8">
                                                                 {/* Name  */}
-                                                                <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-20 p-3 rounded-t-xl">
+                                                                <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-16 p-3 rounded-t-xl">
                                                                     {/* image  */}
                                                                     <div className="">
                                                                         <div className="">
