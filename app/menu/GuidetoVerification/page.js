@@ -47,7 +47,7 @@ const GuidetoVerification = () => {
                                             </div>
                                         </div>
                                         <div class="md:block flex flex-col justify-center items-center">
-                                            <h2 class="text-sky-400 text-lg font-bold mb-3">Admin</h2>
+                                            <h2 class="text-amber-400 text-lg font-bold mb-3">Admin</h2>
                                             <p class="leading-relaxed text-base">"Admin Verification: Exclusive for Founders, Team Leaders, and Core Members"</p>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@ const GuidetoVerification = () => {
                                     <div class="flex border-2 rounded-lg p-8 sm:flex-row flex-col">
                                         <div class="flex md:mr-8 mb-2 items-center justify-center">
                                             <div className="hover:scale-105 flex items-center justify-center">
-                                                <svg className='flex justify-center items-center text-pink-400 w-10 h-10'
+                                                <svg className='flex justify-center items-center text-teal-500 w-10 h-10'
                                                     viewBox="0 0 16 16"
                                                     fill="currentColor"
                                                     height="1em"
@@ -91,16 +91,17 @@ const GuidetoVerification = () => {
                                             </div>
                                         </div>
                                         <div class="md:block flex flex-col justify-center items-center">
-                                            <h2 class="text-sky-400 text-lg font-bold mb-3">Active</h2>
-                                            <p class="leading-relaxed text-base">"Active User Verification: Obtain the Active Checkmark with a Minimum of 500 Followers and Demonstrated User Activity"</p>
+                                            <h2 class="text-teal-500 text-lg font-bold mb-3 ">Active</h2>
+                                            <p class="leading-relaxed text-base">"Active User Verification: Exclusive for College Clubs && Chapters"</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="mt-8 font-semibold md:block flex flex-col justify-center items-center text-center">Earn Verification by Reaching Milestones: <span className='text-sky-400'>Click to Obtain Verification Badge :)</span></div>
-                            <div className="flex flex-row mt-4 space-x-4">
-                                <Link href={'/Home'} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl'>Back</Link>
-                                <Link className="bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl" href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} target='_blank'>Apply</Link>
+                            <div className="flex md:flex-row flex-col mt-4">
+                                <Link className="bg-sky-500 hover:scale-105 m-2 p-2 px-3 rounded-2xl flex justify-center" href={'https://6z236yooyhh.typeform.com/to/WP5J4BH1'} target='_blank'>Apply</Link>
+                                <Link className="bg-teal-600 hover:scale-105 m-2 p-2 px-3 rounded-2xl flex justify-center" href={'https://6z236yooyhh.typeform.com/to/lIz7fhyI'} target='_blank'>Club Verification</Link>
+                                <Link href={'/Home'} className='bg-sky-500 hover:scale-105 m-2 p-2 px-3 rounded-2xl flex justify-center'>Back</Link>
                             </div>
                         </section>
                     </div>

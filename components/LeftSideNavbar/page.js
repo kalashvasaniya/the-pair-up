@@ -126,7 +126,7 @@ const LeftSideNavbar = () => {
                                             </svg>
                                         </div>
                                         <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 p-2 bg-transparent text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                            Active
+                                            Club
                                         </div>
                                     </div>
                                 )}
