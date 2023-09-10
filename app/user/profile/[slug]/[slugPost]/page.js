@@ -127,8 +127,9 @@ export default function postLink({ params }) {
 
                           {/* Here  */}
                           <div key={index} className="flex flex-col bg-gray-800 rounded-xl mb-8 max-w-xl mx-2">
+
                             {/* Name  */}
-                            <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-24 p-3 rounded-t-xl">
+                            <div className="bg-gray-800 flex justify-between md:space-x-80 space-x-20 p-3 rounded-t-xl">
                               {/* image  */}
                               <div className="">
                                 <div className="">
@@ -293,7 +294,6 @@ export default function postLink({ params }) {
                             <hr className='mx-4 border-gray-500' />
 
                             {/* Post  */}
-
                             <div key={index} className="mx-4 border-gray-500 text-sm py-4 px-2">
                               <div className="">
                                 {highlightHashTags(post.content)}
@@ -304,14 +304,12 @@ export default function postLink({ params }) {
                               </div>
                             </div>
 
-
                             <hr className='mx-4 border-gray-500' />
 
                             {/* Comment & Likes  */}
                             <div key={index} className="bg-gray-800 flex justify-between p-1">
                               <div className="flex flex-row space-x-4">
 
-                                {/* Like  */}
                                 {/* Like  */}
                                 <button className={`pl-4 flex flex-row justify-center items-center space-x-2`}
                                   key={index}>
@@ -424,7 +422,7 @@ export default function postLink({ params }) {
 
                             <hr className='mx-4 border-gray-500' />
 
-                            {/* Likes & comments  */}
+                            {/* Write Comment */}
                             <div className="bg-gray-800 p-3 rounded-b-xl">
 
                               <div>
@@ -440,17 +438,18 @@ export default function postLink({ params }) {
                             </div>
 
                           </div>
+
                         </div>
                       )}
                     </div>
                   ))}
                 </div>
               ))}
-            </div>
+              <BottomNavbar />
+            </div >
           ))}
-          <BottomNavbar />
         </div>
       )}
     </>
-  )
+  );
 }

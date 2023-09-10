@@ -308,6 +308,17 @@ const Details = () => {
                                         <option className="text-xs" value={`smiling-face-with-sunglasses-stinky-poop-shit-vector-47901056.webp`}>Smiling Face</option>
                                         <option className="text-xs" value={`wacky-weed-funny-bud-monster-vector-48056508.webp`}>Wacky Weed</option>
                                         <option className="text-xs" value={`yum-cartoon-face-with-tongue-lick-mouth-yummy-vector-47019919.webp`}>Yum Cartoon</option>
+                                        <option className="text-xs" value={`pony-girl.jpeg`}>Pony Girl</option>
+                                        <option className="text-xs" value={`single-pony-girl.jpeg`}>Single Pony Girl</option>
+                                        <option className="text-xs" value={`laughing-girl.jpeg`}>Laughing Girl</option>
+                                        <option className="text-xs" value={`curly-girl.png`}>Curly Girl</option>
+                                        <option className="text-xs" value={`nice-girl.jpeg`}>Nice Girl</option>
+                                        <option className="text-xs" value={`cute-girl.jpeg`}>Cute Girl</option>
+                                        <option className="text-xs" value={`cool-avatar.jpeg`}>Cool Avatar</option>
+                                        <option className="text-xs" value={`cap-boy.png`}>Cap Boy</option>
+                                        <option className="text-xs" value={`helmet-boy.png`}>Helmet Boy</option>
+                                        <option className="text-xs" value={`tough-smile.jpeg`}>Tough Smile</option>
+                                        <option className="text-xs" value={`nightmare.png`}>The Nightmare</option>
                                     </select>
                                     <label
                                         htmlFor="avatar"
