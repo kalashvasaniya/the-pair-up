@@ -41,7 +41,7 @@ export function useTPU() {
   const highlightHashTags = (content) => {
     const regex1 = /#(\w+)/g;
     const regex2 = /@(\w+)/g;
-    const regex3 = /(\s|^)([a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\/?[a-zA-Z0-9/.-]*)(?=[\s$.,])/g;
+    const regex3 = /(\s|^)(https?:\/\/[^\s]+|www\.[^\s]+|[^\s]+\.[a-zA-Z]{2,})(?=\s|$)/g;
 
     const highlightedContent = content
       .replace(
@@ -51,23 +51,24 @@ export function useTPU() {
       .replace(
         regex2,
         (match, p1) =>
-          p1 === 'Founder'
-            ? `<a href="/user/profile/${p1}" class="hashtag text-sky-400 hover:underline">${match}</a>`
+          p1 === 'Founder' || p1 === 'founder'
+            ? `<a href="/user/profile/Founder" class="hashtag text-sky-400 hover:underline">${match}</a>`
             : `<a href="/user/profile/${p1.toLowerCase()}" class="hashtag text-sky-400 hover:underline lowercase">${match}</a>`
       )
       .replace(
         regex3,
         (p2) => {
           if (p2.startsWith('http://') || p2.startsWith('https://')) {
-            return `<a href="${p2}" class="text-sky-400 hover:underline"> ${p2}</a>`;
+            return `<a href="${p2}" class="text-sky-400 hover:underline">${p2}</a>`;
           } else {
-            return `<a href="https://${p2}" class="text-sky-400 hover:underline"> ${p2}</a>`;
+            return `<a href="${p2}" class="text-sky-400 hover:underline">${p2}</a>`;
           }
         }
       );
 
     return <div dangerouslySetInnerHTML={{ __html: highlightedContent }} />;
-  }
+  };
+
 
   return { logout, user, highlightHashTags };
 }

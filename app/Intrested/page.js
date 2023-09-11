@@ -139,6 +139,13 @@ const Intrested = () => {
                 just kidding 😇
               </button>
             )}
+            {userDetails1.tick === "active" && (
+              <button disabled={true}
+                type="submit"
+                className="text-white bg-blue-500 hover:bg-blue-600 cursor-pointer focus:ring-4 focus:outline-none focus:ring-sky-400  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
+                It is prohibited for clubs to engage in relationships that make people socially uncomfortable... 🙃
+              </button>
+            )}
           </form>
 
 

@@ -144,7 +144,7 @@ const Post = () => {
             }
         } catch (error) {
             console.error(error);
-            alert('An error occurred while submitting the form.');
+            alert('The image is currently in the process of being uploaded. Please wait for a few further seconds. \nor may be..\n Image size is larger than 5 mb');
         }
     };
 
