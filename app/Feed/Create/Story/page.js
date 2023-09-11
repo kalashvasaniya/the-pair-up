@@ -2,8 +2,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-
-
+import Link from 'next/link'
 
 const createStory = () => {
     const [userDetails1, setUserDetails1] = useState('');
@@ -27,7 +26,6 @@ const createStory = () => {
             if (response.ok) {
                 const data = await response.json();
                 setUserDetails1(data.userDetails1);
-                console.log("User Details", data);
             } else {
                 // Handle error
             }
@@ -49,7 +47,6 @@ const createStory = () => {
             if (response.ok) {
                 const data = await response.json();
                 setUserDetails2(data.userDetails2);
-                console.log("User Details", data);
             } else {
                 // Handle error
             }
@@ -60,13 +57,25 @@ const createStory = () => {
 
     return (
         <div className='text-white'>
-            {(userDetails1.name === "Founder") ? (
+            {(userDetails1.role === "admin") && (
                 <div className='flex flex-col items-center justify-center text-3xl font-bold h-screen'>
-                    Founder
+                    Founder's Property
+                    <Link href={`/Home`} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl text-xl mt-12'>Back</Link>
                 </div>
-            ) : (
-                <div className='flex flex-col items-center justify-center text-3xl font-bold h-screen'>
+            )}
+            {(userDetails1.tick === "active" || userDetails1.tick === "yes") && (
+                <div className='flex flex-col items-center justify-center text-3xl font-bold h-screen text-center'>
                     Coming Soon, Stay tuned to be a part of it.
+                    <Link href={`/Home`} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl text-xl mt-12'>Back</Link>
+                </div>
+            )}
+            {(userDetails1.tick === "no") && (
+                <div className="">
+                    <div className='flex flex-col items-center justify-center text-3xl font-bold h-screen text-center'>
+                        Only Verified members & Clubs are allowed to create Story :(
+                        <Link href={`/Home`} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl text-xl mt-12'>Back</Link>
+                    </div>
+
                 </div>
             )}
         </div>

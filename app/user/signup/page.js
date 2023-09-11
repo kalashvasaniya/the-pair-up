@@ -152,16 +152,19 @@ const Signup = () => {
                                         className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
                                 </div>
 
-                                <button style={{ backgroundColor: '#00B2FF' }}
-                                    type="submit"
-                                    className="text-white bg-sky-400 hover:bg-sky-500 focus:ring-4 focus:outline-none focus:ring-sky-400  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-sky-400 dark:hover:bg-sky-400 dark:focus:ring-sky-400 hover:scale-105 transition ease-in-out delay-150 duration-300">
-                                    Sign Up
-                                </button>
+                                <div className="flex md:flex-row flex-col md:space-x-3 space-y-3 ">
+                                    <button style={{ backgroundColor: '#00B2FF' }}
+                                        type="submit"
+                                        className="text-white mt-3 bg-sky-400 hover:bg-sky-500 focus:ring-4 focus:outline-none focus:ring-sky-400  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
+                                        Sign Up
+                                    </button>
+                                    <Link href={`https://6z236yooyhh.typeform.com/to/lIz7fhyI`} target='_blank' className="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-sky-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">Club Signup</Link>
+                                </div>
                             </form>
                         </div>
-                    </section>
+                    </section >
                     <Footer />
-                </div>
+                </div >
             )}
         </>
     )
