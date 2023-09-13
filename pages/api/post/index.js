@@ -68,6 +68,51 @@ export default async function handler(req, res) {
         }
     }
 
+    else if (req.method === 'PUT') {
+        try {
+            const token = req.headers.authorization; // Extract token from the authorization header
+            var decoded = jwt_decode(token);
+
+            let userss;
+
+            if (decoded.email) {
+                userss = await User.findOne({ email: decoded.email });
+            } else if (decoded.name) {
+                userss = await User.findOne({ name: decoded.name });
+            }
+
+            if (!userss) {
+                return res.status(401).json({ message: "Unauthorized" });
+            }
+
+            // Check if the request body includes a valid post ID to update
+            if (!req.body._id) {
+                return res.status(400).json({ message: "Post ID is required for updating" });
+            }
+
+            // Find the post by ID and ensure that it belongs to the authenticated user
+            let postToUpdate = await Post.findOne({ _id: req.body._id, user: userss._id });
+
+            if (!postToUpdate) {
+                return res.status(404).json({ message: "Post not found or unauthorized to update" });
+            }
+
+            // Update the post fields as needed
+            postToUpdate.like = req.body.like || postToUpdate.like;
+            postToUpdate.comment = req.body.comment || postToUpdate.comment;
+            postToUpdate.content = req.body.content || postToUpdate.content;
+            postToUpdate.image = req.body.image || postToUpdate.image;
+
+            // Save the updated post
+            await postToUpdate.save();
+
+            return res.status(200).json({ success: true, post: postToUpdate });
+        } catch (error) {
+            return res.status(500).json({ success: false, message: 'Internal server error' });
+        }
+    }
+
+
     else if (req.method === 'DELETE') {
         try {
             const token = req.headers.authorization; // Extract token from the authorization header
