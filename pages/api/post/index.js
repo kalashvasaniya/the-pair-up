@@ -86,12 +86,12 @@ export default async function handler(req, res) {
             }
 
             // Check if the request body includes a valid post ID to update
-            if (!req.body._id) {
+            if (!req.body.postId) {
                 return res.status(400).json({ message: "Post ID is required for updating" });
             }
 
             // Find the post by ID and ensure that it belongs to the authenticated user
-            let postToUpdate = await Post.findOne({ _id: req.body._id, user: userss._id });
+            let postToUpdate = await Post.findOne({ _id: req.body.postId, user: userss._id });
 
             if (!postToUpdate) {
                 return res.status(404).json({ message: "Post not found or unauthorized to update" });

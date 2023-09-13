@@ -57,11 +57,30 @@ const Feed = () => {
     const reverse = reverseArray(userDetails);
 
     // Like 
-    const handleButtonClick = (userId1) => {
+    const handleButtonClick = async (userId1, postToUpdate) => {
         setIsIcon((prevVisibility) => ({
             ...prevVisibility,
             [userId1]: !prevVisibility[userId1] || false,
         }));
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                body: JSON.stringify({ postId: postToUpdate._id, like: postToUpdate.like }),
+            })
+            const data = await response.json();
+            console.log("data", data)
+
+            if (response.ok) {
+                postToUpdate.like += 1;
+                setLike(postToUpdate.like);
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     // Share
@@ -261,20 +280,7 @@ const Feed = () => {
                                                                             key={index}>
                                                                             <div onClick={async (e) => {
                                                                                 e.preventDefault();
-
-                                                                                // Toggle the 'liked' class on the button element
-                                                                                const likeButton = e.currentTarget;
-
-                                                                                // Update the like count based on the presence of the 'liked' class
-                                                                                if (likeButton.classList.contains('liked')) {
-                                                                                    post.like += 1;
-                                                                                } else {
-                                                                                    post.like -= 1;
-                                                                                }
-
-                                                                                likeButton.classList.toggle('liked');
-                                                                                // Perform your handleButtonClick(post._id) action here
-                                                                                handleButtonClick(post._id);
+                                                                                handleButtonClick(post._id, post);
                                                                             }} className={`${post.like >= 0 ? 'liked' : ''}`}>
                                                                                 {!isIcon[post._id] ? (
                                                                                     <svg
