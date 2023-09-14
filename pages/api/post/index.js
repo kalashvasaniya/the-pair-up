@@ -112,7 +112,6 @@ export default async function handler(req, res) {
         }
     }
 
-
     else if (req.method === 'DELETE') {
         try {
             const token = req.headers.authorization; // Extract token from the authorization header

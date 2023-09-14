@@ -72,7 +72,7 @@ const Feed = () => {
                 body: JSON.stringify({ postId: postToUpdate._id, like: postToUpdate.like }),
             })
             const data = await response.json();
-            console.log("data", data)
+            console.log("data", data.post.like)
 
             if (response.ok) {
                 postToUpdate.like += 1;
@@ -280,7 +280,7 @@ const Feed = () => {
                                                                             key={index}>
                                                                             <div onClick={async (e) => {
                                                                                 e.preventDefault();
-                                                                                handleButtonClick(post._id, post);
+                                                                                await handleButtonClick(post._id, post);
                                                                             }} className={`${post.like >= 0 ? 'liked' : ''}`}>
                                                                                 {!isIcon[post._id] ? (
                                                                                     <svg
@@ -309,7 +309,7 @@ const Feed = () => {
                                                                                 <button onClick={(e) => {
                                                                                     e.preventDefault()
                                                                                 }} className='text-xs flex justify-center items-center hover:underline'>
-                                                                                    {post.like} Like
+                                                                                    {post.like - 1 <= 0 ? 0 : post.like - 1} Like
                                                                                 </button>
                                                                             </div>
                                                                         </button>
