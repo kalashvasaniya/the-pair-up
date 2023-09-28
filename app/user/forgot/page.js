@@ -16,10 +16,6 @@ const Signup = () => {
     const [showLoader, setShowLoader] = useState(false);
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            window.location.href = '/Home';
-        }
-
         setTimeout(() => {
             // After 2 seconds, show the Story
             setShowLoader(true);

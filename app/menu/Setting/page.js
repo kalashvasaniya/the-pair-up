@@ -35,6 +35,9 @@ const Setting = () => {
                 <Link href={'/EXT/Contact'} class="font-medium text-3xl text-white  hover:text-sky-500">Contact</Link>
               </div>
               <div class="p-10 hover:scale-110 transition ease-in-out delay-150">
+                <Link href={'/user/forgot'} class="font-medium text-3xl text-white  hover:text-green-500">Change Password</Link>
+              </div>
+              <div class="p-10 hover:scale-110 transition ease-in-out delay-150">
                 <Link href={'/EXT/Delete'} class="font-medium text-3xl text-white  hover:text-red-500">Delete Account</Link>
               </div>
               <div class="p-10 hover:scale-110 transition ease-in-out delay-150">
