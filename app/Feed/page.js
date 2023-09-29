@@ -83,6 +83,8 @@ const Feed = () => {
         }
     }
 
+    //Comment
+
     // Share
     const toggleTooltip = (userId) => {
         setShowTooltip2((prevVisibility) => ({
@@ -315,7 +317,12 @@ const Feed = () => {
                                                                         </button>
 
                                                                         {/* Comment  */}
-                                                                        <button key={index} className="px-4 flex flex-row justify-center items-center space-x-2">
+                                                                        <button onClick={
+                                                                            async (e) => {
+                                                                                e.preventDefault();
+                                                                                // Show Comment Only 3 & Show All to scroll y-autoscroll
+                                                                            }
+                                                                        } key={index} className="px-4 flex flex-row justify-center items-center space-x-2">
                                                                             <svg
                                                                                 viewBox="0 0 24 24"
                                                                                 fill="currentColor"
@@ -340,7 +347,9 @@ const Feed = () => {
                                                                     <div>
                                                                         <div class="relative">
                                                                             <input class="block w-full p-4 text-sm text-white rounded-full bg-gray-700" placeholder="Write comment" required />
-                                                                            <button type="submit" class="text-white hover:text-sky-400 absolute right-2 bottom-1.5 font-medium rounded-r-full text-sm px-4 py-2">
+                                                                            <button onClick={async (e) => {
+                                                                                e.preventDefault();
+                                                                            }} type="submit" class="text-white hover:text-sky-400 absolute right-2 bottom-1.5 font-medium rounded-r-full text-sm px-4 py-2">
                                                                                 <svg aria-label="Share Post" class="x1lliihq x1n2onr6" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Share Post</title><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
                                                                                 </svg>
                                                                             </button>
