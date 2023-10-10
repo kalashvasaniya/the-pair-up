@@ -54,7 +54,7 @@ export default async function handler(req, res) {
 
             post = await Post.create({
                 user: userss._id,
-                like: req.body.like || 0,
+                like: req.body.like || 1,
                 comment: req.body.comment || 0,
                 content: req.body.content,
                 image: req.body.image,

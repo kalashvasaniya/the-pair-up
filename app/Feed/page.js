@@ -19,6 +19,7 @@ const Feed = () => {
     const [isIcon, setIsIcon] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
     const [like, setLike] = useState('')
+    const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
@@ -75,8 +76,19 @@ const Feed = () => {
             console.log("data", data.post.like)
 
             if (response.ok) {
-                postToUpdate.like += 1;
-                setLike(postToUpdate.like);
+                if (isLiked) {
+                    // If already liked, unlike
+                    postToUpdate.like -= 1;
+                    setLike(postToUpdate.like);
+                } else {
+                    // If not liked, like
+                    postToUpdate.like += 1;
+                    setLike(postToUpdate.like);
+                }
+
+                // Toggle the liked state
+                setIsLiked(!isLiked);
+
             }
         } catch (error) {
             console.log(error)

@@ -26,16 +26,6 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    // uDone: {
-    //     likePost: {
-    //         type: Array,
-    //         default: []
-    //     },
-    //     likeComment: {
-    //         type: Array,
-    //         default: []
-    //     },
-    // },
     tick: {
         type: String,
         enum: ['no', 'yes', 'active'],
