@@ -68,7 +68,7 @@ const Message = () => {
 
                         {userDetails.map((user, index) => (
 
-                            <Link key={index} href={``} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
+                            <Link key={index} href={`/user/profile/${user.name}/chat`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
 
                                 {user.details && slugDetails.map((details, index2) => (
 
