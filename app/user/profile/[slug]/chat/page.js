@@ -116,7 +116,6 @@ const chat = ({ params }) => {
                             <div class="md:mr-20 shadow-lg rounded-lg max-w-4xl">
 
                                 <div class="flex flex-row justify-between bg-black border-r border-l border-gray-500 rounded-[4rem] p-2 h-screen md:mb-0 mb-20">
-                                    {/* Hello {params.slug} */}
                                     <div class="w-full px-5 flex flex-col justify-around">
 
                                         {/* Name  */}
@@ -192,11 +191,10 @@ const chat = ({ params }) => {
                                                             </div>
 
                                                             {/* bio max 12 */}
-                                                            <div className="text-sm text-gray-300 truncate">{slugDetails.bio ? (
-                                                                <div className="text-xs text-gray-400 truncate">12 April at 09.28 PM</div>
-                                                            ) : (
-                                                                <div className="text-xs text-green-300 truncate">Click To Edit profile</div>
-                                                            )}
+                                                            <div className="text-sm text-gray-300 truncate">
+                                                                <div className="text-xs text-gray-400 truncate">
+                                                                    {slugDetails.bio}
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -209,7 +207,7 @@ const chat = ({ params }) => {
                                         <div class="flex flex-col mt-5 overflow-y-auto">
                                             <div class="flex justify-end mb-4">
                                                 <div
-                                                    class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                    class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                 >
                                                     Welcome to group everyone !
                                                 </div>
@@ -237,14 +235,14 @@ const chat = ({ params }) => {
                                             <div class="flex justify-end mb-4">
                                                 <div>
                                                     <div
-                                                        class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                        class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                     >
                                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                                                         Magnam, repudiandae.
                                                     </div>
 
                                                     <div
-                                                        class="mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                        class="mt-4 mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                     >
                                                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                                         Debitis, reiciendis!
@@ -270,7 +268,7 @@ const chat = ({ params }) => {
                                             </div>
                                             <div class="flex justify-end mb-4">
                                                 <div
-                                                    class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                    class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                 >
                                                     Welcome to group everyone !
                                                 </div>
@@ -298,14 +296,14 @@ const chat = ({ params }) => {
                                             <div class="flex justify-end mb-4">
                                                 <div>
                                                     <div
-                                                        class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                        class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                     >
                                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                                                         Magnam, repudiandae.
                                                     </div>
 
                                                     <div
-                                                        class="mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                        class="mt-4 mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                     >
                                                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                                         Debitis, reiciendis!
@@ -331,7 +329,7 @@ const chat = ({ params }) => {
                                             </div>
                                             <div class="flex justify-end mb-4">
                                                 <div
-                                                    class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                    class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                 >
                                                     Welcome to group everyone !
                                                 </div>
@@ -359,14 +357,14 @@ const chat = ({ params }) => {
                                             <div class="flex justify-end mb-4">
                                                 <div>
                                                     <div
-                                                        class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                        class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                     >
                                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                                                         Magnam, repudiandae.
                                                     </div>
 
                                                     <div
-                                                        class="mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                        class="mt-4 mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                     >
                                                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                                         Debitis, reiciendis!
@@ -392,7 +390,7 @@ const chat = ({ params }) => {
                                             </div>
                                             <div class="flex justify-end mb-4">
                                                 <div
-                                                    class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                    class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                 >
                                                     Welcome to group everyone !
                                                 </div>
@@ -420,14 +418,14 @@ const chat = ({ params }) => {
                                             <div class="flex justify-end mb-4">
                                                 <div>
                                                     <div
-                                                        class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                        class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                     >
                                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                                                         Magnam, repudiandae.
                                                     </div>
 
                                                     <div
-                                                        class="mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                        class="mt-4 mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                     >
                                                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                                         Debitis, reiciendis!
