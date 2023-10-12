@@ -113,9 +113,9 @@ const chat = ({ params }) => {
                     {/* Chat with other  */}
                     {params.slug !== userDetails1.name && slugDetails && userDetails && (
                         <div className="flex text-white flex-col justify-end items-end ">
-                            <div class="md:mr-20 shadow-lg rounded-lg max-w-4xl">
+                            <div class="shadow-lg rounded-lg max-w-5xl">
 
-                                <div class="flex flex-row justify-between bg-black border-r border-l border-gray-500 rounded-[4rem] p-2 h-screen md:mb-0 mb-20">
+                                <div class="flex flex-row justify-between bg-black md:border-l border-gray-500 p-2 h-screen md:mb-0 mb-20">
                                     <div class="w-full px-5 flex flex-col justify-around">
 
                                         {/* Name  */}
@@ -204,7 +204,7 @@ const chat = ({ params }) => {
                                         </div>
 
                                         {/* Chat  */}
-                                        <div class="flex flex-col mt-5 overflow-y-auto">
+                                        <div class="flex flex-col mt-5 overflow-y-auto no-scrollbar">
                                             <div class="flex justify-end mb-4">
                                                 <div
                                                     class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
