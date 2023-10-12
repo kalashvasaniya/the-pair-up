@@ -5,7 +5,6 @@ import db from '@/middleware';
 export default async function handler(req, res) {
     if (req.method === 'GET') {
         try {
-
             const foundForgot = await Forgot.findOne({
                 tokenForgot: req.query.token,
             });
