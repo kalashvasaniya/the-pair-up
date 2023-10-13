@@ -161,7 +161,7 @@ const LeftSideNavbar = () => {
                     <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
-                                <div class="mb-2 text-sm font-normal">"PairUp, is an exclusive for the exceptional scholars of VIT Student, where only <span className='underline decoration-sky-400 '>4 colleges </span>unite."</div>
+                                <div class="mb-2 text-sm font-normal">"PairUp, is an exclusive for the exceptional scholars of College Student, where <span className='underline decoration-sky-400 '>All colleges</span> unite."</div>
                             </div>
                         </div>
                     </div>

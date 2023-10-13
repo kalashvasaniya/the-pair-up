@@ -56,7 +56,7 @@ const Details = () => {
 
                 const emailDomain = userDetails1.email.split('@')[1].toLowerCase(); // Convert to lowercase for case-insensitivity
                 if (emailDomain.endsWith('vitstudent.ac.in')) {
-                    setCollege('VIT Vellore');
+                    setCollege('VIT');
                 } else if (emailDomain.endsWith('gmail.com')) {
                     setCollege('Dropout?');
                 } else if (emailDomain.endsWith('iitgn.ac.in')) {

@@ -38,7 +38,7 @@ const Signup = () => {
 
         const emailDomain = email.split('@')[1];
         if (!['vitstudent.ac.in', 'iitgn.ac.in'].some(domain => emailDomain.endsWith(domain))) {
-            alert('Please use a valid college email address ending with .ac.in or .edu');
+            alert('Please use a valid college email address ending with .ac.in or .edu.in');
             return;
         }
 
