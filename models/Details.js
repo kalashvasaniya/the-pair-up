@@ -34,6 +34,10 @@ const DetailsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
+    college: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now

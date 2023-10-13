@@ -38,6 +38,7 @@ export default async function handler(req, res) {
                         LoveTo: user2.LoveTo,
                         bath: user2.bath,
                         avatar: user2.avatar,
+                        college: user2.college,
                     };
                     return res.status(200).json({ success: true, userDetails2 });
                 }
@@ -61,6 +62,7 @@ export default async function handler(req, res) {
                     details.gender = req.body.gender;
                     details.bath = req.body.bath;
                     details.avatar = req.body.avatar;
+                    details.college = req.body.college;
                     await details.save();
                 } else {
                     // If details don't exist, create new
@@ -73,6 +75,7 @@ export default async function handler(req, res) {
                         gender: req.body.gender,
                         bath: req.body.bath,
                         avatar: req.body.avatar,
+                        college: req.body.college,
                     });
                 }
 

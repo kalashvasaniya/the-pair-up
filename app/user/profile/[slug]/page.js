@@ -289,6 +289,7 @@ const Profile = ({ params }) => {
                               <div className="text-sm mt-2">Since: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
                               <div className="text-sm mt-2">Website: <Link href={`https://${userDetails2.LoveTo}`} className='text-sky-400 hover:underline'>{userDetails2.LoveTo}</Link></div>
                               <div className="text-sm mt-2">Insta: <Link href={`https://instagram.com/${userDetails2.bath}`} className='text-sky-400 hover:underline'>{userDetails2.bath}</Link></div>
+                              <div className="text-sm mt-2">College: <span className='text-sky-400 hover:underline'>{userDetails2.college}</span></div>
                             </div>
                           ) : (
                             <div className="">
@@ -296,6 +297,7 @@ const Profile = ({ params }) => {
                               <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
                               <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{userDetails2.LoveTo}</span></div>
                               <div className="text-sm mt-2">Bath: <span className='text-sky-400 hover:underline'>{userDetails2.bath}</span></div>
+                              <div className="text-sm mt-2">College: <span className='text-sky-400 hover:underline'>{userDetails2.college}</span></div>
                             </div>
                           )}
                         </div>
@@ -580,6 +582,7 @@ const Profile = ({ params }) => {
                               <div className="text-xs mt-2">Since: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
                               <div className="text-xs mt-2">Website: <Link href={`https://${userDetails2.LoveTo}`} className='text-sky-400 hover:underline'>{userDetails2.LoveTo}</Link></div>
                               <div className="text-xs mt-2">Insta: <Link href={`https://instagram.com/${userDetails2.bath}`} className='text-sky-400 hover:underline'>{userDetails2.bath}</Link></div>
+                              <div className="text-xs mt-2">College: <span className='text-sky-400 hover:underline'>{userDetails2.college}</span></div>
                             </div>
                           ) : (
                             <div className="">
@@ -587,6 +590,7 @@ const Profile = ({ params }) => {
                               <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{userDetails2.year}</span></div>
                               <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{userDetails2.LoveTo}</span></div>
                               <div className="text-xs mt-2">Bath: <span className='text-sky-400 hover:underline truncate'>{userDetails2.bath}</span></div>
+                              <div className="text-xs mt-2">College: <span className='text-sky-400 hover:underline'>{userDetails2.college}</span></div>
                             </div>
                           )}
                         </div>
@@ -880,6 +884,7 @@ const Profile = ({ params }) => {
                               <div className="text-sm mt-2">Since: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
                               <div className="text-sm mt-2">Website: <Link href={`https://${slugDetails.LoveTo}`} className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</Link></div>
                               <div className="text-sm mt-2">Insta: <Link href={`https://instagram.com/${slugDetails.bath}`} className='text-sky-400 hover:underline'>{slugDetails.bath}</Link></div>
+                              <div className="text-sm mt-2">College: <span className='text-sky-400 hover:underline'>{slugDetails.college}</span></div>
                             </div>
                           ) : (
                             <div className="">
@@ -887,6 +892,7 @@ const Profile = ({ params }) => {
                               <div className="text-sm mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
                               <div className="text-sm mt-2">Love to: <span className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</span></div>
                               <div className="text-sm mt-2">Bath: <span className='text-sky-400 hover:underline'>{slugDetails.bath}</span></div>
+                              <div className="text-sm mt-2">College: <span className='text-sky-400 hover:underline'>{slugDetails.college}</span></div>
                             </div>
                           )}
                         </div>
@@ -1170,6 +1176,7 @@ const Profile = ({ params }) => {
                               <div className="text-xs mt-2">Since: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
                               <div className="text-xs mt-2">Website: <Link href={`https://${slugDetails.LoveTo}`} className='text-sky-400 hover:underline'>{slugDetails.LoveTo}</Link></div>
                               <div className="text-xs mt-2">Insta: <Link href={`https://instagram.com/${slugDetails.bath}`} className='text-sky-400 hover:underline'>{slugDetails.bath}</Link></div>
+                              <div className="text-xs mt-2">College: <span className='text-sky-400 hover:underline'>{slugDetails.college}</span></div>
                             </div>
                           ) : (
                             <div className="">
@@ -1177,6 +1184,7 @@ const Profile = ({ params }) => {
                               <div className="text-xs mt-2">Year: <span className='text-sky-400 hover:underline'>{slugDetails.year}</span></div>
                               <div className="text-xs mt-2">Love to: <span className='text-sky-400 hover:underline truncate'>{slugDetails.LoveTo}</span></div>
                               <div className="text-xs mt-2">Bath: <span className='text-sky-400 hover:underline truncate'>{slugDetails.bath}</span></div>
+                              <div className="text-xs mt-2">College: <span className='text-sky-400 hover:underline'>{slugDetails.college}</span></div>
                             </div>
                           )}
                         </div>

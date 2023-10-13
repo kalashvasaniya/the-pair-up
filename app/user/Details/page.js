@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import Navbar from '@/components/Navbar/page'
 import Footer from '@/components/Footer/page'
-import Image from 'next/image'
 import Example from '@/app/UI/Loader/page'
 
 const Details = () => {
@@ -16,6 +15,7 @@ const Details = () => {
     const [gender, setGender] = useState('');
     const [bath, setBath] = useState('');
     const [avatar, setAvatar] = useState('');
+    const [college, setCollege] = useState('')
 
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
@@ -34,7 +34,7 @@ const Details = () => {
             setShowLoader(true);
         }, 1000);
 
-        fetchUserDetails1()
+        fetchUserDetails1();
         fetchUserDetails2();
     }, [])
 
@@ -50,7 +50,19 @@ const Details = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setUserDetails1(data.userDetails1);
+                setUserDetails1(data.userDetails1); 
+
+                const userDetails1 = data.userDetails1;
+
+                const emailDomain = userDetails1.email.split('@')[1].toLowerCase(); // Convert to lowercase for case-insensitivity
+                if (emailDomain.endsWith('vitstudent.ac.in')) {
+                    setCollege('VIT Vellore');
+                } else if (emailDomain.endsWith('gmail.com')) {
+                    setCollege('Dropout?');
+                } else {
+                    setCollege('NA');
+                }
+
             } else {
                 // Handle error
             }
@@ -89,7 +101,7 @@ const Details = () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
-            body: JSON.stringify({ bio, relation, year, LoveTo, gender, bath, avatar }),
+            body: JSON.stringify({ bio, relation, year, LoveTo, gender, bath, avatar, college }),
         });
         const json = await res.json();
         console.log(res);
