@@ -50,7 +50,7 @@ const Details = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setUserDetails1(data.userDetails1); 
+                setUserDetails1(data.userDetails1);
 
                 const userDetails1 = data.userDetails1;
 
@@ -59,6 +59,8 @@ const Details = () => {
                     setCollege('VIT Vellore');
                 } else if (emailDomain.endsWith('gmail.com')) {
                     setCollege('Dropout?');
+                } else if (emailDomain.endsWith('iitgn.ac.in')) {
+                    setCollege('IIT GN');
                 } else {
                     setCollege('NA');
                 }
