@@ -418,6 +418,7 @@ export default function postLink({ params }) {
                                 </button>
 
                               </div>
+                              <div className="pr-4 text-xs flex justify-center items-center hover:underline text-sky-400">~ {userDetails.college}</div>
                             </div>
 
                             <hr className='mx-4 border-gray-500' />

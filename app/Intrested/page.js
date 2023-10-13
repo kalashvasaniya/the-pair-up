@@ -118,7 +118,7 @@ const Intrested = () => {
               <button style={{ backgroundColor: '#00B2FF' }}
                 type="submit" id="simple-search" name="simpleSearch"
                 className="text-white bg-sky-400 hover:bg-sky-500 cursor-pointer focus:ring-4 focus:outline-none focus:ring-sky-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
-                Discover who's ready for an incredible journey of love - just a click away!
+                Discover who's ready for an incredible journey of love in {userDetails2.college} - just a click away!
               </button>
             )}
             {userDetails2.relation === "Single" && (
