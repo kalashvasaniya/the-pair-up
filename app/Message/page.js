@@ -160,12 +160,8 @@ const Message = () => {
                             </Link>
                         ))}
 
-                        <hr className='mt-3 border-gray-400' />
                     </div>
                 )}
-                <div className="pt-3">
-                    Show followers
-                </div>
             </div>
         </>
     )
