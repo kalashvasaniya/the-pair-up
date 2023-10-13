@@ -73,6 +73,14 @@ export default async function handler(req, res) {
             await user.save();
             await foundForgot.deleteOne();
             res.status(200).json({ success: true, message: "Password updated successfully" });
+
+            const message = `Password Changed Successfully..... for Email - ${user.email}`;
+
+            await sendForgotEmail({
+                email: user.email,
+                subject: 'Password Change',
+                text: message,
+            });
         } catch (err) {
             res.status(500).json({ success: false, error: err.message });
         }

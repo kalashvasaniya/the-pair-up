@@ -115,7 +115,7 @@ const chat = ({ params }) => {
                         <div className="flex text-white flex-col justify-end items-end ">
                             <div class="shadow-lg rounded-lg max-w-5xl">
 
-                                <div class="flex flex-row justify-between bg-black md:border-l border-gray-500 p-2 h-screen md:mb-0 mb-20">
+                                <div class="flex flex-row justify-between bg-black md:border-l rounded-[4rem] border-gray-500 p-2 h-screen md:mb-0 mb-20">
                                     <div class="w-full px-5 flex flex-col justify-around">
 
                                         {/* Name  */}
