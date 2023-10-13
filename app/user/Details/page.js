@@ -60,7 +60,7 @@ const Details = () => {
                 } else if (emailDomain.endsWith('gmail.com')) {
                     setCollege('Dropout?');
                 } else if (emailDomain.endsWith('iitgn.ac.in')) {
-                    setCollege('IIT GN');
+                    setCollege('IITGN');
                 } else {
                     setCollege('NA');
                 }

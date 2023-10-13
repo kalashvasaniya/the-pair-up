@@ -93,7 +93,7 @@ const Home = () => {
   const fetchUserDetails2 = async () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -213,7 +213,7 @@ const Home = () => {
                     {isVisible && (
                       <nav className='bg-black fixed w-full z-20 top-20 left-0 border-b pb-1 flex flex-row justify-around animate-bounce'>
                         {userDetails1.name ? (
-                          <Link href={'/EXT/CollegeUpdate'} className="text-sky-400 hover:underline font-mono">
+                          <Link href={`/EXT/CollegeUpdate/${userDetails2.college}`} className="text-sky-400 hover:underline font-mono">
                             College Update
                           </Link>
                         ) : (

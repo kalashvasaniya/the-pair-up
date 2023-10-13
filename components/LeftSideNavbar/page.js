@@ -169,7 +169,7 @@ const LeftSideNavbar = () => {
 
                 {/* CollegeUpdate  */}
                 <div className="mt-10 px-6">
-                    <Link href={'/EXT/CollegeUpdate'} className="text-base font-mono font-semibold underline-offset-2 hover:underline text-sky-400 mb-6">College Updates</Link>
+                    <Link href={`/EXT/CollegeUpdate/${userDetails2.college}`} className="text-base font-mono font-semibold underline-offset-2 hover:underline text-sky-400 mb-6">College Updates</Link>
                 </div>
 
                 {/* Footer LeftSideNavbar  */}
