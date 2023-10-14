@@ -233,7 +233,7 @@ const chat = ({ params }) => {
                             <div class="shadow-lg rounded-lg max-w-5xl">
 
                                 <div class="flex flex-row justify-between bg-black md:border-l rounded-[4rem] border-gray-500 p-2 h-screen md:mb-0 mb-20">
-                                    <div class="w-full px-5 flex flex-col justify-around">
+                                    <div class="w-full px-5 flex flex-col justify-between">
 
                                         {/* Name  */}
                                         <div className="bg-black border-t-gray-300 md:border-t-black border-b border-gray-500 flex justify-between md:space-x-80 space-x-24 p-3 fixed w-full z-40 md:top-0 md:left-[26rem] top-[4.5rem] right-0">
@@ -324,22 +324,23 @@ const chat = ({ params }) => {
                                         </div>
 
                                         {/* Chat  */}
-                                        <div class="flex flex-col mt-5 overflow-y-auto no-scrollbar">
+                                        <div class="flex flex-col mt-20 overflow-y-auto no-scrollbar">
+                                            {/* Default  */}
                                             <div class="flex justify-end mb-4">
                                                 <div
                                                     class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                 >
-                                                    Welcome to group everyone !
+                                                    ThePairUp Welcome you to be a part of our #team !
                                                 </div>
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                                                <Image
+                                                    src={'/avatars/TPU-Final-W.png'} width={1000} height={1000}
                                                     class="object-cover h-8 w-8 rounded-full"
                                                     alt=""
                                                 />
                                             </div>
                                             <div class="flex justify-start mb-4">
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                                                <Image
+                                                    src={'/avatars/jim.jpeg'} width={1000} height={1000}
                                                     class="object-cover h-8 w-8 rounded-full"
                                                     alt=""
                                                 />
@@ -352,55 +353,23 @@ const chat = ({ params }) => {
                                                     consequatur quas?
                                                 </div>
                                             </div>
-                                            <div class="flex justify-end mb-4">
-                                                <div>
-                                                    <div
-                                                        class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                    >
-                                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                                        Magnam, repudiandae.
-                                                    </div>
 
-                                                    <div
-                                                        class="mt-4 mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                    >
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                        Debitis, reiciendis!
-                                                    </div>
-                                                </div>
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <div class="flex justify-start mb-4">
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                                <div
-                                                    class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
-                                                >
-                                                    happy holiday guys!
-                                                </div>
-                                            </div>
+                                            {/* Live  */}
                                             <div class="flex justify-end mb-4">
                                                 <div
                                                     class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
                                                 >
-                                                    Welcome to group everyone !
+                                                    ThePairUp Welcome you to be a part of our #team !
                                                 </div>
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                                                <Image
+                                                    src={`/avatars/${userDetails2.avatar}`} width={1000} height={1000}
                                                     class="object-cover h-8 w-8 rounded-full"
                                                     alt=""
                                                 />
                                             </div>
                                             <div class="flex justify-start mb-4">
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                                                <Image
+                                                    src={`/avatars/${slugDetails.avatar}`} width={1000} height={1000}
                                                     class="object-cover h-8 w-8 rounded-full"
                                                     alt=""
                                                 />
@@ -411,162 +380,6 @@ const chat = ({ params }) => {
                                                     at praesentium, aut ullam delectus odio error sit rem. Architecto
                                                     nulla doloribus laborum illo rem enim dolor odio saepe,
                                                     consequatur quas?
-                                                </div>
-                                            </div>
-                                            <div class="flex justify-end mb-4">
-                                                <div>
-                                                    <div
-                                                        class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                    >
-                                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                                        Magnam, repudiandae.
-                                                    </div>
-
-                                                    <div
-                                                        class="mt-4 mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                    >
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                        Debitis, reiciendis!
-                                                    </div>
-                                                </div>
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <div class="flex justify-start mb-4">
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                                <div
-                                                    class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
-                                                >
-                                                    happy holiday guys!
-                                                </div>
-                                            </div>
-                                            <div class="flex justify-end mb-4">
-                                                <div
-                                                    class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                >
-                                                    Welcome to group everyone !
-                                                </div>
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <div class="flex justify-start mb-4">
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                                <div
-                                                    class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
-                                                >
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                                                    at praesentium, aut ullam delectus odio error sit rem. Architecto
-                                                    nulla doloribus laborum illo rem enim dolor odio saepe,
-                                                    consequatur quas?
-                                                </div>
-                                            </div>
-                                            <div class="flex justify-end mb-4">
-                                                <div>
-                                                    <div
-                                                        class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                    >
-                                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                                        Magnam, repudiandae.
-                                                    </div>
-
-                                                    <div
-                                                        class="mt-4 mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                    >
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                        Debitis, reiciendis!
-                                                    </div>
-                                                </div>
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <div class="flex justify-start mb-4">
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                                <div
-                                                    class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
-                                                >
-                                                    happy holiday guys!
-                                                </div>
-                                            </div>
-                                            <div class="flex justify-end mb-4">
-                                                <div
-                                                    class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                >
-                                                    Welcome to group everyone !
-                                                </div>
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <div class="flex justify-start mb-4">
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                                <div
-                                                    class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
-                                                >
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                                                    at praesentium, aut ullam delectus odio error sit rem. Architecto
-                                                    nulla doloribus laborum illo rem enim dolor odio saepe,
-                                                    consequatur quas?
-                                                </div>
-                                            </div>
-                                            <div class="flex justify-end mb-4">
-                                                <div>
-                                                    <div
-                                                        class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                    >
-                                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                                        Magnam, repudiandae.
-                                                    </div>
-
-                                                    <div
-                                                        class="mt-4 mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                    >
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                        Debitis, reiciendis!
-                                                    </div>
-                                                </div>
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <div class="flex justify-start mb-4">
-                                                <img
-                                                    src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                                <div
-                                                    class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
-                                                >
-                                                    happy holiday guys!
                                                 </div>
                                             </div>
                                         </div>
