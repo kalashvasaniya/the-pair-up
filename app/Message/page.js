@@ -13,6 +13,7 @@ const Message = () => {
         if (!localStorage.getItem('token')) {
             window.location.href = '/'
         }
+        searchUser(" ")
     }, [])
 
     const searchUser = async (slug) => {
@@ -38,7 +39,7 @@ const Message = () => {
     return (
         <>
             <div className="p-4">
-              
+
                 <form onSubmit={(e) => {
                     e.preventDefault(),
                         searchUser(e.target.simpleSearch.value)

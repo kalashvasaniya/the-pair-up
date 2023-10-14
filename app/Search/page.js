@@ -21,6 +21,8 @@ const Search = () => {
             // After 2 seconds, show the Story
             setShowLoader(true);
         }, 1000);
+
+        searchUser(" ")
     }, [])
 
     const searchUser = async (slug) => {
@@ -42,6 +44,22 @@ const Search = () => {
             console.error(error);
         }
     };
+
+    function reverseArrayRandomly(arr) {
+        const shuffledArray = arr.slice(); // Clone the original array
+
+        // Fisher-Yates shuffle algorithm
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+        }
+
+        return shuffledArray;
+    }
+    // Example usage:
+    const userDetailsR = [...userDetails]
+    const reverse = reverseArrayRandomly(userDetailsR);
+
 
     return (
         <>
@@ -89,7 +107,7 @@ const Search = () => {
                     {userDetails && userDetails.length > 0 && slugDetails && (
                         <div className="mt-6">
 
-                            {userDetails.map((user, index) => (
+                            {Array.isArray(reverse) && reverse.map((user, index) => (
 
                                 <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
 
