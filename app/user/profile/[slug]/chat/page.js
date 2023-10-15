@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Message from '@/app/Message/page'
 import { useRef } from 'react'
 import Notification from '@/app/Notification/page'
+import { useTPU } from '@/app/layout'
 
 const chat = ({ params }) => {
     const [userDetails, setUserDetails] = useState(null);
@@ -120,6 +121,8 @@ const chat = ({ params }) => {
     const toggleTooltip2 = () => {
         setShowTooltip2(!showTooltip2);
     };
+
+    const { logout } = useTPU();
 
     return (
         <>

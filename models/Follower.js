@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const followSchema = new mongoose.Schema({
     user: {
@@ -16,4 +17,4 @@ const followSchema = new mongoose.Schema({
 })
 
 mongoose.models = {}
-module.exports = mongoose.model("Follow", followSchema);
+module.exports = mongoose.model("Follower", followSchema);
