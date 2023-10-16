@@ -56,7 +56,6 @@ const Profile = ({ params }) => {
         setUserDetails(data.user[0]);
         setSlugDetails(data.details[0])
         setPostDetails(data.posts[0])
-        console.log("User Details", userDetails, "Slug details:", slugDetails, "post", postDetails)
       } else throw new Error("Something went wrong!");
     } catch (error) {
       console.log(error)
@@ -124,9 +123,53 @@ const Profile = ({ params }) => {
     }
   }
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async (userToFollow, userToUnfollow) => {
+    // Invert the isFollowing state
     setIsFollowing(!isFollowing);
+
+    try {
+      if (isFollowing) {
+        // Unfollow the user
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/unfollow`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({ userIdToUnfollow: userToUnfollow }) // Pass the user ID to unfollow
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          // Handle the response data as needed
+        } else {
+          // Handle the case where unfollowing failed
+          console.log('Failed to unfollow user');
+        }
+      } else {
+        // Follow the user
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/follow`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({
+            userIdToFollow: userToFollow,
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+        } else {
+          console.log('Failed to follow user');
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
 
   function reverseArray(arr) {
     return arr.slice().reverse();
@@ -903,9 +946,9 @@ const Profile = ({ params }) => {
                         <div className="mt-8 justify-start text-base font-medium items-start">
                           <div className="flex flex-row justify-center items-center pl-0">
 
-                            <Link href={''} className={`p-1 px-4 rounded-2xl hover:scale-105 ${isFollowing ? 'bg-red-500' : 'bg-sky-500'} mr-4`} onClick={handleButtonClick}>
+                            <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${isFollowing ? 'bg-red-500' : 'bg-sky-500'} mr-4`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
                               {isFollowing ? 'Unfollow' : 'Follow'}
-                            </Link>
+                            </button>
 
                             <Link href={`/user/profile/${userDetails.name}/chat`} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500'>Message</Link>
                             <Link href={'/menu/Setting'} className='p-1 px-4 rounded-2xl hover:scale-105'>
@@ -1199,7 +1242,7 @@ const Profile = ({ params }) => {
                         {/* button  */}
                         <div className="flex flex-row justify-center items-center">
 
-                          <Link href={''} className={`p-1 px-4 rounded-2xl hover:scale-105 ${isFollowing ? 'bg-red-500' : 'bg-sky-500'} mr-4 text-sm`} onClick={handleButtonClick}>
+                          <Link href={''} className={`p-1 px-4 rounded-2xl hover:scale-105 ${isFollowing ? 'bg-red-500' : 'bg-sky-500'} mr-4 text-sm`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
                             {isFollowing ? 'Unfollow' : 'Follow'}
                           </Link>
 
