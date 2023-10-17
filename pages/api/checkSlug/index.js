@@ -1,6 +1,7 @@
 import User from '@/models/User'; // Your User model
 import Details from '@/models/Details'; // Your Details model
 import Post from '@/models/Post';
+import Follower from '@/models/Follower';
 import db from '@/middleware';
 
 export default async function handler(req, res) {
@@ -18,8 +19,12 @@ export default async function handler(req, res) {
                 user: { $in: user.map(user => user._id) }
             })
 
+            const follower = await Follower.find({
+                user: { $in: user.map(user => user._id) }
+            })
+
             // Return all users and details
-            return res.status(200).json({ "success": true, user, details, posts });
+            return res.status(200).json({ "success": true, user, details, posts, follower });
         } catch (error) {
             console.error(error);
             return res.status(500).json({ error: 'Internal server error' });

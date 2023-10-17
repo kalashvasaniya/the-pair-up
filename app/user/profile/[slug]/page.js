@@ -19,6 +19,8 @@ const Profile = ({ params }) => {
   const [userDetails2, setUserDetails2] = useState('');
   const [userDetails3, setUserDetails3] = useState('');
   const [userDetails4, setUserDetails4] = useState('');
+  const [userDetails7, setUserDetails7] = useState('');
+
   const [showFeed, setShowFeed] = useState(false);
   const [showPost, setShowPost] = useState(false);
   const [showTagged, setShowTagged] = useState(false);
@@ -41,6 +43,7 @@ const Profile = ({ params }) => {
     fetchUserDetails1();
     fetchUserDetails2();
     fetchUserDetails3();
+    fetchUserDetails4();
   }, [params.slug]);
 
   const fetchUserDetails = async (slug) => {
@@ -56,6 +59,7 @@ const Profile = ({ params }) => {
         setUserDetails(data.user[0]);
         setSlugDetails(data.details[0])
         setPostDetails(data.posts[0])
+        setFollowDetails(data.follower[0])
       } else throw new Error("Something went wrong!");
     } catch (error) {
       console.log(error)
@@ -122,6 +126,31 @@ const Profile = ({ params }) => {
       console.log(error)
     }
   }
+
+  const fetchUserDetails4 = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/follow`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Hello', data);
+        setUserDetails7(data.isFollowings);
+        console.log("Hello", userDetails7)
+      } else {
+        alert("error", response);
+      }
+    } catch (error) {
+      console.error('Error following user:', error);
+      // Handle the error as needed, e.g., show an error message to the user.
+    }
+  }
+
 
   const handleButtonClick = async (userToFollow, userToUnfollow) => {
     // Invert the isFollowing state
@@ -946,8 +975,9 @@ const Profile = ({ params }) => {
                         <div className="mt-8 justify-start text-base font-medium items-start">
                           <div className="flex flex-row justify-center items-center pl-0">
 
-                            <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${isFollowing ? 'bg-red-500' : 'bg-sky-500'} mr-4`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
-                              {isFollowing ? 'Unfollow' : 'Follow'}
+                            <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${userDetails7
+                              ? 'bg-red-500' : 'bg-sky-500'} mr-4`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
+                              {userDetails7 ? 'Unfollow' : 'Follow'}
                             </button>
 
                             <Link href={`/user/profile/${userDetails.name}/chat`} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500'>Message</Link>
@@ -955,6 +985,7 @@ const Profile = ({ params }) => {
                               <svg aria-label="Options" class="x1lliihq x1n2onr6" color="rgb(245, 245, 245)" fill="rgb(245, 245, 245)" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Options</title><circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path d="M14.232 3.656a1.269 1.269 0 0 1-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 0 1-.796.66m-.001 16.688a1.269 1.269 0 0 1 .796.66l.505.996h1.862l.505-.996a1.269 1.269 0 0 1 .796-.66M3.656 9.768a1.269 1.269 0 0 1-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 0 1 .66.796m16.688-.001a1.269 1.269 0 0 1 .66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 0 1-.66-.796M7.678 4.522a1.269 1.269 0 0 1-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 0 1-.096 1.03m11.8 11.799a1.269 1.269 0 0 1 1.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 0 1 .096-1.03m-14.956.001a1.269 1.269 0 0 1 .096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 0 1 1.03.096m11.799-11.8a1.269 1.269 0 0 1-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 0 1-1.03-.096" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
                             </Link>
                           </div>
+
                           <div className="flex flex-row space-x-8 mt-8">
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>243</span> followers</div>
@@ -1242,9 +1273,9 @@ const Profile = ({ params }) => {
                         {/* button  */}
                         <div className="flex flex-row justify-center items-center">
 
-                          <Link href={''} className={`p-1 px-4 rounded-2xl hover:scale-105 ${isFollowing ? 'bg-red-500' : 'bg-sky-500'} mr-4 text-sm`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
-                            {isFollowing ? 'Unfollow' : 'Follow'}
-                          </Link>
+                          <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${userDetails7 ? 'bg-red-500' : 'bg-sky-500'} mr-4 text-sm`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
+                            {userDetails7 ? 'Unfollow' : 'Follow'}
+                          </button>
 
                           <Link href={`/user/profile/${userDetails.name}/chat`} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 text-sm'>Message</Link>
                           <Link href={'/menu/Setting'} className='p-1 px-4 rounded-2xl hover:scale-105'>
