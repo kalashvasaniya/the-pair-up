@@ -14,6 +14,7 @@ const Profile = ({ params }) => {
   const [userDetails, setUserDetails] = useState(null);
   const [slugDetails, setSlugDetails] = useState(null);
   const [postDetails, setPostDetails] = useState(null);
+  const [followDetails, setFollowDetails] = useState(null);
 
   const [userDetails1, setUserDetails1] = useState('');
   const [userDetails2, setUserDetails2] = useState('');
@@ -139,9 +140,9 @@ const Profile = ({ params }) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Hello', data);
+        console.log('Hello1', data);
         setUserDetails7(data.isFollowings);
-        console.log("Hello", userDetails7)
+        console.log("Hello2", userDetails7)
       } else {
         alert("error", response);
       }
@@ -150,7 +151,6 @@ const Profile = ({ params }) => {
       // Handle the error as needed, e.g., show an error message to the user.
     }
   }
-
 
   const handleButtonClick = async (userToFollow, userToUnfollow) => {
     // Invert the isFollowing state
@@ -233,11 +233,20 @@ const Profile = ({ params }) => {
   };
 
   let totalPosts = 0;
+  let totalFolow = 0;
 
   const { logout, highlightHashTags } = useTPU();
 
   return (
     <>
+      {/* Count  */}
+      <div className="hidden">
+        {Array.isArray(userDetails7) && userDetails7.map((followDetails, index) => (
+          <div key={index} className="">
+            {totalFolow++}
+          </div>
+        ))}
+      </div>
       {/* Count  */}
       <div className="hidden">
         {Array.isArray(reverse) && reverse.map((post, index) => (
@@ -390,7 +399,7 @@ const Profile = ({ params }) => {
                           <div className="flex flex-row space-x-8 mt-8">
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>243</span> followers</div>
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>1846</span> following</div>
+                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFolow}</span> following</div>
                           </div>
                         </div>
                       </div>
@@ -691,7 +700,7 @@ const Profile = ({ params }) => {
                         <div className="grid grid-cols-3 mt-1">
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>243</span> followers</div>
-                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>1846</span> following</div>
+                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalFolow}</span> following</div>
                         </div>
 
                         <hr className='w-screen mt-1 border-gray-600' />
@@ -975,10 +984,11 @@ const Profile = ({ params }) => {
                         <div className="mt-8 justify-start text-base font-medium items-start">
                           <div className="flex flex-row justify-center items-center pl-0">
 
-                            <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${userDetails7
-                              ? 'bg-red-500' : 'bg-sky-500'} mr-4`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
-                              {userDetails7 ? 'Unfollow' : 'Follow'}
-                            </button>
+                            <div className="">
+                              <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${userDetails7 ? 'bg-red-500' : 'bg-sky-500'} mr-4`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
+                                {userDetails7 ? 'Unfollow' : 'Follow'}
+                              </button>
+                            </div>
 
                             <Link href={`/user/profile/${userDetails.name}/chat`} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500'>Message</Link>
                             <Link href={'/menu/Setting'} className='p-1 px-4 rounded-2xl hover:scale-105'>
@@ -989,7 +999,7 @@ const Profile = ({ params }) => {
                           <div className="flex flex-row space-x-8 mt-8">
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>243</span> followers</div>
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>1846</span> following</div>
+                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFolow}</span> following</div>
                           </div>
                         </div>
                       </div>
@@ -1289,7 +1299,7 @@ const Profile = ({ params }) => {
                         <div className="grid grid-cols-3 mt-1">
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>243</span> followers</div>
-                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>1846</span> following</div>
+                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalFolow}</span> following</div>
                         </div>
 
                         <hr className='w-screen mt-1 border-gray-600' />
