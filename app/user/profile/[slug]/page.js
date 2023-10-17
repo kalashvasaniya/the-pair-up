@@ -985,8 +985,8 @@ const Profile = ({ params }) => {
                           <div className="flex flex-row justify-center items-center pl-0">
 
                             <div className="">
-                              <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${userDetails7 ? 'bg-red-500' : 'bg-sky-500'} mr-4`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
-                                {userDetails7 ? 'Unfollow' : 'Follow'}
+                              <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${isFollowing ? 'bg-red-500' : 'bg-sky-500'} mr-4`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
+                                {isFollowing ? 'Unfollow' : 'Follow'}
                               </button>
                             </div>
 
@@ -1283,8 +1283,8 @@ const Profile = ({ params }) => {
                         {/* button  */}
                         <div className="flex flex-row justify-center items-center">
 
-                          <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${userDetails7 ? 'bg-red-500' : 'bg-sky-500'} mr-4 text-sm`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
-                            {userDetails7 ? 'Unfollow' : 'Follow'}
+                          <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${isFollowing ? 'bg-red-500' : 'bg-sky-500'} mr-4 text-sm`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
+                            {isFollowing ? 'Unfollow' : 'Follow'}
                           </button>
 
                           <Link href={`/user/profile/${userDetails.name}/chat`} className='p-1 px-4 rounded-2xl hover:scale-105 bg-sky-500 text-sm'>Message</Link>

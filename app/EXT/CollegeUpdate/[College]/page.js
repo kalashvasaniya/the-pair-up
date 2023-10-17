@@ -72,7 +72,7 @@ const page = () => {
                 // Render the Story component after 2 seconds
                 <Example />
             ) : (
-                <div className="">
+                <div className="text-white bg-black">
                     {/* gmail.com & Unknown */}
                     {(userDetails2.college === 'Dropout?' || !userDetails2.college) && (
                         <div className="flex flex-col justify-center items-center text-3xl font-bold font-mono h-screen">

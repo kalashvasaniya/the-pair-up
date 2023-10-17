@@ -207,7 +207,7 @@ const chat = ({ params }) => {
                 </nav>
             </div>
 
-            <div className="md:grid md:grid-cols-12 md:mt-0 mt-16">
+            <div className="md:grid md:grid-cols-12 md:mt-0 mt-16 bg-black text-white">
                 {/* Messsage side in Laptop  */}
                 <div className="col-start-1 col-end-3 md:block hidden">
                     <div className="absolute border-r border-gray-500 top-0 left-0 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform translate-x-0 bg-black" tabIndex="-1">

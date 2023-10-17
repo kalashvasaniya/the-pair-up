@@ -25,12 +25,14 @@ const Delete = () => {
                 // Render the Story component after 2 seconds
                 <Example />
             ) : (
-                <div className="h-screen flex flex-col justify-center items-center">
-                    <div className="text-4xl font-bold p-10">
-                        Soon ...
-                    </div>
-                    <div className="">
-                        <Link href={'/Home'} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl'>Back</Link>
+                <div className="text-white bg-black">
+                    <div className="h-screen flex flex-col justify-center items-center">
+                        <div className="text-4xl font-bold p-10">
+                            Soon ...
+                        </div>
+                        <div className="">
+                            <Link href={'/Home'} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl'>Back</Link>
+                        </div>
                     </div>
                 </div>
             )}

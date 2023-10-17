@@ -7,7 +7,7 @@ const Security = () => {
     return (
         <>
         <Navbar/>
-        <div className='pt-32 px-10 pb-40 flex flex-col justify-center text-center space-y-4 items-center align-middle font-mono'>
+        <div className='pt-32 px-10 pb-40 flex flex-col justify-center text-center space-y-4 items-center align-middle font-mono text-white bg-black'>
 
             <div className='font-bold text-sky-400 text-3xl'>Security Policy</div>
 
