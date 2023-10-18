@@ -134,20 +134,21 @@ const Profile = ({ params }) => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       });
 
       if (response.ok) {
         const data = await response.json();
-        setUserDetails7(data.isFollowings);
+        setUserDetails7(data.followers);
       } else {
-        alert("error", response);
+        // Handle other HTTP errors (e.g., 404, 500)
+        console.error("Request failed with status:", response.status, response.message);
       }
     } catch (error) {
       console.error('Error following user:', error);
       // Handle the error as needed, e.g., show an error message to the user.
     }
+
   }
 
   const handleButtonClick = async (userToFollow, userToUnfollow) => {
@@ -231,27 +232,14 @@ const Profile = ({ params }) => {
   };
 
   let totalPosts = 0;
-  let totalFollow = 0;
+  let totalFollowers = 0;
+  let totalFollowing = 0;
 
   const { logout, highlightHashTags } = useTPU();
 
   return (
     <>
-      {/* Count  */}
-      <div className="hidden">
-        {Array.isArray(followDetails) && followDetails.map((userPot, index) => (
-          <div key={index} className="">
-            {params.slug !== userDetails1.name && (
-              <div key={index} className="">
-                {/* here */}
-                {totalFollow++}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Count  */}
+      {/* Count Post  */}
       <div className="hidden">
         {Array.isArray(reverse) && reverse.map((post, index) => (
           <div key={index} className="">
@@ -272,6 +260,33 @@ const Profile = ({ params }) => {
           </div>
         ))}
       </div>
+      {/* Count Followers  */}
+      {/* Count Followers  */}
+      <div className="hidden">
+        {userDetails7 && userDetails && Array.isArray(userDetails7) && userDetails7.map((userDet, indexDet) => (
+          <div key={indexDet} className="">
+            {userDet.following === userDetails._id && (
+              <div key={indexDet} className="">
+                {totalFollowers++}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Count Following  */}
+      <div className="hidden" >
+        {
+          Array.isArray(followDetails) && followDetails.map((userPot, index) => (
+            <div key={index} className="">
+              {/* here */}
+              {totalFollowing++}
+            </div>
+          ))
+        }
+      </div>
+
+
       {!showLoader ? (
         // Render the Story component after 2 seconds
         <Example />
@@ -402,8 +417,8 @@ const Profile = ({ params }) => {
                           </div>
                           <div className="flex flex-row space-x-8 mt-8">
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>243</span> followers</div>
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{userDetails7.length}</span> following</div>
+                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFollowers}</span> followers</div>
+                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFollowing}</span> following</div>
                           </div>
                         </div>
                       </div>
@@ -703,8 +718,8 @@ const Profile = ({ params }) => {
                         {/* user details  */}
                         <div className="grid grid-cols-3 mt-1">
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
-                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>243</span> followers</div>
-                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{userDetails7.length}</span> following</div>
+                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalFollowers}</span> followers</div>
+                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalFollowing}</span> following</div>
                         </div>
 
                         <hr className='w-screen mt-1 border-gray-600' />
@@ -1002,8 +1017,8 @@ const Profile = ({ params }) => {
 
                           <div className="flex flex-row space-x-8 mt-8">
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>243</span> followers</div>
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFollow}</span> following</div>
+                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFollowers}</span> followers</div>
+                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFollowing}</span> following</div>
                           </div>
                         </div>
                       </div>
@@ -1302,8 +1317,8 @@ const Profile = ({ params }) => {
                         {/* user details  */}
                         <div className="grid grid-cols-3 mt-1">
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
-                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>243</span> followers</div>
-                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalFollow}</span> following</div>
+                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalFollowers}</span> followers</div>
+                          <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalFollowing}</span> following</div>
                         </div>
 
                         <hr className='w-screen mt-1 border-gray-600' />
