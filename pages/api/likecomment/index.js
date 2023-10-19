@@ -1,5 +1,7 @@
 import User from '@/models/User';
+import Post from '@/models/Post';
 import LikeComment from '@/models/LikeComment';
+
 import jwt_decode from "jwt-decode";
 import db from '@/middleware';
 
@@ -19,7 +21,6 @@ export default async function handler(req, res) {
             } else if (decoded.name) {
                 userss = await User.findOne({ name: decoded.name });
             }
-
             // You need to identify the current user using the appropriate property.
             // If you're using email as the identifier, you should make sure it's passed correctly in the request body.
             const currentUser = await User.findOne({
@@ -30,7 +31,7 @@ export default async function handler(req, res) {
                 return res.status(404).json({ error: 'Current user not found' });
             }
 
-            const userToLike = await User.findOne({
+            const userToLike = await Post.findOne({
                 _id: postId
             });
 
@@ -42,7 +43,7 @@ export default async function handler(req, res) {
             let likeComment = await LikeComment.create({
                 // comment: commentId,
                 user: currentUser._id,
-                like: userToLike
+                like: postId
             });
 
             res.status(200).json({ message: 'Comment liked successfully', likeComment });

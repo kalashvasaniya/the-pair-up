@@ -18,8 +18,6 @@ const Feed = () => {
     const [showTooltip2, setShowTooltip2] = useState(false);
     const [isIcon, setIsIcon] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
-    const [like, setLike] = useState('')
-    const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
@@ -58,37 +56,46 @@ const Feed = () => {
     const reverse = reverseArray(userDetails);
 
     // Like 
-    const handleButtonClick = async (userId1, postToUpdate) => {
+    const handleButtonClick = async (userToLike, userToUnLike) => {
         setIsIcon((prevVisibility) => ({
             ...prevVisibility,
-            [userId1]: !prevVisibility[userId1] || false,
+            [userToLike]: !prevVisibility[userToLike] || false,
         }));
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
-                body: JSON.stringify({ postId: postToUpdate._id, like: postToUpdate.like }),
-            })
-            const data = await response.json();
-            console.log("data", data.post.like)
-
-            if (response.ok) {
-                if (isLiked) {
-                    // If already liked, unlike
-                    postToUpdate.like -= 1;
-                    setLike(postToUpdate.like);
-                } else {
-                    // If not liked, like
-                    postToUpdate.like += 1;
-                    setLike(postToUpdate.like);
+            if (isIcon[userToLike]) {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/unlikecomment`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    },
+                    body: JSON.stringify({
+                        postId: userToUnLike,
+                    })
+                })
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("data", data)
                 }
-
-                // Toggle the liked state
-                setIsLiked(!isLiked);
-
+            } else {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/likecomment`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    },
+                    body: JSON.stringify({
+                        postId: userToLike,
+                    })
+                })
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("data", data)
+                } else {
+                    alert(
+                        'You need to be logged in to like a post. Please login or signup.', response.message
+                    )
+                }
             }
         } catch (error) {
             console.log(error)
@@ -292,10 +299,9 @@ const Feed = () => {
                                                                         {/* Like  */}
                                                                         <button className={`pl-4 flex flex-row justify-center items-center space-x-2`}
                                                                             key={index}>
-                                                                            <div onClick={async (e) => {
-                                                                                e.preventDefault();
-                                                                                await handleButtonClick(post._id, post);
-                                                                            }} className={`${post.like >= 0 ? 'liked' : ''}`}>
+                                                                            <div onClick={() =>
+                                                                                handleButtonClick(post._id, post._id)
+                                                                            } className={`${post.like >= 0 ? 'liked' : ''}`}>
                                                                                 {!isIcon[post._id] ? (
                                                                                     <svg
                                                                                         viewBox="0 0 1024 1024"
@@ -350,7 +356,7 @@ const Feed = () => {
 
 
                                                                     </div>
-                                                                        <div className="pr-4 text-xs flex justify-center items-center hover:underline text-sky-400">~ {userDetails.college}</div>
+                                                                    <div className="pr-4 text-xs flex justify-center items-center hover:underline text-sky-400">~ {userDetails.college}</div>
                                                                 </div>
 
                                                                 <hr className='mx-4 border-gray-500' />
