@@ -1,6 +1,5 @@
 import User from '@/models/User';
 import Follower from '@/models/Follower';
-import Details from '@/models/Details';
 import jwt_decode from "jwt-decode";
 import db from '@/middleware';
 
