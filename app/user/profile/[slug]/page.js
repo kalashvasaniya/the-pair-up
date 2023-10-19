@@ -30,6 +30,9 @@ const Profile = ({ params }) => {
 
   const [showLoader, setShowLoader] = useState(false);
 
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [showTooltip2, setShowTooltip2] = useState(false);
+
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       window.location.href = '/';
@@ -235,6 +238,14 @@ const Profile = ({ params }) => {
   let totalFollowers = 0;
   let totalFollowing = 0;
 
+  const showFollower = () => {
+    setShowTooltip(!showTooltip);
+  };
+
+  const showFollowing = () => {
+    setShowTooltip2(!showTooltip2);
+  };
+
   const { logout, highlightHashTags } = useTPU();
 
   return (
@@ -260,7 +271,7 @@ const Profile = ({ params }) => {
           </div>
         ))}
       </div>
-      {/* Count Followers  */}
+
       {/* Count Followers  */}
       <div className="hidden">
         {userDetails7 && userDetails && Array.isArray(userDetails7) && userDetails7.map((userDet, indexDet) => (
@@ -416,9 +427,38 @@ const Profile = ({ params }) => {
                             </Link>
                           </div>
                           <div className="flex flex-row space-x-8 mt-8">
+
                             <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFollowers}</span> followers</div>
-                            <div className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFollowing}</span> following</div>
+
+                            <div className="relative">
+                              <button onClick={showFollowing} className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFollowers}</span> followers</button>
+                              {showTooltip2 && (
+                                <div className="absolute z-10">
+                                  {userDetails7 && userDetails && Array.isArray(userDetails7) && userDetails7.map((userDet, indexDet) => (
+                                    <div key={indexDet} className="">
+                                      {userDet.following === userDetails._id && (
+                                        <div key={indexDet} className="">
+                                          {userDet.user}
+                                        </div>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="relative">
+                              <button onClick={showFollower} className="flex flex-row space-x-4"><span className='pr-2 text-sky-400'>{totalFollowing}</span> following</button>
+                              {showTooltip && (
+                                <div className="absolute z-10">
+                                  {Array.isArray(followDetails) && followDetails.map((userPot, index) => (
+                                    <div key={index}>
+                                      {userPot.following}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1003,6 +1043,7 @@ const Profile = ({ params }) => {
                         <div className="mt-8 justify-start text-base font-medium items-start">
                           <div className="flex flex-row justify-center items-center pl-0">
 
+
                             <div className="">
                               <button className={`p-1 px-4 rounded-2xl hover:scale-105 ${isFollowing ? 'bg-red-500' : 'bg-sky-500'} mr-4`} onClick={() => handleButtonClick(userDetails._id, userDetails._id)}>
                                 {isFollowing ? 'Unfollow' : 'Follow'}
@@ -1502,7 +1543,7 @@ const Profile = ({ params }) => {
           )}
           <ScrollButton1 />
           <BottomNavbar />
-        </div>
+        </div >
       )}
     </>
   )
