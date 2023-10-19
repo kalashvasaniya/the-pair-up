@@ -39,6 +39,16 @@ export default async function handler(req, res) {
                 return res.status(404).json({ error: 'User to like not found' });
             }
 
+            const likeCommentCheck = await LikeComment.exists({
+                // comment: commentId,
+                user: currentUser._id,
+                like: postId
+            });
+
+            if (likeCommentCheck) {
+                return res.status(400).json({ error: 'You are already Like this Post' });
+            }
+
             // Create a new follower relationship
             let likeComment = await LikeComment.create({
                 // comment: commentId,

@@ -92,9 +92,7 @@ const Feed = () => {
                     const data = await response.json();
                     console.log("data", data)
                 } else {
-                    alert(
-                        'You need to be logged in to like a post. Please login or signup.', response.message
-                    )
+                    console.log('error')
                 }
             }
         } catch (error) {
