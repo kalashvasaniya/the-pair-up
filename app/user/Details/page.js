@@ -62,7 +62,7 @@ const Details = () => {
                 } else if (emailDomain.endsWith('iitgn.ac.in')) {
                     setCollege('IITGN');
                 } else {
-                    setCollege('NA');
+                    setCollege(`NA`);
                 }
 
             } else {
