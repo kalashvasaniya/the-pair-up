@@ -34,9 +34,6 @@ const Profile = ({ params }) => {
 
   const [showLoader, setShowLoader] = useState(false);
 
-  const [showTooltip, setShowTooltip] = useState(false);
-  const [showTooltip2, setShowTooltip2] = useState(false);
-
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       window.location.href = '/';
@@ -272,6 +269,14 @@ const Profile = ({ params }) => {
       ref1.current.classList.remove('translate-x-0')
       ref1.current.classList.add('-translate-x-full')
     }
+    if (ref3.current.classList.contains('-translate-x-full')) {
+      ref3.current.classList.remove('-translate-x-full')
+      ref3.current.classList.add('translate-x-0')
+    }
+    else {
+      ref3.current.classList.remove('translate-x-0')
+      ref3.current.classList.add('-translate-x-full')
+    }
   };
 
   const showFollowing = () => {
@@ -283,10 +288,20 @@ const Profile = ({ params }) => {
       ref2.current.classList.remove('translate-x-0')
       ref2.current.classList.add('-translate-x-full')
     }
+    if (ref4.current.classList.contains('-translate-x-full')) {
+      ref4.current.classList.remove('-translate-x-full')
+      ref4.current.classList.add('translate-x-0')
+    }
+    else {
+      ref4.current.classList.remove('translate-x-0')
+      ref4.current.classList.add('-translate-x-full')
+    }
   };
 
   const ref1 = useRef();
   const ref2 = useRef();
+  const ref3 = useRef();
+  const ref4 = useRef();
   const { logout, highlightHashTags } = useTPU();
 
   return (
@@ -1043,261 +1058,265 @@ const Profile = ({ params }) => {
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='text-sky-400'>{totalPosts}</span> post</div>
 
                           {/* followers  */}
-                          <div className="relative flex flex-col justify-center items-center space-x-4 text-sm text-gray-400">
-                            <button onClick={showFollowing} className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className=' text-sky-400'>{totalFollowers}</span> followers</button>
-                            {showTooltip2 && (
-                              <div className="absolute z-10">
-                                {userDetails7 && slugDetails && userDetails && Array.isArray(userDetails7) && userDetails7.map((userDet, indexDet) => (
-                                  <div key={indexDet} className="">
-                                    {userDet.following === userDetails._id && (
-                                      <div key={indexDet} className="bg-pink-500">
-                                        {userDet.user}
+                          <button onClick={showFollowing} className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className=' text-sky-400'>{totalFollowers}</span> followers</button>
+                          <div className="absolute">
+                            <div ref={ref4} className="fixed top-0 -left-2 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black">
+                              <div className="text-base font-semibold font-mono text-sky-400">Followers</div>
+                              <button onClick={showFollowing} type="button" className="text-gray-400 bg-transparent hover:bg-sky-500 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-6 inline-flex items-center" >
+                                <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                                <span className="sr-only">Close menu</span>
+                              </button>
+                              <hr className="my-3 -mx-3" />
+                              {userDetails7 && slugDetails && userDetails && Array.isArray(userDetails7) && userDetails7.map((userDet, indexDet) => (
+                                <div key={indexDet} className="">
+                                  {userDet.following === userDetails._id && (
+                                    <div key={indexDet} className="bg-black">
+                                      {userDetailsk1 && userDetailsk1.length > 0 && slugDetailsk1 && (
+                                        <div className="mt-6">
 
-                                        {userDetailsk1 && userDetailsk1.length > 0 && slugDetailsk1 && (
-                                          <div className="mt-6">
+                                          {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index) => (
 
-                                            {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index) => (
+                                            <div key={index} className="">
+                                              {userDet.user === user._id && (
+                                                <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
 
-                                              <div key={index} className="">
-                                                {userDet.user === user._id && (
-                                                  <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
+                                                  {user.details && slugDetailsk1.map((details, index2) => (
 
-                                                    {user.details && slugDetailsk1.map((details, index2) => (
+                                                    <div key={index2} className="hover:scale-105">
+                                                      {userDet.user === details.user && userDet.user === user._id && (
+                                                        <div>
 
-                                                      <div key={index2} className="hover:scale-105">
-                                                        {userDet.user === details.user && userDet.user === user._id && (
-                                                          <div>
+                                                          {userDet.user === details.user && userDet.user === user._id && details.avatar && (
+                                                            <Image src={`/avatars/${details.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 mr-6 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                                                          )}
+                                                          <span className="sr-only">Search</span>
 
-                                                            {userDet.user === details.user && userDet.user === user._id && details.avatar && (
-                                                              <Image src={`/avatars/${details.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 mr-6 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                                            )}
-                                                            <span className="sr-only">Search</span>
+                                                        </div>
+                                                      )}
+                                                    </div>
 
-                                                          </div>
-                                                        )}
-                                                      </div>
+                                                  ))}
 
-                                                    ))}
+                                                  {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index2) => (
+                                                    <div key={index2} className="hover:scale-105">
+                                                      {user.details && slugDetailsk1.map((details, index2) => (
+                                                        <div className="">
+                                                          {userDet.user === details.user && userDet.user === user._id && (
+                                                            <div className="">
 
-                                                    {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index2) => (
-                                                      <div key={index2} className="hover:scale-105">
-                                                        {user.details && slugDetailsk1.map((details, index2) => (
-                                                          <div className="">
-                                                            {userDet.user === details.user && userDet.user === user._id && (
-                                                              <div className="">
+                                                              {userDet.user === details.user && userDet.user === user._id && user.details && (
+                                                                <div className="flex flex-row">
+                                                                  <div className="text-base flex justify-center items-center pr-2">{user.name}</div>
+                                                                  {userDet.user === details.user && userDet.user === user._id && user.role === 'admin' && (
+                                                                    <div className="hover:scale-105">
+                                                                      <svg className='flex justify-center items-center text-amber-400'
+                                                                        viewBox="0 0 16 16"
+                                                                        fill="currentColor"
+                                                                        height="1em"
+                                                                        width="1em">
+                                                                        <path
+                                                                          fillRule="evenodd"
+                                                                          d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                        />
+                                                                      </svg>
+                                                                    </div>
+                                                                  )}
+                                                                  {userDet.user === details.user && userDet.user === user._id && user.tick === 'yes' && (
+                                                                    <div className="hover:scale-105 pt-[0.10rem]">
+                                                                      <svg className='flex justify-center items-center text-sky-400'
+                                                                        viewBox="0 0 16 16"
+                                                                        fill="currentColor"
+                                                                        height="1em"
+                                                                        width="1em">
+                                                                        <path
+                                                                          fillRule="evenodd"
+                                                                          d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                        />
+                                                                      </svg>
+                                                                    </div>
+                                                                  )}
+                                                                  {userDet.user === details.user && userDet.user === user._id && user.tick === 'active' && (
+                                                                    <div className="hover:scale-105 pt-[0.10rem]">
+                                                                      <svg className='flex justify-center items-center text-teal-500'
+                                                                        viewBox="0 0 16 16"
+                                                                        fill="currentColor"
+                                                                        height="1em"
+                                                                        width="1em">
+                                                                        <path
+                                                                          fillRule="evenodd"
+                                                                          d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                        />
+                                                                      </svg>
+                                                                    </div>
+                                                                  )}
+                                                                </div>
+                                                              )}
 
-                                                                {userDet.user === details.user && userDet.user === user._id && user.details && (
-                                                                  <div className="flex flex-row">
-                                                                    <div className="text-base flex justify-center items-center pr-2">{user.name}</div>
-                                                                    {userDet.user === details.user && userDet.user === user._id && user.role === 'admin' && (
-                                                                      <div className="hover:scale-105">
-                                                                        <svg className='flex justify-center items-center text-amber-400'
-                                                                          viewBox="0 0 16 16"
-                                                                          fill="currentColor"
-                                                                          height="1em"
-                                                                          width="1em">
-                                                                          <path
-                                                                            fillRule="evenodd"
-                                                                            d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                          />
-                                                                        </svg>
-                                                                      </div>
-                                                                    )}
-                                                                    {userDet.user === details.user && userDet.user === user._id && user.tick === 'yes' && (
-                                                                      <div className="hover:scale-105 pt-[0.10rem]">
-                                                                        <svg className='flex justify-center items-center text-sky-400'
-                                                                          viewBox="0 0 16 16"
-                                                                          fill="currentColor"
-                                                                          height="1em"
-                                                                          width="1em">
-                                                                          <path
-                                                                            fillRule="evenodd"
-                                                                            d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                          />
-                                                                        </svg>
-                                                                      </div>
-                                                                    )}
-                                                                    {userDet.user === details.user && userDet.user === user._id && user.tick === 'active' && (
-                                                                      <div className="hover:scale-105 pt-[0.10rem]">
-                                                                        <svg className='flex justify-center items-center text-teal-500'
-                                                                          viewBox="0 0 16 16"
-                                                                          fill="currentColor"
-                                                                          height="1em"
-                                                                          width="1em">
-                                                                          <path
-                                                                            fillRule="evenodd"
-                                                                            d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                          />
-                                                                        </svg>
-                                                                      </div>
-                                                                    )}
-                                                                  </div>
-                                                                )}
+                                                              {/* bio max 12 */}
+                                                              {user.details && slugDetailsk1.map((details, index2) => (
+                                                                <div key={index2}>
 
-                                                                {/* bio max 12 */}
-                                                                {user.details && slugDetailsk1.map((details, index2) => (
-                                                                  <div key={index2}>
+                                                                  {userDet.user === details.user && userDet.user === user._id && (
+                                                                    <div>
 
-                                                                    {userDet.user === details.user && userDet.user === user._id && (
-                                                                      <div>
+                                                                      {userDet.user === details.user && userDet.user === user._id && details.bio && (
+                                                                        <div className="text-sm text-gray-500 truncate">{details.bio}</div>
+                                                                      )}
 
-                                                                        {userDet.user === details.user && userDet.user === user._id && details.bio && (
-                                                                          <div className="text-sm text-gray-500 truncate">{details.bio}</div>
-                                                                        )}
+                                                                    </div>
+                                                                  )}
 
-                                                                      </div>
-                                                                    )}
+                                                                </div>
+                                                              ))}
 
-                                                                  </div>
-                                                                ))}
+                                                            </div>
+                                                          )}
+                                                        </div>
+                                                      ))}
+                                                    </div>
+                                                  ))}
+                                                </Link>
+                                              )}
+                                            </div>
+                                          ))}
 
-                                                              </div>
-                                                            )}
-                                                          </div>
-                                                        ))}
-                                                      </div>
-                                                    ))}
-                                                  </Link>
-                                                )}
-                                              </div>
-                                            ))}
-
-                                          </div>
-                                        )}
-                                      </div>
-                                    )}
-                                  </div>
-                                ))}
-                              </div>
-                            )}
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
                           </div>
 
                           {/* following  */}
-                          <div className="relative flex flex-col justify-center items-center space-x-4 text-sm text-gray-400">
-                            <button onClick={showFollower} className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='text-sky-400'>{totalFollowing}</span> following</button>
-                            {showTooltip && (
-                              <div className="absolute z-10">
-                                {Array.isArray(followDetails) && followDetails.map((userPot, index) => (
-                                  <div key={index}>
-                                    {userPot.following}
+                          <button onClick={showFollower} className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='text-sky-400'>{totalFollowing}</span> following</button>
+                          <div className="absolute">
+                            <div ref={ref3} className="fixed top-0 -left-2 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black">
+                              <div className="text-base font-semibold font-mono text-sky-400">Followings</div>
+                              <button onClick={showFollower} type="button" className="text-gray-400 bg-transparent hover:bg-sky-500 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-6 inline-flex items-center" >
+                                <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                                <span className="sr-only">Close menu</span>
+                              </button>
+                              <hr className="my-3 -mx-3" />
+                              {Array.isArray(followDetails) && followDetails.map((userPot, index) => (
+                                <div key={index}>
+                                  {userDetailsk1 && userDetailsk1.length > 0 && slugDetailsk1 && (
+                                    <div className="mt-6">
 
-                                    {userDetailsk1 && userDetailsk1.length > 0 && slugDetailsk1 && (
-                                      <div className="mt-6">
+                                      {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index) => (
 
-                                        {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index) => (
+                                        <div key={index} className="">
+                                          {userPot.following === user._id && (
 
-                                          <div key={index} className="">
-                                            {userPot.following === user._id && (
-                                              <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
+                                            <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
 
-                                                {user.details && slugDetailsk1.map((details, index2) => (
+                                              {user.details && slugDetailsk1.map((details, index2) => (
 
-                                                  <div key={index2} className="hover:scale-105">
-                                                    {userPot.following === details.user && userPot.following === user._id && (
-                                                      <div>
+                                                <div key={index2} className="hover:scale-105">
+                                                  {userPot.following === details.user && userPot.following === user._id && (
+                                                    <div>
 
-                                                        {userPot.following === details.user && userPot.following === user._id && details.avatar && (
-                                                          <Image src={`/avatars/${details.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 mr-6 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                                        )}
-                                                        <span className="sr-only">Search</span>
+                                                      {userPot.following === details.user && userPot.following === user._id && details.avatar && (
+                                                        <Image src={`/avatars/${details.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 mr-6 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                                                      )}
+                                                      <span className="sr-only">Search</span>
 
-                                                      </div>
-                                                    )}
-                                                  </div>
+                                                    </div>
+                                                  )}
+                                                </div>
 
-                                                ))}
+                                              ))}
 
-                                                {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index2) => (
-                                                  <div key={index2} className="hover:scale-105">
-                                                    {user.details && slugDetailsk1.map((details, index2) => (
-                                                      <div className="">
-                                                        {userPot.following === details.user && userPot.following === user._id && (
-                                                          <div className="">
+                                              {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index2) => (
+                                                <div key={index2} className="hover:scale-105">
+                                                  {user.details && slugDetailsk1.map((details, index2) => (
+                                                    <div className="">
+                                                      {userPot.following === details.user && userPot.following === user._id && (
+                                                        <div className="">
 
-                                                            {userPot.following === details.user && userPot.following === user._id && user.details && (
-                                                              <div className="flex flex-row">
-                                                                <div className="text-base flex justify-center items-center pr-2">{user.name}</div>
-                                                                {userPot.following === details.user && userPot.following === user._id && user.role === 'admin' && (
-                                                                  <div className="hover:scale-105">
-                                                                    <svg className='flex justify-center items-center text-amber-400'
-                                                                      viewBox="0 0 16 16"
-                                                                      fill="currentColor"
-                                                                      height="1em"
-                                                                      width="1em">
-                                                                      <path
-                                                                        fillRule="evenodd"
-                                                                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                      />
-                                                                    </svg>
-                                                                  </div>
-                                                                )}
-                                                                {userPot.following === details.user && userPot.following === user._id && user.tick === 'yes' && (
-                                                                  <div className="hover:scale-105 pt-[0.10rem]">
-                                                                    <svg className='flex justify-center items-center text-sky-400'
-                                                                      viewBox="0 0 16 16"
-                                                                      fill="currentColor"
-                                                                      height="1em"
-                                                                      width="1em">
-                                                                      <path
-                                                                        fillRule="evenodd"
-                                                                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                      />
-                                                                    </svg>
-                                                                  </div>
-                                                                )}
-                                                                {userPot.following === details.user && userPot.following === user._id && user.tick === 'active' && (
-                                                                  <div className="hover:scale-105 pt-[0.10rem]">
-                                                                    <svg className='flex justify-center items-center text-teal-500'
-                                                                      viewBox="0 0 16 16"
-                                                                      fill="currentColor"
-                                                                      height="1em"
-                                                                      width="1em">
-                                                                      <path
-                                                                        fillRule="evenodd"
-                                                                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                      />
-                                                                    </svg>
-                                                                  </div>
-                                                                )}
-                                                              </div>
-                                                            )}
+                                                          {userPot.following === details.user && userPot.following === user._id && user.details && (
+                                                            <div className="flex flex-row">
+                                                              <div className="text-base flex justify-center items-center pr-2">{user.name}</div>
+                                                              {userPot.following === details.user && userPot.following === user._id && user.role === 'admin' && (
+                                                                <div className="hover:scale-105">
+                                                                  <svg className='flex justify-center items-center text-amber-400'
+                                                                    viewBox="0 0 16 16"
+                                                                    fill="currentColor"
+                                                                    height="1em"
+                                                                    width="1em">
+                                                                    <path
+                                                                      fillRule="evenodd"
+                                                                      d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                    />
+                                                                  </svg>
+                                                                </div>
+                                                              )}
+                                                              {userPot.following === details.user && userPot.following === user._id && user.tick === 'yes' && (
+                                                                <div className="hover:scale-105 pt-[0.10rem]">
+                                                                  <svg className='flex justify-center items-center text-sky-400'
+                                                                    viewBox="0 0 16 16"
+                                                                    fill="currentColor"
+                                                                    height="1em"
+                                                                    width="1em">
+                                                                    <path
+                                                                      fillRule="evenodd"
+                                                                      d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                    />
+                                                                  </svg>
+                                                                </div>
+                                                              )}
+                                                              {userPot.following === details.user && userPot.following === user._id && user.tick === 'active' && (
+                                                                <div className="hover:scale-105 pt-[0.10rem]">
+                                                                  <svg className='flex justify-center items-center text-teal-500'
+                                                                    viewBox="0 0 16 16"
+                                                                    fill="currentColor"
+                                                                    height="1em"
+                                                                    width="1em">
+                                                                    <path
+                                                                      fillRule="evenodd"
+                                                                      d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                    />
+                                                                  </svg>
+                                                                </div>
+                                                              )}
+                                                            </div>
+                                                          )}
 
-                                                            {/* bio max 12 */}
-                                                            {user.details && slugDetailsk1.map((details, index2) => (
-                                                              <div key={index2}>
+                                                          {/* bio max 12 */}
+                                                          {user.details && slugDetailsk1.map((details, index2) => (
+                                                            <div key={index2}>
 
-                                                                {userPot.following === details.user && userPot.following === user._id && (
-                                                                  <div>
+                                                              {userPot.following === details.user && userPot.following === user._id && (
+                                                                <div>
 
-                                                                    {userPot.following === details.user && userPot.following === user._id && details.bio && (
-                                                                      <div className="text-sm text-gray-500 truncate">{details.bio}</div>
-                                                                    )}
+                                                                  {userPot.following === details.user && userPot.following === user._id && details.bio && (
+                                                                    <div className="text-sm text-gray-500 truncate">{details.bio}</div>
+                                                                  )}
 
-                                                                  </div>
-                                                                )}
+                                                                </div>
+                                                              )}
 
-                                                              </div>
-                                                            ))}
+                                                            </div>
+                                                          ))}
 
-                                                          </div>
-                                                        )}
-                                                      </div>
-                                                    ))}
-                                                  </div>
-                                                ))}
-                                              </Link>
-                                            )}
-                                          </div>
-                                        ))}
+                                                        </div>
+                                                      )}
+                                                    </div>
+                                                  ))}
+                                                </div>
+                                              ))}
+                                            </Link>
+                                          )}
+                                        </div>
+                                      ))}
 
-                                      </div>
-                                    )}
+                                    </div>
+                                  )}
 
-                                  </div>
-                                ))}
-                              </div>
-
-                            )}
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </div>
 
@@ -1868,7 +1887,6 @@ const Profile = ({ params }) => {
                               </div>
                             </div>
 
-
                           </div>
                         </div>
                       </div>
@@ -2168,262 +2186,271 @@ const Profile = ({ params }) => {
 
                         {/* user details  */}
                         <div className="grid grid-cols-3 mt-1">
+                          {/* Post  */}
                           <div className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='pr-2 text-sky-400'>{totalPosts}</span> post</div>
-                          <div className="relative flex flex-col justify-center items-center space-x-4 text-sm text-gray-400">
-                            <button onClick={showFollowing} className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className=' text-sky-400'>{totalFollowers}</span> followers</button>
-                            {showTooltip2 && (
-                              <div className="absolute z-10">
-                                {userDetails7 && slugDetails && userDetails && Array.isArray(userDetails7) && userDetails7.map((userDet, indexDet) => (
-                                  <div key={indexDet} className="">
-                                    {userDet.following === userDetails._id && (
-                                      <div key={indexDet} className="bg-pink-500">
-                                        {userDet.user}
 
-                                        {userDetailsk1 && userDetailsk1.length > 0 && slugDetailsk1 && (
-                                          <div className="mt-6">
+                          {/* followers  */}
+                          <button onClick={showFollowing} className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className=' text-sky-400'>{totalFollowers}</span> followers</button>
+                          <div className="absolute">
+                            <div ref={ref4} className="fixed top-0 -left-2 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black">
+                              <div className="text-base font-semibold font-mono text-sky-400">Followers</div>
+                              <button onClick={showFollowing} type="button" className="text-gray-400 bg-transparent hover:bg-sky-500 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-6 inline-flex items-center" >
+                                <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                                <span className="sr-only">Close menu</span>
+                              </button>
+                              <hr className="my-3 -mx-3" />
+                              {userDetails7 && slugDetails && userDetails && Array.isArray(userDetails7) && userDetails7.map((userDet, indexDet) => (
+                                <div key={indexDet} className="">
+                                  {userDet.following === userDetails._id && (
+                                    <div key={indexDet} className="bg-black">
+                                      {userDetailsk1 && userDetailsk1.length > 0 && slugDetailsk1 && (
+                                        <div className="mt-6">
 
-                                            {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index) => (
+                                          {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index) => (
 
-                                              <div key={index} className="">
-                                                {userDet.user === user._id && (
-                                                  <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
+                                            <div key={index} className="">
+                                              {userDet.user === user._id && (
+                                                <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
 
-                                                    {user.details && slugDetailsk1.map((details, index2) => (
+                                                  {user.details && slugDetailsk1.map((details, index2) => (
 
-                                                      <div key={index2} className="hover:scale-105">
-                                                        {userDet.user === details.user && userDet.user === user._id && (
-                                                          <div>
+                                                    <div key={index2} className="hover:scale-105">
+                                                      {userDet.user === details.user && userDet.user === user._id && (
+                                                        <div>
 
-                                                            {userDet.user === details.user && userDet.user === user._id && details.avatar && (
-                                                              <Image src={`/avatars/${details.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 mr-6 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                                            )}
-                                                            <span className="sr-only">Search</span>
+                                                          {userDet.user === details.user && userDet.user === user._id && details.avatar && (
+                                                            <Image src={`/avatars/${details.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 mr-6 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                                                          )}
+                                                          <span className="sr-only">Search</span>
 
-                                                          </div>
-                                                        )}
-                                                      </div>
+                                                        </div>
+                                                      )}
+                                                    </div>
 
-                                                    ))}
+                                                  ))}
 
-                                                    {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index2) => (
-                                                      <div key={index2} className="hover:scale-105">
-                                                        {user.details && slugDetailsk1.map((details, index2) => (
-                                                          <div className="">
-                                                            {userDet.user === details.user && userDet.user === user._id && (
-                                                              <div className="">
+                                                  {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index2) => (
+                                                    <div key={index2} className="hover:scale-105">
+                                                      {user.details && slugDetailsk1.map((details, index2) => (
+                                                        <div className="">
+                                                          {userDet.user === details.user && userDet.user === user._id && (
+                                                            <div className="">
 
-                                                                {userDet.user === details.user && userDet.user === user._id && user.details && (
-                                                                  <div className="flex flex-row">
-                                                                    <div className="text-base flex justify-center items-center pr-2">{user.name}</div>
-                                                                    {userDet.user === details.user && userDet.user === user._id && user.role === 'admin' && (
-                                                                      <div className="hover:scale-105">
-                                                                        <svg className='flex justify-center items-center text-amber-400'
-                                                                          viewBox="0 0 16 16"
-                                                                          fill="currentColor"
-                                                                          height="1em"
-                                                                          width="1em">
-                                                                          <path
-                                                                            fillRule="evenodd"
-                                                                            d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                          />
-                                                                        </svg>
-                                                                      </div>
-                                                                    )}
-                                                                    {userDet.user === details.user && userDet.user === user._id && user.tick === 'yes' && (
-                                                                      <div className="hover:scale-105 pt-[0.10rem]">
-                                                                        <svg className='flex justify-center items-center text-sky-400'
-                                                                          viewBox="0 0 16 16"
-                                                                          fill="currentColor"
-                                                                          height="1em"
-                                                                          width="1em">
-                                                                          <path
-                                                                            fillRule="evenodd"
-                                                                            d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                          />
-                                                                        </svg>
-                                                                      </div>
-                                                                    )}
-                                                                    {userDet.user === details.user && userDet.user === user._id && user.tick === 'active' && (
-                                                                      <div className="hover:scale-105 pt-[0.10rem]">
-                                                                        <svg className='flex justify-center items-center text-teal-500'
-                                                                          viewBox="0 0 16 16"
-                                                                          fill="currentColor"
-                                                                          height="1em"
-                                                                          width="1em">
-                                                                          <path
-                                                                            fillRule="evenodd"
-                                                                            d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                          />
-                                                                        </svg>
-                                                                      </div>
-                                                                    )}
-                                                                  </div>
-                                                                )}
+                                                              {userDet.user === details.user && userDet.user === user._id && user.details && (
+                                                                <div className="flex flex-row">
+                                                                  <div className="text-base flex justify-center items-center pr-2">{user.name}</div>
+                                                                  {userDet.user === details.user && userDet.user === user._id && user.role === 'admin' && (
+                                                                    <div className="hover:scale-105">
+                                                                      <svg className='flex justify-center items-center text-amber-400'
+                                                                        viewBox="0 0 16 16"
+                                                                        fill="currentColor"
+                                                                        height="1em"
+                                                                        width="1em">
+                                                                        <path
+                                                                          fillRule="evenodd"
+                                                                          d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                        />
+                                                                      </svg>
+                                                                    </div>
+                                                                  )}
+                                                                  {userDet.user === details.user && userDet.user === user._id && user.tick === 'yes' && (
+                                                                    <div className="hover:scale-105 pt-[0.10rem]">
+                                                                      <svg className='flex justify-center items-center text-sky-400'
+                                                                        viewBox="0 0 16 16"
+                                                                        fill="currentColor"
+                                                                        height="1em"
+                                                                        width="1em">
+                                                                        <path
+                                                                          fillRule="evenodd"
+                                                                          d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                        />
+                                                                      </svg>
+                                                                    </div>
+                                                                  )}
+                                                                  {userDet.user === details.user && userDet.user === user._id && user.tick === 'active' && (
+                                                                    <div className="hover:scale-105 pt-[0.10rem]">
+                                                                      <svg className='flex justify-center items-center text-teal-500'
+                                                                        viewBox="0 0 16 16"
+                                                                        fill="currentColor"
+                                                                        height="1em"
+                                                                        width="1em">
+                                                                        <path
+                                                                          fillRule="evenodd"
+                                                                          d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                        />
+                                                                      </svg>
+                                                                    </div>
+                                                                  )}
+                                                                </div>
+                                                              )}
 
-                                                                {/* bio max 12 */}
-                                                                {user.details && slugDetailsk1.map((details, index2) => (
-                                                                  <div key={index2}>
+                                                              {/* bio max 12 */}
+                                                              {user.details && slugDetailsk1.map((details, index2) => (
+                                                                <div key={index2}>
 
-                                                                    {userDet.user === details.user && userDet.user === user._id && (
-                                                                      <div>
+                                                                  {userDet.user === details.user && userDet.user === user._id && (
+                                                                    <div>
 
-                                                                        {userDet.user === details.user && userDet.user === user._id && details.bio && (
-                                                                          <div className="text-sm text-gray-500 truncate">{details.bio}</div>
-                                                                        )}
+                                                                      {userDet.user === details.user && userDet.user === user._id && details.bio && (
+                                                                        <div className="text-sm text-gray-500 truncate">{details.bio}</div>
+                                                                      )}
 
-                                                                      </div>
-                                                                    )}
+                                                                    </div>
+                                                                  )}
 
-                                                                  </div>
-                                                                ))}
+                                                                </div>
+                                                              ))}
 
-                                                              </div>
-                                                            )}
-                                                          </div>
-                                                        ))}
-                                                      </div>
-                                                    ))}
-                                                  </Link>
-                                                )}
-                                              </div>
-                                            ))}
+                                                            </div>
+                                                          )}
+                                                        </div>
+                                                      ))}
+                                                    </div>
+                                                  ))}
+                                                </Link>
+                                              )}
+                                            </div>
+                                          ))}
 
-                                          </div>
-                                        )}
-                                      </div>
-                                    )}
-                                  </div>
-                                ))}
-                              </div>
-                            )}
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
                           </div>
 
-                          <div className="relative flex flex-col justify-center items-center space-x-4 text-sm text-gray-400">
-                            <button onClick={showFollower} className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='text-sky-400'>{totalFollowing}</span> following</button>
-                            {showTooltip && (
-                              <div className="absolute z-10">
-                                {Array.isArray(followDetails) && followDetails.map((userPot, index) => (
-                                  <div key={index}>
-                                    {userPot.following}
+                          {/* following  */}
+                          <button onClick={showFollower} className="flex flex-col justify-center items-center space-x-4 text-sm text-gray-400"><span className='text-sky-400'>{totalFollowing}</span> following</button>
+                          <div className="absolute">
+                            <div ref={ref3} className="fixed top-0 -left-2 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black">
+                              <div className="text-base font-semibold font-mono text-sky-400">Followings</div>
+                              <button onClick={showFollower} type="button" className="text-gray-400 bg-transparent hover:bg-sky-500 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-6 inline-flex items-center" >
+                                <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                                <span className="sr-only">Close menu</span>
+                              </button>
+                              <hr className="my-3 -mx-3" />
+                              {Array.isArray(followDetails) && followDetails.map((userPot, index) => (
+                                <div key={index}>
+                                  {userDetailsk1 && userDetailsk1.length > 0 && slugDetailsk1 && (
+                                    <div className="mt-6">
 
-                                    {userDetailsk1 && userDetailsk1.length > 0 && slugDetailsk1 && (
-                                      <div className="mt-6">
+                                      {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index) => (
 
-                                        {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index) => (
+                                        <div key={index} className="">
+                                          {userPot.following === user._id && (
 
-                                          <div key={index} className="">
-                                            {userPot.following === user._id && (
-                                              <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
+                                            <Link key={index} href={`/user/profile/${user.name}`} className="flex-row flex mt-4 text-lg font-medium items-center hover:bg-gray-700 p-2 rounded-3xl px-4">
 
-                                                {user.details && slugDetailsk1.map((details, index2) => (
+                                              {user.details && slugDetailsk1.map((details, index2) => (
 
-                                                  <div key={index2} className="hover:scale-105">
-                                                    {userPot.following === details.user && userPot.following === user._id && (
-                                                      <div>
+                                                <div key={index2} className="hover:scale-105">
+                                                  {userPot.following === details.user && userPot.following === user._id && (
+                                                    <div>
 
-                                                        {userPot.following === details.user && userPot.following === user._id && details.avatar && (
-                                                          <Image src={`/avatars/${details.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 mr-6 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
-                                                        )}
-                                                        <span className="sr-only">Search</span>
+                                                      {userPot.following === details.user && userPot.following === user._id && details.avatar && (
+                                                        <Image src={`/avatars/${details.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 mr-6 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
+                                                      )}
+                                                      <span className="sr-only">Search</span>
 
-                                                      </div>
-                                                    )}
-                                                  </div>
+                                                    </div>
+                                                  )}
+                                                </div>
 
-                                                ))}
+                                              ))}
 
-                                                {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index2) => (
-                                                  <div key={index2} className="hover:scale-105">
-                                                    {user.details && slugDetailsk1.map((details, index2) => (
-                                                      <div className="">
-                                                        {userPot.following === details.user && userPot.following === user._id && (
-                                                          <div className="">
+                                              {Array.isArray(userDetailsk1) && userDetailsk1.map((user, index2) => (
+                                                <div key={index2} className="hover:scale-105">
+                                                  {user.details && slugDetailsk1.map((details, index2) => (
+                                                    <div className="">
+                                                      {userPot.following === details.user && userPot.following === user._id && (
+                                                        <div className="">
 
-                                                            {userPot.following === details.user && userPot.following === user._id && user.details && (
-                                                              <div className="flex flex-row">
-                                                                <div className="text-base flex justify-center items-center pr-2">{user.name}</div>
-                                                                {userPot.following === details.user && userPot.following === user._id && user.role === 'admin' && (
-                                                                  <div className="hover:scale-105">
-                                                                    <svg className='flex justify-center items-center text-amber-400'
-                                                                      viewBox="0 0 16 16"
-                                                                      fill="currentColor"
-                                                                      height="1em"
-                                                                      width="1em">
-                                                                      <path
-                                                                        fillRule="evenodd"
-                                                                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                      />
-                                                                    </svg>
-                                                                  </div>
-                                                                )}
-                                                                {userPot.following === details.user && userPot.following === user._id && user.tick === 'yes' && (
-                                                                  <div className="hover:scale-105 pt-[0.10rem]">
-                                                                    <svg className='flex justify-center items-center text-sky-400'
-                                                                      viewBox="0 0 16 16"
-                                                                      fill="currentColor"
-                                                                      height="1em"
-                                                                      width="1em">
-                                                                      <path
-                                                                        fillRule="evenodd"
-                                                                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                      />
-                                                                    </svg>
-                                                                  </div>
-                                                                )}
-                                                                {userPot.following === details.user && userPot.following === user._id && user.tick === 'active' && (
-                                                                  <div className="hover:scale-105 pt-[0.10rem]">
-                                                                    <svg className='flex justify-center items-center text-teal-500'
-                                                                      viewBox="0 0 16 16"
-                                                                      fill="currentColor"
-                                                                      height="1em"
-                                                                      width="1em">
-                                                                      <path
-                                                                        fillRule="evenodd"
-                                                                        d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
-                                                                      />
-                                                                    </svg>
-                                                                  </div>
-                                                                )}
-                                                              </div>
-                                                            )}
+                                                          {userPot.following === details.user && userPot.following === user._id && user.details && (
+                                                            <div className="flex flex-row">
+                                                              <div className="text-base flex justify-center items-center pr-2">{user.name}</div>
+                                                              {userPot.following === details.user && userPot.following === user._id && user.role === 'admin' && (
+                                                                <div className="hover:scale-105">
+                                                                  <svg className='flex justify-center items-center text-amber-400'
+                                                                    viewBox="0 0 16 16"
+                                                                    fill="currentColor"
+                                                                    height="1em"
+                                                                    width="1em">
+                                                                    <path
+                                                                      fillRule="evenodd"
+                                                                      d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                    />
+                                                                  </svg>
+                                                                </div>
+                                                              )}
+                                                              {userPot.following === details.user && userPot.following === user._id && user.tick === 'yes' && (
+                                                                <div className="hover:scale-105 pt-[0.10rem]">
+                                                                  <svg className='flex justify-center items-center text-sky-400'
+                                                                    viewBox="0 0 16 16"
+                                                                    fill="currentColor"
+                                                                    height="1em"
+                                                                    width="1em">
+                                                                    <path
+                                                                      fillRule="evenodd"
+                                                                      d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                    />
+                                                                  </svg>
+                                                                </div>
+                                                              )}
+                                                              {userPot.following === details.user && userPot.following === user._id && user.tick === 'active' && (
+                                                                <div className="hover:scale-105 pt-[0.10rem]">
+                                                                  <svg className='flex justify-center items-center text-teal-500'
+                                                                    viewBox="0 0 16 16"
+                                                                    fill="currentColor"
+                                                                    height="1em"
+                                                                    width="1em">
+                                                                    <path
+                                                                      fillRule="evenodd"
+                                                                      d="M9.585.52a2.678 2.678 0 00-3.17 0l-.928.68a1.178 1.178 0 01-.518.215L3.83 1.59a2.678 2.678 0 00-2.24 2.24l-.175 1.14a1.178 1.178 0 01-.215.518l-.68.928a2.678 2.678 0 000 3.17l.68.928c.113.153.186.33.215.518l.175 1.138a2.678 2.678 0 002.24 2.24l1.138.175c.187.029.365.102.518.215l.928.68a2.678 2.678 0 003.17 0l.928-.68a1.17 1.17 0 01.518-.215l1.138-.175a2.678 2.678 0 002.241-2.241l.175-1.138c.029-.187.102-.365.215-.518l.68-.928a2.678 2.678 0 000-3.17l-.68-.928a1.179 1.179 0 01-.215-.518L14.41 3.83a2.678 2.678 0 00-2.24-2.24l-1.138-.175a1.179 1.179 0 01-.518-.215L9.585.52zM7.303 1.728c.415-.305.98-.305 1.394 0l.928.68c.348.256.752.423 1.18.489l1.136.174c.51.078.909.478.987.987l.174 1.137c.066.427.233.831.489 1.18l.68.927c.305.415.305.98 0 1.394l-.68.928a2.678 2.678 0 00-.489 1.18l-.174 1.136a1.178 1.178 0 01-.987.987l-1.137.174a2.678 2.678 0 00-1.18.489l-.927.68c-.415.305-.98.305-1.394 0l-.928-.68a2.678 2.678 0 00-1.18-.489l-1.136-.174a1.178 1.178 0 01-.987-.987l-.174-1.137a2.678 2.678 0 00-.489-1.18l-.68-.927a1.178 1.178 0 010-1.394l.68-.928c.256-.348.423-.752.489-1.18l.174-1.136c.078-.51.478-.909.987-.987l1.137-.174a2.678 2.678 0 001.18-.489l.927-.68zM11.28 6.78a.75.75 0 00-1.06-1.06L7 8.94 5.78 7.72a.75.75 0 00-1.06 1.06l1.75 1.75a.75.75 0 001.06 0l3.75-3.75z"
+                                                                    />
+                                                                  </svg>
+                                                                </div>
+                                                              )}
+                                                            </div>
+                                                          )}
 
-                                                            {/* bio max 12 */}
-                                                            {user.details && slugDetailsk1.map((details, index2) => (
-                                                              <div key={index2}>
+                                                          {/* bio max 12 */}
+                                                          {user.details && slugDetailsk1.map((details, index2) => (
+                                                            <div key={index2}>
 
-                                                                {userPot.following === details.user && userPot.following === user._id && (
-                                                                  <div>
+                                                              {userPot.following === details.user && userPot.following === user._id && (
+                                                                <div>
 
-                                                                    {userPot.following === details.user && userPot.following === user._id && details.bio && (
-                                                                      <div className="text-sm text-gray-500 truncate">{details.bio}</div>
-                                                                    )}
+                                                                  {userPot.following === details.user && userPot.following === user._id && details.bio && (
+                                                                    <div className="text-sm text-gray-500 truncate">{details.bio}</div>
+                                                                  )}
 
-                                                                  </div>
-                                                                )}
+                                                                </div>
+                                                              )}
 
-                                                              </div>
-                                                            ))}
+                                                            </div>
+                                                          ))}
 
-                                                          </div>
-                                                        )}
-                                                      </div>
-                                                    ))}
-                                                  </div>
-                                                ))}
-                                              </Link>
-                                            )}
-                                          </div>
-                                        ))}
+                                                        </div>
+                                                      )}
+                                                    </div>
+                                                  ))}
+                                                </div>
+                                              ))}
+                                            </Link>
+                                          )}
+                                        </div>
+                                      ))}
 
-                                      </div>
-                                    )}
+                                    </div>
+                                  )}
 
-                                  </div>
-                                ))}
-                              </div>
-
-                            )}
+                                </div>
+                              ))}
+                            </div>
                           </div>
+
                         </div>
 
                         <hr className='w-screen mt-1 border-gray-600' />
