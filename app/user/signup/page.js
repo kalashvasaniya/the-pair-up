@@ -38,7 +38,7 @@ const Signup = () => {
 
         const emailDomain = email.split('@')[1];
         if (!['vitstudent.ac.in', 'iitgn.ac.in'].some(domain => emailDomain.endsWith(domain))) {
-            alert('Please use a valid college email address ending with .ac.in or .edu.in');
+            alert('Error occur following reasons...\n1. Please use a valid college email address ending with .ac.in or .edu.in\n2. Your college is not listed here. Click on "Add College" to include it.');
             return;
         }
 
@@ -158,7 +158,12 @@ const Signup = () => {
                                         className="text-white mt-3 bg-sky-400 hover:bg-sky-500 focus:ring-4 focus:outline-none focus:ring-sky-400  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
                                         Sign Up
                                     </button>
-                                    <Link href={`https://6z236yooyhh.typeform.com/to/lIz7fhyI`} target='_blank' className="text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-sky-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">Club Signup</Link>
+                                    <Link href={`https://6z236yooyhh.typeform.com/to/lIz7fhyI`} target='_blank' className="text-white bg-amber-500 focus:ring-4 focus:outline-none focus:ring-sky-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
+                                        Club Signup
+                                    </Link>
+                                    <Link href={`https://6z236yooyhh.typeform.com/to/tcFr6KOm`} target='_blank' className="text-white bg-sky-400 focus:ring-4 focus:outline-none focus:ring-sky-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
+                                        Add College
+                                    </Link>
                                 </div>
                             </form>
                         </div>
