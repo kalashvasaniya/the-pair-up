@@ -61,9 +61,27 @@ export default async function handler(req, res) {
             console.log(error);
             res.status(500).json({ error: 'Server error' });
         }
-    } else {
-        res.
-            status(405).
-            json({ error: `Method ${req.method} not allowed` });
+    } else if (req.method === 'GET') {
+        try {
+            const regex = new RegExp(req.query.content, 'i');
+
+            const users = await User.find({
+                name: regex
+            })
+
+            const likecomments = await LikeComment.find({
+                user: users.map((user) => user._id)
+            })
+            console.log("likecomments", likecomments)
+
+            if (likecomments.length > 0) {
+                return res.status(200).json({ success: true, likecomments });
+            } else {
+                return res.status(400).json({ success: false, message: 'No followers found matching the query' });
+            }
+        } catch (error) {
+            console.error('Error fetching followers:', error);
+            return res.status(500).json({ success: false, message: 'Internal server error' });
+        }
     }
 }
