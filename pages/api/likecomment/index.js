@@ -72,7 +72,6 @@ export default async function handler(req, res) {
             const likecomments = await LikeComment.find({
                 user: users.map((user) => user._id)
             })
-            console.log("likecomments", likecomments)
 
             if (likecomments.length > 0) {
                 return res.status(200).json({ success: true, likecomments });
