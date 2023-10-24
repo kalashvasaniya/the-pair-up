@@ -39,6 +39,7 @@ export default async function handler(req, res) {
                         bath: user2.bath,
                         avatar: user2.avatar,
                         college: user2.college,
+                        user: user2.user,
                     };
                     return res.status(200).json({ success: true, userDetails2 });
                 }
