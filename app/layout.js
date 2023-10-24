@@ -16,16 +16,26 @@ export function useTPU() {
   const [user, setUser] = useState({ value: null });
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
+
     try {
       if (token) {
         setUser({ value: token });
+
+        // Set a timeout to remove the token after 48 hour (172800000 milliseconds)
+        setTimeout(() => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('formattedDate');
+          localStorage.removeItem('bannerCanceled');
+          // Optionally, you can clear the user state as well
+          setUser({ value: null });
+        }, 172800000);
       }
-    }
-    catch (error) {
+    } catch (error) {
       localStorage.clear();
     }
   }, []);
+
 
   const logout = () => {
     if (window.confirm("Are you sure you want to Logout?")) {
