@@ -242,7 +242,7 @@ const Feed = () => {
                     <Story />
                     <div className="md:mx-[7.5rem] mt-4">
                         <button onClick={togglePost} className={`text-white font-mono text-xs flex justify-center ${showPost ? 'bg-red-500' : 'bg-sky-500'} p-2 rounded-lg  w-full`}>
-                            {showPost ? 'Go Global' : 'Show Following'}
+                            {showPost ? 'Global' : 'Following'}
                         </button>
                     </div>
                     {!showPost ? (
