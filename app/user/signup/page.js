@@ -152,18 +152,20 @@ const Signup = () => {
                                         className="peer-focus:font-medium absolute text-sm text-gray-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-sky-400  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
                                 </div>
 
-                                <div className="flex md:flex-row flex-col md:space-x-3 space-y-3 ">
+                                <div className="flex flex-col w-full">
                                     <button style={{ backgroundColor: '#00B2FF' }}
                                         type="submit"
                                         className="text-white mt-3 bg-sky-400 hover:bg-sky-500 focus:ring-4 focus:outline-none focus:ring-sky-400  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
                                         Sign Up
                                     </button>
-                                    <Link href={`https://6z236yooyhh.typeform.com/to/lIz7fhyI`} target='_blank' className="text-white bg-amber-500 focus:ring-4 focus:outline-none focus:ring-sky-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
-                                        Club Signup
-                                    </Link>
-                                    <Link href={`https://6z236yooyhh.typeform.com/to/tcFr6KOm`} target='_blank' className="text-white bg-sky-400 focus:ring-4 focus:outline-none focus:ring-sky-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
-                                        Add College
-                                    </Link>
+                                    <div className="grid grid-cols-2 gap-2 mt-2">
+                                        <Link href={`https://6z236yooyhh.typeform.com/to/lIz7fhyI`} target='_blank' className="text-white bg-amber-500 focus:ring-4 focus:outline-none focus:ring-sky-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
+                                            Club Signup
+                                        </Link>
+                                        <Link href={`https://6z236yooyhh.typeform.com/to/tcFr6KOm`} target='_blank' className="text-white bg-sky-500 focus:ring-4 focus:outline-none focus:ring-sky-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
+                                            Add College
+                                        </Link>
+                                    </div>
                                 </div>
                             </form>
                         </div>

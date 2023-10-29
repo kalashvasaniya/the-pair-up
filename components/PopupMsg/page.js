@@ -31,7 +31,7 @@ const PopupMsg = () => {
         <>
             {showBanner && user.value ? (
                 <div className="fixed top-0 z-50 left-0 w-full bg-sky-500 border-b border-white text-white text-center md:py-4 py-7">
-                    <p className="text-sm font-mono font-semibold flex justify-center">2021 Batch FAT Results are out!
+                    <p className="text-sm font-mono font-bold flex justify-center">Welcome to the world Of PairUp
                         <button onClick={cancel}>
                             <svg
                                 aria-hidden="true"
