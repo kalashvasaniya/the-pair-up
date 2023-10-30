@@ -1657,6 +1657,7 @@ const Profile = ({ params }) => {
                                                               <Image src={`/avatars/${details.avatar}`} width={28} height={28} id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" className="w-11 h-11 mr-6 rounded-full cursor-pointer hover:scale-110" alt="User dropdown" />
                                                             )}
                                                             <span className="sr-only">Search</span>
+
                                                             <div key={index2} className="hidden">
                                                               {userDet.user === details.user && userDet.user === user._id && details.avatar && user.name === userDetails1.name && (
                                                                 <div key={index2} className="">
@@ -1668,6 +1669,7 @@ const Profile = ({ params }) => {
                                                                 </div>
                                                               )}
                                                             </div>
+                                                            
                                                           </div>
                                                         )}
                                                       </div>
