@@ -127,7 +127,7 @@ const Login = () => {
                                         </Link>
                                     </li>
                                     <li class="transition p-1 ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
-                                        <Link href="https://www.youtube.com/channel/UCburjfRVtD3gKLI2jZ9oxdw" target="_blank" rel="noopener noreferrer"><svg className='text-white'
+                                        <Link href="https://www.youtube.com/@ThePairUp" target="_blank" rel="noopener noreferrer"><svg className='text-white'
                                             stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512"
                                             height="25" width="25" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -137,7 +137,7 @@ const Login = () => {
                                         </Link>
                                     </li>
                                     <li class="transition p-1 ease-in-out delay-150 hover:-translate-y-1 hover:scale-150 duration-300">
-                                        <Link href="https://www.instagram.com/thepairup" target="_blank" rel="noopener noreferrer">
+                                        <Link href="https://www.instagram.com/pairupofficial" target="_blank" rel="noopener noreferrer">
                                             <svg className='text-white' stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
                                                 height="25" width="25" xmlns="http://www.w3.org/2000/svg">
                                                 <path
