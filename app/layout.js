@@ -69,7 +69,7 @@ export function useTPU() {
       .replace(
         regex3,
         (p2) => {
-          let truncatedURL = p2.length > 18 ? p2.slice(7, 26) + '...' : p2;
+          let truncatedURL = p2.length > 20 ? p2.slice(7, 30) + '...' : p2;
           return `<a href="${p2}" class="text-sky-400 hover:underline" title="${p2}">${truncatedURL}</a>`;
         }
       )

@@ -291,15 +291,8 @@ const chat = ({ params }) => {
                                                     <svg className="w-7 h-7 text-sky-400 group-hover:text-sky-400 mt-2.5" aria-label="Messenger" color="rgb(245, 245, 245)" fill="rgb(0, 178, 255)" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M12.003 2.001a9.705 9.705 0 1 1 0 19.4 10.876 10.876 0 0 1-2.895-.384.798.798 0 0 0-.533.04l-1.984.876a.801.801 0 0 1-1.123-.708l-.054-1.78a.806.806 0 0 0-.27-.569 9.49 9.49 0 0 1-3.14-7.175 9.65 9.65 0 0 1 10-9.7Z" fill="none" stroke="currentColor" strokeMiterlimit="10" strokeWidth="1.739"></path><path d="M17.79 10.132a.659.659 0 0 0-.962-.873l-2.556 2.05a.63.63 0 0 1-.758.002L11.06 9.47a1.576 1.576 0 0 0-2.277.42l-2.567 3.98a.659.659 0 0 0 .961.875l2.556-2.049a.63.63 0 0 1 .759-.002l2.452 1.84a1.576 1.576 0 0 0 2.278-.42Z" fillRule="evenodd"></path></svg>
                                                 </div>
                                                 <Link href={'/Home'}>
-                                                    <svg
-                                                        className='mt-2 hover:scale-125'
-                                                        viewBox="0 0 24 24"
-                                                        fill="currentColor"
-                                                        height="2rem"
-                                                        width="2rem"
-                                                    >
-                                                        <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 15v-4H7v-2h5V7l5 5-5 5z" />
-                                                    </svg>
+                                                    <svg aria-hidden="true" className="w-7 h-7 mt-2 hover:bg-sky-500 p-1 rounded-lg  ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                                                    <span className="sr-only">Close menu</span>
                                                 </Link>
                                                 <div ref={ref1} className="absolute top-0 -left-4 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black" tabIndex="-1">
                                                     <div className="text-base font-semibold font-mono text-sky-400">Message</div>
@@ -391,7 +384,6 @@ const chat = ({ params }) => {
                                                     </div>
                                                 </>
                                             ))}
-
                                         </div>
 
                                         {/* comment */}
@@ -415,9 +407,9 @@ const chat = ({ params }) => {
 
                     {/* Extra  */}
                     {params.slug !== userDetails1.name && !userDetails && (
-                        <div className="bg-black text-white flex flex-col justify-center h-screen">
+                        <div className="bg-black text-white flex flex-col justify-center h-screen -mt-16">
                             <div className="text-base flex justify-center underline text-sky-400 mb-6">Sorry, this page isn't available.</div>
-                            <div className="flex justify-center px-4">The link you followed may be broken, or the page may have been removed. </div>
+                            <div className="flex justify-center text-center px-4">The link you followed may be broken, or the page may have been removed. </div>
                             <div className="mt-6 flex justify-center">
                                 <Link href={`/user/profile/${userDetails1.name}`} className="hover:underline">
                                     <button className='p-2 px-3 bg-sky-400 rounded-3xl hover:scale-105'>
