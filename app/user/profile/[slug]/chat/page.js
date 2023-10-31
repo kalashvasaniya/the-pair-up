@@ -16,6 +16,7 @@ const chat = ({ params }) => {
     const [userDetails2, setUserDetails2] = useState('');
 
     const [send, setSend] = useState('');
+    const [getChat, setGetChat] = useState('');
 
     useEffect(() => {
         if (!localStorage.getItem('token')) {
@@ -25,6 +26,7 @@ const chat = ({ params }) => {
         fetchUserDetails(params.slug);
         fetchUserDetails1();
         fetchUserDetails2();
+        getChats();
     }, [])
 
     const fetchUserDetails = async (slug) => {
@@ -101,6 +103,25 @@ const chat = ({ params }) => {
 
     const ref1 = useRef()
 
+    const getChats = async () => {
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/chatting`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const json = await res.json();
+
+        if (json.success) {
+            setGetChat(json.chateso)
+            console.log("getChat", json.chateso)
+        } else {
+            console.log(json.error);
+        }
+    };
+
     const handleSubmit = async (ids) => {
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/chatting`, {
@@ -116,12 +137,12 @@ const chat = ({ params }) => {
         });
 
         const json = await res.json();
-        console.log("json", json)
 
         if (json.success) {
             setSend('');
+            getChats();
         } else {
-            alert(json.error);
+            console.log(json.error);
         }
     };
 
@@ -309,34 +330,53 @@ const chat = ({ params }) => {
                                             </div>
 
                                             {/* Live Sender */}
-                                            <div class="flex justify-end mb-4">
-                                                <div
-                                                    class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
-                                                >
-                                                    ThePairUp Welcome you to be a part of our #team !
+                                            {Array.isArray(getChat) && getChat.map((getChatp, index) => (
+                                                <div key={index} className="">
+                                                    {(getChatp.user === userDetails2.user) && (getChatp.chatWith === slugDetails.user) && (
+                                                        <div key={index} class="flex justify-end mb-4">
+                                                            <div key={index}
+                                                                class="mr-2 py-3 px-4 bg-sky-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white"
+                                                            >
+                                                                {(getChatp.user === userDetails2.user) && (getChatp.chatWith === slugDetails.user) && (
+                                                                    <div key={index} className="">
+                                                                        {getChatp.chatso}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                            <Image key={index}
+                                                                src={`/avatars/${userDetails2.avatar}`} width={1000} height={1000}
+                                                                class="object-cover h-8 w-8 rounded-full"
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                    )}
                                                 </div>
-                                                <Image
-                                                    src={`/avatars/${userDetails2.avatar}`} width={1000} height={1000}
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                            </div>
+                                            ))}
+
                                             {/* Live Receiver */}
-                                            <div class="flex justify-start mb-4">
-                                                <Image
-                                                    src={`/avatars/${slugDetails.avatar}`} width={1000} height={1000}
-                                                    class="object-cover h-8 w-8 rounded-full"
-                                                    alt=""
-                                                />
-                                                <div
-                                                    class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
-                                                >
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                                                    at praesentium, aut ullam delectus odio error sit rem. Architecto
-                                                    nulla doloribus laborum illo rem enim dolor odio saepe,
-                                                    consequatur quas?
+                                            {Array.isArray(getChat) && getChat.map((getChatp, index) => (
+                                                <div key={index} className="">
+                                                    {(getChatp.chatWith === userDetails2.user) && (getChatp.user === slugDetails.user) && (
+                                                        <div class="flex justify-start mb-4">
+                                                            <Image key={index}
+                                                                src={`/avatars/${slugDetails.avatar}`} width={1000} height={1000}
+                                                                class="object-cover h-8 w-8 rounded-full"
+                                                                alt=""
+                                                            />
+                                                            <div key={index}
+                                                                class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
+                                                            >
+                                                                {(getChatp.chatWith === userDetails2.user) && (getChatp.user === slugDetails.user) && (
+                                                                    <div key={index} className="">
+                                                                        {getChatp.chatso}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            </div>
+                                            ))}
                                         </div>
 
                                         {/* comment */}
@@ -373,7 +413,7 @@ const chat = ({ params }) => {
                         </div>
                     )}
                 </div>
-            </div>
+            </div >
         </>
     )
 }
