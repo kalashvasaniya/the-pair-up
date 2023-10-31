@@ -52,6 +52,7 @@ export function useTPU() {
     const regex1 = /#(\w+)/g;
     const regex2 = /@(\w+)/g;
     const regex3 = /(\s|^)(https?:\/\/[^\s]+|www\.[^\s]+|[^\s]+\.[a-zA-Z]{2,})(?=\s|$)/g;
+    const regex4 = /(\w{21,})/g; // New regex pattern for words with more than 20 letters
 
     const highlightedContent = content
       .replace(
@@ -68,11 +69,17 @@ export function useTPU() {
       .replace(
         regex3,
         (p2) => {
-          if (p2.startsWith('http://') || p2.startsWith('https://')) {
-            return `<a href="${p2}" class="text-sky-400 hover:underline">${p2}</a>`;
-          } else {
-            return `<a href="${p2}" class="text-sky-400 hover:underline">${p2}</a>`;
+          let truncatedURL = p2.length > 18 ? p2.slice(7, 26) + '...' : p2;
+          return `<a href="${p2}" class="text-sky-400 hover:underline" title="${p2}">${truncatedURL}</a>`;
+        }
+      )
+      .replace(
+        regex4,
+        (match) => {
+          if (match.length > 22) {
+            return match.slice(0, 22) + '...';
           }
+          return match;
         }
       );
 
