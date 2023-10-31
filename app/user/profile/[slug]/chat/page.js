@@ -15,6 +15,8 @@ const chat = ({ params }) => {
     const [userDetails1, setUserDetails1] = useState('');
     const [userDetails2, setUserDetails2] = useState('');
 
+    const [send, setSend] = useState('');
+
     useEffect(() => {
         if (!localStorage.getItem('token')) {
             window.location.href = '/'
@@ -38,7 +40,6 @@ const chat = ({ params }) => {
                 setUserDetails(data.user[0]);
                 setSlugDetails(data.details[0])
                 setPostDetails(data.posts[0])
-                console.log("User Details", userDetails, "Slug details:", slugDetails, "post", postDetails)
             } else throw new Error("Something went wrong!");
         } catch (error) {
             console.log(error)
@@ -99,6 +100,35 @@ const chat = ({ params }) => {
     }
 
     const ref1 = useRef()
+
+    const handleSubmit = async (ids) => {
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/chatting`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({
+                userIdToChat: ids,
+                chatso: send,
+            }),
+        });
+
+        const json = await res.json();
+        console.log("json", json)
+
+        if (json.success) {
+            setSend('');
+        } else {
+            alert(json.error);
+        }
+    };
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setSend(value);
+    };
 
     return (
         <>
@@ -310,13 +340,11 @@ const chat = ({ params }) => {
                                         </div>
 
                                         {/* comment */}
-                                        <div div className="flex justify-center items-center align-middle text-center bg-black" >
+                                        <div className="flex justify-center items-center align-middle text-center bg-black" >
                                             <div className='border bg-black rounded-full border-gray-500 my-4 bottom-4 fixed w-[20rem] md:w-[61rem]'>
                                                 <div class="relative">
-                                                    <input class="block w-full p-4 text-sm text-white rounded-full bg-black " placeholder="Write....." required />
-                                                    <button onClick={async (e) => {
-                                                        e.preventDefault();
-                                                    }} type="submit" class="text-white hover:text-sky-400 absolute right-2 bottom-1.5 font-medium rounded-r-full text-sm px-4 py-2">
+                                                    <input value={send} onChange={handleChange} class="block w-full p-4 text-sm text-white rounded-full bg-black " placeholder="Write....." minLength={3} required />
+                                                    <button onClick={() => handleSubmit(userDetails._id)} type="submit" class="text-white hover:text-sky-400 absolute right-2 bottom-1.5 font-medium rounded-r-full text-sm px-4 py-2">
                                                         <svg aria-label="Share Post" class="x1lliihq x1n2onr6" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Share Post</title><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
                                                         </svg>
                                                     </button>
