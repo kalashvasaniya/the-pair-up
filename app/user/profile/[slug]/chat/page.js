@@ -384,6 +384,10 @@ const chat = ({ params }) => {
                                                     </div>
                                                 </>
                                             ))}
+                                            {window.scrollTo({
+                                                top: document.documentElement.scrollHeight,
+                                                behavior: 'smooth'
+                                            })}
                                         </div>
 
                                         {/* comment */}

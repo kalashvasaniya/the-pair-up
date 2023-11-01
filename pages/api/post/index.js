@@ -5,6 +5,8 @@ import Details from '@/models/Details';
 
 export default async function handler(req, res) {
 
+    const { likeId } = req.body;
+
     if (req.method === 'GET') {
         try {
             // Use a regular expression to perform a case-insensitive search on the "content" field
@@ -54,7 +56,7 @@ export default async function handler(req, res) {
 
             post = await Post.create({
                 user: userss._id,
-                like: req.body.like || 1,
+                like: req.body.like || 0,
                 comment: req.body.comment || 0,
                 content: req.body.content,
                 image: req.body.image,
@@ -70,38 +72,14 @@ export default async function handler(req, res) {
 
     else if (req.method === 'PUT') {
         try {
-            const token = req.headers.authorization; // Extract token from the authorization header
-            var decoded = jwt_decode(token);
-
-            let userss;
-
-            if (decoded.email) {
-                userss = await User.findOne({ email: decoded.email });
-            } else if (decoded.name) {
-                userss = await User.findOne({ name: decoded.name });
-            }
-
-            if (!userss) {
-                return res.status(401).json({ message: "Unauthorized" });
-            }
-
-            // Check if the request body includes a valid post ID to update
-            if (!req.body.postId) {
-                return res.status(400).json({ message: "Post ID is required for updating" });
-            }
-
-            // Find the post by ID and ensure that it belongs to the authenticated user
-            let postToUpdate = await Post.findOne({ _id: req.body.postId, user: userss._id });
-
-            if (!postToUpdate) {
-                return res.status(404).json({ message: "Post not found or unauthorized to update" });
-            }
+            let postToUpdate = await Post.findByIdAndUpdate({
+                _id: likeId
+            });
+            console.log("postToUpdate", postToUpdate)
 
             // Update the post fields as needed
             postToUpdate.like = req.body.like || postToUpdate.like;
             postToUpdate.comment = req.body.comment || postToUpdate.comment;
-            postToUpdate.content = req.body.content || postToUpdate.content;
-            postToUpdate.image = req.body.image || postToUpdate.image;
 
             // Save the updated post
             await postToUpdate.save();

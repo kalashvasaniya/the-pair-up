@@ -7,7 +7,6 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
 
         const { userIdToChat } = req.body;
-        console.log("hello1")
 
         try {
             const token = req.headers.authorization; // Extract token from the authorization header
