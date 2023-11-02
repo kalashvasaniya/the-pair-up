@@ -392,11 +392,11 @@ const Feed = () => {
                                                                         <div className="flex flex-row space-x-4">
 
                                                                             {/* Like  */}
-                                                                            <button className={`pl-4 flex flex-row justify-center items-center`}
+                                                                            <button className={`pl-4 flex flex-row justify-center items-center space-x-2`}
                                                                                 key={index}>
                                                                                 <div onClick={() =>
                                                                                     handleButtonClick(post._id, post._id)
-                                                                                } className={`${post.like >= 0 ? 'liked' : ''} pr-2`}>
+                                                                                } className={`${post.like >= 0 ? 'liked' : ''}`}>
                                                                                     {!isIcon[post._id] ? (
 
                                                                                         <svg
@@ -424,6 +424,25 @@ const Feed = () => {
                                                                                     <button onClick={(e) => e.preventDefault()} className='text-xs flex justify-center items-center hover:underline'>
                                                                                         {totalLikes ? totalLikes : 0} Likes
                                                                                     </button>
+                                                                                </div>
+
+                                                                                <div className="hidden">
+                                                                                    {Array.isArray(userDetails8) && userDetails8.map((poslik, index) => (
+                                                                                        <div key={index} className="">
+                                                                                            {poslik.user === userDetails2.user && poslik.like === post._id && (
+                                                                                                <div className=''>
+                                                                                                    {setTimeout(() => {
+                                                                                                        setIsIcon(
+                                                                                                            (prevVisibility) => ({
+                                                                                                                ...prevVisibility,
+                                                                                                                [post._id]: true,
+                                                                                                            })
+                                                                                                        );
+                                                                                                    }, 10)}
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </div>
+                                                                                    ))}
                                                                                 </div>
 
                                                                             </button>
