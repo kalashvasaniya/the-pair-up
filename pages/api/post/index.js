@@ -72,16 +72,22 @@ export default async function handler(req, res) {
 
     else if (req.method === 'PUT') {
         try {
-            let postToUpdate = await Post.findByIdAndUpdate({
+            let postToUpdate = await Post.find({
                 _id: likeId
             });
             console.log("postToUpdate", postToUpdate)
 
-            // Update the post fields as needed
-            postToUpdate.like = req.body.like || postToUpdate.like;
-            postToUpdate.comment = req.body.comment || postToUpdate.comment;
-
-            // Save the updated post
+            postToUpdate =
+                await Post.findByIdAndUpdate({
+                    _id: likeId
+                }, {
+                    like: req.body.like || postToUpdate.like,
+                    comment: req.body.comment || postToUpdate.comment,
+                }, {
+                    new: true,
+                    runValidators: true,
+                })
+            console.log("postToUpdate", postToUpdate)
             await postToUpdate.save();
 
             return res.status(200).json({ success: true, post: postToUpdate });

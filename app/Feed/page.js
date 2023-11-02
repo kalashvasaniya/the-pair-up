@@ -96,7 +96,6 @@ const Feed = () => {
             console.error('Error following user:', error);
             // Handle the error as needed, e.g., show an error message to the user.
         }
-
     }
 
     const fetchUserDetails5 = async () => {
@@ -195,7 +194,7 @@ const Feed = () => {
         return date.toLocaleDateString('en-IN', options);
     }
 
-    let totalLikes = 0;
+    let totalLikes = 0
 
     const { highlightHashTags } = useTPU();
 
@@ -375,18 +374,31 @@ const Feed = () => {
 
                                                                     <hr className='mx-4 border-gray-500' />
 
+                                                                    <div className="hidden">
+                                                                        {totalLikes = 0}
+                                                                        {Array.isArray(userDetails8) && userDetails8.map((poslik, index) => (
+                                                                            <div key={index} className="">
+                                                                                {poslik.like === post._id && (
+                                                                                    <div className=''>
+                                                                                        {totalLikes++}
+                                                                                    </div>
+                                                                                )}
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
+
                                                                     {/* Comment & Likes  */}
                                                                     <div key={index} className="bg-gray-800 flex justify-between p-1">
                                                                         <div className="flex flex-row space-x-4">
 
                                                                             {/* Like  */}
-                                                                            <button className={`pl-4 flex flex-row justify-center items-center space-x-2`}
+                                                                            <button className={`pl-4 flex flex-row justify-center items-center`}
                                                                                 key={index}>
                                                                                 <div onClick={() =>
                                                                                     handleButtonClick(post._id, post._id)
-                                                                                } className={`${post.like >= 0 ? 'liked' : ''}`}>
+                                                                                } className={`${post.like >= 0 ? 'liked' : ''} pr-2`}>
                                                                                     {!isIcon[post._id] ? (
-                                                                                        
+
                                                                                         <svg
                                                                                             viewBox="0 0 1024 1024"
                                                                                             fill="currentColor"
@@ -408,9 +420,9 @@ const Feed = () => {
                                                                                     )}
                                                                                 </div>
 
-                                                                                <div className="relative">
-                                                                                    <button onClick={(e) => { e.preventDefault() }} className='text-xs flex justify-center items-center hover:underline'>
-                                                                                        {post.like} Like
+                                                                                <div className="">
+                                                                                    <button onClick={(e) => e.preventDefault()} className='text-xs flex justify-center items-center hover:underline'>
+                                                                                        {totalLikes ? totalLikes : 0} Likes
                                                                                     </button>
                                                                                 </div>
 
@@ -445,7 +457,7 @@ const Feed = () => {
                                                                     <hr className='mx-4 border-gray-500' />
 
                                                                     {/* Likes & comments  */}
-                                                                    <div className="bg-gray-800 p-3 rounded-b-xl" >
+                                                                    <div div className="bg-gray-800 p-3 rounded-b-xl" >
 
                                                                         <div>
                                                                             <div class="relative">
