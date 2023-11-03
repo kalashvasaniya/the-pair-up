@@ -420,7 +420,7 @@ const Feed = () => {
                                                                                     )}
                                                                                 </div>
 
-                                                                                <div className="">
+                                                                                <div className="relative">
                                                                                     <button onClick={(e) => e.preventDefault()} className='text-xs flex justify-center items-center hover:underline'>
                                                                                         {totalLikes ? totalLikes : 0} Likes
                                                                                     </button>
@@ -437,8 +437,8 @@ const Feed = () => {
                                                                                                                 ...prevVisibility,
                                                                                                                 [post._id]: true,
                                                                                                             })
-                                                                                                        );
-                                                                                                    }, 10)}
+                                                                                                        )
+                                                                                                    }, 1000)}
                                                                                                 </div>
                                                                                             )}
                                                                                         </div>
@@ -670,6 +670,19 @@ const Feed = () => {
 
                                                                                     <hr className='mx-4 border-gray-500' />
 
+                                                                                    <div className="hidden">
+                                                                                        {totalLikes = 0}
+                                                                                        {Array.isArray(userDetails8) && userDetails8.map((poslik, index) => (
+                                                                                            <div key={index} className="">
+                                                                                                {poslik.like === post._id && (
+                                                                                                    <div className=''>
+                                                                                                        {totalLikes++}
+                                                                                                    </div>
+                                                                                                )}
+                                                                                            </div>
+                                                                                        ))}
+                                                                                    </div>
+
                                                                                     {/* Comment & Likes  */}
                                                                                     <div key={index} className="bg-gray-800 flex justify-between p-1">
                                                                                         <div className="flex flex-row space-x-4">
@@ -707,6 +720,25 @@ const Feed = () => {
                                                                                                     <button onClick={(e) => { e.preventDefault() }} className='text-xs flex justify-center items-center hover:underline'>
                                                                                                         {totalLikes} Like
                                                                                                     </button>
+                                                                                                </div>
+
+                                                                                                <div className="hidden">
+                                                                                                    {Array.isArray(userDetails8) && userDetails8.map((poslik, index) => (
+                                                                                                        <div key={index} className="">
+                                                                                                            {poslik.user === userDetails2.user && poslik.like === post._id && (
+                                                                                                                <div className=''>
+                                                                                                                    {setTimeout(() => {
+                                                                                                                        setIsIcon(
+                                                                                                                            (prevVisibility) => ({
+                                                                                                                                ...prevVisibility,
+                                                                                                                                [post._id]: true,
+                                                                                                                            })
+                                                                                                                        )
+                                                                                                                    }, 1000)}
+                                                                                                                </div>
+                                                                                                            )}
+                                                                                                        </div>
+                                                                                                    ))}
                                                                                                 </div>
 
                                                                                             </button>
