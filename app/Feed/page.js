@@ -438,7 +438,7 @@ const Feed = () => {
                                                                                                                 [post._id]: true,
                                                                                                             })
                                                                                                         )
-                                                                                                    }, 1000)}
+                                                                                                    }, 2000)}
                                                                                                 </div>
                                                                                             )}
                                                                                         </div>
@@ -734,7 +734,7 @@ const Feed = () => {
                                                                                                                                 [post._id]: true,
                                                                                                                             })
                                                                                                                         )
-                                                                                                                    }, 1000)}
+                                                                                                                    }, 2000)}
                                                                                                                 </div>
                                                                                                             )}
                                                                                                         </div>

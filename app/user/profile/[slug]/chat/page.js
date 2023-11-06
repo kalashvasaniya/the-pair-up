@@ -187,8 +187,9 @@ const chat = ({ params }) => {
                 <div className="col-start-4 col-end-13">
                     {/* itself Chat  */}
                     {params.slug === userDetails1.name && (
-                        <div className="flex text-white flex-col justify-center items-center py-10">
-                            Hello Self
+                        <div className="flex text-white flex-col justify-center items-center py-10 px-4 text-center">
+                            Hey, {userDetails1.name}! You can utilize this as a to-do list in upcoming update. Keep an eye out to become involved with it.
+                            <Link className='mt-10 text-white bg-sky-500 rounded-full p-1 px-3 hover:scale-110' href={`/`}>back</Link>
                         </div>
                     )}
 
@@ -275,10 +276,7 @@ const chat = ({ params }) => {
                                                             {/* bio max 12 */}
                                                             <div className="text-sm flex flex-row text-gray-300 truncate space-x-1">
                                                                 <div className="text-xs text-gray-400 truncate">
-                                                                    {slugDetails.bio}
-                                                                </div>
-                                                                <div className="pr-4 text-xs flex justify-center items-center hover:underline text-sky-400">
-                                                                    ~{slugDetails.college}
+                                                                    {slugDetails.college}
                                                                 </div>
                                                             </div>
                                                         </div>
