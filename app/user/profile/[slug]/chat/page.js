@@ -189,7 +189,7 @@ const chat = ({ params }) => {
                     {params.slug === userDetails1.name && (
                         <div className="flex text-white flex-col justify-center items-center py-10 px-4 text-center">
                             Hey, {userDetails1.name}! You can utilize this as a to-do list in upcoming update. Keep an eye out to become involved with it.
-                            <Link className='mt-10 text-white bg-sky-500 rounded-full p-1 px-3 hover:scale-110' href={`/`}>back</Link>
+                            <Link className='mt-10 text-white bg-sky-500 rounded-full p-1 px-3 hover:scale-110' href={`/Home`}>back</Link>
                         </div>
                     )}
 

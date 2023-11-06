@@ -1,13 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar/page'
-import Footer from '@/components/Footer/page'
 
 const Security = () => {
     return (
         <>
-        <Navbar/>
-        <div className='pt-32 px-10 pb-40 flex flex-col justify-center text-center space-y-4 items-center align-middle font-mono text-white bg-black'>
+        <div className='h-screen px-10 flex flex-col justify-center text-center space-y-4 items-center align-middle font-mono text-white bg-black'>
 
             <div className='font-bold text-sky-400 text-3xl'>Security Policy</div>
 
@@ -50,7 +47,6 @@ const Security = () => {
             <Link href={'/Home'} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl'>Back</Link>
 
         </div>
-        <Footer/>
         </>
     )
 }
