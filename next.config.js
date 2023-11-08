@@ -1,16 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
-
 module.exports = {
-    nextConfig,
     images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'res.cloudinary.com',
-                port: '',
-                pathname: '/dwb211sw5/image/upload/**',
-            },
-        ],
+        domains: ['res.cloudinary.com'],
+        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+        loader: 'default',
+        path: '/_next/image',
     },
 }
