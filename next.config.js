@@ -6,4 +6,8 @@ module.exports = {
         loader: 'default',
         path: '/_next/image',
     },
+    experimental: {
+        appDir: true,
+        serverComponentsExternalPackages: ["mongoose"],
+    },
 }
