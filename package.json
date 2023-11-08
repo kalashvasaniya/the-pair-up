@@ -8,6 +8,10 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "cacheDirectories": [
+    "node_modules/",
+    ".next/cache/"
+  ],
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.11.2",
@@ -42,9 +46,5 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/nodemailer": "^6.4.9",
     "@types/react": "^18.2.19"
-  },
-  "cacheDirectories": [
-    "node_modules/",
-    ".next/cache/"
-  ]
+  }
 }
