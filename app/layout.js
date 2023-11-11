@@ -34,6 +34,32 @@ export function useTPU() {
     } catch (error) {
       localStorage.clear();
     }
+
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+
+    document.onkeydown = function (e) {
+      if (e.ctrlKey &&
+        (e.keyCode === 67 ||
+          e.keyCode === 86 ||
+          e.keyCode === 85 ||
+          e.keyCode === 117)) {
+        return false;
+      } else {
+        return true;
+      }
+    };
+
+    // Cleanup the event listeners when the component unmounts
+    return () => {
+      document.removeEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+
+      document.onkeydown = null;
+    };
+
   }, []);
 
 
@@ -91,23 +117,6 @@ export function useTPU() {
 }
 
 export default function RootLayout({ children }) {
-
-  // Inspect Element Shutdown babes....
-
-  document.addEventListener("contextmenu", function (e) {
-    e.preventDefault()
-  })
-  document.onkeydown = function (e) {
-    if (e.ctrlKey &&
-      (e.keyCode === 67 ||
-        e.keyCode === 86 ||
-        e.keyCode === 85 ||
-        e.keyCode === 117)) {
-      return false;
-    } else {
-      return true;
-    }
-  }
 
   // const { logout } = useTPU();
 
