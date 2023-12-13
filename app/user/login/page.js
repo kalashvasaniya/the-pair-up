@@ -147,7 +147,7 @@ const Login = () => {
                                         </Link>
                                     </li>
                                     <li class="">
-                                        <Link href={'mailto:admin@thepairup.com'} target="_blank" rel="noopener noreferrer">
+                                        <Link href={'mailto:admin@thepairup.in'} target="_blank" rel="noopener noreferrer">
                                             <button className='hover:scale-110 transition ease-in-out delay-150 duration-300  font-semibold bg-sky-400 md:px-6 px-3 p-1 text-white rounded-full'>Email</button>
                                         </Link>
                                     </li>
