@@ -292,7 +292,7 @@ const Post = () => {
                                                     onChange={handleChange}
                                                     className="block w-full p-2 text-white rounded-lg bg-gray-700"
                                                     rows="4"
-                                                    placeholder="Write your post here..."
+                                                    placeholder="Write fearlessly..."
                                                     required
                                                     minLength={10}
                                                     maxLength={200}
