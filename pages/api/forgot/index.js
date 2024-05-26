@@ -25,13 +25,16 @@ export default async function handler(req, res) {
             });
 
             const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/verifyForgot?token=${forgot.tokenForgot}`;
-            const message = `<p>Hello,</p>
-            <p>Thank you for signing up with The PairUp! Please click on the link below to verify your email:</p>
-            <a href="${verifyUrl}" class="bg-sky-400 hover:bg-sky-500 text-white font-medium px-4 py-2 rounded-lg inline-block mt-4">
-            Verify Email
-            </a>
-            <p>If you did not sign up for The PairUp, please ignore this email.</p>
-            <p>Best regards,<br />The PairUp Team</p>`;
+            const message = `Hello, ${user.name}
+
+Thank you for signing up with The PairUp! Please click on the link below to verify your email:
+
+${verifyUrl}
+
+If you did not sign up for The PairUp, please ignore this email.
+
+Best regards
+The PairUp Team`;
 
             try {
                 await sendForgotEmail({
