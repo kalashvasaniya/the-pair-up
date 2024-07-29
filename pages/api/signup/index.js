@@ -1,54 +1,29 @@
-import { MongoClient, ObjectId } from 'mongodb';
+import User from '@/models/User';
+import Token from '@/models/Token';
 import sendEmail from '@/utils/sendEmail';
 import CryptoJS from 'crypto-js';
 import db from '@/middleware';
 
-let client;
-let database;
-
-async function connectToDatabase() {
-    if (!client) {
-        client = new MongoClient(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-        await client.connect();
-        database = client.db(); // Use the database name specified in the URI
-    }
-    return database;
-}
-
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         try {
+
             const { name, email, password } = req.body;
             const encryptedPassword = CryptoJS.AES.encrypt(password, "keykalash").toString(); // Encrypt the password
 
-            const db = await connectToDatabase();
-            const usersCollection = db.collection('users');
-            const tokensCollection = db.collection('tokens');
-
-            const user = {
+            const user = await User.create({
                 name,
                 email,
-                password: encryptedPassword,
-                verify: false,
-                details: false,
-                tick: 'no',
-                role: 'user',
-                createdAt: new Date()
-            };
-
-            const userResult = await usersCollection.insertOne(user);
-            const userId = userResult.insertedId;
+                password: encryptedPassword
+            });
 
             const tokenValue = Date.now() + password + Date.now();
-            const token2 = {
-                userId: userId,
-                token2: tokenValue.toString(),
-                createdAt: new Date()
-            };
+            const token2 = await Token.create({
+                userId: user._id,
+                token2: tokenValue.toString()
+            });
 
-            await tokensCollection.insertOne(token2);
-
-            const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/verify?id=${userId}&token=${token2.token2}`;
+            const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/verify?id=${user._id}&token=${token2.token2}`;
             const message = `Hello, ${user.name}
 
 Thank you for signing up with The PairUp! Please click on the link below to verify your email:
@@ -67,14 +42,14 @@ The PairUp Team`;
                     text: message
                 });
             } catch (err) {
-                await usersCollection.deleteOne({ _id: ObjectId(userId) });
-                await tokensCollection.deleteOne({ userId: ObjectId(userId) });
+                await user.remove();
+                await token2.remove();
                 return res.status(500).json({ success: false, error: err.message });
             }
 
             res.status(200).json({ success: true, data: user });
         } catch (err) {
-            res.status(400).json({ success: false, error: "An error occurred" });
+            res.status(400).json({ success: false, error: "An error occurred" }); // Use a descriptive error message
         }
     } else {
         res.status(405).json({ success: false, error: 'Method not allowed' });
