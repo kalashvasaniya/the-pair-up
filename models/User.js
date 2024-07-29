@@ -1,45 +1,77 @@
-const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
 
-const UserSchema = new mongoose.Schema({
+const uri = process.env.MONGO_URI;
+let client;
+let db;
+
+async function connectToDatabase() {
+    if (!client) {
+        client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        await client.connect();
+        db = client.db();  // Use the database name specified in the URI
+    }
+    return db;
+}
+
+const userSchema = {
     name: {
-        type: String,
-        required: [true, 'Please add a name'],
+        type: 'string',
+        required: true,
         unique: true,
-        maxlength: [50, 'Name cannot be more than 50 characters']
+        maxlength: 50,
     },
     email: {
-        type: String,
-        required: [true, 'Please add an email'],
+        type: 'string',
+        required: true,
         unique: true,
-        maxlength: [50, 'Email cannot be more than 50 characters']
+        maxlength: 50,
     },
     password: {
-        type: String,
-        required: [true, 'Please add a password'],
-        maxlength: [50, 'Password cannot be more than 50 characters']
+        type: 'string',
+        required: true,
+        maxlength: 50,
     },
     verify: {
-        type: Boolean,
-        default: false
+        type: 'boolean',
+        default: false,
     },
     details: {
-        type: Boolean,
-        default: false
+        type: 'boolean',
+        default: false,
     },
     tick: {
-        type: String,
+        type: 'string',
         enum: ['no', 'yes', 'active'],
-        default: 'no'
+        default: 'no',
     },
     role: {
-        type: String,
+        type: 'string',
         enum: ['user', 'admin'],
-        default: 'user'
+        default: 'user',
     },
     createdAt: {
-        type: Date,
-        default: Date.now
+        type: 'date',
+        default: new Date(),
     }
-}, { timestamps: true });
-mongoose.models = {}
-module.exports = mongoose.model("User", UserSchema);
+};
+
+async function createUser(data) {
+    const db = await connectToDatabase();
+    const collection = db.collection('users');
+
+    const user = {
+        ...data,
+        createdAt: new Date()
+    };
+
+    try {
+        const result = await collection.insertOne(user);
+        console.log('User created:', result.ops[0]);
+        return result.ops[0];
+    } catch (error) {
+        console.error('Error creating user:', error);
+        throw error;
+    }
+}
+
+module.exports = { createUser, connectToDatabase };
