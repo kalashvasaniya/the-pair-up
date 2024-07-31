@@ -2,8 +2,10 @@ import User from '@/models/User';
 import Forgot from '@/models/Forgot';
 import CryptoJS from 'crypto-js';
 import sendForgotEmail from '@/utils/sendForgotEmail';
+import connect from '@/lib/db';
 
 export default async function handler(req, res) {
+    await connect(); // Ensure a database connection
     if (req.method === 'POST') {
         try {
             const users = await User.find({ email: req.body.email });

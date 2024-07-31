@@ -1,8 +1,10 @@
 import User from '@/models/User';
 import Details from '@/models/Details';
 import jwt_decode from "jwt-decode";
+import connect from '@/lib/db';
 
 export default async function handler(req, res) {
+    await connect(); // Ensure a database connection
     try {
         const token = req.headers.authorization; // Extract token from the authorization header
         var decoded = jwt_decode(token);

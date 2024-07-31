@@ -2,8 +2,10 @@ import User from '@/models/User';
 import Post from '@/models/Post';
 import jwt_decode from "jwt-decode";
 import Details from '@/models/Details';
+import connect from '@/lib/db';
 
 export default async function handler(req, res) {
+    await connect(); // Ensure a database connection
 
     const { likeId } = req.body;
 

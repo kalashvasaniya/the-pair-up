@@ -1,9 +1,10 @@
 import User from '@/models/User';
 import LikeComment from '@/models/LikeComment';
 import jwt_decode from "jwt-decode";
-import db from '@/middleware';
+import connect from '@/lib/db';
 
 export default async function handler(req, res) {
+    await connect(); // Ensure a database connection
 
     const { commentId, postId } = req.body;
 

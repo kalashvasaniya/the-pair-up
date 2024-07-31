@@ -2,11 +2,13 @@ import User from '@/models/User';
 import Token from '@/models/Token';
 import sendEmail from '@/utils/sendEmail';
 import CryptoJS from 'crypto-js';
-import jwt from 'jsonwebtoken'; // Updated import
+import jwt from 'jsonwebtoken';
 import jwt_decode from "jwt-decode";
-import db from '@/middleware';
+import connect from '@/lib/db';
 
 export default async function handler(req, res) {
+    await connect(); // Ensure a database connection
+
     if (req.method === 'GET') {
         try {
             const token = req.headers.authorization; // Extract token from the authorization header

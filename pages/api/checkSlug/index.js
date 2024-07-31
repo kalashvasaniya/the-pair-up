@@ -2,9 +2,10 @@ import User from '@/models/User'; // Your User model
 import Details from '@/models/Details'; // Your Details model
 import Post from '@/models/Post';
 import Follower from '@/models/Follower';
-import db from '@/middleware';
+import connect from '@/lib/db';
 
 export default async function handler(req, res) {
+    await connect(); // Ensure a database connection
     if (req.method !== 'GET') {
         try {
             const { slug } = req.query;

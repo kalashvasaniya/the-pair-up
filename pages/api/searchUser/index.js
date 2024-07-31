@@ -1,9 +1,10 @@
 import User from '@/models/User'; // Your User model
 import Details from '@/models/Details'; // Your Details model
 import Post from '@/models/Post';
-import db from '@/middleware'; // Assuming you have a database connection module
+import connect from '@/lib/db';
 
 export default async function handler(req, res) {
+    await connect(); // Ensure a database connection
     if (req.method !== 'GET') {
         try {
             const { slug } = req.query;
