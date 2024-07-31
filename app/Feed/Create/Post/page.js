@@ -44,7 +44,7 @@ const Post = () => {
 
     const fetchUserDetails1 = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+            const response = await fetch(`api/login`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ const Post = () => {
 
     const fetchUserDetails2 = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+            const response = await fetch(`api/details`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ const Post = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
+            const res = await fetch(`api/post`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -392,7 +392,7 @@ const Post = () => {
                         </div>) : (
                         <div className="flex flex-col justify-center items-center text-3xl font-bold font-mono h-screen">
                             Edit profile then only you can create post
-                            <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/Details`} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl text-xl mt-12'>Edit Profile</Link>
+                            <Link href={`user/Details`} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl text-xl mt-12'>Edit Profile</Link>
                         </div>
                     )}
                 </div>
