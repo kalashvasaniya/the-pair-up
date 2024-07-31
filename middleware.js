@@ -3,6 +3,7 @@ import { MongoClient } from 'mongodb';
 
 // Not Required
 // This function can be marked `async` if using `await` inside
+
 export function middleware(request) {
     return NextResponse.redirect(new URL('/', request.url));
 }
