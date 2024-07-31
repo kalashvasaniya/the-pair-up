@@ -37,7 +37,7 @@ const Feed = () => {
 
     const fetchUserDetails1 = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+            const response = await fetch(`api/details`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const Feed = () => {
     // Post 
     const fetchUserDetails3 = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
+            const response = await fetch(`api/post`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ const Feed = () => {
 
     const fetchUserDetails4 = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/likecomment`, {
+            const response = await fetch(`api/likecomment`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const Feed = () => {
 
     const fetchUserDetails5 = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/follow`, {
+            const response = await fetch(`api/follow`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ const Feed = () => {
         }));
         try {
             if (isIcon[userToLike]) {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/unlikecomment`, {
+                const response = await fetch(`api/unlikecomment`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ const Feed = () => {
                     console.log("data", data)
                 }
             } else {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/likecomment`, {
+                const response = await fetch(`api/likecomment`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -339,7 +339,7 @@ const Feed = () => {
                                                                                             <button
                                                                                                 onClick={async () => {
                                                                                                     // Attempt to copy the link to the clipboard
-                                                                                                    await navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`)
+                                                                                                    await navigator.clipboard.writeText(`user/profile/${userPost.name}/${post.slugPostLink}`)
                                                                                                     setIsCopied(true);
                                                                                                     setTimeout(() => {
                                                                                                         setIsCopied(false);
@@ -635,7 +635,7 @@ const Feed = () => {
                                                                                                             <button
                                                                                                                 onClick={async () => {
                                                                                                                     // Attempt to copy the link to the clipboard
-                                                                                                                    await navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`)
+                                                                                                                    await navigator.clipboard.writeText(`user/profile/${userPost.name}/${post.slugPostLink}`)
                                                                                                                     setIsCopied(true);
                                                                                                                     setTimeout(() => {
                                                                                                                         setIsCopied(false);
