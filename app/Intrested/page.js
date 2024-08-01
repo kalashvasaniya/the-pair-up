@@ -31,7 +31,7 @@ const Intrested = () => {
 
   const fetchUserDetails1 = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+      const response = await fetch(`/api/login`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const Intrested = () => {
 
   const fetchUserDetails2 = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+      const response = await fetch(`/api/details`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const Intrested = () => {
 
   const searchUser = async (slug) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/searchUser?slug=${slug}`, {
+      const response = await fetch(`/api/searchUser?slug=${slug}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

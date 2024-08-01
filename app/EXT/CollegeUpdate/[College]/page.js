@@ -77,7 +77,7 @@ const page = () => {
                     {(userDetails2.college === 'Dropout?' || !userDetails2.college) && (
                         <div className="flex flex-col justify-center items-center text-3xl font-bold font-mono h-screen">
                             You are not a student of any college yet.
-                            <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/Details`} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl text-xl mt-12'>Edit Profile</Link>
+                            <Link href={`/user/Details`} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl text-xl mt-12'>Edit Profile</Link>
                         </div>
                     )}
                     {/* VIT  */}

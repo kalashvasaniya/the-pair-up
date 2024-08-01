@@ -47,7 +47,7 @@ const Signup = () => {
             return;
         }
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
+        const res = await fetch(`/api/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
