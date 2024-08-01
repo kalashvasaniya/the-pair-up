@@ -94,7 +94,7 @@ const Profile = ({ params }) => {
 
   const fetchUserDetails1 = async () => {
     try {
-      const response = await fetch(`api/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ const Profile = ({ params }) => {
 
   const fetchUserDetails2 = async () => {
     try {
-      const response = await fetch(`api/details`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ const Profile = ({ params }) => {
   // Post 
   const fetchUserDetails3 = async () => {
     try {
-      const response = await fetch(`api/post`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -155,7 +155,7 @@ const Profile = ({ params }) => {
 
   const fetchUserDetails4 = async () => {
     try {
-      const response = await fetch(`api/follow`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/follow`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -778,14 +778,14 @@ const Profile = ({ params }) => {
                       {postDetails === undefined ? (
                         // If no posts, show a message to create a post
                         <div className="my-8 flex justify-center pt-12">
-                          <Link href={`Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
+                          <Link href={`${process.env.NEXT_PUBLIC_HOST}/Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
                         </div>
                       ) : (
                         <div className="grid grid-cols-3 gap-6 my-8">
                           {/* Post */}
                           <div className="">
                             {Array.isArray(reverse) && reverse.map((post, index) => (
-                              <Link href={`user/profile/${userDetails.name}/${post.slugPostLink}`}>
+                              <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
                                 <div key={index} className="">
                                   {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                     <div key={index} className="">
@@ -847,7 +847,7 @@ const Profile = ({ params }) => {
                             {Array.isArray(reverse) && reverse.map((post, index) => (
                               <div key={index} className="">
                                 {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                  <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                  <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                     {params.slug === "Founder" ? (
                                       <div className="">
                                         {post.content.includes("@" + params.slug) ? (
@@ -867,7 +867,7 @@ const Profile = ({ params }) => {
                                                     <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                       {formatDate(post.date)}
                                                       <div key={index} className="text-gray-400 mt-2">
-                                                        Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                        Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -899,7 +899,7 @@ const Profile = ({ params }) => {
                                                     <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                       {formatDate(post.date)}
                                                       <div key={index} className="text-gray-400 mt-2">
-                                                        Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                        Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -1333,7 +1333,7 @@ const Profile = ({ params }) => {
                         {postDetails === undefined ? (
                           // If no posts, show a message to create a post
                           <div className="my-8 flex justify-center">
-                            <Link href={`Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
+                            <Link href={`${process.env.NEXT_PUBLIC_HOST}/Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
                           </div>
                         ) : (
                           <div className="flex gap-4 my-8 mx-6 mb-24">
@@ -1343,7 +1343,7 @@ const Profile = ({ params }) => {
                                 {Array.isArray(reverse) && reverse.map((post, index) => (
                                   <div key={index} className="">
                                     {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                      <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                      <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                         <div key={index} className="">
                                           {params.slug === userPost.name && (
                                             <div key={index} className="">
@@ -1402,7 +1402,7 @@ const Profile = ({ params }) => {
                               {Array.isArray(reverse) && reverse.map((post, index) => (
                                 <div key={index} className="">
                                   {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                    <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                    <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                       {params.slug === "Founder" ? (
                                         <div className="">
                                           {post.content.includes("@" + params.slug) ? (
@@ -1422,7 +1422,7 @@ const Profile = ({ params }) => {
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
                                                         <div key={index} className="text-gray-400 mt-2">
-                                                          Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                          Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -1454,7 +1454,7 @@ const Profile = ({ params }) => {
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
                                                         <div key={index} className="text-gray-400 mt-2">
-                                                          Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                          Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -1929,7 +1929,7 @@ const Profile = ({ params }) => {
                         {/* Post  */}
                         <div className="">
                           {Array.isArray(reverse) && reverse.map((post, index) => (
-                            <Link href={`user/profile/${userDetails.name}/${post.slugPostLink}`}>
+                            <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails.name}/${post.slugPostLink}`}>
                               <div key={index} className="">
                                 {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                   <div key={index} className="">
@@ -1990,7 +1990,7 @@ const Profile = ({ params }) => {
                           {Array.isArray(reverse) && reverse.map((post, index) => (
                             <div key={index} className="">
                               {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                   {params.slug === "Founder" ? (
                                     <div className="">
                                       {post.content.includes("@" + params.slug) ? (
@@ -2010,7 +2010,7 @@ const Profile = ({ params }) => {
                                                   <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                     {formatDate(post.date)}
                                                     <div key={index} className="text-gray-400 mt-2">
-                                                      Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                      Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -2042,7 +2042,7 @@ const Profile = ({ params }) => {
                                                   <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                     {formatDate(post.date)}
                                                     <div key={index} className="text-gray-400 mt-2">
-                                                      Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                      Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -2498,7 +2498,7 @@ const Profile = ({ params }) => {
                                 {Array.isArray(reverse) && reverse.map((post, index) => (
                                   <div key={index} className="">
                                     {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                      <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                      <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                         <div key={index} className="">
                                           {params.slug === userPost.name && (
                                             <div key={index} className="">
@@ -2557,7 +2557,7 @@ const Profile = ({ params }) => {
                               {Array.isArray(reverse) && reverse.map((post, index) => (
                                 <div key={index} className="">
                                   {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                    <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                    <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                       {params.slug === "Founder" ? (
                                         <div className="">
                                           {post.content.includes("@" + params.slug) ? (
@@ -2577,7 +2577,7 @@ const Profile = ({ params }) => {
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
                                                         <div key={index} className="text-gray-400 mt-2">
-                                                          Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                          Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -2609,7 +2609,7 @@ const Profile = ({ params }) => {
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
                                                         <div key={index} className="text-gray-400 mt-2">
-                                                          Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                          Taggeg by <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                         </div>
                                                       </div>
                                                     </div>
