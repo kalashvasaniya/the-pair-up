@@ -785,7 +785,7 @@ const Profile = ({ params }) => {
                           {/* Post */}
                           <div className="">
                             {Array.isArray(reverse) && reverse.map((post, index) => (
-                              <Link href={`user/profile/${userDetails.name}/${post.slugPostLink}`}>
+                              <Link href={`/user/profile/${userDetails.name}/${post.slugPostLink}`}>
                                 <div key={index} className="">
                                   {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                     <div key={index} className="">
@@ -847,7 +847,7 @@ const Profile = ({ params }) => {
                             {Array.isArray(reverse) && reverse.map((post, index) => (
                               <div key={index} className="">
                                 {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                  <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                  <Link href={`/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                     {params.slug === "Founder" ? (
                                       <div className="">
                                         {post.content.includes("@" + params.slug) ? (
@@ -1343,7 +1343,7 @@ const Profile = ({ params }) => {
                                 {Array.isArray(reverse) && reverse.map((post, index) => (
                                   <div key={index} className="">
                                     {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                      <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                      <Link href={`/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                         <div key={index} className="">
                                           {params.slug === userPost.name && (
                                             <div key={index} className="">
@@ -1402,7 +1402,7 @@ const Profile = ({ params }) => {
                               {Array.isArray(reverse) && reverse.map((post, index) => (
                                 <div key={index} className="">
                                   {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                    <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                    <Link href={`/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                       {params.slug === "Founder" ? (
                                         <div className="">
                                           {post.content.includes("@" + params.slug) ? (
@@ -1929,7 +1929,7 @@ const Profile = ({ params }) => {
                         {/* Post  */}
                         <div className="">
                           {Array.isArray(reverse) && reverse.map((post, index) => (
-                            <Link href={`user/profile/${userDetails.name}/${post.slugPostLink}`}>
+                            <Link href={`/user/profile/${userDetails.name}/${post.slugPostLink}`}>
                               <div key={index} className="">
                                 {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
                                   <div key={index} className="">
@@ -1990,7 +1990,7 @@ const Profile = ({ params }) => {
                           {Array.isArray(reverse) && reverse.map((post, index) => (
                             <div key={index} className="">
                               {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                <Link href={`/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                   {params.slug === "Founder" ? (
                                     <div className="">
                                       {post.content.includes("@" + params.slug) ? (
@@ -2498,7 +2498,7 @@ const Profile = ({ params }) => {
                                 {Array.isArray(reverse) && reverse.map((post, index) => (
                                   <div key={index} className="">
                                     {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                      <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                      <Link href={`/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                         <div key={index} className="">
                                           {params.slug === userPost.name && (
                                             <div key={index} className="">
@@ -2557,7 +2557,7 @@ const Profile = ({ params }) => {
                               {Array.isArray(reverse) && reverse.map((post, index) => (
                                 <div key={index} className="">
                                   {Array.isArray(userDetails4) && userDetails4.map((userPost, index) => (
-                                    <Link href={`user/profile/${userPost.name}/${post.slugPostLink}`}>
+                                    <Link href={`/user/profile/${userPost.name}/${post.slugPostLink}`}>
                                       {params.slug === "Founder" ? (
                                         <div className="">
                                           {post.content.includes("@" + params.slug) ? (
