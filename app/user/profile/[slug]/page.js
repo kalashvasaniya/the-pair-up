@@ -1,12 +1,15 @@
 "use client"
-import RightSideNavbar from '@/components/RightSideNavbar/page';
-import React, { useEffect, useState, useRef } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import BottomNavbar from '@/components/BottomNavbar/page';
-import { useTPU } from '@/app/layout';
-import Example from '@/app/UI/Loader/page';
-import ScrollButton1 from '@/app/UI/ScrollButton1/page';
+import RightSideNavbar from '@/components/RightSideNavbar/page'
+import React from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import BottomNavbar from '@/components/BottomNavbar/page'
+import { useTPU } from '@/app/layout'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import Example from '@/app/UI/Loader/page'
+import ScrollButton1 from '@/app/UI/ScrollButton1/page'
+import { useRef } from 'react'
 
 const Profile = ({ params }) => {
   const [userDetails, setUserDetails] = useState(null);
@@ -28,6 +31,7 @@ const Profile = ({ params }) => {
   const [showTagged, setShowTagged] = useState(false);
 
   const [isFollowing, setIsFollowing] = useState(false);
+
   const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
@@ -36,6 +40,7 @@ const Profile = ({ params }) => {
     }
 
     setTimeout(() => {
+      // After 2 seconds, show the Story
       setShowLoader(true);
     }, 1000);
 
@@ -44,7 +49,7 @@ const Profile = ({ params }) => {
     fetchUserDetails2();
     fetchUserDetails3();
     fetchUserDetails4();
-    searchUser(" ");
+    searchUser(" ")
   }, [params.slug]);
 
   const searchUser = async (slug) => {
@@ -58,7 +63,7 @@ const Profile = ({ params }) => {
       if (response.ok) {
         const data = await response.json();
         setUserDetailsk1(data.users);
-        setSlugDetailsk1(data.details);
+        setSlugDetailsk1(data.details)
       } else {
         throw new Error("Something went wrong!");
       }
@@ -73,19 +78,17 @@ const Profile = ({ params }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        },
+        }
       });
       if (response.ok) {
         const data = await response.json();
         setUserDetails(data.user[0]);
-        setSlugDetails(data.details[0]);
-        setPostDetails(data.posts[0]);
-        setFollowDetails(data.follower);
-      } else {
-        throw new Error("Something went wrong!");
-      }
+        setSlugDetails(data.details[0])
+        setPostDetails(data.posts[0])
+        setFollowDetails(data.follower)
+      } else throw new Error("Something went wrong!");
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   };
 
@@ -106,7 +109,7 @@ const Profile = ({ params }) => {
         // Handle error
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   };
 
@@ -127,27 +130,28 @@ const Profile = ({ params }) => {
         // Handle error
       }
     } catch (error) {
-      console.log("hooo");
+      console.log("hooo")
     }
   };
 
+  // Post 
   const fetchUserDetails3 = async () => {
     try {
       const response = await fetch(`/api/post`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-      });
+      })
       if (response.ok) {
         const data = await response.json();
         setUserDetails3(data.posts);
         setUserDetails4(data.userPost);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const fetchUserDetails4 = async () => {
     try {
@@ -155,41 +159,48 @@ const Profile = ({ params }) => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-        },
+        }
       });
 
       if (response.ok) {
         const data = await response.json();
         setUserDetails7(data.followers);
       } else {
+        // Handle other HTTP errors (e.g., 404, 500)
         console.error("Request failed with status:", response.status, response.message);
       }
     } catch (error) {
       console.error('Error following user:', error);
+      // Handle the error as needed, e.g., show an error message to the user.
     }
-  };
+
+  }
 
   const handleButtonClick = async (userToFollow, userToUnfollow) => {
+    // Invert the isFollowing state
     setIsFollowing(!isFollowing);
 
     try {
       if (isFollowing) {
+        // Unfollow the user
         const response = await fetch(`/api/unfollow`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           },
-          body: JSON.stringify({ userIdToUnfollow: userToUnfollow }),
+          body: JSON.stringify({ userIdToUnfollow: userToUnfollow }) // Pass the user ID to unfollow
         });
 
         if (response.ok) {
           const data = await response.json();
-          window.location.reload();
+          window.location.reload()
         } else {
+          // Handle the case where unfollowing failed
           console.log('Failed to unfollow user');
         }
       } else {
+        // Follow the user
         const response = await fetch(`/api/follow`, {
           method: 'POST',
           headers: {
@@ -198,12 +209,12 @@ const Profile = ({ params }) => {
           },
           body: JSON.stringify({
             userIdToFollow: userToFollow,
-          }),
+          })
         });
 
         if (response.ok) {
           const data = await response.json();
-          window.location.reload();
+          window.location.reload()
         } else {
           console.log('Failed to follow user');
         }
@@ -213,29 +224,31 @@ const Profile = ({ params }) => {
     }
   };
 
+
   function reverseArray(arr) {
     return arr.slice().reverse();
   }
-
-  const userDetails6 = [...(userDetails3 || [])];
+  // Example usage:
+  const userDetails6 = [...userDetails3]
   const reverse = reverseArray(userDetails6);
 
+  // Date 
   function formatDate(inputDate) {
-    const options = { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    const options = { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', };
     const date = new Date(inputDate);
     return date.toLocaleDateString('en-IN', options);
   }
 
   const togglePost = () => {
     setShowPost(showPost);
-    setShowFeed(false);
+    setShowFeed(false); // Close other components if needed
     setShowTagged(false);
   };
 
   const toggleFeed = () => {
     setShowPost(true);
     setShowFeed(!showFeed);
-    setShowTagged(false);
+    setShowTagged(false); // Close other components if needed
   };
 
   const toggleTagged = () => {
@@ -250,35 +263,39 @@ const Profile = ({ params }) => {
 
   const showFollower = () => {
     if (ref1.current.classList.contains('-translate-x-full')) {
-      ref1.current.classList.remove('-translate-x-full');
-      ref1.current.classList.add('translate-x-0');
-    } else {
-      ref1.current.classList.remove('translate-x-0');
-      ref1.current.classList.add('-translate-x-full');
+      ref1.current.classList.remove('-translate-x-full')
+      ref1.current.classList.add('translate-x-0')
+    }
+    else {
+      ref1.current.classList.remove('translate-x-0')
+      ref1.current.classList.add('-translate-x-full')
     }
     if (ref3.current.classList.contains('-translate-x-full')) {
-      ref3.current.classList.remove('-translate-x-full');
-      ref3.current.classList.add('translate-x-0');
-    } else {
-      ref3.current.classList.remove('translate-x-0');
-      ref3.current.classList.add('-translate-x-full');
+      ref3.current.classList.remove('-translate-x-full')
+      ref3.current.classList.add('translate-x-0')
+    }
+    else {
+      ref3.current.classList.remove('translate-x-0')
+      ref3.current.classList.add('-translate-x-full')
     }
   };
 
   const showFollowing = () => {
     if (ref2.current.classList.contains('-translate-x-full')) {
-      ref2.current.classList.remove('-translate-x-full');
-      ref2.current.classList.add('translate-x-0');
-    } else {
-      ref2.current.classList.remove('translate-x-0');
-      ref2.current.classList.add('-translate-x-full');
+      ref2.current.classList.remove('-translate-x-full')
+      ref2.current.classList.add('translate-x-0')
+    }
+    else {
+      ref2.current.classList.remove('translate-x-0')
+      ref2.current.classList.add('-translate-x-full')
     }
     if (ref4.current.classList.contains('-translate-x-full')) {
-      ref4.current.classList.remove('-translate-x-full');
-      ref4.current.classList.add('translate-x-0');
-    } else {
-      ref4.current.classList.remove('translate-x-0');
-      ref4.current.classList.add('-translate-x-full');
+      ref4.current.classList.remove('-translate-x-full')
+      ref4.current.classList.add('translate-x-0')
+    }
+    else {
+      ref4.current.classList.remove('translate-x-0')
+      ref4.current.classList.add('-translate-x-full')
     }
   };
 
