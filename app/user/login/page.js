@@ -18,7 +18,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const res = await fetch(`api/login`, {
+        const res = await fetch(`/api/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const Login = () => {
                                 </div>
 
                                 <div className="flex items-center justify-between">
-                                    <Link href={'/forgot'} className="text-sm font-medium text-sky-400 hover:underline">Forgot password?</Link>
+                                    <Link href={'/user/forgot'} className="text-sm font-medium text-sky-400 hover:underline">Forgot password?</Link>
                                 </div>
                                 <button style={{ backgroundColor: '#00B2FF' }} type="submit"
                                     className="w-full bg-sky-400 hover:bg-sky-500 text-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:scale-105 transition ease-in-out delay-150 duration-300">
