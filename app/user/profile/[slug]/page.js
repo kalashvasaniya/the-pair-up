@@ -10,10 +10,8 @@ import { useState } from 'react'
 import Example from '@/app/UI/Loader/page'
 import ScrollButton1 from '@/app/UI/ScrollButton1/page'
 import { useRef } from 'react'
-import connect from '@/lib/db'
 
-const Profile = async ({ params }) => {
-  await connect(); // Ensure a database connection
+const Profile = ({ params }) => {
   const [userDetails, setUserDetails] = useState(null);
   const [slugDetails, setSlugDetails] = useState(null);
   const [postDetails, setPostDetails] = useState(null);
