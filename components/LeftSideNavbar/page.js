@@ -16,7 +16,7 @@ const LeftSideNavbar = () => {
 
     const fetchUserDetails1 = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+            const response = await fetch(`api/login`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const LeftSideNavbar = () => {
 
     const fetchUserDetails2 = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
+            const response = await fetch(`api/details`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ const LeftSideNavbar = () => {
                     <div class="w-full p-4 text-gray-100 bg-gray-800 rounded-lg">
                         <div class="flex">
                             <div class="ml-3 text-sm font-normal">
-                                <div class="mb-2 text-sm font-normal">Hi <Link href={`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userDetails1.name}`} className='text-sky-500 hover:underline'>{userDetails1.name}</Link>, "Your presence in The PairUp makes it a more vibrant and interesting place."</div>
+                                <div class="mb-2 text-sm font-normal">Hi <Link href={`user/profile/${userDetails1.name}`} className='text-sky-500 hover:underline'>{userDetails1.name}</Link>, "Your presence in The PairUp makes it a more vibrant and interesting place."</div>
                             </div>
                         </div>
                     </div>
