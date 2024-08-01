@@ -41,7 +41,7 @@ const chat = ({ params }) => {
 
     const fetchUserDetails = async (slug) => {
         try {
-            const response = await fetch(`api/checkSlug?slug=${slug}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/checkSlug?slug=${slug}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const chat = ({ params }) => {
 
     const fetchUserDetails1 = async () => {
         try {
-            const response = await fetch(`api/login`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const chat = ({ params }) => {
 
     const fetchUserDetails2 = async () => {
         try {
-            const response = await fetch(`api/details`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ const chat = ({ params }) => {
 
     const getChats = async () => {
 
-        const res = await fetch(`api/chatting`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/chatting`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ const chat = ({ params }) => {
 
     const handleSubmit = async (ids) => {
 
-        const res = await fetch(`api/chatting`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/chatting`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

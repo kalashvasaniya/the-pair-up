@@ -31,7 +31,7 @@ const Delete = () => {
                             Soon ...
                         </div>
                         <div className="">
-                            <Link href={`menu/Setting`} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl'>Back</Link>
+                            <Link href={`${process.env.NEXT_PUBLIC_HOST}/menu/Setting`} className='bg-sky-500 hover:scale-105 p-2 px-3 rounded-2xl'>Back</Link>
                         </div>
                     </div>
                 </div>
