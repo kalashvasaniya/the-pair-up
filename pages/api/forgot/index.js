@@ -26,7 +26,7 @@ export default async function handler(req, res) {
                 tokenForgot: tokenValue.toString(),
             });
 
-            const verifyUrl = `api/verifyForgot?token=${forgot.tokenForgot}`;
+            const verifyUrl = `https://the-pair-up.vercel.app/api/verifyForgot?token=${forgot.tokenForgot}`;
             const message = `Hello, ${user.name}
 
 Thank you for signing up with The PairUp! Please click on the link below to verify your email:
