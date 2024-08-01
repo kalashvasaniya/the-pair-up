@@ -54,7 +54,7 @@ const Profile = ({ params }) => {
 
   const fetchUserDetails = async (slug) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/checkSlug?slug=${slug}`, {
+      const response = await fetch(`api/checkSlug?slug=${slug}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const Profile = ({ params }) => {
 
   const searchUser = async (slug) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/searchUser?slug=${slug}`, {
+      const response = await fetch(`api/searchUser?slug=${slug}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -183,7 +183,7 @@ const Profile = ({ params }) => {
     try {
       if (isFollowing) {
         // Unfollow the user
-        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/unfollow`, {
+        const response = await fetch(`api/unfollow`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -201,7 +201,7 @@ const Profile = ({ params }) => {
         }
       } else {
         // Follow the user
-        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/follow`, {
+        const response = await fetch(`api/follow`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

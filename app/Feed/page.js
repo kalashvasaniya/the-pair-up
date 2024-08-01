@@ -136,7 +136,7 @@ const Feed = () => {
         }));
         try {
             if (isIcon[userToLike]) {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/unlikecomment`, {
+                const response = await fetch(`api/unlikecomment`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ const Feed = () => {
                     console.log("data", data)
                 }
             } else {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/likecomment`, {
+                const response = await fetch(`api/likecomment`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
