@@ -867,7 +867,7 @@ const Profile = ({ params }) => {
                                                     <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                       {formatDate(post.date)}
                                                       <div key={index} className="text-gray-400 mt-2">
-                                                        Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                        Taggeg by <Link href={`/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -899,7 +899,7 @@ const Profile = ({ params }) => {
                                                     <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                       {formatDate(post.date)}
                                                       <div key={index} className="text-gray-400 mt-2">
-                                                        Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                        Taggeg by <Link href={`/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -1422,7 +1422,7 @@ const Profile = ({ params }) => {
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
                                                         <div key={index} className="text-gray-400 mt-2">
-                                                          Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                          Taggeg by <Link href={`/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -1454,7 +1454,7 @@ const Profile = ({ params }) => {
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
                                                         <div key={index} className="text-gray-400 mt-2">
-                                                          Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                          Taggeg by <Link href={`/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -2010,7 +2010,7 @@ const Profile = ({ params }) => {
                                                   <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                     {formatDate(post.date)}
                                                     <div key={index} className="text-gray-400 mt-2">
-                                                      Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                      Taggeg by <Link href={`/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -2042,7 +2042,7 @@ const Profile = ({ params }) => {
                                                   <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                     {formatDate(post.date)}
                                                     <div key={index} className="text-gray-400 mt-2">
-                                                      Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                      Taggeg by <Link href={`/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -2577,7 +2577,7 @@ const Profile = ({ params }) => {
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
                                                         <div key={index} className="text-gray-400 mt-2">
-                                                          Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                          Taggeg by <Link href={`/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -2609,7 +2609,7 @@ const Profile = ({ params }) => {
                                                       <div className="text-xs mt-6 text-gray-400 flex flex-col">
                                                         {formatDate(post.date)}
                                                         <div key={index} className="text-gray-400 mt-2">
-                                                          Taggeg by <Link href={`user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
+                                                          Taggeg by <Link href={`/user/profile/${userPost.name}`} className='text-sky-400 hover:underline '>@{userPost.name}</Link>
                                                         </div>
                                                       </div>
                                                     </div>
