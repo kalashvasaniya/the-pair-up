@@ -6,27 +6,28 @@ import connect from '@/lib/db';
 
 export default async function handler(req, res) {
     await connect(); // Ensure a database connection
+
     if (req.method === 'POST') {
         try {
-            const users = await User.find({ email: req.body.email });
+            const { email, password } = req.body;
+            const users = await User.find({ email });
 
             if (users.length === 0) {
                 return res.status(404).json({ success: false, error: "User not found" });
             }
 
-            const { password } = req.body;
-            const encryptedPassword = CryptoJS.AES.encrypt(password, "keykalash").toString();
+            const encryptedPassword = CryptoJS.AES.encrypt(password, process.env.ENCRYPTION_KEY).toString();
 
             const user = await User.findByIdAndUpdate(users[0]._id, { password: encryptedPassword });
 
             const tokenValue = Date.now() + Date.now();
             const forgot = await Forgot.create({
                 user: user._id,
-                email: req.body.email,
+                email,
                 tokenForgot: tokenValue.toString(),
             });
 
-            const verifyUrl = `https://the-pair-up.vercel.app/api/verifyForgot?token=${forgot.tokenForgot}`;
+            const verifyUrl = `https://www.thepairup.in/api/verifyForgot?token=${forgot.tokenForgot}`;
             const message = `Hello, ${user.name}
 
 Thank you for signing up with The PairUp! Please click on the link below to verify your email:
@@ -35,7 +36,7 @@ ${verifyUrl}
 
 If you did not sign up for The PairUp, please ignore this email.
 
-Best regards
+Best regards,
 The PairUp Team`;
 
             try {
@@ -48,10 +49,10 @@ The PairUp Team`;
             } catch (err) {
                 await User.findByIdAndRemove(users[0]._id); // Remove the user
                 await forgot.remove(); // Remove the tokenForgot
-                res.status(500).json({ success: false, error: err.message });
+                res.status(500).json({ success: false, error: "Failed to send email: " + err.message });
             }
         } catch (err) {
-            res.status(500).json({ success: false, error: err.message });
+            res.status(500).json({ success: false, error: "Server error: " + err.message });
         }
     } else if (req.method === 'PUT') {
         try {
@@ -64,22 +65,22 @@ The PairUp Team`;
             }
 
             const { password } = req.body;
-            const encryptedPassword = CryptoJS.AES.encrypt(password, "keykalash").toString();
+            const encryptedPassword = CryptoJS.AES.encrypt(password, process.env.ENCRYPTION_KEY).toString();
 
             const user = await User.findByIdAndUpdate(
                 foundForgot.user,
-                { password: encryptedPassword }
+                { password: encryptedPassword },
+                { new: true } // Return the updated document
             );
 
             if (!user) {
                 return res.status(500).json({ success: false, error: "Failed to update password" });
             }
 
-            await user.save();
             await foundForgot.deleteOne();
             res.status(200).json({ success: true, message: "Password updated successfully" });
 
-            const message = `Password Changed Successfully..... for Email - ${user.email}`;
+            const message = `Password Changed Successfully for Email - ${user.email}`;
 
             await sendForgotEmail({
                 email: user.email,
@@ -87,7 +88,9 @@ The PairUp Team`;
                 text: message,
             });
         } catch (err) {
-            res.status(500).json({ success: false, error: err.message });
+            res.status(500).json({ success: false, error: "Server error: " + err.message });
         }
+    } else {
+        res.status(405).json({ success: false, error: "Method not allowed" });
     }
 }
