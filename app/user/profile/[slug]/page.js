@@ -52,26 +52,6 @@ const Profile = ({ params }) => {
     searchUser(" ")
   }, [params.slug]);
 
-  const fetchUserDetails = async (slug) => {
-    try {
-      const response = await fetch(`/api/checkSlug?slug=${slug}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setUserDetails(data.user[0]);
-        setSlugDetails(data.details[0])
-        setPostDetails(data.posts[0])
-        setFollowDetails(data.follower)
-      } else throw new Error("Something went wrong!");
-    } catch (error) {
-      console.log(error)
-    }
-  };
-
   const searchUser = async (slug) => {
     try {
       const response = await fetch(`/api/searchUser?slug=${slug}`, {
@@ -89,6 +69,26 @@ const Profile = ({ params }) => {
       }
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const fetchUserDetails = async (slug) => {
+    try {
+      const response = await fetch(`/api/checkSlug?slug=${slug}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUserDetails(data.user[0]);
+        setSlugDetails(data.details[0])
+        setPostDetails(data.posts[0])
+        setFollowDetails(data.follower)
+      } else throw new Error("Something went wrong!");
+    } catch (error) {
+      console.log(error)
     }
   };
 
