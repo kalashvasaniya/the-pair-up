@@ -26,7 +26,7 @@ const Forgot = () => {
     const sendResetEmail = async (e) => {
         e.preventDefault();
 
-        const res = await fetch(`/api/forgot`, {
+        const res = await fetch(`api/forgot`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const Forgot = () => {
             alert('Passwords do not match');
             return;
         }
-        const res = await fetch(`/api/forgot?token=${window.location.search.split('=')[1]
+        const res = await fetch(`api/forgot?token=${window.location.search.split('=')[1]
             }`, {
             method: 'PUT',
             headers: {
