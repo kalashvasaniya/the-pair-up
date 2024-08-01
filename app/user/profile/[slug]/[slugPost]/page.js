@@ -38,7 +38,7 @@ export default function postLink({ params }) {
 
   const fetchUserDetails1 = async () => {
     try {
-      const response = await fetch(`api/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export default function postLink({ params }) {
 
   const fetchUserDetails2 = async () => {
     try {
-      const response = await fetch(`api/details`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/details`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function postLink({ params }) {
 
   const fetchUserDetails3 = async () => {
     try {
-      const response = await fetch(`api/post`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ export default function postLink({ params }) {
 
   const fetchUserDetails4 = async () => {
     try {
-      const response = await fetch(`api/likecomment`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/likecomment`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ export default function postLink({ params }) {
     }));
     try {
       if (isIcon[userToLike]) {
-        const response = await fetch(`api/unlikecomment`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/unlikecomment`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ export default function postLink({ params }) {
           console.log("data", data)
         }
       } else {
-        const response = await fetch(`api/likecomment`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/likecomment`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -310,7 +310,7 @@ export default function postLink({ params }) {
                                       <button
                                         onClick={async () => {
                                           // Attempt to copy the link to the clipboard
-                                          await navigator.clipboard.writeText(`user/profile/${userPost.name}/${post.slugPostLink}`)
+                                          await navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_HOST}/user/profile/${userPost.name}/${post.slugPostLink}`)
                                           setIsCopied(true);
                                           setTimeout(() => {
                                             setIsCopied(false);
@@ -329,7 +329,7 @@ export default function postLink({ params }) {
                                           onClick={async () => {
                                             if (window.confirm("Are you sure you want to delete this post?")) {
                                               try {
-                                                const response = await fetch(`api/post`, {
+                                                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post`, {
                                                   method: 'DELETE',
                                                   headers: {
                                                     'Content-Type': 'application/json',
