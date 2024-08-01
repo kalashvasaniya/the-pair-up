@@ -26,7 +26,7 @@ const page = () => {
 
     const fetchUserDetails1 = async () => {
         try {
-            const response = await fetch(`api/login`, {
+            const response = await fetch(`/api/login`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const page = () => {
 
     const fetchUserDetails2 = async () => {
         try {
-            const response = await fetch(`api/details`, {
+            const response = await fetch(`/api/details`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
