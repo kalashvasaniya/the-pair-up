@@ -24,7 +24,7 @@ export default async function handler(req, res) {
                 token2: tokenValue.toString()
             });
 
-            const verifyUrl = `${process.env.NEXT_PUBLIC_HOST}/api/verify?id=${user._id}&token=${token2.token2}`;
+            const verifyUrl = `/api/verify?id=${user._id}&token=${token2.token2}`;
             const message = `Hello, ${user.name}
 
 Thank you for signing up with The PairUp! Please click on the link below to verify your email:
