@@ -10,7 +10,6 @@ import { useState } from 'react'
 import Example from '@/app/UI/Loader/page'
 import ScrollButton1 from '@/app/UI/ScrollButton1/page'
 import { useRef } from 'react'
-import connect from '@/lib/db' 
 
 const Profile = ({ params }) => {
   const [userDetails, setUserDetails] = useState(null);
