@@ -98,7 +98,7 @@ const Signup = () => {
                 <div className="">
                     <Navbar />
                     <div className="md:block hidden">
-                        <Float />
+                        {/* <Float /> */}
                     </div>
                     <section className="bg-black pt-24 h-screen">
                         <div className="flex flex-col items-center justify-center px-6 mx-auto mt-20">

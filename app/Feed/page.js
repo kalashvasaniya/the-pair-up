@@ -339,7 +339,7 @@ const Feed = () => {
                                                                                             <button
                                                                                                 onClick={async () => {
                                                                                                     // Attempt to copy the link to the clipboard
-                                                                                                    await navigator.clipboard.writeText(`/user/profile/${userPost.name}/${post.slugPostLink}`)
+                                                                                                    await navigator.clipboard.writeText(`https://www.thepairup.in/user/profile/${userPost.name}/${post.slugPostLink}`)
                                                                                                     setIsCopied(true);
                                                                                                     setTimeout(() => {
                                                                                                         setIsCopied(false);
@@ -635,7 +635,7 @@ const Feed = () => {
                                                                                                             <button
                                                                                                                 onClick={async () => {
                                                                                                                     // Attempt to copy the link to the clipboard
-                                                                                                                    await navigator.clipboard.writeText(`/user/profile/${userPost.name}/${post.slugPostLink}`)
+                                                                                                                    await navigator.clipboard.writeText(`https://www.thepairup.in/user/profile/${userPost.name}/${post.slugPostLink}`)
                                                                                                                     setIsCopied(true);
                                                                                                                     setTimeout(() => {
                                                                                                                         setIsCopied(false);
