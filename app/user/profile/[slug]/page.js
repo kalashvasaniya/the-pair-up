@@ -47,26 +47,6 @@ const Profile = ({ params }) => {
     searchUser(" ");
   }, [params.slug]);
 
-  const searchUser = async (slug) => {
-    try {
-      const response = await fetch(`/api/searchUser?slug=${slug}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setUserDetailsk1(data.users);
-        setSlugDetailsk1(data.details);
-      } else {
-        throw new Error("Something went wrong!");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const fetchUserDetails = async (slug) => {
     try {
       const response = await fetch(`/api/checkSlug?slug=${slug}`, {
@@ -86,6 +66,26 @@ const Profile = ({ params }) => {
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const searchUser = async (slug) => {
+    try {
+      const response = await fetch(`/api/searchUser?slug=${slug}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUserDetailsk1(data.users);
+        setSlugDetailsk1(data.details);
+      } else {
+        throw new Error("Something went wrong!");
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -1652,7 +1652,7 @@ const Profile = ({ params }) => {
                                                                 </div>
                                                               )}
                                                             </div>
-                                                            
+
                                                           </div>
                                                         )}
                                                       </div>
