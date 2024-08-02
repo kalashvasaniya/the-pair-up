@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Example from './UI/Loader/page'
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -128,6 +129,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         {children}
         <div className="bg-black">
+          <Analytics />
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
