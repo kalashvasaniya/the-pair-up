@@ -40,12 +40,11 @@ const Profile = ({ params }) => {
     }, 1000);
 
     fetchUserDetails(params.slug);
-    searchUser(params.slug);
+    searchUser(" ");
     fetchUserDetails1();
     fetchUserDetails2();
     fetchUserDetails3();
     fetchUserDetails4();
-    searchUser(" ");
   }, [params.slug]);
 
   const fetchUserDetails = async (slug) => {
