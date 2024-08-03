@@ -44,7 +44,7 @@ const Profile = ({ params }) => {
     fetchUserDetails2();
     fetchUserDetails3();
     fetchUserDetails4();
-    searchUser(" ");
+    searchUser(params.slug);
   }, [params.slug]);
 
   const fetchUserDetails = async (slug) => {
@@ -161,6 +161,7 @@ const Profile = ({ params }) => {
       if (response.ok) {
         const data = await response.json();
         setUserDetails7(data.followers);
+        searchUser(" ");
       } else {
         console.error("Request failed with status:", response.status, response.message);
       }
