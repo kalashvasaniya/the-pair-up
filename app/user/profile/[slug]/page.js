@@ -39,7 +39,7 @@ const Profile = ({ params }) => {
       setShowLoader(true);
     }, 1000);
 
-    searchUser(" ");
+    searchUser(params.slug);
     fetchUserDetails(params.slug);
     fetchUserDetails1();
     fetchUserDetails2();
@@ -161,6 +161,7 @@ const Profile = ({ params }) => {
       if (response.ok) {
         const data = await response.json();
         setUserDetails7(data.followers);
+        searchUser(" ");
       } else {
         console.error("Request failed with status:", response.status, response.message);
       }
