@@ -40,12 +40,35 @@ const Profile = ({ params }) => {
     }, 1000);
 
     fetchUserDetails(params.slug);
-    searchUser(" ");
+    
     fetchUserDetails1();
     fetchUserDetails2();
     fetchUserDetails3();
     fetchUserDetails4();
+    setTimeout(() => {
+      searchUser(" ");
+    }, 5000);
   }, [params.slug]);
+
+  const searchUser = async (slug) => {
+    try {
+      const response = await fetch(`/api/searchUser?slug=${slug}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUserDetailsk1(data.users);
+        setSlugDetailsk1(data.details);
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log("error");
+    }
+  };
 
   const fetchUserDetails = async (slug) => {
     try {
@@ -66,26 +89,6 @@ const Profile = ({ params }) => {
       }
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const searchUser = async (slug) => {
-    try {
-      const response = await fetch(`/api/searchUser?slug=${slug}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setUserDetailsk1(data.users);
-        setSlugDetailsk1(data.details);
-      } else {
-        throw new Error("Something went wrong!");
-      }
-    } catch (error) {
-      console.error(error);
     }
   };
 
