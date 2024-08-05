@@ -10,9 +10,9 @@ const Float = () => {
 
   useEffect(() => {
     // Hide the banner after 10 seconds
-    const timeoutId = setTimeout(() => {
-      setShowBanner(false);
-    }, 15000);
+    // const timeoutId = setTimeout(() => {
+    //   setShowBanner(false);
+    // }, 15000);
 
     return () => clearTimeout(timeoutId); // Cleanup the timeout if the component unmounts
 
@@ -43,8 +43,8 @@ const Float = () => {
               </div>
 
               <div className="grid-cols-2 gap-4 mt-8 grid">
-                <img className="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1" />
-                <img className="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2" />
+                <img className="w-full rounded-lg" src="https://res.cloudinary.com/dwb211sw5/image/upload/v1722881369/linko/est8fk7m26uo4uywcls5.jpg" alt="office content 1" />
+                <img className="mt-4 w-full lg:mt-10 rounded-lg" src="https://res.cloudinary.com/dwb211sw5/image/upload/v1722881383/linko/vdejh7cgata7cfiir144.jpg" alt="office content 2" />
               </div>
             </div>
           </section>
