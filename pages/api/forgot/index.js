@@ -6,6 +6,7 @@ import connect from '@/lib/db';
 
 export default async function handler(req, res) {
     await connect(); // Ensure a database connection
+
     if (req.method === 'POST') {
         try {
             const users = await User.find({ email: req.body.email });
@@ -46,12 +47,14 @@ The PairUp Team`;
                 });
                 res.status(200).json({ success: true, data: forgot });
             } catch (err) {
+                console.error('Error sending email:', err);
                 await User.findByIdAndRemove(users[0]._id); // Remove the user
                 await forgot.remove(); // Remove the tokenForgot
-                res.status(500).json({ success: false, error: err.message });
+                res.status(500).json({ success: false, error: 'Failed to send email' });
             }
         } catch (err) {
-            res.status(500).json({ success: false, error: err.message });
+            console.error('Error handling POST request:', err);
+            res.status(500).json({ success: false, error: 'Internal server error' });
         }
     } else if (req.method === 'PUT') {
         try {
@@ -81,13 +84,20 @@ The PairUp Team`;
 
             const message = `Password Changed Successfully..... for Email - ${user.email}`;
 
-            await sendForgotEmail({
-                email: user.email,
-                subject: 'Password Change',
-                text: message,
-            });
+            try {
+                await sendForgotEmail({
+                    email: user.email,
+                    subject: 'Password Change',
+                    text: message,
+                });
+            } catch (err) {
+                console.error('Error sending password change email:', err);
+            }
         } catch (err) {
-            res.status(500).json({ success: false, error: err.message });
+            console.error('Error handling PUT request:', err);
+            res.status(500).json({ success: false, error: 'Internal server error' });
         }
+    } else {
+        res.status(405).json({ success: false, error: 'Method not allowed' });
     }
 }
