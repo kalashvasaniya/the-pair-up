@@ -10,9 +10,9 @@ const Float = () => {
 
   useEffect(() => {
     // Hide the banner after 10 seconds
-    // const timeoutId = setTimeout(() => {
-    //   setShowBanner(false);
-    // }, 15000);
+    const timeoutId = setTimeout(() => {
+      setShowBanner(false);
+    }, 15000);
 
     return () => clearTimeout(timeoutId); // Cleanup the timeout if the component unmounts
 
