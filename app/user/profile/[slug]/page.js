@@ -45,9 +45,7 @@ const Profile = ({ params }) => {
     fetchUserDetails2();
     fetchUserDetails3();
     fetchUserDetails4();
-    setTimeout(() => {
-      searchUser(" ");
-    }, 5000);
+    searchUser(" ");
   }, [params.slug]);
 
   const searchUser = async (slug) => {
