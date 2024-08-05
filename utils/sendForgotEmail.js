@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 async function sendEmail(req, res) {
     try {
-        const { email, subject, text } = req;
+        const { email, subject, text } = req.body;
         const transporter = nodemailer.createTransport({
             host: process.env.HOST,
             service: process.env.SERVICE,
@@ -20,9 +20,10 @@ async function sendEmail(req, res) {
             subject: subject,
             text: text
         });
-        console.log("Email sent successfully")
+        res.status(200).json({ message: "Email sent successfully" });
     } catch (error) {
         console.error("Error sending email:", error);
+        res.status(500).json({ error: "Failed to send email" });
     }
 }
 

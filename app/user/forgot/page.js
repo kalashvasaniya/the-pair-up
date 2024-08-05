@@ -40,9 +40,9 @@ const Forgot = () => {
             setEmail('');
 
             // Redirect after 2 seconds
-            // setTimeout(() => {
-            //     window.location.href = '/';
-            // }, 2000);
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
         } else {
             alert(json.error);
         }
