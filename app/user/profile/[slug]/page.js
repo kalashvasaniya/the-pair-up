@@ -1933,7 +1933,7 @@ const Profile = ({ params }) => {
                       {postDetails === undefined ? (
                         // If no posts, show a message to create a post
                         <div className="my-8 flex justify-center pt-12">
-                          <Link href={`Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
+                          <Link href={`/Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
                         </div>
                       ) : (
                         <div className="grid grid-cols-3 gap-6 my-8">
@@ -2488,7 +2488,7 @@ const Profile = ({ params }) => {
                         {postDetails === undefined ? (
                           // If no posts, show a message to create a post
                           <div className="my-8 flex justify-center">
-                            <Link href={`Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
+                            <Link href={`/Feed/Create/Post`} className='text-white rounded-full bg-sky-500 p-3 font-medium hover:text-sky-500 hover:bg-white hover:scale-110'>Create a post</Link>
                           </div>
                         ) : (
                           <div className="flex gap-4 my-8 mx-6 mb-24">
