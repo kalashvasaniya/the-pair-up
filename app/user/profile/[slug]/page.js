@@ -44,6 +44,7 @@ const Profile = ({ params }) => {
     fetchUserDetails2();
     fetchUserDetails3();
     fetchUserDetails4();
+    searchUser(" ");
   }, [params.slug]);
 
   const searchUser = async (slug) => {
@@ -169,7 +170,6 @@ const Profile = ({ params }) => {
   };
 
   const handleButtonClick = async (userToFollow, userToUnfollow) => {
-    searchUser(" ");
     setIsFollowing(!isFollowing);
 
     try {
@@ -249,7 +249,6 @@ const Profile = ({ params }) => {
   let totalFollowing = 0;
 
   const showFollower = () => {
-    searchUser(" ");
     if (ref1.current.classList.contains('-translate-x-full')) {
       ref1.current.classList.remove('-translate-x-full');
       ref1.current.classList.add('translate-x-0');
@@ -267,7 +266,6 @@ const Profile = ({ params }) => {
   };
 
   const showFollowing = () => {
-    searchUser(" ");
     if (ref2.current.classList.contains('-translate-x-full')) {
       ref2.current.classList.remove('-translate-x-full');
       ref2.current.classList.add('translate-x-0');
