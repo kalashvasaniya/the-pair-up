@@ -28,7 +28,7 @@ const Search = () => {
     const searchUser = async (slug) => {
         try {
             const response = await fetch(`/api/searchUser?slug=${slug}`, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
