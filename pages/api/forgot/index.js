@@ -20,7 +20,7 @@ export default async function handler(req, res) {
             const user = await User.findByIdAndUpdate(users[0]._id, { password: encryptedPassword });
 
             if (!user) {
-                return res.status(500).json({ success: false, error: "Failed to update password" });
+                return res.status(500).json({ success: false, error: "User not found" });
             }
 
             const tokenValue = Date.now() + Date.now();
@@ -75,7 +75,7 @@ The PairUp Team`;
             );
 
             if (!user) {
-                return res.status(500).json({ success: false, error: "user not found" });
+                return res.status(500).json({ success: false, error: "Failed to update password" });
             }
 
             await foundForgot.deleteOne();
