@@ -40,7 +40,7 @@ The PairUp Team`;
 
             try {
                 await sendForgotEmail({
-                    email: email,
+                    email: req.body.email,
                     subject: 'Password Change',
                     text: message,
                 });
