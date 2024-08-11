@@ -19,6 +19,10 @@ export default async function handler(req, res) {
 
             const user = await User.findByIdAndUpdate(users[0]._id, { password: encryptedPassword });
 
+            if (!user) {
+                return res.status(500).json({ success: false, error: "Failed to update password" });
+            }
+
             const tokenValue = Date.now() + Date.now();
             const forgot = await Forgot.create({
                 user: user._id,
@@ -40,7 +44,7 @@ The PairUp Team`;
 
             try {
                 await sendForgotEmail({
-                    email: User.email,
+                    email: user.email,
                     subject: 'Password Change',
                     text: message,
                 });
@@ -71,10 +75,9 @@ The PairUp Team`;
             );
 
             if (!user) {
-                return res.status(500).json({ success: false, error: "Failed to update password" });
+                return res.status(500).json({ success: false, error: "user not found" });
             }
 
-            await user.save();
             await foundForgot.deleteOne();
             res.status(200).json({ success: true, message: "Password updated successfully" });
 
