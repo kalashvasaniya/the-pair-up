@@ -1,7 +1,7 @@
 import User from '@/models/User';
 import Forgot from '@/models/Forgot';
 import CryptoJS from 'crypto-js';
-import sendForgotEmail from '@/utils/sendForgotEmail';
+import sendEmail from '@/utils/sendEmail';
 import connect from '@/lib/db';
 
 export default async function handler(req, res) {
@@ -39,14 +39,14 @@ Best regards
 The PairUp Team`;
 
             try {
-                await sendForgotEmail({
+                await sendEmail({
                     email: user.email,
                     subject: 'Password Change',
                     text: message,
                 });
                 res.status(200).json({ success: true, data: forgot });
             } catch (err) {
-                await forgot.remove(); // Remove the tokenForgot
+                await forgot.deleteOne(); // Remove the tokenForgot
                 res.status(500).json({ success: false, error: err.message });
             }
         } catch (err) {
@@ -80,7 +80,7 @@ The PairUp Team`;
 
             const message = `Password Changed Successfully..... for Email - ${user.email}`;
 
-            await sendForgotEmail({
+            await sendEmail({
                 email: user.email,
                 subject: 'Password Change',
                 text: message,
