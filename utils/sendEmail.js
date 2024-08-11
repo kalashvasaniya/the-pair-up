@@ -22,7 +22,7 @@ async function sendEmail(req, res) {
         });
         alert("Email sent successfully")
     } catch (error) {
-        alert("Error sending email:", error);
+        alert("Error sending email:", error, email, subject, text);
     }
 }
 
