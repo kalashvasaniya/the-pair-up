@@ -47,7 +47,6 @@ The PairUp Team`;
                 res.status(200).json({ success: true, data: forgot });
                 console.log("hello", email, subject, text)
             } catch (err) {
-                await forgot.remove(); // Remove the tokenForgot
                 res.status(500).json({ success: false, error: err.message });
             }
         } catch (err) {
