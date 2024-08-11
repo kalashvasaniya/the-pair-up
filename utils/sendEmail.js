@@ -20,9 +20,13 @@ async function sendEmail(req, res) {
             subject: subject,
             text: text
         });
-        alert("Email sent successfully")
+
+        // Instead of alert, use console.log or res.send
+        console.log("Email sent successfully");
+        res.send("Email sent successfully");
     } catch (error) {
-        alert("Error sending email:", error, email, subject, text);
+        console.error("Error sending email:", error);
+        res.send("Email not sent successfully", error);
     }
 }
 
