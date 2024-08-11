@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 async function sendEmail(req, res) {
     try {
-        const { email, subject, text } = req;
+        const { email, subject, text } = req.body; // Access request body for parameters
         const transporter = nodemailer.createTransport({
             host: process.env.HOST,
             service: process.env.SERVICE,
@@ -21,12 +21,9 @@ async function sendEmail(req, res) {
             text: text
         });
 
-        // Instead of alert, use console.log or res.send
         console.log("Email sent successfully");
-        res.send("Email sent successfully");
     } catch (error) {
         console.error("Error sending email:", error);
-        res.send("Email not sent successfully", error);
     }
 }
 
