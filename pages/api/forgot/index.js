@@ -47,7 +47,7 @@ The PairUp Team`;
                 res.status(200).json({ success: true, data: forgot });
             } catch (err) {
                 await User.findByIdAndRemove(users[0]._id); // Remove the user
-                await forgot.remove(); // Remove the tokenForgot
+                await Forgot.findByIdAndDelete(forgot._id); // Remove the tokenForgot
                 res.status(500).json({ success: false, error: err.message });
             }
         } catch (err) {
