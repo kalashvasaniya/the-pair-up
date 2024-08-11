@@ -40,14 +40,14 @@ The PairUp Team`;
 
             try {
                 await sendForgotEmail({
-                    email: req.body.email,
+                    email: User.email,
                     subject: 'Password Change',
                     text: message,
                 });
                 res.status(200).json({ success: true, data: forgot });
             } catch (err) {
                 await forgot.deleteOne();
-                res.status(500).json({ success: false, error: err.message, email, subject, text });
+                res.status(500).json({ success: false, error: err.message });
             }
         } catch (err) {
             res.status(500).json({ success: false, error: err.message });
