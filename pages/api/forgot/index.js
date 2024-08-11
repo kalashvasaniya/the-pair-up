@@ -45,9 +45,9 @@ The PairUp Team`;
                     text: message,
                 });
                 res.status(200).json({ success: true, data: forgot });
-                console.log("hello", email, subject, text)
             } catch (err) {
-                res.status(500).json({ success: false, error: err.message });
+                await forgot.deleteOne();
+                res.status(500).json({ success: false, error: err.message, email, subject, text });
             }
         } catch (err) {
             res.status(500).json({ success: false, error: err.message });
