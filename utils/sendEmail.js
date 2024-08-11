@@ -20,9 +20,9 @@ async function sendEmail(req, res) {
             subject: subject,
             text: text
         });
-        res.status(200).json({ message: "Email sent successfully" });
+        alert("Email sent successfully")
     } catch (error) {
-        res.status(500).json({ error: "Error sending email", details: error.message });
+        alert("Error sending email:", error);
     }
 }
 
