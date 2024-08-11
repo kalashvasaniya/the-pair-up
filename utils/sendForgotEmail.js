@@ -22,7 +22,7 @@ async function sendEmail(req, res) {
         });
         console.log("Email sent successfully")
     } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
+        console.error("Error sending email:", error);
     }
 }
 
