@@ -36,6 +36,7 @@ ${verifyUrl}
 If you did not sign up for The PairUp, please ignore this email.
 
 Best regards
+
 The PairUp Team`;
 
             try {

@@ -7,7 +7,7 @@ async function sendEmail(req, res) {
     const { email, subject, text } = req;
 
     const { data, error } = await resend.emails.send({
-      from: `${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`, // Update this line
+      from: `${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`,
       to: [email],
       subject: subject,
       text: text
