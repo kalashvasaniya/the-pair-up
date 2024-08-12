@@ -39,9 +39,9 @@ const Profile = ({ params }) => {
       setShowLoader(true);
     }, 1000);
 
-    fetchUserDetails(params.slug);
     fetchUserDetails1();
     fetchUserDetails2();
+    fetchUserDetails(params.slug);
     fetchUserDetails3();
     fetchUserDetails4();
     searchUser(" ");
