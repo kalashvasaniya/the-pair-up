@@ -41,9 +41,9 @@ const Profile = ({ params }) => {
 
     fetchUserDetails1();
     fetchUserDetails2();
-    fetchUserDetails(params.slug);
     fetchUserDetails3();
     fetchUserDetails4();
+    fetchUserDetails(params.slug);
     searchUser(" ");
   }, [params.slug]);
 
