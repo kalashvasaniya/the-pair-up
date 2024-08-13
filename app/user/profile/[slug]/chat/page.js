@@ -317,10 +317,7 @@ const chat = ({ params }) => {
                                                 <div
                                                     class="ml-2 py-3 px-4 bg-gray-500 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white"
                                                 >
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                                                    at praesentium, aut ullam delectus odio error sit rem. Architecto
-                                                    nulla doloribus laborum illo rem enim dolor odio saepe,
-                                                    consequatur quas?
+                                                    "College students facing challenges in building meaningful connections or seeking companionship now have the opportunity to leverage The PairUp. a platform that offers anonymity while fostering friendships and relationships. Explore a world of possibilities while maintaining your privacy."
                                                 </div>
                                             </div>
 
