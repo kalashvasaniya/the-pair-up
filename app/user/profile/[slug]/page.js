@@ -43,8 +43,8 @@ const Profile = ({ params }) => {
     fetchUserDetails2();
     fetchUserDetails3();
     fetchUserDetails4();
-    fetchUserDetails(params.slug);
     searchUser(" ");
+    fetchUserDetails(params.slug);
   }, [params.slug]);
 
   const searchUser = async (slug) => {
