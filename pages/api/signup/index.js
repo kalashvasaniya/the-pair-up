@@ -18,7 +18,7 @@ export default async function handler(req, res) {
                 password: encryptedPassword
             });
 
-            const tokenValue = Date.now() + password + Date.now();
+            const tokenValue = Date.now() + Date.now();
             const token2 = await Token.create({
                 userId: user._id,
                 token2: tokenValue.toString()
@@ -34,7 +34,6 @@ ${verifyUrl}
 If you did not sign up for The PairUp, please ignore this email.
 
 Best regards
-
 The PairUp Team`;
 
             try {
