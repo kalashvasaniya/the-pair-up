@@ -61,6 +61,8 @@ const Details = () => {
                     setCollege('Dropout?');
                 } else if (emailDomain.endsWith('iitgn.ac.in')) {
                     setCollege('IITGN');
+                } else if (emailDomain.endsWith('muj.manipal.edu')) {
+                    setCollege('MUJ');
                 } else {
                     setCollege(`NA`);
                 }

@@ -37,7 +37,7 @@ const Signup = () => {
         }
 
         const emailDomain = email.split('@')[1];
-        if (!['vitstudent.ac.in', 'iitgn.ac.in'].some(domain => emailDomain.endsWith(domain))) {
+        if (!['vitstudent.ac.in', 'iitgn.ac.in', 'muj.manipal.edu'].some(domain => emailDomain.endsWith(domain))) {
             alert('Error occur following reasons...\n1. Please use a valid college email address ending with .ac.in or .edu.in\n2. Your college is not listed here. Click on "Add College" to include it.');
             return;
         }
