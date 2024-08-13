@@ -43,14 +43,13 @@ const Profile = ({ params }) => {
     fetchUserDetails2();
     fetchUserDetails3();
     fetchUserDetails4();
-    searchUser();
+    searchUser(" ");
     fetchUserDetails(params.slug);
   }, [params.slug]);
 
-  const searchUser = async () => {
+  const searchUser = async (slug) => {
     try {
-      const a = " ";
-      const response = await fetch(`/api/searchUser?slug=${a}`, {
+      const response = await fetch(`/api/searchUser?slug=${slug}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
