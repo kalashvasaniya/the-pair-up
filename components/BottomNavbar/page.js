@@ -116,7 +116,7 @@ const BottomNavbar = () => {
                             </div>
                         </div>
 
-                        <Link href={'/Intrested'} type="button" className="inline-flex flex-col items-center justify-center px-1 hover:bg-gray-800 group">
+                        <Link href={'/Interested'} type="button" className="inline-flex flex-col items-center justify-center px-1 hover:bg-gray-800 group">
                             <Image width={32} height={28} src={'/live-7.png'}></Image>
                             <span className="sr-only">Search</span>
                         </Link>

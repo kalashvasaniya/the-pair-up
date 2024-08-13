@@ -6,7 +6,7 @@ import { useTPU } from '@/app/layout'
 import { useRef } from 'react'
 import Search from '@/app/Search/page'
 import Notification from '@/app/Notification/page'
-import Intrested from '@/app/Intrested/page'
+import Interested from '@/app/Interested/page'
 import { useEffect, useState } from 'react'
 import Message from '@/app/Message/page'
 
@@ -86,7 +86,7 @@ const RightSideNavbar = () => {
             ref2.current.classList.add('-translate-x-full')
         }
     }
-    // Intrested
+    // Interested
     const toggleCart3 = () => {
         if (ref3.current.classList.contains('-translate-x-full')) {
             ref3.current.classList.remove('-translate-x-full')
@@ -121,7 +121,7 @@ const RightSideNavbar = () => {
     const ref1 = useRef();
     // Notification
     const ref2 = useRef();
-    // Intrested
+    // Interested
     const ref3 = useRef();
     // Message
     const ref4 = useRef();
@@ -241,23 +241,23 @@ const RightSideNavbar = () => {
                         </div>
                     </div>
 
-                    {/* Intrested  */}
+                    {/* Interested  */}
                     <div onClick={toggleCart3} className="flex-row cursor-pointer flex mt-4 px-4 text-xl font-medium items-center hover:bg-sky-900 rounded-2xl py-2">
                         <div className="pr-4">
                             <Image className='w-7 h-7' width={28} height={28} src={'/live-7.png'}></Image>
-                            <span className="sr-only">Intrested</span>
+                            <span className="sr-only">Interested</span>
                         </div>
                         <div className="">Interested</div>
                     </div>
 
                     <div ref={ref3} className="absolute border-r border-gray-500 top-0 left-0 z-50 w-96 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-black" tabIndex="-1">
-                        <div className="text-base font-semibold font-mono text-sky-400">Intrested</div>
+                        <div className="text-base font-semibold font-mono text-sky-400">Interested</div>
                         <button onClick={toggleCart3} type="button" className="text-gray-400 bg-transparent hover:bg-sky-500 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center" >
                             <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                             <span className="sr-only">Close menu</span>
                         </button>
                         <hr className="my-3" />
-                        <Intrested />
+                        <Interested />
                     </div>
 
 
