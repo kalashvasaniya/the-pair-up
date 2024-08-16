@@ -29,11 +29,11 @@ export default async function handler(req, res) {
             const verifyUrl = `https://www.thepairup.in/api/verifyForgot?token=${forgot.tokenForgot}`;
             const message = `Hello,
 
-Thank you for signing up with The PairUp! Please click on the link below to verify your email:
+Thank you for choosing The PairUp! Please click the link below to reset your password:
 
 ${verifyUrl}
 
-If you did not sign up for The PairUp, please ignore this email.
+If you didn't register for The PairUp, please ignore this email.
 
 Best regards
 
