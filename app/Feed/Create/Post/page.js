@@ -294,7 +294,7 @@ const Post = () => {
                                                     rows="4"
                                                     placeholder="Write fearlessly..."
                                                     required
-                                                    minLength={10}
+                                                    minLength={1}
                                                     maxLength={200}
                                                 ></textarea>
                                             </div>
