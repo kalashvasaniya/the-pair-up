@@ -74,6 +74,8 @@ export default function Main() {
           <Footer />
         </>
       )}
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3582323814152958"
+        crossorigin="anonymous"></script>
     </>
   )
 }
