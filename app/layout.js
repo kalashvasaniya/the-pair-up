@@ -130,6 +130,8 @@ export default function RootLayout({ children }) {
           <Analytics />
           <SpeedInsights />
         </div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3582323814152958"
+          crossorigin="anonymous"></script>
       </body>
     </html >
   )
