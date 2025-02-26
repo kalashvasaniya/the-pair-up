@@ -23,6 +23,11 @@ const Navbar = () => {
                         <span className='text-4xl font-extrabold text-sky-400'>.</span>
                     </Link>
 
+                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md shadow-sm">
+                        <p class="text-sm">
+                            Old version. Try the new <a href="https://college.thepairup.in/" class="font-semibold text-blue-600 hover:text-blue-800 hover:underline">New PairUp</a>!
+                        </p>
+                    </div>
                     <div className="md:order-4 inline-flex">
 
                         {/* Profile icon  */}
