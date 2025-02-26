@@ -23,11 +23,6 @@ const Navbar = () => {
                         <span className='text-4xl font-extrabold text-sky-400'>.</span>
                     </Link>
 
-                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md shadow-sm">
-                        <p class="text-sm">
-                            Old version. Try the new <a href="https://college.thepairup.in/" class="font-semibold text-blue-600 hover:text-blue-800 hover:underline">New PairUp</a>!
-                        </p>
-                    </div>
                     <div className="md:order-4 inline-flex">
 
                         {/* Profile icon  */}
@@ -58,8 +53,16 @@ const Navbar = () => {
 
                     </div>
                 </div>
+            </nav>
 
-            </nav >
+            {/* Fixed Notification */}
+            <div className="fixed top-16 left-0 w-full z-30 px-8 mt-8"> {/* Changed to fixed and added z-index */}
+                <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md shadow-sm mx-auto max-w-xl">
+                    <p className="text-sm">
+                        Old version. Try the new <a href="https://college.thepairup.in/" className="font-semibold text-blue-600 hover:text-blue-800 hover:underline">PairUp</a>!
+                    </p>
+                </div>
+            </div>
         </>
     )
 }
